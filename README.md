@@ -37,3 +37,5 @@ Also when the back button is clicked again the user should be able to exit the a
 
 ### PIVOTAL TRACKER STORY LINK
 https://www.pivotaltracker.com/n/projects/your ticket id
+
+### Add page screen shot from your local
