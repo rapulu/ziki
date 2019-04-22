@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -242,12 +245,18 @@
                                         adipisicing elit sed eiusmod tempor incididunt labore dolore. </p>
                                 </div>
                                 <div class="col-12 col-sm-5">
-                                    <form action="" class="form-inline">
+                                    <form action="subscribe.php" method = "post" class="form-inline">
                                         <div class="form-group">
-                                            <input type="email" name="" id="" class="form-control subscribe-input" placeholder="E-mail">
+                                            <input type="email" name="email" id="email" class="form-control subscribe-input" placeholder="E-mail">
                                         </div>
-                                        <button class="ml-2 btn btn-hero">JOIN</button>
+                                        <button type = "submit" class="ml-2 btn btn-hero">JOIN</button>
                                     </form>
+                                    <?php
+                                    if(isset($_SESSION['msg'])){
+                                        echo $_SESSION['msg'];
+                                        //unset($_SESSION['msg']);
+                                    }
+                                    ?>
                                 </div>
                                 <div class="col-12 col-sm-1"></div>
                             </div>
