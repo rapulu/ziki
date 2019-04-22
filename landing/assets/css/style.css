@@ -88,17 +88,35 @@ transition: all ease-in 0.3s;
 
 .btn-light {
   pa-left: 15px;
-}
+}b
 
 .nav-container {
   padding-top: 30px !important;
   padding-bottom: 30px !important;
 }
 
-.btn-hero {
+.btn-login {
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
+  border-radius: 10px;
+  border-color: white;
+  color: white;
+  padding-left: 30px;
+  padding-right: 30px;
 }
+
+.btn-login:hover {
+  color: #280A66;
+}
+
+.btn-hero {
+  /*background: rgba(77, 44, 136, 0.41);*/
+  background: linear-gradient(0deg, #F14336, #F14336), linear-gradient(0deg, #FFFFFF, #FFFFFF);
+  border-radius: 10px;
+  padding: 10px 25px;
+  color: white;
+}
+
+.light-weight{font-weight: lighter;}
 
 .btn-hero-red-bcg {
   background-color: #F14336;
@@ -181,6 +199,12 @@ nav>a:hover {
   color: white;
 }
 
+.mobile-ready-note{padding-top: 100px;}
+.mobile-ready-heading{color: #F14336;
+text-transform: uppercase;}
+.mobile-ready-note a {
+  color: #fff;
+}
 button.get-access {
   background: #7f46b4 !important;
 }
@@ -243,6 +267,15 @@ form {
 }
 
 /* Footer Area */
+
+.footer-email a {
+  text-decoration: none;
+  color: white;
+}
+.footer-phone a {
+  text-decoration: none;
+  color: white;
+}
 
 /**/
 
