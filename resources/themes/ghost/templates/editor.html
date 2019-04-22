@@ -1,0 +1,316 @@
+{% set title = "New Post"%}
+{% extends 'layout.html' %} {% block page_content %}
+<style type="text/css">
+  .ql-toolbar.ql-snow {
+    border: 0 !important;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+  }
+
+  .ql-editor.ql-blank {
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #f5f5f5;
+    border: 0 !important;
+  }
+
+  #editor {
+    height: 60vh !important;
+  }
+
+  .btn.btn-primary.canel-post {
+    background-color: transparent !important;
+    border: 1px solid red;
+    color: red;
+    padding: 6px 20px;
+  }
+  .btn.btn-primary.publish-post {
+    background-color: #280a66 !important;
+    border: 1px solid #280a66;
+    padding: 6px 20px;
+  }
+  .btn.btn-primary.canel-post,
+  .btn.btn-primary.publish-post {
+    margin-left: 15px;
+  }
+
+  .main-content {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  .btn-info {
+    background-color: #280a66 !important;
+    border: 0 !important;
+  }
+
+  .side-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .profile-pic {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1.5px solid #280a66;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /*background: url(); */
+    /*display: inline-block;*/
+    margin-bottom: 15px;
+    margin-top: -10px;
+    background: #280a66;
+  }
+
+  .owner-name {
+    font-style: italic;
+    font-weight: bold;
+  }
+
+  .login-button {
+    background-color: #280a66 !important;
+    padding: 5px 20px;
+    color: white !important;
+  }
+
+  #sidebar ul {
+    margin-top: 60px;
+    list-style: none;
+    text-align: left;
+  }
+  #sidebar li {
+    margin: 7px;
+  }
+  #sidebar li a {
+    text-decoration: none;
+    color: #280a66;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .navigation-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  /*Main content Css ends here*/
+
+  /* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+  #sidebar {
+    width: 350px;
+    position: fixed;
+    top: 0;
+    left: -350px;
+    height: 100vh;
+    background-color: white;
+    z-index: 999;
+    transition: all 0.3s;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  #sidebar.active {
+    left: 0;
+  }
+
+  #dismiss {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: white;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  #dismiss:hover {
+    background: #280a66;
+    color: white;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  .overlay.active {
+    display: block;
+    opacity: 1;
+  }
+
+  #sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+  }
+
+  #sidebar ul.components {
+    padding: 20px 0;
+  }
+
+  /* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+  #content {
+    width: 100%;
+    /*padding: 0px;*/
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+</style>
+
+<div class="wrapper">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <!--
+      This is required for the back arrow at the top right corner
+      of the side bar to work.. Don't tamper
+    -->
+    <div id="dismiss"><i class="fas fa-arrow-left"></i></div>
+    <ul class="list-unstyled components"></ul>
+
+    <!-- Owner profile details -->
+    <div class="row">
+      <div class="col-12 side-content">
+        <div>
+          <img
+            class="img-fluid profile-pic"
+            src="resources/themes/ghost/assets/img/fiverr.jpg"
+          />
+        </div>
+        <h4 class="owner-name">Guest Name</h4>
+        <h6>Guest Bio</h6>
+        <a href="#"
+          ><button class="btn btn-default login-button" type="button">
+            Login
+          </button></a
+        >
+      </div>
+    </div>
+
+    <hr />
+
+    <!-- side bar menu links -->
+    <div class="row">
+      <div class="col-12 col-sm-2"></div>
+      <div class="col-12 col-sm-8">
+        <ul>
+          <li><a href="#">Published Posts</a></li>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-12 col-sm-2"></div>
+    </div>
+  </div>
+  <!-- Side bar code ends here -->
+
+  <!-- Page Content that is exclusing side bar -->
+  <div id="content">
+    <!-- Used as our Nav... -->
+    <div class="container-fluid">
+      <!--
+        Nav Bar intentionally spelt fully to prevent conflict please don't touch
+      -->
+      <div class="row navigation-bar">
+        <div class="col-6">
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i> <span></span>
+          </button>
+        </div>
+        <div class="col-6 text-right">
+          <!-- <p>Logo</p> -->
+          <a href="/"
+            ><img src="resources/themes/ghost/assets/img/logo.png"
+          /></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content Area -->
+    <div class="container main-content">
+      <!-- Page body goes here -->
+      <div class="row">
+        <!-- editing area.. -->
+        <div class="col-12">
+          <!-- SleekX's code goes here.. -->
+          <div class="row">
+            <div class="col-12">
+              <h4>New Post</h4>
+              <hr />
+            </div>
+          </div>
+
+          <!-- The editor code goes here -->
+          <div id="form-container">
+            <form method="GET" action="editor">
+              <!-- Quill editor code goes here -->
+              <div class="row">
+                <div class="col-12">
+                  <div class="row form-group">
+                    <div class="col-12">
+                      <input name="postVal" type="hidden" />
+                      <div id="editor"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 d-flex flex-row-reverse">
+                  <input
+                    type="submit"
+                    class="btn btn-primary publish-post"
+                    value="Publish"
+                  />
+                  <input
+                    type="reset"
+                    class="btn btn-primary canel-post"
+                    value="Cancel"
+                    data-toggle="modal"
+                    data-target="#cancelModal"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal begins here -->
+<div id="cancelModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    </div>
+  </div>
+
+</div>
+
+<!--
+  This produces the dark area when the side bar is activated.. Don't touch
+-->
+<div class="overlay"></div>
+{% endblock page_content %}

@@ -1,148 +1,184 @@
-{% extends "layout.html" %}
-{% block page_content %}
+{% set title = "Blog"%} {% extends "layout.html" %} {% block page_content %}
 <style>
-    .body-of-blog {
-        background-color: #f9f9f9;
-    }
-
-    .blog-post-title {
-        letter-spacing: -0.02em;
-        color: #1B1B1B;
-        border-bottom: 1px solid black;
-    }
-
-    .about-blog-source {
-        font-weight: bold;
-    }
-
-    /*  PLACEHOLDER STYLING  */
-    ::placeholder {
-        /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: #280A66;
-        /* Firefox */
-    }
-
-    :-ms-input-placeholder {
-        /* Internet Explorer 10-11 */
-        color: #280A66;
-    }
-
-    ::-ms-input-placeholder {
-        /* Microsoft Edge */
-        color: #280A66;
-    }
-
-    /*  PLACEHOLDER STYLING  */
-
-    /*  COMMENT SECTION STYLING  */
-    .send-comment-btn {
-        border: none;
-        background-color: #280A66;
-        color: #fff;
-        padding: 0.5em 2em;
-        border-radius: 3px;
+    h1,
+    h2,
+    h4,
+    h5,
+    h6,
+    p {
+        font-family: Lato;
+        letter-spacing: 0.03em;
         font-size: 14px;
     }
-
-    .send-comment-btn:hover {
-        cursor: pointer;
-        box-shadow: 3px 3px 18px #4c4c4c;
+    
+    .blog-details .img-logo {
+        padding-top: 15px;
+        padding-bottom: 20px;
     }
-
-    textarea {
-        resize: none;
-        width: 100%;
-        border: none;
-        background-color: #f9f9f9;
+    
+    .blog-details .body-of-blog {
+        background-color: var(--body-of-blog-bg);
+        border-radius: 4px;
     }
-
-    .guest-action-items span {
-        margin-left: 10px;
-        margin-right: 10px;
+    
+    .blog-details .blog-post-title {
+        letter-spacing: -0.02em;
+        color: var(--blog-post-title-font);
+        border-bottom: 1px solid black;
     }
-
-    /*  COMMENT SECTION STYLING  */
-
-
-    /*  POST TAGS STYLING  */
-    .categories {
-        background-color: #EEEEEE;
+    
+    .blog-details .about-blog-source {
+        font-weight: bold;
+    }
+    
+    .blog-details .author-img {
+        border-radius: 50%;
+    }
+    
+    .blog-source,
+    .blog-date {
+        font-size: 12px;
+        font-family: 500;
+    }
+    /*  PLACEHOLDER STYLING  */
+    
+     ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: var(--custom-deep-purple);
+        /* Firefox */
+    }
+    
+     :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: var(--custom-deep-purple);
+    }
+    
+     ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: var(--custom-deep-purple);
+    }
+    /*  PLACEHOLDER STYLING  */
+    /*  CATEGORIES TAGS STYLING  */
+    
+    .blog-details .body-of-blog {
+        background: rgba(249, 249, 249, 0.68);
+        border-radius: 4px;
+    }
+    
+    .blog-details .categories {
+        background-color: #DFDFDF;
         padding: 5px 9px;
         margin-left: 15px;
     }
-
-    /*  POST TAGS STYLING  */
+    
+    .categories {
+        font-weight: 500;
+        font-size: 12px;
+    }
+    
+    .blog-details .categories:hover {
+        cursor: pointer;
+        background-color: #d6d6d6;
+        transition: all ease-in 0.3s;
+    }
+    
+    .blog-details .guest-action-items span {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    /*AUTHOR'S IMAGE*/
+    
+    .author-img {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+    }
+    /*media queries*/
+    
+    @media screen and (max-width: 617px) {
+        .blog-details .author-img {
+            width: 3em;
+            height: 3em;
+        }
+        .author-img {
+            left: 0px;
+        }
+        .about-blog-source {
+            position: absolute;
+            left: 4em;
+            padding: 0px;
+            margin-top: 5px;
+            margin-left: 15px;
+            width: 50%;
+        }
+        .body-of-blog .info-on-author {
+            margin-bottom: 2em;
+        }
+    }
+    
+    @media (min-width:767px) {
+        .about-blog-source {
+            margin-left: 1.5em;
+            margin-top: 0.4em;
+        }
+    }
+    /*media queries*/
 </style>
-<div class="container-fluid ">
+<div class="container-fluid blog-details">
     <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 sidebar">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 sidebar">
 
         </div>
 
-        <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt-5 pt-3">
+            <!-- LOGO -->
+            <!--     <div class="img-logo text-right">
+                <img src="resources/themes/ghost/assets/img/Vector.png" alt="logo" width="34" height="35">
+       </div> -->
             <div class="blog-post-title mt-2">
-                <h2>Looking for where to spend christmas from the comfort of your home</h2>
+                <h3>Looking for where to spend christmas from the comfort of your home</h3>
             </div>
             <div class="body-of-blog p-4 mt-4">
-                <div class="info-on-author row">
-                    <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-                        <img src="resources/themes/ghost/assets/img/Ellipse.png" alt="" class="author-img">
+                <div class="info-on-author row d-flex justify-content-start text-center">
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 mr-2">
+                        <img src="resources/themes/ghost/assets/img/tsr-logo-img.png" alt="" class="img-fluid author-img">
                     </div>
 
-                    <div class="col-lg-5 col-md-5 col-sm-4 col-xs-4 about-blog-source">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3 about-blog-source text-left p-0">
                         <p class="blog-source p-0 m-0">The Shade Room</p>
                         <p class="blog-date p-0 m-0">12<sup>th</sup> April 2019</p>
+                    </div>
+
+                    <div class="col-6">
+
                     </div>
                 </div>
 
                 <div class="blog-info">
                     <div class="blog-image-header">
-                        <img src="resources/themes/ghost/assets/img/unnamed.png" alt=""
-                            class="blog-image w-100 mb-5 mt-5">
+                        <img src="resources/themes/ghost/assets/img/blog-heading-img.png" alt="" class="blog-image w-100 mb-5 mt-5">
                     </div>
 
                     <div class="blog-posts">
                         <p>
-                            placeat iusto! Eos magni quam aspernatur alias aut? Ea excepturi quasi, asperiores neque
-                            fugiat odio
-                            reprehenderit explicabo corrupti iste architecto sit nostrum in fuga sed animi incidunt
-                            repellendus
-                            quos quod, enim culpa, at labore cum ab? Ab fugit pariatur doloremque labore suscipit
-                            delectus unde
-                            minima molestias ullam, blanditiis sequi soluta atque odio exercitationem, eum nihil maxime
-                            tempora <br>
-                            obcaecati? Eius dolorem sapiente est ratione incidunt eum sit quidem error et distinctio
-                            accusantium
-                            molestias, quae voluptas quod autem veritatis, iure nulla dicta illo iste asperiores esse.
-                            Magni,
-                            repellendus! Perferendis amet a fugit earum. Sunt similique earum explicabo consequatur
-                            fugiat
-                            reiciendis iure amet hic! Fugit officia dolore magni, veritatis soluta temporibus voluptatum
-                            assumenda laboriosam praesentium totam. Dignissimos nesciunt, quisquam accusantium aut qui
-                            possimus?<br>
-                            Ipsa, eum repellendus. Quisquam est eveniet similique, aut corporis repudiandae eius
-                            molestiae
-                            itaque fuga quos autem nulla rerum sequi saepe debitis enim totam molestias, magni mollitia,
-                            doloribus non placeat fugiat! Veritatis sint iure, non dignissimos, suscipit ratione tempore
-                            illo,
-                            aspernatur soluta vel illum repellat molestias voluptatum nisi odit eos. Quisquam ipsam
-                            incidunt br
-                            recusandae soluta, exercitationem et doloremque ipsum voluptas eum mollitia accusantium
-                            dignissimos
-                            labore a dolores eius cupiditate minima deleniti. Reprehenderit, facilis!</p>
-                        <p id="post-information"><span><i class="fa fa-bookmark"></i></span>
+                            placeat iusto! Eos magni quam aspernatur alias aut? Ea excepturi quasi, asperiores neque fugiat odio reprehenderit explicabo corrupti iste architecto sit nostrum in fuga sed animi incidunt repellendus quos quod, enim culpa, at labore cum ab? Ab fugit
+                            pariatur doloremque labore suscipit delectus unde minima molestias ullam, blanditiis sequi soluta atque odio exercitationem, eum nihil maxime tempora <br> obcaecati? Eius dolorem sapiente est ratione
+                            incidunt eum sit quidem error et distinctio accusantium molestias, quae voluptas quod autem veritatis, iure nulla dicta illo iste asperiores esse. Magni, repellendus! Perferendis amet a fugit earum. Sunt similique earum explicabo
+                            consequatur fugiat reiciendis iure amet hic! Fugit officia dolore magni, veritatis soluta temporibus voluptatum assumenda laboriosam praesentium totam. Dignissimos nesciunt, quisquam accusantium aut qui possimus?
+                            <br> Ipsa, eum repellendus. Quisquam est eveniet similique, aut corporis repudiandae eius molestiae itaque fuga quos autem nulla rerum sequi saepe debitis enim totam molestias, magni mollitia, doloribus non placeat fugiat!
+                            Veritatis sint iure, non dignissimos, suscipit ratione tempore illo, aspernatur soluta vel illum repellat molestias voluptatum nisi odit eos. Quisquam ipsam incidunt br recusandae soluta, exercitationem et doloremque ipsum
+                            voluptas eum mollitia accusantium dignissimos labore a dolores eius cupiditate minima deleniti. Reprehenderit, facilis!</p>
+                        <div>
+                            <!--<span><i class="fa fa-bookmark"></i></span>-->
+                            <img src="resources/themes/ghost/assets/img/categories-indicator.png" alt="tag-label">
                             <span class="categories">Remote Jobs</span>
-                            <span class="categories">Developers</span></p>
+                            <span class="categories">Developers</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="comment-box mt-4 pl-4 pr-4 mx-auto">
-                <!-- <textarea placeholder="Write a comment" name="comment section" id="comment-area"
-                    class="p-2 mb-3"></textarea>
-                <div class="d-flex justify-content-end guest-action-items">
-                    <span><i class="fa fa-image"></i></span>
-                    <span><i class="fa fa-image"></i></span>
-                    <button class="send-comment-btn">Send</button> -->
+                <!-- this div is for the disqus commenting function -->
             </div>
         </div>
     </div>

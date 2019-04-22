@@ -1,0 +1,223 @@
+{% set title = "Themes"%}
+{% extends "layout.html" %} {% block page_content %}
+<style>
+
+    #nav-tabContent {
+        background: #F9F9F9;
+    }
+    /* Tabs*/
+    section {
+        padding: 60px 0;
+    }
+    #tabs{
+        background: #fff;
+        color: #5C5C5C;
+    }
+    #tabs h6.section-title{
+        color: #5C5C5C;
+    }
+
+    #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+        color: #280A66;
+        background-color: transparent;
+        border-color: #280A66;
+        border-bottom: 1px solid #280A66 !important;
+    }
+    .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+        color: #280A66;
+        border-bottom: 1px solid #280A66 !important;
+    }
+
+    #tabs .nav-tabs .nav-link {
+        border: 1px solid transparent;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        color: #5C5C5C;
+        font-size: 18px;
+    }
+
+    .theme-page h3 {
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: normal;
+        letter-spacing: -0.02em;
+        color: var(--user-info-on-profile-font-color);
+    }
+
+    .badge-round {
+        background: #280A66;
+        border-radius: 50%;
+        color: #fff;
+    }
+
+    .select-option .search-box {
+        border: 1px solid #280A66;
+    }
+
+    /* The switch - the box around the slider */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 55px;
+        height: 28px;
+    }
+    .switch-toggle .switch h6{
+        width: 200px;
+        max-width: 200px;
+        height: auto;
+        padding-top: 10px;
+
+    }
+
+    .switch-toggle h6{
+        padding-left: 4.2em;
+        clear:both;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    /* The slider */
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #000;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        /*background-color: #E0E0E0;*/
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #E0E0E0;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+</style>
+
+
+
+<div class="container-fluid py-3">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
+
+        <!-- Page Content -->
+        <div id="content" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <!-- Used as our Nav... -->
+            <div class="container-fluid">
+                <!--
+                  Nav Bar intentionally spelt fully to prevent conflict please don't touch
+                -->
+                <div class="row navigation-bar">
+                 <!--  <div class="col-12 text-right">
+                 
+                        <a href="/"
+                        ><img src="resources/themes/ghost/assets/img/logo.png"
+                        /></a>
+		 </div> -->
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <section id="tabs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-10">
+                            <nav class="my-5">
+                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link" id="nav-profile-tab" href="profile" role="tab" aria-controls="" aria-selected="true">Profile</a>
+                                    <a class="nav-item nav-link active" id="nav-themes-tab" href="themes" role="tab" aria-controls="nav-themes" aria-selected="false">Themes</a>
+                                    <a class="nav-item nav-link" id="nav-subscriptions-tab" href="following" role="tab" aria-controls="nav-subscriptions" aria-selected="false">76 Subscriptions</a>
+                                    <a class="nav-item nav-link" id="nav-subscribers-tab" href="followers" role="tab" aria-controls="nav-subscribers" aria-selected="false">52 Subscribers</a>
+                                </div>
+                            </nav>
+                            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-themes" role="tabpanel" aria-labelledby="nav-themes-tab">
+                                    <div class="container theme">
+
+                                        <div class="row my-5">
+                                            <div class="col-5">
+                                                <h3>Themes<span class="badge badge-round ml-4">4</span></h3>
+                                            </div>
+                                            <div class="col-4 select-option">
+                                                <form><input class="form-control rounded-0 search-box" type="text" placeholder="Search installed themes"></form>
+                                            </div>
+                                            <div class="col-2 switch-toggle">
+                                                <label class="switch"> <h6>Light Mode</h6>
+                                                    <input type="checkbox">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row col-10">
+                                            <div class="col">
+                                                <img src="resources/themes/ghost/assets/build/img/theme1.png" alt="" class="img-fluid">
+                                                <img src="resources/themes/ghost/assets/build/img/active-theme.png" alt="" class="img-fluid my-1">
+                                            </div>
+                                            <div class="col">
+                                                <img src="resources/themes/ghost/assets/build/img/theme2.png" alt="" class="img-fluid">
+                                                <img src="resources/themes/ghost/assets/build/img/theme-canery.png" alt="" class="img-fluid my-1">
+                                            </div>
+                                            <div class="w-100 my-4"></div>
+                                            <div class="col">
+                                                <img src="resources/themes/ghost/assets/build/img/theme3.png" alt="" class="img-fluid">
+                                                <img src="resources/themes/ghost/assets/build/img/theme-jumbo.png" alt="" class="img-fluid my-1">
+                                            </div>
+                                            <div class="col">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- ./Tabs -->
+
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
