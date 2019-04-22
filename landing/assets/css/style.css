@@ -1,0 +1,135 @@
+/* If you're reading this then you're the lucky person that gets to inherit this 
+bizzare css that I wrote with both eyes closed. Goodluck you'll need it
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+/* Top Section */
+.top-section {
+  background: #7f46b4;
+}
+.btn-hero {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+}
+.topnav-feature {
+  color: white;
+}
+.topnav-feature:hover {
+  color: white;
+}
+.topnav-earlyaccess {
+  color: #8449b5;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+.topnav-earlyaccess {
+  color: #8449b5;
+  text-decoration: none;
+}
+
+/* Working Section */
+.working-title-area h1 {
+  color: #000;
+}
+.working-title-area h6 {
+  color: #7f46b4;
+}
+.working-section-grid img {
+  margin-bottom: 25px;
+}
+.working-section-grid h3 {
+  font-weight: 900;
+  font-size: 18px;
+}
+.working-section-grid p {
+  font-size: 12px;
+  line-height: 1.5em;
+}
+/* Mobile Ready Section */
+.mobile-ready-section-container {
+  background: #7f46b4;
+}
+.mobile-ready-section p {
+  line-height: 1.5em;
+}
+.iphone {
+  margin-bottom: -150px;
+}
+/* Features */
+.feature-section-container {
+  background-color: #fbfbfb;
+  z-index: 1;
+}
+.feature-section h6 {
+  color: #7f46b4;
+}
+.feature-section h3 {
+  color: #000;
+  font-weight: 900;
+}
+.feature-area-grid h2 {
+  font-size: 20px;
+  color: #000;
+}
+.feature-area-grid img {
+  object-fit: none;
+}
+.feature-area-grid p {
+  font-size: 12px;
+}
+.feature-detail {
+  margin-left: 20px;
+}
+
+/* Subsvription Section */
+.subscription-section {
+  width: 347px;
+}
+.subscription-section h2 {
+  font-size: 30px;
+  color: #000;
+  font-weight: bolder;
+}
+.subscription-section p {
+  font-size: 14px;
+  line-height: 1.5em;
+}
+.subscription-section button {
+  background: url("../img/purple-gradient-bg.png");
+  background-size: cover;
+}
+/* Waiting List Section */
+.waiting-list-section {
+  background-color: #8449b5;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+.subscribe-input,
+.subscribe-input:focus {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
+.subscribe-input::placeholder {
+  color: #fff;
+}
+.btn-join {
+  background: linear-gradient(0deg, #f2cd1c, #f2cd1c);
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+}
+/* Footer Area */
+footer {
+  background: #01081f url("../img/footer_overlay.png") no-repeat 50px 150px;
+}
