@@ -88,7 +88,7 @@ transition: all ease-in 0.3s;
 
 .btn-light {
   pa-left: 15px;
-}
+}b
 
 .nav-container {
   padding-top: 30px !important;
@@ -102,6 +102,10 @@ transition: all ease-in 0.3s;
   color: white;
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.btn-login:hover {
+  color: #280A66;
 }
 
 .btn-hero {
@@ -196,8 +200,11 @@ nav>a:hover {
 }
 
 .mobile-ready-note{padding-top: 100px;}
-.mobile-ready-heading{color: #F14336;}
-
+.mobile-ready-heading{color: #F14336;
+text-transform: uppercase;}
+.mobile-ready-note a {
+  color: #fff;
+}
 button.get-access {
   background: #7f46b4 !important;
 }
@@ -260,6 +267,15 @@ form {
 }
 
 /* Footer Area */
+
+.footer-email a {
+  text-decoration: none;
+  color: white;
+}
+.footer-phone a {
+  text-decoration: none;
+  color: white;
+}
 
 /**/
 
