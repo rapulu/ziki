@@ -26,7 +26,7 @@
                         </div>
                         <div class="col-10 d-flex flex-row-reverse">
                             <a href="https://paystack.com/pay/ziki"><button class="btn btn-login">Donate</button></a>
-                            <button class="btn btn-login" id="checkout-button-plan_EwCW4A5GrCPQ1l" role="link">Donate
+                            <button class="btn btn-login" id="checkout-button-sku_EwDFL2Vigwjemr" role="link">Donate
                                 using Stripe</button>
                         </div>
                     </div>
@@ -314,12 +314,12 @@
     <script>
         var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
 
-        var checkoutButton = document.getElementById('checkout-button-plan_EwCW4A5GrCPQ1l');
+        var checkoutButton = document.getElementById('checkout-button-sku_EwDFL2Vigwjemr');
         checkoutButton.addEventListener('click', function () {
             // When the customer clicks on the button, redirect
             // them to Checkout.
             stripe.redirectToCheckout({
-                items: [{ plan: 'plan_EwCW4A5GrCPQ1l', quantity: 1 }],
+                items: [{ sku: 'sku_EwDFL2Vigwjemr', quantity: 1 }],
 
                 // Note that it is not guaranteed your customers will be redirected to this
                 // URL *100%* of the time, it's possible that they could e.g. close the
