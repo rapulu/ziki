@@ -1,3 +1,4 @@
+
 /*nav section*/
 .top-nav {
   padding-bottom: 30px;
@@ -263,7 +264,7 @@ form {
 }
 
 .banner-info {
-  z-index: 9999
+  z-index: 1
 }
 
 /* Footer Area */
