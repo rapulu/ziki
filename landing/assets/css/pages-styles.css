@@ -113,3 +113,7 @@
     margin-top: 3rem;
   }
 }
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
