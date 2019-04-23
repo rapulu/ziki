@@ -15,7 +15,78 @@
     <title>Ziki</title>
 </head>
 
+<style>
+    .donate-btn {
+        background-color: #914FBB; 
+        color: white;
+        transition: all ease-in 0.3s;
+    }
+
+    .donate-btn:hover {
+        cursor: pointer;
+        background-color: #743f96; 
+        transition: all ease-in 0.3s;
+    }
+
+    .donate-btn>a {
+        color: white;
+        transition: all ease-in 0.3s;
+    }
+    
+    .donate-btn>a:hover {
+        text-decoration: none;
+        transition: all ease-in 0.3s;
+    }
+</style>
+
 <body>
+          <!-- The Modal -->
+          <div class="modal fade pay-modal" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                  
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h5 class="modal-title">Donate to Ziki</h5>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body row">
+                      <div class="col-6">
+        <h5 class="paystack-title">
+Donate with Paystack
+        </h5>
+        <div class="paystack-content">
+            <img src="" alt="" id="paystack-logo">
+            <p><span class="asterik" style="color: red;">*</span> local donations only</p>
+            <button type="button" class="btn donate-btn">
+                 <a href="https://paystack.com/pay/ziki">Donate with Paystack</a>
+                  </button>
+        </div>
+                      </div>
+                      <div class="col-6">
+                            <h5 class="stripe-title">
+                                    Donate with Stripe
+                                            </h5>
+                                            <div class="stripe-content">
+                                                <img src="" alt="" id="stripe-logo">
+                                                <p><span class="asterik" style="color: red;">*</span> international donations only</p>
+                                                <button type="button" class="btn donate-btn ">
+                                                        <a href="https://checkout.stripe.com/pay/ppage_1ESLOmI4DBYVCRHm8pSDFlaD#fidkdWxOYHwnPyd1blppbHNgWkJWMDFuNHdwaTVdUDJobk99X3w1SG1xVicpJ2hsYXYnP34nYnBsYSc%2FJzZmZGFgMDBkKGdjMTcoMWczPCg8M2YwKDdhMGY3MWY0NDczMycpJ2hwbGEnPyc3ZGNgNzY8MSg3ZDwyKDE0MD0oZ2M3Yyg0MTMzYD0wZjdnZzcnKSd2bGEnPydnPDEzNDEzZCgzNDZgKDE1YzIoPGEyMSgzNzM9NzI9YDxgMzUneHgl">Donate with Stripe</a>
+                                                         </button>
+                                            </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn donate-btn" data-dismiss="modal">Close</button>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
     <div class="top-section">
         <div class="container">
             <nav class="top-nav">
@@ -25,18 +96,21 @@
                             <img class="" src="assets/img/Logo.png" alt="logo">
                         </div>
                         <div class="col-10 d-flex flex-row-reverse">
-                            <a href="https://paystack.com/pay/ziki"><button class="btn btn-login">Donate</button></a>
-                            <button class="btn btn-login" id="checkout-button-sku_EwDFL2Vigwjemr" role="link">Donate
-                                using Stripe</button>
+                                <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-hero" data-toggle="modal" data-target="#myModal">
+        Donate
+      </button>
+    
+
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
         <div class="container">
-            <div class="row nav-container">
+            <div class="row nav-container" style="z-index: -999; !important" id="heading-div">
                 <div class="col-12 col-sm-12 banner-info">
-                    <div class="row text-center">
+                    <div class="row text-center " >
                         <div class="col-12 padd-2 text-center">
                             <div class="row">
                                 <div class="col-12 col-sm-3"></div>
@@ -46,15 +120,11 @@
                                     <p class="my-4">Welcome to the most private content sharing platform yet.
                                         <br>We built Ziki on the premise that ownership and privacy is about respect and
                                         that it is your right.</p>
-                                    <button class="btn text-white btn-hero" id="checkout-button-plan_EwCW4A5GrCPQ1l"
-                                        role="link">Donate using Stripe</button>
-                                    <a href="https://paystack.com/pay/ziki"><button
-                                            class="btn text-white btn-hero">Donate using Paystack</button></a>
                                 </div>
                                 <div class="col-12 col-sm-3"></div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-12">
+                        <div class="col-12 col-sm-12"  style="z-index: -999; !important">
                             <img class="img-fluid" src="assets/img/banner-image.png" alt="banner image">
                         </div>
                     </div>
@@ -233,10 +303,9 @@
                     Our production depends solely on the support of everyone including YOU, we would kindly ask you to
                     back us up by donating.<br>
                     We are grateful to you and we appreciate your being a part of our journey.</p>
-                    <button class="btn text-white btn-hero" id="checkout-button-plan_EwCW4A5GrCPQ1l" role="link">Donate
-                        using Stripe</button>
-                    <a href="https://paystack.com/pay/ziki"><button class="btn text-white btn-hero">Donate using
-                            Paystack</button></a>
+                    <button type="button" class="btn btn-hero" data-toggle="modal" data-target="#myModal">
+                            Donate
+                          </button>
                 </div>
                 <div id="error-message"></div>
                 <div class="col-12 col-sm-3"></div>
