@@ -1,3 +1,7 @@
+body {
+  font-size: 1.1rem;
+}
+
 /*nav section*/
 .top-nav {
   padding-bottom: 30px;
@@ -323,4 +327,9 @@ form {
   .top-section {
     background: linear-gradient(173deg, #684ead 65%, white calc(65% + 2px));
   }
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
 }
