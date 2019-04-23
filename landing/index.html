@@ -7,15 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Ziki is a new, cutting edge blogging network that aims to give you back your privacy and full control of your data, all hosted on your own domain.">
+    <meta name="description" content="Welcome to the most private content sharing platform
+We built Ziki on the premise that ownership and privacy is about respect and that it is your right.">
     <meta name="robots" content="index, nofollow">
     <link rel="canonical" href="https://ziki.hng.tech/" />
     <!-- Twitter Card data -->
-    <meta name="twitter:card" value="Ziki is a new, cutting edge blogging network that aims to give you back your privacy and full control of your data, all hosted on your own domain.">
+    <meta name="twitter:card" value="Welcome to the most private content sharing platform
+We built Ziki on the premise that ownership and privacy is about respect and that it is your right.">
 
     <!-- Open Graph data -->
     <meta property="og:title" content="Ziki" />
-    <meta property="og:description" content="Ziki is a new, cutting edge blogging network that aims to give you back your privacy and full control of your data, all hosted on your own domain." />
+    <meta property="og:description" content="Welcome to the most private content sharing platform
+We built Ziki on the premise that ownership and privacy is about respect and that it is your right." />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -145,7 +148,9 @@
                     <div class="stripe-content">
                         <img src="" alt="" id="stripe-logo">
                         <p><span class="asterik" style="color: red;">*</span>$5 Donation</p>
-                            <button type="button" class="btn donate-btn col-lg-12 col-md-12 col-sm-6 col-xs-6" id="checkout-button-sku_EwDFL2Vigwjemr" role="link">Donate
+                            <button type="button" class="btn donate-btn col-lg-12 col-md-12 col-sm-6 col-xs-6" id="checkout-button-sku_EwL7190Qm3WdbX"
+
+  role="link">Donate
                         </button>
                     </div>
                 </div>
@@ -157,7 +162,9 @@
                     <div class="stripe-content">
                         <img src="" alt="" id="stripe-logo">
                         <p><span class="asterik" style="color: red;">*</span>$10 Donation</p>
-                            <button type="button" class="btn donate-btn col-lg-12 col-md-12 col-sm-6 col-xs-6" id="checkout-button-sku_EwDFL2Vigwjemr" role="link">Donate
+                            <button type="button" class="btn donate-btn col-lg-12 col-md-12 col-sm-6 col-xs-6" id="checkout-button-sku_EwL7ZgjbNqyckQ"
+
+  role="link">Donate
                         </button>
                     </div>
                 </div>
@@ -475,6 +482,58 @@
                 }
             });
     });
+</script>
+<script>
+  var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+
+  var checkoutButton = document.getElementById('checkout-button-sku_EwL7ZgjbNqyckQ');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{sku: 'sku_EwL7ZgjbNqyckQ', quantity: 1}],
+
+      // Note that it is not guaranteed your customers will be redirected to this
+      // URL *100%* of the time, it's possible that they could e.g. close the
+      // tab between form submission and the redirect.
+      successUrl: 'https://ziki.hng.tech/donation.html',
+      cancelUrl: 'https://ziki.hng.tech',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
+<script>
+  var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+
+  var checkoutButton = document.getElementById('checkout-button-sku_EwL7190Qm3WdbX');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{sku: 'sku_EwL7190Qm3WdbX', quantity: 1}],
+
+      // Note that it is not guaranteed your customers will be redirected to this
+      // URL *100%* of the time, it's possible that they could e.g. close the
+      // tab between form submission and the redirect.
+      successUrl: 'https://ziki.hng.tech/donation.html',
+      cancelUrl: 'https://ziki.hng.tech',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
 </script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138723929-1"></script>
