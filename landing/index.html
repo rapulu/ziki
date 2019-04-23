@@ -41,44 +41,52 @@
 </style>
 
 <body>
-    <!-- The Modal -->
-    <div class="modal fade pay-modal" id="myModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+          <!-- The Modal -->
+          <div class="modal fade pay-modal" id="myModal">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title">Donate to Ziki</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h5 class="modal-title">Donate to Ziki</h5>
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
-                <!-- Modal body -->
-                <div class="modal-body row">
-                    <div class="col-6">
-                        <h5 class="paystack-title">
-                            Donate with Paystack
-                        </h5>
-                        <div class="paystack-content">
-                            <img src="" alt="" id="paystack-logo">
-                            <p><span class="asterik" style="color: red;">*</span> local donations only</p>
-                            <a href="https://paystack.com/pay/ziki"><button type="button" class="btn donate-btn">
-                                    Donate with Paystack
-                                </button></a>
-                        </div>
+                    <!-- Modal body -->
+                    <div class="modal-body row">
+                      <div class="col-6">
+        <h5 class="paystack-title">
+Donate with Paystack
+        </h5>
+        <div class="paystack-content">
+            <img src="" alt="" id="paystack-logo">
+            <p><span class="asterik" style="color: red;">*</span>For local donations (&#x20A6)</p>
+            <a href="https://paystack.com/pay/ziki"><button type="button" class="btn donate-btn col-lg-12 col-md-12 col-sm-6 col-xs-6">
+                 Donate with Paystack
+                  </button></a>
+        </div>
+                      </div>
+                      <div class="col-6">
+                            <h5 class="stripe-title">
+                                    Donate with Stripe
+                                            </h5>
+                                            <div class="stripe-content">
+                                                <img src="" alt="" id="stripe-logo">
+                                                <p><span class="asterik" style="color: red;">*</span>For international donations</p>
+                                                <button type="button" class="btn donate-btn col-lg-12 col-md-12 col-sm-6 col-xs-6" id="checkout-button-sku_EwDFL2Vigwjemr"
+  role="link">
+                                                        Donate with Stripe
+                                                         </button>
+                                            </div>
+                      </div>
                     </div>
-                    <div class="col-6">
-                        <h5 class="stripe-title">
-                            Donate with Stripe
-                        </h5>
-                        <div class="stripe-content">
-                            <img src="" alt="" id="stripe-logo">
-                            <p><span class="asterik" style="color: red;">*</span> international donations only</p>
-                            <button type="button" class="btn donate-btn " id="checkout-button-sku_EwDFL2Vigwjemr"
-                                role="link">
-                                Donate with Stripe
-                            </button>
-                        </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn donate-btn col-lg-12 col-md-12 col-sm-6 col-xs-6" data-dismiss="modal">Close</button>
                     </div>
+
+                  </div>
                 </div>
 
                 <!-- Modal footer -->
@@ -98,10 +106,10 @@
                             <img class="" src="assets/img/Logo.png" alt="logo">
                         </div>
                         <div class="col-10 d-flex flex-row-reverse">
-                            <!-- Button to Open the Modal -->
-                            <button type="button" class="btn btn-hero" data-toggle="modal" data-target="#myModal">
-                                Donate
-                            </button>
+                                <!-- Button to Open the Modal -->
+  <button type="button" class="btn btn-hero" data-toggle="modal" data-target="#myModal">
+        Donate
+      </button>
 
 
                         </div>
