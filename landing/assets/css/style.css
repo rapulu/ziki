@@ -276,7 +276,14 @@ form {
   text-decoration: none;
   color: white;
 }
-
+.footer-social a {
+  border: 1px solid #fff;
+  border-radius: 50%;
+  padding: 1%;
+}
+.footer-social a:hover {
+  background: #fff;
+}
 /**/
 
 /* THANK YOU PAGE STYLES */
@@ -285,3 +292,10 @@ form {
   background-position: center;
   background-size: cover;
 }
+
+.btn:focus, .btn:active:focus, .btn.active:focus, {
+  outline:none;
+  box-shadow:none;
+}
+.form-control:focus {
+  box-shadow: none;
