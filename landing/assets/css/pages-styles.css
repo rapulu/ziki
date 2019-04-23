@@ -5,6 +5,7 @@
   height: 100vh;
   background-image: url('../img/Bg.png');
   background-repeat: no-repeat;
+  background-size: cover;
   background-color: #e5e5e5;
   text-align: center;
 }
