@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 //API Details
 $apiKey = 'd0d470a9858a50e13090d00661954264-us20';
 $listId = '0067aa8fe7';
@@ -36,16 +36,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Collecting the status
         switch ($httpCode) {
             case 200:
-                $_SESSION['msg'] = 'You have succesfully submitted to the Ziki email list, we will keep you updated!';
+            $msg = 'You have succesfully submitted to the Ziki email list, we will keep you updated!';
                 break;
             case 214:
-            $_SESSION['msg'] = 'oops, You are already Subscribed';
+            $msg = 'oops, You are already Subscribed';
                 break;
             default:
-            $_SESSION['msg'] = 'Oops, please try again.[msg_code='.$httpCode.']';
+            $msg = 'Oops, please try again.[msg_code='.$httpCode.']';
                 break;
         }
     }
 
-    header('location:index.php');
+    header('location:mail.html');
 }
