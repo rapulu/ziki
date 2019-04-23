@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://js.stripe.com/v3"></script>
     <title>Ziki</title>
 </head>
 
@@ -26,6 +27,8 @@
                         </div>
                         <div class="col-10 d-flex flex-row-reverse">
                             <a href="https://paystack.com/pay/ziki"><button class="btn btn-login">Donate</button></a>
+			    <button class="btn btn-login" id="checkout-button-plan_EwCW4A5GrCPQ1l"
+  role="link">Donate using Stripe</button>
                         </div>
                     </div>
                 </div>
@@ -42,7 +45,9 @@
                                     <h2 class="font-weight-bold">The Ultimate <span class="light-weight">LightWeight</span> <br>Content Platform</h2>
                                     <p class="my-4">Welcome to the most private content sharing platform yet.
                                         <br>We built Ziki on the premise that ownership and privacy is about respect and that it is your right.</p>
-                                  <a href="https://paystack.com/pay/ziki"><button class="btn text-white btn-hero">Donate Now</button></a>
+                                  <button class="btn text-white btn-hero" id="checkout-button-plan_EwCW4A5GrCPQ1l"
+  role="link">Donate using Stripe</button>
+			<a href="https://paystack.com/pay/ziki"><button class="btn text-white btn-hero">Donate using Paystack</button></a>
                                 </div>
                                 <div class="col-12 col-sm-3"></div>
                             </div>
@@ -217,8 +222,11 @@
                         We do not have these funds yet.<br><br>
                         Our production depends solely on the support of everyone including YOU, we would kindly ask you to back us up by donating.<br>
                         We are grateful to you and we appreciate your being a part of our journey.</p>
-                        <a href="https://paystack.com/pay/ziki"><button class="btn text-white btn-hero">Donate Now</button></a>
+                        <button class="btn text-white btn-hero" id="checkout-button-plan_EwCW4A5GrCPQ1l"
+  role="link">Donate using Stripe</button>
+			<a href="https://paystack.com/pay/ziki"><button class="btn text-white btn-hero">Donate using Paystack</button></a>
                 </div>
+<div id="error-message"></div>
                 <div class="col-12 col-sm-3"></div>
             </div>
 
@@ -285,6 +293,32 @@
         </div>
     </div>
 
+	<script>
+  var stripe = Stripe('pk_live_GS54k1rul0XU7mkJxZy0MhtS');
+
+  var checkoutButton = document.getElementById('checkout-button-plan_EwCW4A5GrCPQ1l');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{plan: 'plan_EwCW4A5GrCPQ1l', quantity: 1}],
+
+      // Note that it is not guaranteed your customers will be redirected to this
+      // URL *100%* of the time, it's possible that they could e.g. close the
+      // tab between form submission and the redirect.
+      successUrl: 'https://ziki.hng.tech/donation.html',
+      cancelUrl: 'https://ziki.hng.tech',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138723929-1"></script>
     <script>
