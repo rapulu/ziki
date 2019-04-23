@@ -1,9 +1,9 @@
 .donation-body {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
-  color: #6822ad;
+  color: #ffffff;
   height: 100vh;
-  background-image: url('Bg.png');
+  background-image: url('../img/Bg.png');
   background-repeat: no-repeat;
   background-color: #e5e5e5;
   text-align: center;
@@ -60,15 +60,7 @@
 }
 @media only screen and (min-width: 375px) {
   .donation-body {
-    font-size: 16px;
     padding: 1rem;
-    font-family: 'Roboto', sans-serif;
-    color: #6822ad;
-    height: 100vh;
-    background-image: url('Bg.png');
-    background-repeat: no-repeat;
-    background-color: #e5e5e5;
-    text-align: center;
   }
 
   .h2-size {
@@ -88,18 +80,6 @@
   }
 }
 @media only screen and (min-width: 425px) {
-  .donation-body {
-    font-size: 16px;
-    padding: 1rem;
-    font-family: 'Roboto', sans-serif;
-    color: #6822ad;
-    height: 100vh;
-    background-image: url('Bg.png');
-    background-repeat: no-repeat;
-    background-color: #e5e5e5;
-    text-align: center;
-  }
-
   .h2-size {
     font-size: 30px;
   }
@@ -116,14 +96,6 @@
 @media only screen and (min-width: 768px) {
   .donation-body {
     font-size: 18px;
-    padding: 1rem;
-    font-family: 'Roboto', sans-serif;
-    color: #6822ad;
-    height: 100vh;
-    background-image: url('Bg.png');
-    background-repeat: round round;
-    background-color: #e5e5e5;
-    text-align: center;
   }
 
   .h2-size {
