@@ -289,11 +289,13 @@ form {
 .footer-phone a {
   text-decoration: none;
   color: white;
+  font-size: .9rem;
 }
 .footer-social a {
   border: 1px solid #fff;
-  border-radius: 50%;
+  border-radius: 100%;
   padding: 1%;
+  margin-right: 10px;
 }
 .footer-social a:hover {
   background: #fff;
