@@ -9,12 +9,17 @@ $router->get('/', function($request) {
 });
 
 $router->get('/blog-details', function($request) {
-    $ziki = [
+    $directory = "./storage/contents/";
+    $ziki = new Ziki\Core\Document($directory);
+   $result = $ziki->getEach('post-detail-1555682341');
+    echo var_dump($result); die();
+   /*
+   $ziki = [
         [ 'name'          => 'Adroit' ],
         [ 'name'          => 'Olu' ],
         [ 'name'          => 'Amuwo' ],
     ];
-    return $this->template->render('blog-details.html', ['ziki' => $ziki] );
+    return $this->template->render('blog-details.html', ['ziki' => $ziki] );*/
 });
 
 $router->get('/timeline', function($request) {
@@ -64,7 +69,7 @@ $router->get('/subscribers', function($request) {
 });
 
 $router->get('/editor', function($request) {
-  return $this->template->render('editor.html');
+    return $this->template->render('editor.html');
 });
 
 $router->get('/404', function($request) {
