@@ -202,6 +202,27 @@ nav > a:hover {
   text-decoration: none;
 }
 
+/*phone animation */
+
+img.phone-move {
+    -webkit-animation: mover 1.5s infinite  alternate;
+    animation: mover 1.5s infinite  alternate;
+}
+img.phone-move {
+    -webkit-animation: mover 1.5s infinite  alternate;
+    animation: mover 1.5s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+/* end of animation */
+
 .mobile-ready {
   background: url('../img/middle-bg.png');
   background-size: cover;
