@@ -74,11 +74,16 @@ $router->get('/editor', function($request) {
 
 $router->get('/404', function($request) {
     return $this->template->render('404.html');
-  });
+});
 
-  $router->get('/drafts', function($request) {
+$router->get('/drafts', function($request) {
     return $this->template->render('drafts.html');
-  });
-  $router->get('/about', function($request) {
+});
+
+$router->get('/about', function($request) {
     return $this->template->render('about-us.html');
-  });
+});
+
+$router->get('/download', function($request) {
+    return $this->template->render('download.html');
+});
