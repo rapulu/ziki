@@ -8,27 +8,57 @@
 
 <!-- jQuery Custom Scroller CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+ function unsubscribe(id,data)
+ {
+   if (confirm("Are you sure you want to unsubscribe '" + id + "'"))
+   {
+     window.location.href = '/unsubscribe?n=' + data;
+   }
+ }
+ </script>
 
+<!-- Side bar script -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $(".sidebar-container").mCustomScrollbar({
-            theme: "minimal"
-        });
-
         $('#sidebarCollapse').on('click', function () {
-            // show sidebar
-            $('.sidebar-container').addClass('sidebar-shown');
-            $('#sidebar').addClass('shown');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-          });
-
-        $('.sidebar-close').on('click', function () {
-            // hide sidebar
-            $('.sidebar-container').removeClass('sidebar-shown');
-            $('#sidebar').removeClass('shown');
+            $('#sidebar').toggleClass('active');
         });
     });
 </script>
+
+<!-- Owner of this email modal please don't be angry in the name of Jesus
+Abeg, help me check the script above, it conflicts with yours and i can't seem
+to know how. This act of commenting your code is to get your attention and
+sympathy... The script above enables side bar toogle and when the one below is
+uncommented, the one above doesnt work no more.. -->
+
+
+<!--Email login modal-->
+<!-- <script>
+  const $ = document.querySelector.bind(document)
+  let congrat = $('.login-mail-sent')
+  let form_l = $('.login-form')
+  let message = $('.magic-msg')
+  congrat.style.display = 'none';
+  let sendEmail = () => {
+    let param = $('.email-input').value;
+    let host = $('.host').value;
+    let url = `https://auth.techteel.com/api/login/email?address=${param}&domain=${host}`;
+    fetch(url)
+      .then((res) => { return res.json() })
+      .then((data) => {
+        console.log(data)
+          form_l.style.display = 'none';
+          congrat.style.display = 'block';
+          message.innerHTML = "Magic link sent successfully, check your email.";
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  };
+  $('.email-login-button').addEventListener('click', sendEmail);
+</script> -->
 
 <!-- Convert to markdown script -->
 <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
@@ -64,26 +94,34 @@
     const newPostIsBeingCreated = event.target instanceof HTMLFormElement;
     if (newPostIsBeingCreated) {
       // get all imageURIs in the document
-      const imageURIs = markdown.match(/\!\[\]\(data:image\/\w+;base64,[^)]*\)/g);
+      let imageURIs = markdown.match(/\!\[\]\(data:image\/\w+;base64,[^)]*\)/g);
       // are there images in the blog post?
       if (imageURIs) {
-        var key = [];
-        var value = [];
+        // remove duplicates
+        imageURIs = imageURIs.reduce((acc, curVal) => {
+          if (!acc.includes(curVal)) acc.push(curVal);
+          return acc;
+        }, []);
+
         imageURIs.forEach(imageURI => {
-          const [match, ext, uri] = imageURI.match(/\!\[\]\(data:image\/(\w+);base64,([^)]*)\)/);
+          const [, fullURI, ext, uriData] = imageURI.match(/\!\[\]\((data:image\/(\w+);base64,([^)]*))\)/);
           const id = Math.random().toString(36).substr(2, 10);
           const newImgName = `img-${id}.${ext}`;
-          // replace the image URI in the markdown
-          markdown = markdown.replace(match, newImgName);
+
+          // replace the image URI everywhere it occurs in the markdown
+          let stillMatching = true;
+          while (stillMatching) {
+            if (markdown.includes(fullURI)) {
+              markdown = markdown.replace(fullURI, `/storage/images/${newImgName}`);
+            } else {
+              stillMatching = false;
+            }
+          }
+
           // add this info to the form data being sent to the backend
-          key.push(newImgName);
-          value.push(uri);
-          
+          formData.set(newImgName, uriData);
         });
       }
-      
-      formData.set('keys',key);
-      formData.set('values',value);
     }
 
     formData.set('postVal', markdown);
@@ -92,15 +130,15 @@
     const selected = document.querySelectorAll('#new-post-tags option:checked');
     const selectedTags = Array.from(selected).map(el => el.value);
     formData.set('tags', selectedTags);
-    console.log(formData);
+
     // send the form data
-    fetch(newPostIsBeingCreated ? '/publish' : '/draft', {
+    fetch(newPostIsBeingCreated ? '/publish' : '/saveDraft', {
       method: 'POST',
       body: formData
     }).then(res => res.text()).then((res) => {
       console.log(res);
       if(window.confirm(`Check console for response.
-      Redirect to view new post?`)) {
+      Redirect to view new drafts?`)) {
         window.location = '/timeline';
       }
     }).catch((err) => {
@@ -128,10 +166,14 @@
   });
 </script>
 <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script>
-
 <footer>
-  <!-- main content for footer of pages will be put here -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center">
+      <p class="footer-item">Powered by<span class="lucid">Lucid</span></p>
+    </div>
+  </div>
+</div>
 </footer>
 </body>
-
 </html>
