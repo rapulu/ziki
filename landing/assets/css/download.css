@@ -148,6 +148,11 @@
     background: #280A66;
     border: 1px solid #280A66;
     color: #FFF;
+    width: 100%;
+}
+
+.form-control {
+    display: flex;
 }
 
 @media screen and (max-width: 768px) {
