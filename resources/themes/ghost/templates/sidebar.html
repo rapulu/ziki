@@ -585,6 +585,7 @@ a {
       <div class="col-12 col-sm-8 mx-md-auto">
         <ul class="pl-0 mt-0">
           {% if user.role == 'admin' %}
+          <li><a href="/timeline">New Post</a></li>
           <li><a href="/published-posts">Published Posts</a></li>
           <li><a href="/profile">Profile</a></li>
           <li><a href="/about">About Ziki</a></li>
@@ -668,9 +669,10 @@ a {
             <input
               type="email"
               placeholder="Enter your Email Address"
-              class="width-100pc ml-1 no-border text-14px"
+              class="width-100pc ml-1 no-border text-14px email-input"
               required
             />
+            <button class="email-login-button">
               <svg
                 width="20"
                 height="16"
@@ -683,6 +685,7 @@ a {
                   fill="#682681"
                 />
               </svg>
+            </button>
           </div>
           <p class="optional-login-text mt-5 mb-5">
             <span>or sign in with</span>

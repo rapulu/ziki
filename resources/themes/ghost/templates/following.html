@@ -11,7 +11,7 @@
  
  .nav-item {
 	list-style-type: none;
-	font-family: sans-serif;
+	font-family: Lato;
  }
 
 .nav-item a {
@@ -36,6 +36,11 @@
 
 .following .post-detail {
 	width: 45vw;
+	font-size: 16px;
+}
+
+.following .post-author {
+	font-size: 22px;
 }
 
 .following .btn {
@@ -67,25 +72,23 @@
 	}
 	
 	.following .max-width {
-		display: block;
-		width: 50px;
-		height: 50px;
-		margin: -4em -8em 0 0 !important;
+		display: none !important;
 	}
 
 	.following .post-detail {
-		width: 75vw;
+		width: 60vw;
 		font-size: 12px;
 	}
 	
 	.following .btn {
-		width: 90px;
+		width: 80px !important;
 		height: 30px;
-		font-size: 12px;
+		font-size: 10px !important;
+		text-align: center;
 	}
 	
 	.following .following-button {
-	margin-top: -9em;
+	margin: -13.5em 1em 0 0!important;
 	}
 	
 	.following .following-area {
@@ -94,6 +97,10 @@
 	
 	.following .following-box {
 	margin-top: 2em !important;
+	}
+	
+	.following .post-author {
+	font-size: 20px;
 	}
 }
 
@@ -115,13 +122,14 @@
 	}
 	
 	.following .btn {
-		width: 90px;
+		width: 110px;
 		height: 30px;
 		font-size: 12px;
+		text-align: center;
 	}
 	
 	.following .following-button {
-	margin: -8em 4em 0 0;
+	margin: -7em 4em 0 0;
 	}
 	
 	.following .following-area {
@@ -142,22 +150,20 @@
 			</div>
 			<!--Navbar-->
 			<div class="col-12 col-sm-9">
-				<div class="nav-bar row mt-3">
-					<ul class="col-12 d-flex justify-content-start mb-0 pb-0">
-						<li class="nav-item mr-5 pb-0 mb-0">
-							<a href="followers" class="navbar-link ">Followers</a>
-						</li>
-						<li class="nav-item mr-5 pb-0 mb-0">
-							<a href="following" class="active navbar-link">Following</a>
-						</li>
-					</ul>
-				</div><hr>
+				<div class="row col-sm-10 mt-3">
+					{% set navigation = [
+						{'href': 'followers', 'caption': 'Followers'},
+						{'href': 'following', 'caption': 'Following'}
+						]
+					%}
+					{% include "navtabs.html" with {'current_page': 'following'} %}
+				</div>
 				
 				<!--Following Content-->
 					<div class="row mt-5">
 						<div class="col-12">
 							<div class="row pt-3 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -175,7 +181,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-md-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -193,7 +199,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -211,7 +217,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -229,7 +235,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -247,7 +253,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -265,7 +271,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -283,7 +289,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -301,7 +307,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -319,7 +325,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -337,7 +343,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -355,7 +361,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -373,7 +379,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -391,7 +397,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -409,7 +415,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>
@@ -427,7 +433,7 @@
 							</div>
 							
 							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="Passport.png" alt=""></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Passport.png" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
 										<h5 class="post-author font-weight-bold">Tomisin Lalude</h5>

@@ -21,14 +21,14 @@
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile-dp-container">
               <figure class="profile-dp-link mx-auto">
                 <input type="file" name="" id="imagefile" accept="image/*" />
-                <img src="/resources/themes/ghost/assets/img/user-icon-placeholder.png" class="profile-dp d-block mx-auto rounded-circle" alt="profile avatar" accept="image/*">
+                <img src="{{settings.image}}" class="profile-dp d-block mx-auto rounded-circle" alt="profile avatar" accept="image/*">
               </figure>
             </div>
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
               <form class="pb-5">
                 <div class="form-group">
                   <label for="fullName" class="font-weight-bold profile-edit-label d-none">Full Name</label>
-                  <input type="text" class="form-control" id="" aria-describedby="fullname" value="" placeholder="Full Name">
+                  <input type="text" class="form-control" id="" aria-describedby="fullname" value="{{settings.name}}" placeholder="Full Name">
                 </div>
                 <div class="form-group">
                   <label for="about" class="font-weight-bold profile-edit-label d-none">About</label>

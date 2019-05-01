@@ -1,7 +1,1 @@
-{
-  "APP_NAME": "Ziki App",
-  "THEME": "ghost",
-  "ZIKI_CACHE_ENABLED": true,
-  "ZIKI_DEBUG_ENABLED": false,
-  "ZIKI_PROD": false
-}
+{"APP_NAME":"Ziki App","THEME":"ghost","ZIKI_CACHE_ENABLED":true,"ZIKI_DEBUG_ENABLED":false,"ZIKI_PROD":false,"COMMENT_PLUGIN":"facebook"}

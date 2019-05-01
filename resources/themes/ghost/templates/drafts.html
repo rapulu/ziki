@@ -17,12 +17,20 @@
             color: #280A66;
         }
 
-        .drafts .draft-title {
+        .drafts .draft-title a {
             font-style: normal;
             font-weight: bold;
             font-size: 24px;
             line-height: 130%;
             color: #000000;
+            transition: all ease-in 0.3s;
+        }
+
+        .drafts .draft-title a:hover {
+            cursor: pointer;
+            color: #280A66;
+            text-decoration: none;
+            transition: all ease-in 0.3s;
         }
 
         .drafts .draft-content {
@@ -168,17 +176,12 @@
 
             .drafts .icon {
                 position: relative;
-                left: 7em;
+                left: 5em;
                 margin-top: 1em;
                 margin-left: 2em;
-                color: white;
-                background-color: #280a66;
-                border-radius: 50%;
-                width: 2.5em;
-                height: 2.5em;
-                font-size: 15px;
+                color: #280a66;
+                font-size: 20px;
                 text-align: center;
-                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
             }
 
             .drafts .dropdown-menu {
@@ -186,6 +189,15 @@
                 margin-bottom: 20px;
             }
 
+            .drafts .draft-bottom:after {
+                content: "";
+                position: relative;
+                display: block;
+                border-bottom: 1px solid rgb(209, 209, 209);
+                width: 90%;
+                margin: 0 auto;
+                padding-top: 1em;
+            }
         }
 
         @media screen and (max-width:900px) and (min-width:700px) {
@@ -204,26 +216,25 @@
 <body>
     <div class="container-fluid drafts">
         <div class="row">
-            <div class="col-12 col-sm-3">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <!--SIDEBAR CONTENTS HERE-->>
             </div>
 
-            <div class="col-12 col-sm-9 ">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-12">
-                        <div class="row pt-4 pb-4   draft-content">
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 m-0 "><img
+                        <div class="row pt-4 pb-4  draft-bottom  draft-content">
+                            <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
                                     src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
                                     class="img-fluid draft-img"></div>
-                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
                                 <div class="second">
                                     <p class="draft-date">2nd April, 2019</p>
                                     <h6 class="draft-title">
-                                        Looking for where to spend Christmas from the comfort of your own home
+                                        <a href=""> I was always on the run, travelling </a>
                                     </h6>
                                     <p class="draft-content">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione magni
-                                        voluptates dignissimos !...
+                                        Travelling, it was just a dream. The light ones suffering...
                                     </p>
                                 </div>
                             </div>
@@ -246,51 +257,49 @@
 
 
 
-                        <div class="row pt-4 pb-4   draft-content">
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-0 m-0 "><img
-                                    src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
-                                    class="img-fluid draft-img"></div>
-                            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                <div class="second">
-                                    <p class="draft-date">2nd April, 2019</p>
-                                    <h6 class="draft-title">
-                                        Looking for where to spend Christmas from the comfort of your own home
-                                    </h6>
-                                    <p class="draft-content">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione magni
-                                        voluptates dignissimos !...
-                                    </p>
+                        <div class="row pt-4 pb-4  draft-bottom  draft-content">
+                                <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
+                                        src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
+                                        class="img-fluid draft-img"></div>
+                                <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
+                                    <div class="second">
+                                        <p class="draft-date">2nd April, 2019</p>
+                                        <h6 class="draft-title">
+                                            <a href=""> I was always on the run, travelling </a>
+                                        </h6>
+                                        <p class="draft-content">
+                                            Travelling, it was just a dream. The light ones suffering...
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                <div class="dropdown col-2 mx-auto" style="cursor:pointer">
-                                    <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
-                                        aria-expanded="false" data-toggle="dropdown">
-
-                                    </span>
-                                    <div class="dropdown-menu">
-                                        <button class="dropdown-item"> <a href="\editor" class="edit-post">Edit
-                                                post</a></button>
-                                        <button class="dropdown-item" data-toggle="modal"
-                                            data-target="#cancelModal">Delete
-                                            post</button>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                    <div class="dropdown col-2 mx-auto" style="cursor:pointer">
+                                        <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
+                                            aria-expanded="false" data-toggle="dropdown">
+    
+                                        </span>
+                                        <div class="dropdown-menu">
+                                            <button class="dropdown-item"> <a href="\editor" class="edit-post">Edit
+                                                    post</a></button>
+                                            <button class="dropdown-item" data-toggle="modal"
+                                                data-target="#cancelModal">Delete
+                                                post</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                        <div class="row pt-4 pb-4   draft-content">
+                        <div class="row pt-4 pb-4  draft-bottom  draft-content">
 
                             <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                                 <div class="second">
                                     <p class="draft-date">2nd April, 2019</p>
                                     <h6 class="draft-title">
-                                        Looking for where to spend Christmas from the comfort of your own home
+                                      <a href="">  Where have all the good men gone and where are all the knights? </a>
                                     </h6>
                                     <p class="draft-content">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione magni
-                                        voluptates dignissimos !...
+                                        I love this song from Shrek 1...
                                     </p>
                                 </div>
                             </div>
