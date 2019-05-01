@@ -34,10 +34,6 @@
     font-weight: 200;
     margin-bottom: 0.4em;
 }
-    
-.button-link-install{
-    width: 30%;
-}
 
 .features-section {
     background: linear-gradient(180deg, #FBFAFE 0%, #FFFFFF 100%);
@@ -148,11 +144,18 @@
     background: #280A66;
     border: 1px solid #280A66;
     color: #FFF;
-    width: 100%;
+    width: 30%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .form-control {
-    display: flex;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.footer-input {
+    width: 200px;
 }
 
 @media screen and (max-width: 768px) {
