@@ -31,7 +31,7 @@ class Document
 
     //for creating markdown files
     //kjarts code here
-    public function create($title, $content,$tags,$image)
+    public function create($title, $content,$tags,$image,$extra)
     {
         $time = date("F j, Y, g:i a");
         $unix = strtotime($time);
@@ -62,8 +62,12 @@ class Document
         }
     }
 
-
-        $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
+        if(!$extra){
+            $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
+        }else{
+            $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
+        }
+        
         $striped = str_replace(' ', '-', $title);
         $yamlfile['slug'] = $striped . "-{$unix}";
         $yamlfile['timestamp'] = $time;
@@ -73,12 +77,21 @@ class Document
         $dir = $file . $unix . ".md";
         //return $dir; die();
         $doc = FileSystem::write($dir, $yaml);
-        if ($doc) {
-            $result = array("error" => false, "message" => "Post published successfully");
-            $this->createRSS();
-        } else {
-            $result = array("error" => true, "message" => "Fail while publishing, please try again");
+        if(!$extra){
+            if ($doc) {
+                $result = array("error" => false, "message" => "Post published successfully");
+                $this->createRSS();
+            } else {
+                $result = array("error" => true, "message" => "Fail while publishing, please try again");
+            }
+        }else{
+            if ($doc) {
+                $result = array("error" => false, "message" => "Draft saved successfully");
+            } else {
+                $result = array("error" => true, "message" => "Fail while publishing, please try again");
+            }
         }
+        
         return $result;
     }
     //get post
@@ -109,7 +122,7 @@ class Document
                 $content['url'] = $url;
                 $content['slug'] = $slug;
                 $content['timestamp'] = $time;
-                array_push55($posts, $content);
+                array_push($posts, $content);
             }
             return $posts;
         } else {
@@ -389,96 +402,8 @@ class Document
     }
     //end of get a post function
 
-/* Working on draft by devmohy */
-//for creating markdown files
-public function createDraft($title, $content,$tags,$image)
-     {
-        $time = date("F j, Y, g:i a");
-        $unix = strtotime($time);
-        // Write md file
-        $document = FrontMatter::parse($content);
-        $md = new Parser();
-        $markdown = $md->parse($document);
-
-        $yaml = $markdown->getYAML();
-        $html = $markdown->getContent();
-        $doc = FileSystem::write($this->file, $yaml . "\n" . $html);
-        
-        $yamlfile = new Doc();
-        $yamlfile['title'] = $title;
-        if($tags != ""){
-            $tag = explode(",",$tags);
-            $put = [];
-        foreach ($tag as $value) {
-                array_push($put, $value);
-            }
-            $yamlfile['tags'] = $put;
-        }
-        if(!empty($image)){
-            foreach($image as $key => $value){
-            $decoded = base64_decode($image[$key]);
-            $url = "./storage/images/".$key;
-            FileSystem::write($url,$decoded);
-            }
-        }
-        $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
-        $striped = str_replace(' ', '-', $title);
-        $yamlfile['slug'] = $striped."-{$unix}";
-        $yamlfile['timestamp'] = $time;
-        $yamlfile->setContent($content);
-        $yaml = FrontMatter::dump($yamlfile);
-        $file = $this->file;
-        $dir = $file . $unix . ".md";
-        //return $dir; die();
-        $doc = FileSystem::write($dir, $yaml);
-
-        if ($doc) {
-            $result = array("error" => false, "message" => "Draft saved successfully");
-        } else {
-            $result = array("error" => true, "message" => "Fail while saving, please try again");
-        }
-        return $doc;
-     }
-     //get post
-     public function getDrafts()
-     {
-         $finder = new Finder();
-
-         // find all files in the current directory
-         $finder->files()->in($this->file);
-         $drafts = [];
-         if ($finder->hasResults()) {
-             foreach ($finder as $file) {
-                 $document = $file->getContents();
-                 $parser = new Parser();
-                 $document = $parser->parse($document);
-                 $yaml = $document->getYAML();
-                 $body = $document->getContent();
-                 //$document = FileSystem::read($this->file);
-                 $parsedown  = new Parsedown();
-                 $title = $parsedown->text($yaml['title']);
-                 $slug = $parsedown->text($yaml['slug']);
-                 $slug = preg_replace("/<[^>]+>/", '', $slug);
-                 $bd = $parsedown->text($body);
-                 $time = $parsedown->text($yaml['timestamp']);
-                 $url = $parsedown->text($yaml['post_dir']);
-                 $content['title'] = $title;
-                 $content['body'] = $bd;
-                 $content['url'] = $url;
-                 $content['slug'] = $slug;
-                 $content['timestamp'] = $time;
-                 array_push($drafts, $content);
-             }
-             return $drafts;
-         } else {
-             return false;
-         }
-     }
-/* Working on draft by devmohy */
-
-
-    // function for getting posts according to tags
-    public function getPostTags($id)
+    // post
+public function update($id)
     {
             $finder = new Finder();
             // find all files in the current directory
@@ -516,7 +441,7 @@ public function createDraft($title, $content,$tags,$image)
         }
 
     //kjarts code for deleting post
-    public function delete($id)
+    public function delete($id, $extra)
     {
         $finder = new Finder();
         // find all files in the current directory
@@ -536,7 +461,9 @@ public function createDraft($title, $content,$tags,$image)
                     $delete = "File deleted successfully";
                 }
             }
-            $this->createRSS();
+            if(!$extra){
+                $this->createRSS();
+            }
             return $delete;
         }
      }

@@ -1,16 +1,12 @@
-{% set title = "Contact Us"%} {% extends 'layout.html' %} {% block page_content %}
+{% set title = "About"%} {% extends 'layout.html' %} {% block page_content %}
 <style>
-    .contact-us__heading {
+    .about__heading {
         font-family: Lato;
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
-        padding: 10px;
         line-height: normal;
-        letter-spacing: -0.02em;
-        color: #280A66;
     }
-    
     .contact-us-form .form-control {
         min-height: 50px;
         background: #FFFFFF;
@@ -23,7 +19,7 @@
         letter-spacing: -0.02em;
         color: #280A66;
         box-sizing: border-box;
-        border-radius: 10px;
+        border-radius: 0px;
     }
     
     .contact-us-form .form-label {
@@ -135,16 +131,14 @@
         </div>
 
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 body-of-blog mt-5 pt-3">
-            <!--
-                LOGO
-            -->
-            <!--     <div class="m-4 text-right">
-                <img src="resources/themes/ghost/assets/img/Vector.png" alt="ZIKI" class="img-ziki-logo">
-	    </div>   -->
-            <div class="">
-                <h3 class="contact-us__heading">Contact Me</h3>
-                <div style="border: 2px solid #280a66; width:110px;"></div>
-                <div style="border: 1px solid #EBEBEB;"></div>
+           <div class="mb-4">
+                <h3 class="about__heading">About</h3>
+            </div>
+            <div class="w-75">
+             <p class="text-justify about-text">I'm Matthias Endler, a Backend Engineer living in Düsseldorf, Germany. My interests are scalability, performance and distributed systems.<br><br>I have an M.Sc. in Computer Science from Universität Bayreuth. At work, I improve the Backend infrastructure of trivago by making it faster and more reliable.<br><br>Nowadays, I mostly use Golang, Python, and Rust to get stuff done. I run Hello, Rust!, a YouTube channel about the Rust programming language. <br><br>I'm an active member of the following usergroups: <br><ul><li>Rust Cologne</li><li>Web Engineering Düsseldorf</li><li>Python Meeting Düsseldorf (PyDDF)</li></ul><br>Here's a list of previous Talks I gave there and elsewhere.<br><br>At home I feel like riding my motorcycle, playing guitar in Rock bands and drinking hot chocolate. (In that order.) <br><br>You can find me on Twitter, LinkedIn, Stack Overflow, and Github or send me a mail</p>
+            </div>
+            <div class="mt-5">
+                <h3 class="about__heading">Contact</h3>
             </div>
             <div class="row justify-content-lg-start justify-content-md-start justify-content-sm-center">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
@@ -179,28 +173,25 @@
                     {% endif %}
                     <form class="contact-us-form mt-5" action="/send" method="POST">
                         <div class="form-group">
-                            <label class="form-label">Name</label>
-                            <input type="text" name="guestName" placeholder="Enter your name" value="{{ message.name }}" class="form-control">
+                            <input type="text" name="guestName" placeholder="Name" value="{{ message.name }}" class="form-control">
                             {% if message.nameError %}
                             <span class="text-danger">{{ message.nameError }}</span>
                             {% endif %}
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="guestEmail" placeholder="Enter your email address" value="{{ message.email }}" class="form-control">
+                            <input type="email" name="guestEmail" placeholder="Email" value="{{ message.email }}" class="form-control">
                             {% if message.emailError %}
                             <span class="text-danger">{{ message.emailError }}</span>
                             {% endif %}
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Additional Message</label>
-                            <textarea class="form-control" placeholder="Enter your message" name="guestMsg" rows="5" cols="10">{{ message.msg }}</textarea>
+                            <textarea class="form-control" placeholder="Message" name="guestMsg" rows="5" cols="10">{{ message.msg }}</textarea>
                             {% if message.msgError %}
                             <span class="text-danger">{{ message.msgError }}</span>
                             {% endif %}
                         </div>
                         <div class="form-group text-right">
-                            <button class="btn" name="send" {% if message.ownerEmailNotProvided %} disabled style="cursor:not-allowed;" {% endif %}  type="submit">Send</button>
+                            <button class="btn" name="send" {% if message.ownerEmailNotProvided %} disabled style="cursor:not-allowed;" {% endif %}  type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
