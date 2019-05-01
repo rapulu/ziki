@@ -1,0 +1,124 @@
+{% set title = "Videos"%}
+{% extends 'layout.html' %} {% block page_content %}
+<html>
+<style>
+
+    video-wrapper {
+        width: 1020px;
+        height: auto;
+        margin: 0 auto;
+    }
+    video-first {
+
+        float: left;
+        margin-left: auto;
+        position: absolute;
+
+    }
+
+    video-second {
+        float: right;
+        margin-right: 50px;
+        position: relative;
+    }
+
+    video-text{
+
+        font-style: normal;
+        font-weight: bold;
+        font-size: 14px;
+        color: #280A66;
+    }
+    .clear{
+        clear: both;
+    }
+
+    @media (max-width:767px) {
+        video-wrapper{
+            width: 100%;
+            height: auto;
+
+        }
+        video-first {
+            width: 100%;
+            height: auto;
+            float: right;
+            border: 100px;
+
+        }
+
+    }
+</style>
+<body>
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+
+        </div>
+
+
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt-5 pt-2">
+
+            <div class=" video-wrapper row col-12">
+                <div class = "video-first col-6" >
+                    <p class="video-class"> 2nd April, 2019</p>
+
+                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s" width="400px" controls/>
+
+                </div>
+
+                <br/><br/> <br/>
+
+                <div class = "video-second col-md-4   col-sm-3 col-xs-12 "  >
+                    <p class="video-class">2nd April, 2019</p>
+
+                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
+
+                </div>
+            </div>
+
+            <div class=" video-wrapper row col-12">
+
+                <div class = "video-first col-6" >
+                    <p class="video-class">2nd April, 2019</p>
+                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
+
+                </div>
+                <br/><br/> <br/>
+
+                <div class = "video-second col-md-4   col-sm-3 col-xs-12 "  >
+                <p class="video-class">2nd April, 2019</p>
+                <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
+
+            </div>
+            </div>
+
+            <div class=" video-wrapper row col-12">
+
+                <div class = "video-first col-6" >
+                    <p class="video-class">2nd April, 2019</p>
+                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
+
+                </div>
+                <br/><br/> <br/>
+                <div class = "video-second col-md-4   col-sm-3 col-xs-12 "  >
+                    <p class="video-class">2nd April, 2019</p>
+                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
+
+                </div>
+            </div>
+
+
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!-- using semantic tags -->
+</div>
+</body>
+</html>
+
+{% endblock page_content %}

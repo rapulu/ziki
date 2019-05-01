@@ -6,7 +6,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt-3 offset-lg-4 offset-md-4 offset-sm-12 offset-xs-12">
-
+            {% set navigation = [
+                {'href': 'profile', 'caption': 'Profile'},
+                {'href': 'settings', 'caption': 'Settings'},
+                {'href': 'subscriptions', 'caption': 'subscriptions', 'count': 72},
+                {'href': 'subscribers', 'caption': 'subscribers', 'count': 56}
+            ]
+            %}
             {% include "navtabs.html" with {'current_page': 'subscribers'} %}
 
             <div class="row profile-main py-2">

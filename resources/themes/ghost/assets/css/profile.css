@@ -1,5 +1,6 @@
 body {
   background: var(--body-bg) !important;
+  font-family: 'lato' !important;
 }
 :root {
   --custom-deep-purple: #280a66;
@@ -9,12 +10,12 @@ body {
   --post-summary-border-bottom: #ebebeb;
   --published-post-header: transparent;
   --top-tab-link: #5c5c5c;
-  --profile-edit-form: var(--body-of-blog-bg);
+  --profile-edit-form: #ffffff
   --body-bg: #fff;
   --not-following-btn: transparent;
   --subscribe-header: #313131;
   /* THEMES STYLING */
-  --theme-main-bg: #f9f9f9;
+  --theme-main-bg: #ffffff;
   --switcher-bg: #ccc;
 }
 /* Dark Theme */
@@ -86,7 +87,7 @@ a {
 }
 
 .profile-dp {
-  width: 200px;
+  width: 150px;
   height: 150px;
   max-width: 100%;
   background: #dddde5;
@@ -154,8 +155,8 @@ a {
 .switch {
   position: relative;
   display: inline-block;
-  width: 55px;
-  height: 28px;
+  width: 43px;
+  height: 19px;
 }
 .switch-toggle .switch h6 {
   width: 200px;
@@ -164,10 +165,6 @@ a {
   padding-top: 10px;
   position: absolute;
   top: -30%;
-}
-.switch-toggle h6 {
-  padding-left: 4.2em;
-  clear: both;
 }
 
 /* Hide default HTML checkbox */
@@ -193,17 +190,13 @@ a {
 .slider:before {
   position: absolute;
   content: "";
-  height: 20px;
-  width: 20px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
+  height: 18px;
+  width: 18px;
+  left: 0;
+  bottom: 0;
+  background-color: black;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-}
-
-input:checked + .slider {
-  /*background-color: #E0E0E0;*/
 }
 
 input:focus + .slider {
@@ -226,20 +219,108 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.theme-state {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding: 3% 20px;
-  /*font-style: normal;*/
-  /*font-weight: bold;*/
-  /*font-size: 16px;*/
-  line-height: normal;
-  letter-spacing: -0.02em;
-  color: #000000;
+/*--------- comment plugin select  ---------*/
+/*the container must be positioned relative:*/
+.lucid-custom-select {
+  position: relative;
+  border: 1px solid rgba(17, 20, 76, 0.25);
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.lucid-custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #FFFFFF;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  font-family: 'themify';
+  font-weight: normal;
+	font-style: normal;
+  position: absolute;
+  content: "\e64b";
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  /* border: 6px solid #222222; */
+  /* border-color: #222222 transparent transparent transparent; */
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  /* border-color: transparent transparent #222222 transparent; */
+  font-family: 'themify';
+  font-weight: normal;
+	font-style: normal;
+  content: "\e648";
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #222222;
+  font-weight: 400;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+.select-selected { 
+  border-radius: 5px;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #eee;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  margin-top: .25rem!important;
+  border-radius: 5px;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/*------ end custom select  -------*/
+
+.plugin-select:focus {
+  border-color: #ced4da !important;
+  box-shadow: 0 0 0 !important;
+  outline: 0 none !important;
+}
+
+.plugin-select option:not(seleted) {
+  background: #fff;
+}
+
+/* thmes styles */
+.theme-item {
+  cursor: pointer;
 }
 
 .theme-active {
   background: var(--custom-deep-purple);
   color: #fff;
+}
+
+.theme-state {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .form-control-no-border:focus {
@@ -434,9 +515,6 @@ input:checked + .slider:before {
   .profile-edit-title {
     display: none;
   }
-  .themes-edit-title {
-    /*display: none;*/
-  }
   .profile-top-link {
     font-size: 12px !important;
   }
@@ -473,9 +551,11 @@ input:checked + .slider:before {
   text-decoration: none;
   position: relative;
   display: inline-block;
+  width: 150px;
+  height: 150px;
 }
 
-.profile-dp-link:hover:before {
+.profile-dp-link:before {
   font-family: "Font Awesome 5 Free";
   content: "\f044";
   font-size: 28px;

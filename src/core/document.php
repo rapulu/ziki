@@ -541,4 +541,64 @@ public function createDraft($title, $content,$tags,$image)
         }
      }
 
+     /**
+      * updates a post stored in an md file
+      * and echos a json object; 
+      *
+      * @param [type] $mdfile
+      * @param [type] $title
+      * @param [type] $content
+      * @param [type] $tags
+      * @param [type] $image
+      * @return void
+      */
+     public function updatePost($mdfile,$title,$content,$tags,$image)
+     {
+        $text = file_get_contents($mdfile);
+        $document = FrontMatter::parse($text);
+        $date = date("F j, Y, g:i a");
+        // var_dump($document);
+        // var_dump($document->getConfig());
+        // var_dump($document->getContent());
+        // var_dump($document['tags']);
+        $document = new Doc();
+        $tmp_title = explode(' ',$title);
+        $slug = implode('-',$tmp_title);
+        $document['title'] = $title;
+        $document['slug'] = $slug;
+        $document['timestamp'] = $date;
+        $document['tags'] = explode(',',$tags);
+        $hashedTags = [];
+        // adding hash to the tags before storage
+        foreach ($document['tags'] as $tag) {
+        $hashedTags[] = '#'.$tag;
+        }
+        $document['tags'] = $hashedTags;
+        $document['image'] = $image;
+        $document->setContent($content);
+        $yamlText = FrontMatter::dump($document);
+        // var_dump($yamlText);
+        $doc = FileSystem::write($mdfile, $yamlText);
+        if ($doc) {
+            $result = array("error" => false, "message" => "Post published successfully");
+        } else {
+            $result = array("error" => true, "message" => "Fail while publishing, please try again");
+        }
+        echo json_encode($result);
+     }
+
+     public function getSinglePost($id)
+     {
+        $directory = "./storage/contents/${id}.md";
+        // var_dump($directory);
+        $document = FrontMatter::parse(file_get_contents($directory));
+        // var_dump($document);
+        $content['title'] = $document['title'];
+        $content['body'] = $document->getContent();
+        // $content['url'] = $url;
+        $content['timestamp'] = $document['timestamp'];
+
+        return $content;
+     }
+
 }

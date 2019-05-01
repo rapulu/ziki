@@ -7,37 +7,35 @@
   <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt-3 offset-lg-4 offset-md-4 offset-sm-12 offset-xs-12">
 
+      {% set navigation = [
+        {'href': 'settings', 'caption': 'Settings'},
+        {'href': 'profile', 'caption': 'Profile'}
+        ]
+      %}
+
       {% include "navtabs.html" with {'current_page': 'profile'} %}
 
       <div class="row profile-main py-2">
         <div class="col profile-content-area p-1 pb-5 mt-5 mr-3">
-          <h3 class="px-5 py-2 profile-edit-title">Profile</h3>
-          <div class="row px-5 pt-2 pb-5">
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile-dp-container text-center">
+          <div class="row d-flex flex-column px-0 pt-2 pb-5">
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 profile-dp-container">
               <figure class="profile-dp-link mx-auto">
                 <input type="file" name="" id="imagefile" accept="image/*" />
-                <img src="{{settings.image}}" class="profile-dp d-block mx-auto rounded-circle" alt="profile avatar" accept="image/*">
+                <img src="/resources/themes/ghost/assets/img/user-icon-placeholder.png" class="profile-dp d-block mx-auto rounded-circle" alt="profile avatar" accept="image/*">
               </figure>
             </div>
-            <div class="col">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
               <form class="pb-5">
                 <div class="form-group">
-                  <label for="fullName" class="font-weight-bold profile-edit-label">Full Name</label>
-                  <input type="text" class="form-control" id="" aria-describedby="fullname" value="{{settings.name}}">
-
+                  <label for="fullName" class="font-weight-bold profile-edit-label d-none">Full Name</label>
+                  <input type="text" class="form-control" id="" aria-describedby="fullname" value="" placeholder="Full Name">
                 </div>
                 <div class="form-group">
-                  <label for="bio" class="font-weight-bold profile-edit-label">Bio</label>
-                  <textarea class="form-control" id="" placeholder="Enter Bio" rows="5"></textarea>
+                  <label for="about" class="font-weight-bold profile-edit-label d-none">About</label>
+                  <textarea class="form-control" id="about" placeholder="About" rows="5"></textarea>
                 </div>
-                <div class="form-group">
-                  <label for="phone" class="font-weight-bold profile-edit-label">Phone Number</label>
-                  <input type="text" class="form-control" id="" aria-describedby="telephone"
-                    placeholder="Enter Phone Number">
-                </div>
-
                 <button type="submit"
-                  class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3">UPDATE</button>
+                  class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3 text-upppercase">update</button>
               </form>
             </div>
           </div>

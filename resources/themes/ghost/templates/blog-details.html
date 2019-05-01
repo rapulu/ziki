@@ -143,8 +143,6 @@
                 <img src="resources/themes/ghost/assets/img/Vector.png" alt="logo" width="34" height="35">
        </div> -->
             <div class="blog-post-title mt-2">
-                    {% for result in result %}
-                <h2>{{result.title | raw}}</h2>
             </div>
             <div class="body-of-blog p-4 mt-2">
                 <div class="info-on-author row d-flex justify-content-start text-center">
@@ -152,8 +150,8 @@
                         <img src="/resources/themes/ghost/assets/img/tsr-logo-img.png" alt="" class="img-fluid author-img">
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3 about-blog-source text-left p-0">
-                        <p class="blog-source p-0 m-0">The Shade Room</p>
-                        <p class="blog-date p-0 m-0">12<sup>th</sup>{{result.timestamp | raw}}</p>
+                        <p class="blog-source p-0 m-0">{{result.title | raw}}</p>
+                        <p class="blog-date p-0 m-0">{{result.timestamp | raw}}</p>
                     </div>
 
                     <div class="col-6">
@@ -177,7 +175,6 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
             <div class="comment-box mt-4 pl-4 pr-4 mx-auto">
                 <!-- this div is for the disqus commenting function -->
 		<div id="disqus_thread"></div>
