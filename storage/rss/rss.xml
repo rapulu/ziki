@@ -9,7 +9,7 @@
 <url>https://lh6.googleusercontent.com/-kcUvksZJ4tE/AAAAAAAAAAI/AAAAAAAAABI/Re6_N6f6ypE/photo.jpg</url>
 </image>
 <language>en-US</language>
-<lastBuildDate>Wed, 01 May 2019 11:18:10 +0000</lastBuildDate>
+<lastBuildDate>Wed, 01 May 2019 16:09:37 +0000</lastBuildDate>
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
@@ -58,6 +58,15 @@
 <pubDate>Sun, 07 Apr 2013 00:50:30 +0000</pubDate>
 <author>yusufkjart@gmail.com (khadijat Yusuf)</author>
 <guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556709480&quot;&gt;http://localhost:8000//storage/contents/1556709480&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">khadijat Yusuf's page</source>
+</item>
+<item>
+<title>PHP database management</title>
+<link>PHP-database-management-1556726940</link>
+<description><![CDATA[umask() sets PHP&#39;s umask to **mask** &#38; 0777 and returns the old umask. When PHP is being ]]></description>
+<pubDate>Sun, 07 Apr 2013 00:50:30 +0000</pubDate>
+<author>yusufkjart@gmail.com (khadijat Yusuf)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556726940&quot;&gt;http://localhost:8000//storage/contents/1556726940&lt;/a&gt;&lt;/p&gt;</guid>
 <source url="http://localhost:8000/">khadijat Yusuf's page</source>
 </item>
 </channel>
