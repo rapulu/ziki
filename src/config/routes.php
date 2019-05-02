@@ -95,36 +95,7 @@ Router::post('/saveDraft', function($request) {
     return $this->template->render('drafts.html', ['ziki' => $result]);
 });
 /* Working on draft by devmohy */
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-Router::post('/timeline', function($request) {
-  $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-    $data = $request->getBody();
-    $url = $_POST['domain'];
-    $ziki = new Ziki\Core\Subscribe();
-    $result = $ziki->extract($url);
-    $directory = "./storage/contents/";
-    $ziki = new Ziki\Core\Document($directory);
-    $feed = $ziki->fetchAllRss();
-    return $this->template->render('index.html', ['posts' => $feed]);
-});
-}
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  Router::get('/timeline', function($request) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-      $directory = "./storage/contents/";
-      $ziki = new Ziki\Core\Document($directory);
-      $feed = $ziki->fetchAllRss();
-     //  Render our view
-      print_r($feed);
-      return $this->template->render('timeline.html',['posts' => $feed] );
-  });
-}
+
 Router::get('/contact-us', function($request) {
     include ZIKI_BASE_PATH."/src/core/SendMail.php";
     $checkifOwnersMailIsprovided = new  SendContactMail();
@@ -186,7 +157,13 @@ Router::post('/following', function($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    return $this->template->render('following.html');
+    $directory = "./storage/contents/";
+  $ziki = new Ziki\Core\Document($directory);
+  $list = $ziki->subscription();
+  $count = new Ziki\Core\Subscribe();
+  $count = $count->count();
+
+    return $this->template->render('following.html',['sub' => $list, 'count' => $count ] );
 });
 Router::get('/followers', function($request) {
     $user = new Ziki\Core\Auth();
@@ -296,6 +273,15 @@ Router::get('/auth/{provider}/{token}', function($request, $token){
         return $user->redirect('/timeline');
     }
 });
+Router::post('/addrss', function($request) {
+    $r = new Ziki\Core\Auth();
+    $data = $request->getBody();
+    $url = $_POST['domain'];
+    $ziki = new Ziki\Core\Subscribe();
+    $result = $ziki->extract($url);
+    return $r->redirect('/subscriptions');
+
+});
 Router::get('/logout', function($request) {
     $user = new Ziki\Core\Auth();
     $user->log_out();
@@ -314,7 +300,7 @@ Router::get('/install', function($request) {
 
 // ahmzyjazzy add this (^_^)
 Router::post('/appsetting', function($request) {
-   
+
     //create middleware to protect api from non auth user
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
