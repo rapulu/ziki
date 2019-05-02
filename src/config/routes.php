@@ -165,6 +165,8 @@ Router::get('/published-posts', function($request) {
     }
     return $this->template->render('published-posts.html');
 });
+
+// settings page
 Router::get('/settings', function($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -172,6 +174,8 @@ Router::get('/settings', function($request) {
     }
     return $this->template->render('settings.html');
 });
+
+// profile page
 Router::get('/profile', function($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -179,6 +183,26 @@ Router::get('/profile', function($request) {
     }
     return $this->template->render('profile.html');
 });
+
+// following page
+Router::get('/following', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    return $this->template->render('following.html');
+});
+
+// followers page
+Router::get('/followers', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    return $this->template->render('followers.html');
+});
+
+// Subscription page
 Router::post('/subscriptions', function($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -186,6 +210,8 @@ Router::post('/subscriptions', function($request) {
     }
     return $this->template->render('subscriptions.html');
 });
+
+// Subscribers page
 Router::get('/subscribers', function($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -193,6 +219,8 @@ Router::get('/subscribers', function($request) {
     }
     return $this->template->render('subscribers.html');
 });
+
+// 404 page
 Router::get('/editor', function($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -203,6 +231,8 @@ Router::get('/editor', function($request) {
 Router::get('/404', function($request) {
     return $this->template->render('404.html');
 });
+
+// drafts page
 Router::get('/drafts', function($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -210,12 +240,30 @@ Router::get('/drafts', function($request) {
     }
     return $this->template->render('drafts.html');
 });
+
+//videos page
+Router::get('/videos', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    return $this->template->render('videos.html');
+});
+
+
 Router::get('/about', function($request) {
     return $this->template->render('about-us.html');
 });
+
+//download page
 Router::get('/download', function($request) {
     return $this->template->render('download.html');
 });
+
+
+
+
+
 Router::get('/auth/{provider}/{token}', function($request, $token){
     $user = new Ziki\Core\Auth();
     $check = $user->validateAuth($token);
