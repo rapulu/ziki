@@ -40,6 +40,11 @@ Router::get('/timeline', function($request) {
     $post = $ziki->fetchAllRss();
     return $this->template->render('timeline.html', ['posts' => $post] );
 });
+
+//route for following page
+//route for followers page
+
+
 Router::get('/tags/{id}', function($request,$id) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -74,7 +79,7 @@ Router::post('/publish', function($request) {
       }
       //return json_encode([$images]);
       $ziki = new Ziki\Core\Document($directory);
-      $result = $ziki->create($title, $body, $tags, $images);
+      $result = $ziki->create($title, $body, $tags, $images,$extra);
     return $this->template->render('timeline.html', ['ziki' => $result]);
 });
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -199,6 +204,27 @@ Router::get('/portfolio', function($request) {
    return $this->template->render('portfolio.html');
 });
 // End- Portfolio page
+
+
+// Start- followers page
+Router::get('/followers', function($request) {
+   $user = new Ziki\Core\Auth();
+   if (!$user->is_logged_in()) {
+       return $user->redirect('/');
+   }
+   return $this->template->render('followers.html');
+});
+// End- followers page
+
+// Start- following page
+Router::get('/following', function($request) {
+   $user = new Ziki\Core\Auth();
+   if (!$user->is_logged_in()) {
+       return $user->redirect('/');
+   }
+   return $this->template->render('following.html');
+});
+// End- following page
 
 
 /* Devmohy working on draft */
@@ -339,7 +365,7 @@ Router::get('/{id}', function($request, $id) {
 });
 // ahmzyjazzy add this (^_^)
 Router::post('/appsetting', function($request) {
-   
+
     //create middleware to protect api from non auth user
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
