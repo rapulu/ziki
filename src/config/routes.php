@@ -3,8 +3,8 @@ use Ziki\Http\Router;
 session_start();
 Router::get('/', function($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user::isInstalled() == true) {
-        return $user->redirect('/');
+    if ($user::isInstalled() == true) {
+        return $user->redirect('/install');
     }
     else{
         $directory = "./storage/contents/";
@@ -14,7 +14,7 @@ Router::get('/', function($request) {
         $host = $user->hash($url);
         // Render our view
         //print_r($feed);
-        return $this->template->render('index.html',['posts' => $feed, 'host' => $host] );
+        return $this->template->render('index.html', ['host' => $host], ['posts' => $feed] );
     }
 });
 Router::get('blog-details/{id}', function($request, $id) {
@@ -24,8 +24,10 @@ Router::get('blog-details/{id}', function($request, $id) {
     }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-   $result = $ziki->getEach($id);
-   return $this->template->render('blog-details.html', ['result' => $result] );
+    $result = $ziki->getEach($id);
+    $setting = new Ziki\Core\Setting();
+    $settings = $setting->getSetting();
+   return $this->template->render('blog-details.html', $settings, ['result' => $result] );
 });
 Router::get('/timeline', function($request) {
     $user = new Ziki\Core\Auth();
@@ -333,6 +335,10 @@ Router::post('/api/upload-image', function() {
 });
 
 Router::get('/install', function($request) {
-    return $this->installer->render('install.html');
+
+    $user = new Ziki\Core\Auth();
+    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+    $host = $user->hash($url);
+    return $this->installer->render('install.html', ['host' => $host]);
 });
 
