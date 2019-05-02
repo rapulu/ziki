@@ -6,7 +6,7 @@ Router::get('/about/{id}', function($request,$id) {
 });
 Router::get('/', function($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user::isInstalled() == true) {
+    if ($user::isInstalled() == true) {
         return $user->redirect('/install');
     }
     else{
@@ -40,6 +40,11 @@ Router::get('/timeline', function($request) {
     $post = $ziki->fetchAllRss();
     return $this->template->render('timeline.html', ['posts' => $post] );
 });
+
+//route for following page
+//route for followers page
+
+
 Router::get('/tags/{id}', function($request,$id) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -48,7 +53,8 @@ Router::get('/tags/{id}', function($request,$id) {
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $result = $ziki->update($id);
-    return $this->template->render('timeline.html', ['posts' => $result] );
+    $twig_vars = ['posts' => $result, 'tag' => $id];
+    return $this->template->render('tags.html', $twig_vars );
 });
 Router::post('/publish', function($request) {
     $user = new Ziki\Core\Auth();
@@ -73,7 +79,7 @@ Router::post('/publish', function($request) {
       }
       //return json_encode([$images]);
       $ziki = new Ziki\Core\Document($directory);
-      $result = $ziki->create($title, $body, $tags, $images);
+      $result = $ziki->create($title, $body, $tags, $images,$extra);
     return $this->template->render('timeline.html', ['ziki' => $result]);
 });
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -196,10 +202,31 @@ Router::get('/portfolio', function($request) {
        return $user->redirect('/');
    }
    return $this->template->render('portfolio.html');
-})
+});
 // End- Portfolio page
-     
-     
+
+
+// Start- followers page
+Router::get('/followers', function($request) {
+   $user = new Ziki\Core\Auth();
+   if (!$user->is_logged_in()) {
+       return $user->redirect('/');
+   }
+   return $this->template->render('followers.html');
+});
+// End- followers page
+
+// Start- following page
+Router::get('/following', function($request) {
+   $user = new Ziki\Core\Auth();
+   if (!$user->is_logged_in()) {
+       return $user->redirect('/');
+   }
+   return $this->template->render('following.html');
+});
+// End- following page
+
+
 /* Devmohy working on draft */
 /* Save draft*/
 Router::post('/saveDraft', function($request) {
@@ -304,23 +331,8 @@ Router::post('/api/upload-image', function() {
 });
 Router::get('/install', function($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
-    }
-
-    $data = $request->getBody();
-    $field = $data['field']; //field to update in  app.json
-    $value = $data['value']; //value for setting field in app.json
-
-    $setting = new Ziki\Core\Setting();
-
-    try {
-        $result = $setting->updateSetting($field, $value);
-        if($result){
-            echo json_encode(array("msg" => "Setting updated successfully", "status" => "success", "data" => $result));
-        }else{
-            echo json_encode(array("msg" => "Field does not exist", "status" => "error", "data" => null));
-        }
+    if ($user::isInstalled() == false) {
+        return $user->redirect('/');
     }
     else{
         $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
@@ -350,4 +362,32 @@ Router::get('/{id}', function($request, $id) {
      echo $th->getMessage();
  }
    return $this->template->render('blog-details.html', ['result' => $result] );
+});
+// ahmzyjazzy add this (^_^)
+Router::post('/appsetting', function($request) {
+
+    //create middleware to protect api from non auth user
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
+    }
+
+    $data = $request->getBody();
+    $field = $data['field']; //field to update in  app.json
+    $value = $data['value']; //value for setting field in app.json
+
+    $setting = new Ziki\Core\Setting();
+
+    try {
+        $result = $setting->updateSetting($field, $value);
+        if($result){
+            echo json_encode(array("msg" => "Setting updated successfully", "status" => "success", "data" => $result));
+        }else{
+            echo json_encode(array("msg" => "Field does not exist", "status" => "error", "data" => null));
+        }
+    }
+    catch (Exception $e) {
+        echo json_encode(array("msg" => "Caught exception: ",  $e->getMessage(), "\n", "status" => "error", "data" => null));
+    }
+    return;
 });
