@@ -305,6 +305,12 @@ input:checked + .slider:before {
   outline: 0 none !important;
 }
 
+input:focus {
+  border-color: #280a66 !important;
+  box-shadow: 1px 1px 4px #280a66 !important;
+  outline: 1px !important;
+}
+
 .plugin-select option:not(seleted) {
   background: #fff;
 }

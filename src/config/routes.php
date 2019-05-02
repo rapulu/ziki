@@ -169,9 +169,9 @@ Router::get('/published-posts', function($request) {
 });
 Router::get('/settings', function($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
     return $this->template->render('settings.html', $settings );
@@ -319,9 +319,9 @@ Router::post('/appsetting', function($request) {
    
     //create middleware to protect api from non auth user
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
-    // }
+    if (!$user->is_logged_in()) {
+        return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
+    }
 
     $data = $request->getBody();
     $field = $data['field']; //field to update in  app.json
