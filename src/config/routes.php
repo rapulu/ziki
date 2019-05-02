@@ -163,6 +163,27 @@ Router::get('/published-posts', function($request) {
     return $this->template->render('published-posts.html');
 });
 
+// Start- Portfolio page
+Router::get('/portfolio', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    return $this->template->render('portfolio.html');
+});
+// End- Portfolio
+
+// Start- Portfolio_expanded page
+Router::get('/portfolio-expanded', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    return $this->template->render('portfolio-expanded.html');
+});
+// End- Portfolio_expanded
+
+
 // settings page
 Router::get('/settings', function($request) {
     $user = new Ziki\Core\Auth();
@@ -256,9 +277,6 @@ Router::get('/about', function($request) {
 Router::get('/download', function($request) {
     return $this->template->render('download.html');
 });
-
-
-
 
 
 Router::get('/auth/{provider}/{token}', function($request, $token){
