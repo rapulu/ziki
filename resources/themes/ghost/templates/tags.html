@@ -29,6 +29,10 @@ page_content %}
     --tag-badge-border-color: var(--lucid-white);
   }
 
+  .wrapper {
+    width: 100%;
+  }
+
   .main-content {
     min-height: 100vh;
     background-color: var(--main-bg-color);
@@ -72,14 +76,7 @@ page_content %}
 
 <div class="container-fluid py-3">
   <div class="row">
-    <!-- Sidebar -->
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
-
-    <!-- Page Content -->
-    <div
-      id="content"
-      class="col-lg-8 col-md-8 col-sm-12 col-xs-12 main-content p-5"
-    >
+    <div id="content" class="col-12 main-content p-5">
       <p class="my-0 font-weight-bold">TAGGED IN</p>
       <h2 class="tag-name py-4 my-0 font-weight-bold">{{ tag }}</h2>
       <div class="tag-badge-container py-2">
