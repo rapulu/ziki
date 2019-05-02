@@ -8,6 +8,10 @@ page_content %}
     --lucid-gray: #666;
     --lucid-alt-black: #202020;
     --lucid-black: #000;
+    --lucid-light-purple: #973793;
+
+    /* unchanged across light/dark modes */
+    --empty-tag-text-color: var(--lucid-light-purple);
 
     /* light mode */
     --main-bg-color: var(--lucid-white);
@@ -72,6 +76,14 @@ page_content %}
   .blog-preview p {
     color: var(--blog-preview-text-color);
   }
+
+  .no-posts {
+    color: var(--main-text-color);
+  }
+
+  .empty-tag {
+    color: var(--empty-tag-text-color);
+  }
 </style>
 
 <div class="container-fluid py-3">
@@ -84,7 +96,7 @@ page_content %}
       </div>
       <div class="row">
         <div class="col-12">
-          {% for key, feed in posts %}
+          {% if posts %} {% for key, feed in posts %}
           <div class="row pt-4 pb-4">
             <div class="col-3 img-container"></div>
             <div class="col-8">
@@ -99,7 +111,12 @@ page_content %}
               <div class="blog-preview">{{ feed.body | raw }}</div>
             </div>
           </div>
-          {% endfor %}
+          {% endfor %} {% else %}
+          <h3 class="no-posts text-center py-5">
+            No blog posts matching the tag:
+            <span class="empty-tag">{{ tag }}</span>
+          </h3>
+          {% endif %}
         </div>
       </div>
     </div>
