@@ -1,5 +1,5 @@
 <style>
-  @import url("https://fonts.googleapis.com/css?family=Lato");
+  @import url('https://fonts.googleapis.com/css?family=Lato');
 
   :root {
     --ziki-purple: #280966;
@@ -13,7 +13,7 @@
 
   .ql-toolbar.ql-snow {
     box-sizing: border-box;
-    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     padding: 8px;
     background-color: #f5f5f5;
   }
@@ -56,44 +56,44 @@
   }
 
   .purple {
-    color: #871e99;
+    color: #280A66;
   }
 
   .purple-bg {
-    background-color: #871e99;
+    background-color: #280A66;
   }
 
   .btn-light {
-    border: 1px solid #871e99;
-    color: #871e99;
+    border: 1px solid #280A66;
+    color: #280A66;
     background-color: #fff;
   }
 
-  .nav {
-    height: 65px;
-    background: #ffffff;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-    color: #871e99;
+  .temp-nav {
+    color: #280A66;
     padding-top: 20px;
     padding-bottom: 20px;
     font-weight: bolder;
-    z-index: 99999;
+    border-bottom: 2px solid #000
   }
 
-  footer {
-    height: 61px;
-    background: #871e99;
-    color: #fff;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-weight: bolder;
-    z-index: 99999;
+  .nav-item {
+    padding-top: 8px;
   }
+
+  .footer {
+    background-color: #280A66;
+    color: #ffffff;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .lucid{color: ;}
 
   .btn-light:hover {
     border: 1px solid #fff;
     color: #fff;
-    background-color: #871e99;
+    background-color: #280A66;
   }
 
   .navbar-btn {
@@ -208,23 +208,16 @@
 
   #sidebar ul li span:hover {
     color: #fff;
-    background: #871e99;
+    background: #280A66;
     padding: 10px 25px;
     border-radius: 10px;
-  }
-
-  #sidebar.active ul li span:hover {
-    color: #871e99;
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
   }
 
   #sidebar ul li a i {
     margin-right: 10px;
   }
 
-  #sidebar ul li.active > a,
+  #sidebar ul li.active>a,
   a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
@@ -348,6 +341,7 @@
     border-radius: 50%;
     height: 200px;
   }
+
 
   /*Css for timeline page*/
   .blogger-image {
@@ -523,6 +517,7 @@
   }
 
   @media only screen and (max-width: 767px) {
+
     /* modal styling For mobile phones: */
     .modal-close-button {
       display: initial;
@@ -532,11 +527,9 @@
     #modalLoginForm .modal-content {
       /* bootstrap sets background of .modal-content */
       /* so it must also be overridden along with #modalLoginForm */
-      background: -webkit-linear-gradient(
-          180deg,
-          #973793 0%,
-          rgba(134, 64, 131, 0) 100%
-        ),
+      background: -webkit-linear-gradient(180deg,
+        #973793 0%,
+        rgba(134, 64, 131, 0) 100%),
         #3b0e75 !important;
     }
 
@@ -600,6 +593,7 @@
   }
 
   @media screen and (min-width: 768px) {
+
     /* login modal for tabs */
     .modal-content {
       width: 125%;
@@ -609,6 +603,7 @@
   }
 
   @media screen and (min-width: 992px) {
+
     /* login modal for PC */
     .auth-link {
       font-size: 1.4rem;
@@ -618,286 +613,52 @@
       font-size: 0.7rem;
     }
   }
-
-  /*****************************DRAFTS PAGE STYLING*****************************/
-  .drafts .draft-date {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    color: #280a66;
-  }
-
-  .drafts .draft-title a {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 130%;
-    color: #000000;
-    transition: all ease-in 0.3s;
-  }
-
-  .drafts .draft-title a:hover {
-    cursor: pointer;
-    color: #280a66;
-    text-decoration: none;
-    transition: all ease-in 0.3s;
-  }
-
-  .drafts .draft-content {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 140%;
-    color: #7a7a7a;
-  }
-
-  .no-drafts-alert p {
-    font-style: italic;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 130%;
-    color: #979797;
-  }
-
-  .draft-img {
-    height: 100%;
-    width: 100%;
-  }
-
-  /**DROPDOWN STYLING**/
-  .drafts .dropdown-menu {
-    position: relative;
-    margin-top: 0.9em;
-    margin-left: -3.9em;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
-    border-radius: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-
-  .drafts .dropdown-menu button {
-    text-align: center;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all ease-in 0.3s;
-  }
-
-  .drafts .dropdown-menu button:hover {
-    color: #280a66;
-    transition: all ease-in 0.3s;
-  }
-
-  .drafts .icon {
-    font-size: 20px;
-    margin-left: -30px;
-  }
-
-  .drafts .dropdown-btn-link {
-    font-size: 15px;
-    color: #280a66;
-    -webkit-transition: all ease-in 0.3s;
-    transition: all ease-in 0.3s;
-  }
-
-  .drafts .dropdown-btn-link:hover {
-    text-decoration: none;
-    -webkit-transition: all ease-in 0.3s;
-    transition: all ease-in 0.3s;
-  }
-
-  .drafts .edit-post {
-    color: black;
-  }
-
-  .drafts .edit-post:active:active {
-    color: #fff;
-  }
-
-  .drafts .edit-post:hover {
-    color: black;
-    text-decoration: none;
-  }
-
-  /**DROPDOWN STYLING**/
-
-  /****MODAL STYLING****/
-  .no-border {
-    border: none;
-  }
-
-  .modal-content {
-    border-radius: 0.7rem;
-  }
-
-  .modal-header .close {
-    opacity: 1;
-  }
-
-  .cancel-modal-text {
-    font-size: 1.1rem;
-    margin-bottom: 0;
-    margin-top: 1.2rem;
-  }
-
-  .btn.btn-primary.canel-post {
-    background-color: transparent !important;
-    border: 1px solid red;
-    color: red;
-    padding: 6px 20px;
-  }
-
-  .btn.btn-primary.publish-post {
-    background-color: #280a66 !important;
-    border: 1px solid #280a66;
-    padding: 6px 20px;
-  }
-
-  .btn.btn-primary.canel-post,
-  .btn.btn-primary.publish-post {
-    margin-left: 15px;
-  }
-
-  /****MODAL STYLING****/
-
-  /****MEDIA QUERIES****/
-  @media screen and (max-width: 700px) {
-    .drafts .post-item:after {
-      content: "";
-      display: block;
-      position: relative;
-      width: 90%;
-      border-bottom: 1px solid #ebebeb;
-    }
-
-    .drafts .draft-date {
-      margin-top: 1em;
-    }
-
-    .drafts .icon {
-      position: relative;
-      left: 5em;
-      margin-top: 1em;
-      margin-left: 2em;
-      color: #280a66;
-      font-size: 20px;
-      text-align: center;
-    }
-
-    .drafts .dropdown-menu {
-      margin-left: -3.9em;
-      margin-bottom: 20px;
-    }
-
-    .drafts .draft-bottom:after {
-      content: "";
-      position: relative;
-      display: block;
-      border-bottom: 1px solid rgb(209, 209, 209);
-      width: 90%;
-      margin: 0 auto;
-      padding-top: 1em;
-    }
-  }
-
-  @media screen and (max-width: 900px) and (min-width: 700px) {
-    .drafts .dropdown-menu {
-      position: relative;
-      margin-top: 2em;
-      margin-left: -4em;
-    }
-  }
-  /****MEDIA QUERIES****/
-  /*****************************DRAFTS PAGE STYLING*****************************/
 </style>
 
 <div class="container-fluid">
-  <div class="">
+  <div class="row">
     <div class="wrapper">
       <!-- side bar here -->
       <div id="sidebar">
         <div class="sidebar-header pt-5">
           <div class="row">
             <div class="col-12 col-sm-8 mx-auto d-block">
-              <img
-                src="{{ settings.image }}"
-                alt="ziki logo"
-                class="img-fluid profile-pic circle"
-              />
+              <img src="/resources/themes/ghost/assets/img/fiverr.jpg" alt="ziki logo"
+                class="img-fluid profile-pic circle" />
             </div>
           </div>
           <div class="row">
             <div class="col-12 col-sm-12">
-              <h3 class="text-center pt-4 owner-name purple">
-                <b>{{ settings.name }}</b>
-              </h3>
-              <h6 class="text-center pt-2 owner-desc">
-                Front End Developer, UI/UX Developer, Traveler, Friend
-              </h6>
+              <h3 class="text-center pt-4 owner-name purple"><b>DESTINY IHEJIRIKA</b></h3>
+              <h6 class="text-center pt-2 owner-desc">Front End Developer, UI/UX Developer, Traveler, Friend</h6>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-6 text-right follows">
-              <a href="/following"><b>46</b> <span class="purple">Following</span></a></div>
-          <div class="col-sm-6 text-left follows">
-            <a href="/followers"><b>165</b> <span class="purple">Followers</span></a></div>
+            <div class="col-sm-6 text-right follows"><b>46</b> Following</div>
+            <div class="col-sm-6 text-left follows"><b>165</b> Followers</div>
           </div>
-          <hr />
+          <hr>
           <!-- <strong>BS</strong> -->
         </div>
 
         <div class="row">
           <div class="col-12">
             <ul class="list-unstyled components text-center">
-              {% if user.role == 'admin' %}
               <li>
-                <a href="/published-posts">
-                  <h6 class="text-center">
-                    <span><b>POSTS</b></span>
-                  </h6>
+                <a href="#">
+                  <h6 class="text-center"><span><b>POSTS</b></span></h6>
                 </a>
               </li>
               <li>
-                <a href="/videos">
-                  <h6 class="text-center">
-                    <span><b>VIDEOS</b></span>
-                  </h6>
+                <a href="#">
+                  <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
                 </a>
               </li>
               <li>
-                <a href="/contact-us">
-                  <h6 class="text-center">
-                    <span><b>CONTACT</b></span>
-                  </h6>
+                <a href="#">
+                  <h6 class="text-center"><span><b>CONTACT</b></span></h6>
                 </a>
               </li>
-              {% else %}
-              <li>
-                <a href="/published-posts">
-                  <h6 class="text-center">
-                    <span><b>POSTS</b></span>
-                  </h6>
-                </a>
-              </li>
-              <li>
-                <a href="/about">
-                  <h6 class="text-center">
-                    <span><b>ABOUT</b></span>
-                  </h6>
-                </a>
-              </li>
-              <li>
-                <a href="/contact-us">
-                  <h6 class="text-center">
-                    <span><b>CONTACT</b></span>
-                  </h6>
-                </a>
-              </li>
-              {% endif %}
             </ul>
             <ul class="list-unstyled CTAs d-flex justify-content-center">
               <li>
@@ -907,6 +668,74 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+
+      <!-- Login Modal -->
+      <div class="modal fade" id="modalLoginForm" style="background: rgba(255, 255, 255, 0.92);" tabindex="-1"
+        role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-container" role="document">
+          <div class="modal-content">
+            <div class="row login-modal-border-radius">
+              <div class="col-md-6 login-modal-popup-left-column">
+                <div class="row">
+                  <div class="col-6 logo">
+                    <img src="/resources/themes/ghost/assets/img/faviconimage.png" />
+                  </div>
+                  <div class="col-6">
+                    <button class="modal-close-button"
+                      style="background: transparent; color:#fff; border: none; font-size: 3rem; position: relative;top: -30px;left: 60px;"
+                      data-dismiss="modal">
+                      &times;
+                    </button>
+                  </div>
+                  <div class="col-md-12 greetings">
+                    <h3 class="text-center ziki-Welcome-msg" style="color:#fff;">
+                      Welcome to Ziki
+                    </h3>
+                    <p class="text-center ziki-about-msg" style="color:#fff;">
+                      Simplify your blogging experience.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- for the login auth -->
+              <div class="login-modal-popup-right-column col-md-6 text-center login-form">
+                <p class="mt-5">LOGIN TO CONTINUE</p>
+                <div class="signin-btn d-flex justify-content-between email-login-container">
+                  <input class="host" type="hidden" value="{{host}}">
+                  <input type="email" placeholder="Enter your Email Address"
+                    class="width-100pc ml-1 no-border email-input" required />
+                  <button class="email-login-button">
+                    <svg width="20" height="16" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 25.7143L30 12.8571L0 0V10L21.4286 12.8571L0 15.7143V25.7143Z" fill="#682681" />
+                    </svg>
+                  </button>
+                </div>
+                <p class="optional-login-text mt-5 mb-5">
+                  <span>or sign in with</span>
+                </p>
+                <div class="d-flex justify-content-around mb-5">
+                  <a href="https://auth.techteel.com/login/facebook?type=login&url={{host}}">
+                    <button class="signin-btn width-150px">facebook</button>
+                  </a>
+                  <a href="https://auth.techteel.com/login/google?type=login&url={{host}}">
+                    <button class="signin-btn width-150px">google</button>
+                  </a>
+                </div>
+              </div>
+
+
+              <div class="login-modal-popup-right-column col-md-6 text-center login-mail-sent">
+                <p class=" mt-5 fa-2x">
+                  Check your Email
+                </p>
+                <img class="magic-link-img" src="resources/themes/ghost/assets/img/magic-link-img.png"
+                  alt="magic link image">
+                <p class="magic-msg">
+
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
