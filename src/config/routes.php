@@ -48,7 +48,7 @@ Router::get('/tags/{id}', function($request,$id) {
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $result = $ziki->update($id);
-    return $this->template->render('timeline.html', ['posts' => $result] );
+    return $this->template->render('tags.html', ['posts' => $result] );
 });
 Router::post('/publish', function($request) {
     $user = new Ziki\Core\Auth();
@@ -198,8 +198,8 @@ Router::get('/portfolio', function($request) {
    return $this->template->render('portfolio.html');
 });
 // End- Portfolio page
-     
-     
+
+
 /* Devmohy working on draft */
 /* Save draft*/
 Router::post('/saveDraft', function($request) {
