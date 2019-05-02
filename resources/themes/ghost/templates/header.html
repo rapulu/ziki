@@ -69,8 +69,16 @@
             <span>Toggle Sidebar</span>
           </button>
         </div>
+	{% if not user.email %}
         <div class="col-6 text-right ">
           <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
+        </div>
+	{% else %}
+	<div class="col-6 text-right ">
+	<a href="/logout">
+          <span class="nav-item" >LOGOUT</span>
+	</a>
+	{% endif %}
         </div>
       </div>
     </div>
