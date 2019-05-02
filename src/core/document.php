@@ -67,8 +67,11 @@ class Document
         }else{
             $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
         }
-        
+
+        // create slug by first removing spaces
         $striped = str_replace(' ', '-', $title);
+        // then removing encoded html chars
+        $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
         $yamlfile['slug'] = $striped . "-{$unix}";
         $yamlfile['timestamp'] = $time;
         $yamlfile->setContent($content);
@@ -91,7 +94,7 @@ class Document
                 $result = array("error" => true, "message" => "Fail while publishing, please try again");
             }
         }
-        
+
         return $result;
     }
     //get post
@@ -420,7 +423,8 @@ public function update($id)
                     $parsedown  = new Parsedown();
                         $tags = $yaml['tags'];
                        for($i = 0; $i<count($tags); $i++){
-                            if($tags[$i] == $id){
+                            // strip away the leading "#" of the tag name
+                            if(substr($tags[$i], 1) == $id){
                             $slug = $parsedown->text($yaml['slug']);
                             $title = $parsedown->text($yaml['title']);
                             $bd = $parsedown->text($body);
@@ -430,8 +434,9 @@ public function update($id)
                             $content['body'] = $bd;
                             $content['url'] = $url;
                             $content['timestamp'] = $time;
+                            $content['tags'] = $tags;
+                            $content['slug'] = $yaml['slug'];
                             array_push($posts, $content);
-                            array_push($posts,$tags);
                             }
                         }
 
@@ -470,7 +475,7 @@ public function update($id)
 
      /**
       * updates a post stored in an md file
-      * and echos a json object; 
+      * and echos a json object;
       *
       * @param [type] $mdfile
       * @param [type] $title
