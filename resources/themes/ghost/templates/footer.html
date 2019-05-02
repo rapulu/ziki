@@ -34,15 +34,15 @@ sympathy... The script above enables side bar toogle and when the one below is
 uncommented, the one above doesnt work no more.. -->
 
 
-<!-- <script>
-  const $ = document.querySelector.bind(document)
-  let congrat = $('.login-mail-sent')
-  let form_l = $('.login-form')
-  let message = $('.magic-msg')
+<script>
+  const $$ = document.querySelector.bind(document)
+  let congrat = $$('.login-mail-sent')
+  let form_l = $$('.login-form')
+  let message = $$('.magic-msg')
   congrat.style.display = 'none';
   let sendEmail = () => {
-    let param = $('.email-input').value;
-    let host = $('.host').value;
+    let param = $$('.email-input').value;
+    let host = $$('.host').value;
     let url = `https://auth.techteel.com/api/login/email?address=${param}&domain=${host}`;
     fetch(url)
       .then((res) => { return res.json() })
@@ -56,8 +56,8 @@ uncommented, the one above doesnt work no more.. -->
         console.log(e)
       })
   };
-  $('.email-login-button').addEventListener('click', sendEmail);
-</script> -->
+  $$('.email-login-button').addEventListener('click', sendEmail);
+</script>
 
 <!-- Convert to markdown script -->
 <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
