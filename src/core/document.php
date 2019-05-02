@@ -533,4 +533,45 @@ public function update($id)
         return $content;
      }
 
+     // David's code for creating md from Add portfolio button
+     // Start- Creating new portfolio
+public function createNewPortfolio($title, $content,$image)
+{
+    $time = date("F j, Y, g:i a");
+    $unix = strtotime($time);
+    // Write md file
+    $document = FrontMatter::parse($content);
+    $md = new Parser();
+    $markdown = $md->parse($document);
+
+    $yaml = $markdown->getYAML();
+    $html = $markdown->getContent();
+    //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
+
+    $yamlfile = new Doc();
+    $yamlfile['title'] = $title;
+    
+    if(!empty($image)){
+        foreach($image as $key => $value){
+        $decoded = base64_decode($image[$key]);
+        $url = "./storage/images/".$key;
+        FileSystem::write($url,$decoded);
+    }
+}
+
+    // create slug by first removing spaces
+    $striped = str_replace(' ', '-', $title);
+    // then removing encoded html chars
+    $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
+    $yamlfile['slug'] = $striped . "-{$unix}";
+    $yamlfile['timestamp'] = $time;
+    $yamlfile->setContent($content);
+    $yaml = FrontMatter::dump($yamlfile);
+    $file = $this->file;
+    $dir = $file . $unix . ".md";
+    //return $dir; die();
+    $doc = FileSystem::write($dir, $yaml);
+}
+// End- Creating new portfolio
+
 }
