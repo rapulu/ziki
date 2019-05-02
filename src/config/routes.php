@@ -6,7 +6,7 @@ Router::get('/about/{id}', function($request,$id) {
 });
 Router::get('/', function($request) {
     $user = new Ziki\Core\Auth();
-    if ($user::isInstalled() == true) {
+    if (!$user::isInstalled() == true) {
         return $user->redirect('/install');
     }
     else{
@@ -153,7 +153,9 @@ Router::get('/settings', function($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    return $this->template->render('settings.html');
+    $setting = new Ziki\Core\Setting();
+    $settings = $setting->getSetting();
+    return $this->template->render('settings.html', $settings );
 });
 Router::get('/profile', function($request) {
     $user = new Ziki\Core\Auth();
@@ -186,6 +188,18 @@ Router::get('/editor', function($request) {
 Router::get('/404', function($request) {
     return $this->template->render('404.html');
 });
+
+// Start- Portfolio page
+Router::get('/portfolio', function($request) {
+   $user = new Ziki\Core\Auth();
+   if (!$user->is_logged_in()) {
+       return $user->redirect('/');
+   }
+   return $this->template->render('portfolio.html');
+})
+// End- Portfolio page
+     
+     
 /* Devmohy working on draft */
 /* Save draft*/
 Router::post('/saveDraft', function($request) {
@@ -290,8 +304,23 @@ Router::post('/api/upload-image', function() {
 });
 Router::get('/install', function($request) {
     $user = new Ziki\Core\Auth();
-    if ($user::isInstalled() == false) {
-        return $user->redirect('/');
+    if (!$user->is_logged_in()) {
+        return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
+    }
+
+    $data = $request->getBody();
+    $field = $data['field']; //field to update in  app.json
+    $value = $data['value']; //value for setting field in app.json
+
+    $setting = new Ziki\Core\Setting();
+
+    try {
+        $result = $setting->updateSetting($field, $value);
+        if($result){
+            echo json_encode(array("msg" => "Setting updated successfully", "status" => "success", "data" => $result));
+        }else{
+            echo json_encode(array("msg" => "Field does not exist", "status" => "error", "data" => null));
+        }
     }
     else{
         $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
