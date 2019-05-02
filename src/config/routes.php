@@ -1,9 +1,6 @@
 <?php
 use Ziki\Http\Router;
 session_start();
-Router::get('/about/{id}', function($request,$id) {
-     return $this->template->render('about-us.html');
-});
 Router::get('/', function($request) {
     $user = new Ziki\Core\Auth();
     if (!$user::isInstalled() == true) {
@@ -123,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       return $this->template->render('timeline.html',['posts' => $feed] );
   });
 }
-Router::get('/contact-us', function($request) {
+Router::get('/about', function($request) {
     include ZIKI_BASE_PATH."/src/core/SendMail.php";
     $checkifOwnersMailIsprovided = new  SendContactMail();
     $checkifOwnersMailIsprovided->getOwnerEmail();
@@ -137,7 +134,7 @@ Router::get('/contact-us', function($request) {
         $message = $_SESSION['messages'];
         unset($_SESSION['messages']);
     }
-    return $this->template->render('contact-us.html',['message'=>$message]);
+    return $this->template->render('about.html',['message'=>$message]);
 });
 Router::post('/send',function($request){
     include ZIKI_BASE_PATH."/src/core/SendMail.php";
