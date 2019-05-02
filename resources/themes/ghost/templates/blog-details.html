@@ -159,7 +159,7 @@
                         <!--<p class="blog-source p-0 m-0">{{result.title | raw}}</p>
                         <p class="blog-date p-0 m-0">{{result.timestamp | raw}}</p>-->
                         <p class="blog-date p-0 m-0">12<sup>th</sup> April 2019</p>
-                        <p class="blog-source p-0 m-0">James Rogger</p>
+                        <p class="blog-source p-0 m-0">James Rogger</p>s
                     </div>
 
                     <div class="col-4">
@@ -207,7 +207,21 @@
             <div class="comment-box mt-4 pl-4 pr-4 mx-auto">
                 <!-- this div is for the disqus commenting function -->
                 <div id="disqus_thread"></div>
-                <script>
+
+
+<script>
+(function() {
+    // your code here
+})();
+</script>
+
+
+
+                <script>//alert("{{COMMENT_PLUGIN}}");
+	
+
+	var plugin = "{{COMMENT_PLUGIN}}";
+	if ( plugin == disqus) {
                     /**
                      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
                      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -224,8 +238,10 @@
                         s.setAttribute('data-timestamp', +new Date());
                         (d.head || d.body).appendChild(s);
                     })();
+	}
                 </script>
                 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
             </div>
         </div>
     </div>

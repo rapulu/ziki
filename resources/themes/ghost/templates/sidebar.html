@@ -1,5 +1,5 @@
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Lato');
+  @import url("https://fonts.googleapis.com/css?family=Lato");
 
   :root {
     --ziki-purple: #280966;
@@ -13,7 +13,7 @@
 
   .ql-toolbar.ql-snow {
     box-sizing: border-box;
-    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     padding: 8px;
     background-color: #f5f5f5;
   }
@@ -71,8 +71,8 @@
 
   .nav {
     height: 65px;
-    background: #FFFFFF;
-    box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+    background: #ffffff;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
     color: #871e99;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -89,8 +89,6 @@
     font-weight: bolder;
     z-index: 99999;
   }
-
-  .lucid{color: ;}
 
   .btn-light:hover {
     border: 1px solid #fff;
@@ -226,7 +224,7 @@
     margin-right: 10px;
   }
 
-  #sidebar ul li.active>a,
+  #sidebar ul li.active > a,
   a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
@@ -350,7 +348,6 @@
     border-radius: 50%;
     height: 200px;
   }
-
 
   /*Css for timeline page*/
   .blogger-image {
@@ -526,7 +523,6 @@
   }
 
   @media only screen and (max-width: 767px) {
-
     /* modal styling For mobile phones: */
     .modal-close-button {
       display: initial;
@@ -536,9 +532,11 @@
     #modalLoginForm .modal-content {
       /* bootstrap sets background of .modal-content */
       /* so it must also be overridden along with #modalLoginForm */
-      background: -webkit-linear-gradient(180deg,
-        #973793 0%,
-        rgba(134, 64, 131, 0) 100%),
+      background: -webkit-linear-gradient(
+          180deg,
+          #973793 0%,
+          rgba(134, 64, 131, 0) 100%
+        ),
         #3b0e75 !important;
     }
 
@@ -602,7 +600,6 @@
   }
 
   @media screen and (min-width: 768px) {
-
     /* login modal for tabs */
     .modal-content {
       width: 125%;
@@ -612,7 +609,6 @@
   }
 
   @media screen and (min-width: 992px) {
-
     /* login modal for PC */
     .auth-link {
       font-size: 1.4rem;
@@ -623,178 +619,166 @@
     }
   }
 
+  /*****************************DRAFTS PAGE STYLING*****************************/
+  .drafts .draft-date {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #280a66;
+  }
 
+  .drafts .draft-title a {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 130%;
+    color: #000000;
+    transition: all ease-in 0.3s;
+  }
 
+  .drafts .draft-title a:hover {
+    cursor: pointer;
+    color: #280a66;
+    text-decoration: none;
+    transition: all ease-in 0.3s;
+  }
 
+  .drafts .draft-content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 140%;
+    color: #7a7a7a;
+  }
 
+  .no-drafts-alert p {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    color: #979797;
+  }
 
-/*****************************DRAFTS PAGE STYLING*****************************/
-.drafts .draft-date {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  color: #280A66;
-}
+  .draft-img {
+    height: 100%;
+    width: 100%;
+  }
 
-.drafts .draft-title a {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 130%;
-  color: #000000;
-  transition: all ease-in 0.3s;
-}
+  /**DROPDOWN STYLING**/
+  .drafts .dropdown-menu {
+    position: relative;
+    margin-top: 0.9em;
+    margin-left: -3.9em;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
-.drafts .draft-title a:hover {
-  cursor: pointer;
-  color: #280A66;
-  text-decoration: none;
-  transition: all ease-in 0.3s;
-}
+  .drafts .dropdown-menu button {
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all ease-in 0.3s;
+  }
 
-.drafts .draft-content {
+  .drafts .dropdown-menu button:hover {
+    color: #280a66;
+    transition: all ease-in 0.3s;
+  }
 
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 140%;
-  color: #7A7A7A;
-}
+  .drafts .icon {
+    font-size: 20px;
+    margin-left: -30px;
+  }
 
-.no-drafts-alert p {
+  .drafts .dropdown-btn-link {
+    font-size: 15px;
+    color: #280a66;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s;
+  }
 
-  font-style: italic;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 130%;
-  color: #979797;
-}
+  .drafts .dropdown-btn-link:hover {
+    text-decoration: none;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s;
+  }
 
-.draft-img {
-  height: 100%;
-  width: 100%;
-}
+  .drafts .edit-post {
+    color: black;
+  }
 
-/**DROPDOWN STYLING**/
-.drafts .dropdown-menu {
-  position: relative;
-  margin-top: 0.9em;
-  margin-left: -3.9em;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
-  border-radius: 5px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
+  .drafts .edit-post:active:active {
+    color: #fff;
+  }
 
-.drafts .dropdown-menu button {
-  text-align: center;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 17px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transition: all ease-in 0.3s;
-}
+  .drafts .edit-post:hover {
+    color: black;
+    text-decoration: none;
+  }
 
-.drafts .dropdown-menu button:hover {
-  color: #280A66;
-  transition: all ease-in 0.3s;
-}
+  /**DROPDOWN STYLING**/
 
-.drafts .icon {
-  font-size: 20px;
-  margin-left: -30px;
-}
+  /****MODAL STYLING****/
+  .no-border {
+    border: none;
+  }
 
+  .modal-content {
+    border-radius: 0.7rem;
+  }
 
-.drafts .dropdown-btn-link {
-  font-size: 15px;
-  color: #280a66;
-  -webkit-transition: all ease-in .3s;
-  transition: all ease-in .3s;
-}
+  .modal-header .close {
+    opacity: 1;
+  }
 
-.drafts .dropdown-btn-link:hover {
-  text-decoration: none;
-  -webkit-transition: all ease-in .3s;
-  transition: all ease-in .3s;
-}
+  .cancel-modal-text {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    margin-top: 1.2rem;
+  }
 
-.drafts .edit-post {
-  color: black;
-}
+  .btn.btn-primary.canel-post {
+    background-color: transparent !important;
+    border: 1px solid red;
+    color: red;
+    padding: 6px 20px;
+  }
 
-.drafts .edit-post:active:active {
-  color: #fff;
-}
+  .btn.btn-primary.publish-post {
+    background-color: #280a66 !important;
+    border: 1px solid #280a66;
+    padding: 6px 20px;
+  }
 
-.drafts .edit-post:hover {
-  color: black;
-  text-decoration: none;
-}
+  .btn.btn-primary.canel-post,
+  .btn.btn-primary.publish-post {
+    margin-left: 15px;
+  }
 
-/**DROPDOWN STYLING**/
+  /****MODAL STYLING****/
 
-
-
-/****MODAL STYLING****/
-.no-border {
-  border: none;
-}
-
-.modal-content {
-  border-radius: .7rem;
-}
-
-.modal-header .close {
-  opacity: 1;
-}
-
-.cancel-modal-text {
-  font-size: 1.1rem;
-  margin-bottom: 0;
-  margin-top: 1.2rem;
-}
-
-.btn.btn-primary.canel-post {
-  background-color: transparent !important;
-  border: 1px solid red;
-  color: red;
-  padding: 6px 20px;
-}
-
-.btn.btn-primary.publish-post {
-  background-color: #280a66 !important;
-  border: 1px solid #280a66;
-  padding: 6px 20px;
-}
-
-.btn.btn-primary.canel-post,
-.btn.btn-primary.publish-post {
-  margin-left: 15px;
-}
-
-/****MODAL STYLING****/
-
-
-
-/****MEDIA QUERIES****/
-@media screen and (max-width:700px) {
-  .drafts .post-item:after {
+  /****MEDIA QUERIES****/
+  @media screen and (max-width: 700px) {
+    .drafts .post-item:after {
       content: "";
       display: block;
       position: relative;
       width: 90%;
       border-bottom: 1px solid #ebebeb;
-  }
+    }
 
-  .drafts .draft-date {
+    .drafts .draft-date {
       margin-top: 1em;
-  }
+    }
 
-  .drafts .icon {
+    .drafts .icon {
       position: relative;
       left: 5em;
       margin-top: 1em;
@@ -802,14 +786,14 @@
       color: #280a66;
       font-size: 20px;
       text-align: center;
-  }
+    }
 
-  .drafts .dropdown-menu {
+    .drafts .dropdown-menu {
       margin-left: -3.9em;
       margin-bottom: 20px;
-  }
+    }
 
-  .drafts .draft-bottom:after {
+    .drafts .draft-bottom:after {
       content: "";
       position: relative;
       display: block;
@@ -817,20 +801,18 @@
       width: 90%;
       margin: 0 auto;
       padding-top: 1em;
+    }
   }
-}
 
-@media screen and (max-width:900px) and (min-width:700px) {
-  .drafts .dropdown-menu {
+  @media screen and (max-width: 900px) and (min-width: 700px) {
+    .drafts .dropdown-menu {
       position: relative;
       margin-top: 2em;
       margin-left: -4em;
+    }
   }
-
-}
-/****MEDIA QUERIES****/
-/*****************************DRAFTS PAGE STYLING*****************************/
-
+  /****MEDIA QUERIES****/
+  /*****************************DRAFTS PAGE STYLING*****************************/
 </style>
 
 <div class="container-fluid">
@@ -841,42 +823,79 @@
         <div class="sidebar-header pt-5">
           <div class="row">
             <div class="col-12 col-sm-8 mx-auto d-block">
-              <img src="/resources/themes/ghost/assets/img/fiverr.jpg" alt="ziki logo"
-                class="img-fluid profile-pic circle" />
+              <img
+                src="{{ settings.image }}"
+                alt="ziki logo"
+                class="img-fluid profile-pic circle"
+              />
             </div>
           </div>
           <div class="row">
             <div class="col-12 col-sm-12">
-              <h3 class="text-center pt-4 owner-name purple"><b>DESTINY IHEJIRIKA</b></h3>
-              <h6 class="text-center pt-2 owner-desc">Front End Developer, UI/UX Developer, Traveler, Friend</h6>
+              <h3 class="text-center pt-4 owner-name purple">
+                <b>{{ settings.name }}</b>
+              </h3>
+              <h6 class="text-center pt-2 owner-desc">
+                Front End Developer, UI/UX Developer, Traveler, Friend
+              </h6>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-6 text-right follows"><b>46</b> Following</div>
             <div class="col-sm-6 text-left follows"><b>165</b> Followers</div>
           </div>
-          <hr>
+          <hr />
           <!-- <strong>BS</strong> -->
         </div>
 
         <div class="row">
           <div class="col-12">
             <ul class="list-unstyled components text-center">
+              {% if user.role == 'admin' %}
               <li>
-                <a href="#">
-                  <h6 class="text-center"><span><b>POSTS</b></span></h6>
+                <a href="/published-posts">
+                  <h6 class="text-center">
+                    <span><b>POSTS</b></span>
+                  </h6>
                 </a>
               </li>
               <li>
-                <a href="#">
-                  <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
+                <a href="/videos">
+                  <h6 class="text-center">
+                    <span><b>VIDEOS</b></span>
+                  </h6>
                 </a>
               </li>
               <li>
-                <a href="#">
-                  <h6 class="text-center"><span><b>CONTACT</b></span></h6>
+                <a href="/contact-us">
+                  <h6 class="text-center">
+                    <span><b>CONTACT</b></span>
+                  </h6>
                 </a>
               </li>
+              {% else %}
+              <li>
+                <a href="/published-posts">
+                  <h6 class="text-center">
+                    <span><b>POSTS</b></span>
+                  </h6>
+                </a>
+              </li>
+              <li>
+                <a href="/about">
+                  <h6 class="text-center">
+                    <span><b>ABOUT</b></span>
+                  </h6>
+                </a>
+              </li>
+              <li>
+                <a href="/contact-us">
+                  <h6 class="text-center">
+                    <span><b>CONTACT</b></span>
+                  </h6>
+                </a>
+              </li>
+              {% endif %}
             </ul>
             <ul class="list-unstyled CTAs d-flex justify-content-center">
               <li>
@@ -886,4 +905,6 @@
           </div>
         </div>
       </div>
-
+    </div>
+  </div>
+</div>
