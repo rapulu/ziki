@@ -449,7 +449,6 @@ class Document
                         }
 
                     }
-                }
             }
             return $posts;
         }
