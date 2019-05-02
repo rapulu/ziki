@@ -170,7 +170,14 @@ Router::get('/followers', function($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    return $this->template->render('followers.html');
+    $directory = "./storage/contents/";
+  $ziki = new Ziki\Core\Document($directory);
+  $list = $ziki->subscriber();
+  $count = new Ziki\Core\Subscribe();
+  $fcount = $count->fcount();
+  $count = $count->count();
+
+    return $this->template->render('followers.html', ['sub' => $list, 'count' => $count,'fcount' => $fcount]);
 });
 Router::get('/editor', function($request) {
     $user = new Ziki\Core\Auth();
@@ -281,6 +288,19 @@ Router::post('/addrss', function($request) {
     $result = $ziki->extract($url);
     return $r->redirect('/subscriptions');
 
+});
+Router::post('/subscriptions', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    $directory = "./storage/contents/";
+  $ziki = new Ziki\Core\Document($directory);
+  $list = $ziki->subscription();
+  $count = new Ziki\Core\Subscribe();
+  $count = $count->count();
+
+    return $this->template->render('subscriptions.html', ['sub' => $list, 'count' => $count ] );
 });
 Router::get('/logout', function($request) {
     $user = new Ziki\Core\Auth();

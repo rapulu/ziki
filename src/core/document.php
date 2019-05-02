@@ -67,7 +67,7 @@ class Document
         }else{
             $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
         }
-        
+
         $striped = str_replace(' ', '-', $title);
         $yamlfile['slug'] = $striped . "-{$unix}";
         $yamlfile['timestamp'] = $time;
@@ -91,7 +91,7 @@ class Document
                 $result = array("error" => true, "message" => "Fail while publishing, please try again");
             }
         }
-        
+
         return $result;
     }
     //get post
@@ -136,7 +136,7 @@ class Document
     {
         $rss = new \DOMDocument();
         $feed = [];
-        $data = file_get_contents("storage/rss/subscriber.json");
+        $data = file_get_contents("storage/rss/subscription.json");
         $urlArray = json_decode($data, true);
 
         //$urlArray = array(array('name' => 'Elijah Okokn', 'url' => 'storage/contents/rss.xml'),
@@ -338,21 +338,25 @@ class Document
     {
         $db = "storage/rss/subscriber.json";
         $file = FileSystem::read($db);
-        $data = json_decode($file, true);
-        unset($file);
-        $posts = [];
-        foreach ($data as $key => $value) {
+          $data = json_decode($file, true);
+          if (count($data) >= 1) {
+          unset($file);
+          $posts = [];
+          foreach ($data as $key => $value) {
 
             $content['name'] = $value['name'];
             $content['img'] = $value['img'];
+            $content['time'] = $value['time'];
             $content['desc'] = $value['desc'];
-            array_push($posts, $content);
+              array_push($posts, $content);
+          }
+          return $posts;
         }
-        return $posts;
+
     }
     public function subscription()
     {
-        $db = "storage/rss/subscriber.json";
+        $db = "storage/rss/subscription.json";
         $file = FileSystem::read($db);
         $data = json_decode($file, true);
         unset($file);
@@ -470,7 +474,7 @@ public function update($id)
 
      /**
       * updates a post stored in an md file
-      * and echos a json object; 
+      * and echos a json object;
       *
       * @param [type] $mdfile
       * @param [type] $title
