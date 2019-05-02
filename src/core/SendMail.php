@@ -152,7 +152,7 @@ class SendContactMail{
 
     public function getOwnerEmail()
     {
-        $dir = "./src/config/settings.json";
+        $dir = "./src/config/auth.json";
         if(file_exists($dir))
         {
             $getOwnerEmail = file_get_contents($dir);
