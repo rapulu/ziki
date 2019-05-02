@@ -431,8 +431,8 @@ public function update($id)
                             $content['body'] = $bd;
                             $content['url'] = $url;
                             $content['timestamp'] = $time;
+                            $content['tags'] = $tags;
                             array_push($posts, $content);
-                            array_push($posts,$tags);
                             }
                         }
 
