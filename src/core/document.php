@@ -412,35 +412,42 @@ class Document
     // post
     public function update($id)
     {
-        $finder = new Finder();
-        // find all files in the current directory
-        $finder->files()->in($this->file);
-        $posts = [];
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $document = $file->getContents();
-                $parser = new Parser();
-                $document = $parser->parse($document);
-                $yaml = $document->getYAML();
-                $body = $document->getContent();
-                //$document = FileSystem::read($this->file);
-                $parsedown  = new Parsedown();
-                $tags = $yaml['tags'];
-                for ($i = 0; $i < count($tags); $i++) {
-                    // strip away the leading "#" of the tag name
-                    if (substr($tags[$i], 1) == $id) {
-                        $slug = $parsedown->text($yaml['slug']);
-                        $title = $parsedown->text($yaml['title']);
-                        $bd = $parsedown->text($body);
-                        $time = $parsedown->text($yaml['timestamp']);
-                        $url = $parsedown->text($yaml['post_dir']);
-                        $content['title'] = $title;
-                        $content['body'] = $bd;
-                        $content['url'] = $url;
-                        $content['timestamp'] = $time;
-                        $content['tags'] = $tags;
-                        $content['slug'] = $yaml['slug'];
-                        array_push($posts, $content);
+            $finder = new Finder();
+            // find all files in the current directory
+            $finder->files()->in($this->file);
+            $posts = [];
+            if ($finder->hasResults()) {
+                foreach ($finder as $file) {
+                    $document = $file->getContents();
+                    $parser = new Parser();
+                    $document = $parser->parse($document);
+                    $yaml = $document->getYAML();
+                    $body = $document->getContent();
+                    //$document = FileSystem::read($this->file);
+                    $parsedown  = new Parsedown();
+                    // skip this document if it has no tags
+                    if (!isset($yaml['tags'])) {
+                      continue;
+                    }
+                        $tags = $yaml['tags'];
+                       for($i = 0; $i<count($tags); $i++){
+                            // strip away the leading "#" of the tag name
+                            if(substr($tags[$i], 1) == $id){
+                            $slug = $parsedown->text($yaml['slug']);
+                            $title = $parsedown->text($yaml['title']);
+                            $bd = $parsedown->text($body);
+                            $time = $parsedown->text($yaml['timestamp']);
+                            $url = $parsedown->text($yaml['post_dir']);
+                            $content['title'] = $title;
+                            $content['body'] = $bd;
+                            $content['url'] = $url;
+                            $content['timestamp'] = $time;
+                            $content['tags'] = $tags;
+                            $content['slug'] = $yaml['slug'];
+                            array_push($posts, $content);
+                            }
+                        }
+
                     }
                 }
             }
@@ -554,7 +561,7 @@ public function createNewPortfolio($title, $content,$image)
 
     $yamlfile = new Doc();
     $yamlfile['title'] = $title;
-    
+
     if(!empty($image)){
         foreach($image as $key => $value){
         $decoded = base64_decode($image[$key]);
