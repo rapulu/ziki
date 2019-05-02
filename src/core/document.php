@@ -68,7 +68,10 @@ class Document
             $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
         }
 
+        // create slug by first removing spaces
         $striped = str_replace(' ', '-', $title);
+        // then removing encoded html chars
+        $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
         $yamlfile['slug'] = $striped . "-{$unix}";
         $yamlfile['timestamp'] = $time;
         $yamlfile->setContent($content);
