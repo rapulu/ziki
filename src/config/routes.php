@@ -208,6 +208,17 @@ Router::get('/404', function($request) {
     return $this->template->render('404.html');
 });
 
+// Start- Portfolio page
+Router::get('/portfolio', function($request) {
+   $user = new Ziki\Core\Auth();
+   if (!$user->is_logged_in()) {
+       return $user->redirect('/');
+   }
+   return $this->template->render('portfolio.html');
+})
+// End- Portfolio page
+     
+     
 /* Devmohy working on draft */
 /* Save draft*/
 Router::post('/saveDraft', function($request) {
