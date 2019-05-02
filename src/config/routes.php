@@ -336,3 +336,31 @@ Router::get('/{id}', function($request, $id) {
  }
    return $this->template->render('blog-details.html', ['result' => $result] );
 });
+// ahmzyjazzy add this (^_^)
+Router::post('/appsetting', function($request) {
+   
+    //create middleware to protect api from non auth user
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
+    }
+
+    $data = $request->getBody();
+    $field = $data['field']; //field to update in  app.json
+    $value = $data['value']; //value for setting field in app.json
+
+    $setting = new Ziki\Core\Setting();
+
+    try {
+        $result = $setting->updateSetting($field, $value);
+        if($result){
+            echo json_encode(array("msg" => "Setting updated successfully", "status" => "success", "data" => $result));
+        }else{
+            echo json_encode(array("msg" => "Field does not exist", "status" => "error", "data" => null));
+        }
+    }
+    catch (Exception $e) {
+        echo json_encode(array("msg" => "Caught exception: ",  $e->getMessage(), "\n", "status" => "error", "data" => null));
+    }
+    return;
+});
