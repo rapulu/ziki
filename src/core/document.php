@@ -435,6 +435,7 @@ public function update($id)
                             $content['url'] = $url;
                             $content['timestamp'] = $time;
                             $content['tags'] = $tags;
+                            $content['slug'] = $yaml['slug'];
                             array_push($posts, $content);
                             }
                         }
