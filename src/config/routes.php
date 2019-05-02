@@ -8,7 +8,7 @@ Router::get('/about/{id}', function($request,$id) {
 });
 Router::get('/', function($request) {
     $user = new Ziki\Core\Auth();
-    if ($user::isInstalled() == true) {
+    if (!$user::isInstalled() == true) {
         return $user->redirect('/install');
     }
     else{
