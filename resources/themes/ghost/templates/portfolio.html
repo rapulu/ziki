@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="./vendors/font-awesome-4.7.0/font-awesome-4.7.0/css/font-awesome.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Lato');
-      
+
         :root {
           --ziki-purple: #280966;
         }
-      
+
         /* ---------------------------------------------------
             SIDEBAR STYLE
         ----------------------------------------------------- */
@@ -36,23 +36,23 @@
           background: linear-gradient(180deg, #973793 0%, rgba(134, 64, 131, 0) 100%),
             #3b0e75;
         }
-      
+
         .sidebar-logo {
           display: none;
         }
-      
+
         .sidebar-shown .sidebar-logo {
           display: initial;
         }
-      
+
         .sidebar-shown .owner-info {
           display: none;
         }
-      
+
         .sidebar-close {
           display: none;
         }
-      
+
         .sidebar-shown .sidebar-close {
           display: initial;
           border: none;
@@ -61,24 +61,24 @@
           color: #fff;
           background: rgba(255, 255, 255, 0);
         }
-      
+
         .side-trigger {
           background: var(--ziki-purple);
           color: #fff;
         }
-      
+
         .sidebar-shown .side-trigger {
           display: none;
         }
-      
+
         #sidebar.shown {
           display: block;
         }
-      
+
         #sidebar {
           display: none;
         }
-      
+
         #sidebar ul li a {
           padding: 10px;
           font-size: 1.7em;
@@ -88,21 +88,21 @@
           color: #fff;
           text-decoration: none;
         }
-      
+
         #sidebar ul li a:hover {
           color: var(--ziki-purple);
         }
-      
+
         #sidebar ul li.shown > a,
         a[aria-expanded='true'] {
           color: #fff;
           background: #6d7fcc;
         }
-      
+
         a[data-toggle='collapse'] {
           position: relative;
         }
-      
+
         .dropdown-toggle::after {
           display: block;
           position: absolute;
@@ -110,7 +110,7 @@
           right: 20px;
           transform: translateY(-50%);
         }
-      
+
         .side-content {
           display: flex;
           align-items: center;
@@ -119,7 +119,7 @@
         .width-100-150px {
           width: 100px;
         }
-      
+
         .profile-pic {
           width: 140px;
           height: 140px;
@@ -132,45 +132,45 @@
           margin-top: -10px;
           background: #280a66;
         }
-      
+
         .owner-name {
           font-style: italic;
           font-weight: bold;
           color: #280a66 !important;
         }
-      
+
         .bio {
           color: #280a66 !important;
         }
-      
+
         .login-button {
           background-color: #280a66 !important;
           padding: 5px 20px;
           color: white !important;
         }
-      
+
         #sidebar ul {
           margin-top: 60px;
           list-style: none;
           text-align: left;
         }
-      
+
         #sidebar li {
           margin: 7px;
         }
-      
+
         .navigation-bar {
           margin-top: 20px;
           margin-bottom: 20px;
         }
-      
+
         .mobile-login {
           background: #fff;
           color: #8d348f;
           font-weight: bold;
           font-size: 1.7em;
         }
-      
+
         .sidebar-bubble {
           display: none;
         }
@@ -180,7 +180,7 @@
         .mb {
           margin-bottom: 5rem !important;
         }
-      
+
         .s-avatar {
           width: 20px;
           height:20px;
@@ -192,76 +192,76 @@
           #sidebar ul {
             margin-top: 0px;
           }
-      
+
           #sidebar ul li a {
             padding: 4px;
             font-size: 1.1em;
           }
-      
+
           .mobile-login {
             font-size: 1em;
           }
         }
-      
+
         @media screen and (min-width: 576px) and (max-width: 767px) {
           #sidebar ul {
             margin-top: 20px;
           }
-      
+
           #sidebar li {
             margin: 0;
             font-size: 0.8em;
           }
-      
+
           #sidebar ul li a {
             padding: 5px;
             font-size: 1.2em;
           }
-      
+
           .mobile-login {
             font-size: 1em;
           }
         }
-      
+
         @media (min-width: 768px) {
           .sidebar-container {
             width: 25%;
           }
-      
+
           #sidebar,
           #sidebar.shown {
             display: block;
           }
-      
+
           .sidebar-container,
           .sidebar-container.sidebar-shown {
             background: #fff;
           }
-      
+
           .side-trigger {
             display: none;
           }
-      
+
           .owner-info,
           .sidebar-shown .owner-info {
             display: block;
           }
-      
+
           #sidebar ul li a {
             color: var(--ziki-purple);
             padding: 4px;
             font-size: 1em;
           }
-      
+
           #sidebar ul li a:hover {
             background: rgba(40, 10, 102, 0.2);
             border-radius: 0px 10px 10px 0px;
           }
-      
+
           .mobile-login {
             display: none;
           }
-      
+
           .sidebar-bubble {
             display: block;
             padding: 10em 0 0 1em;
@@ -270,21 +270,21 @@
           width: 150px;
         }
         }
-      
+
         @media screen and (min-height: 500px) {
           .sidebar-bubble {
             /* push sidebar bubble further down the page */
             padding-top: 12em;
           }
         }
-      
+
         @media screen and (min-height: 1000px) {
           .sidebar-bubble {
             /* push sidebar bubble further down the page */
             padding-top: 15em;
           }
         }
-      
+
         /* beginning of styling for the login modal */
         .login-modal-popup-left-column {
           background: linear-gradient(180deg, #973793 0%, rgba(134, 64, 131, 0) 100%),
@@ -292,7 +292,7 @@
           border-top-left-radius: 20px;
           border-bottom-left-radius: 20px;
         }
-      
+
         .login-modal-popup-right-column {
           background: #ffffff;
           box-shadow: 0px 1px 25px rgba(0, 0, 0, 0.25);
@@ -301,11 +301,11 @@
           width: 87%;
           margin: auto;
         }
-      
+
         .login-modal-border-radius {
           border-radius: 5px;
         }
-      
+
         .ziki-Welcome-msg {
           font-family: Lato;
           font-style: normal;
@@ -313,7 +313,7 @@
           font-size: 36px;
           line-height: normal;
         }
-      
+
         .ziki-about-msg {
           font-family: Lato;
           font-style: normal;
@@ -321,7 +321,7 @@
           font-size: 16px;
           line-height: normal;
         }
-      
+
         .login-msg {
           font-family: Lato;
           font-style: normal;
@@ -331,21 +331,21 @@
           letter-spacing: 0.1em;
           color: #111;
         }
-      
+
         .login-dialog {
           padding: 30px;
           padding-top: 100px;
           padding-bottom: 50px;
           box-sizing: border-box;
         }
-      
+
         .google-signin-btn {
           cursor: pointer;
           background: #ffffff;
           box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.25);
           border-radius: 10px;
         }
-      
+
         .facebook-signin-btn {
           cursor: pointer;
           background: #ffffff;
@@ -353,11 +353,11 @@
           border-radius: 10px;
           margin-top: 25px;
         }
-      
+
         .width-250px {
           width: 250px;
         }
-      
+
         .bottom-msg {
           font-family: Lato;
           font-style: normal;
@@ -367,47 +367,47 @@
           text-align: justify;
           color: #111;
         }
-      
+
         .bio-text {
           color: #000000;
         }
-      
+
         .auth-link {
           text-decoration: none;
           color: #111;
         }
-      
+
         .auth-link:hover {
           text-decoration: none;
           color: #111;
         }
-      
+
         .greetings {
           margin-top: 70px;
         }
-      
+
         .modal-dialog-container {
           margin: 150px auto;
         }
-      
+
         .logo {
           padding-left: 70px;
           margin-top: 50px;
         }
-      
+
         .modal-close-button {
           display: none;
         }
-      
+
         .email-login-button {
           background-color: transparent;
           border: none;
         }
-      
+
         .email-input {
           padding: 0.4rem;
         }
-      
+
         .optional-login-text {
           width: 100%;
           text-align: center;
@@ -435,26 +435,26 @@
           border-radius: 0.6rem;
           font-size: 1.1rem;
         }
-      
+
         .width-100pc {
           width: 100%;
         }
-      
+
         .no-border {
           border: none;
         }
-      
+
         .magic-msg {
           margin: 3rem auto 3rem auto;
           width: 250px;
         }
-      
+
         @media only screen and (max-width: 767px) {
           /* modal styling For mobile phones: */
           .modal-close-button {
             display: initial;
           }
-      
+
           #modalLoginForm,
           #modalLoginForm .modal-content {
             /* bootstrap sets background of .modal-content */
@@ -466,30 +466,30 @@
               ),
               #3b0e75 !important;
           }
-      
+
           #modalLoginForm .modal-content {
             border: none;
           }
-      
+
           .login-dialog {
             padding: 50px 30px;
             box-sizing: border-box;
           }
-      
+
           .greetings {
             margin-top: 20px;
             margin-bottom: 20px;
           }
-      
+
           .logo {
             margin-top: 0px;
             box-sizing: border-box;
           }
-      
+
           .modal-dialog-container {
             margin: 100px auto;
           }
-      
+
           .login-msg {
             font-family: Lato;
             font-style: normal;
@@ -500,7 +500,7 @@
             letter-spacing: 0.1em;
             color: #ffffff;
           }
-      
+
           .bottom-msg {
             font-family: Lato;
             font-style: normal;
@@ -511,7 +511,7 @@
             color: #ffffff;
           }
         }
-      
+
         @media screen and (min-width: 768px) {
           /* login modal for tabs */
           .modal-content {
@@ -523,13 +523,13 @@
           width: 150px;
         }
         }
-      
+
         @media screen and (min-width: 992px) {
           /* login modal for PC */
           .auth-link {
             font-size: 1.4rem;
           }
-      
+
           .bottom-msg {
             font-size: 0.7rem;
           }
@@ -728,7 +728,7 @@
             </p>
             <img class="magic-link-img" src="resources/themes/ghost/assets/img/magic-link-img.png" alt="magic link image">
             <p class="magic-msg">
-              
+
             </p>
           </div>
       </div>
@@ -750,7 +750,7 @@
                             <img src="../assets/img/portfolio-photo1.png" class="float-left pr-4 pb-4" alt="...">
                             <h5>Nike App</h5>
                         </div>
-                        
+
                         <div class="col-5 pb-4 pt-4">
                             <img src="../assets/img/portfolio-photo2.png" class="float-left pb-4" alt="...">
                             <h5>HNG Folio</h5>
@@ -763,38 +763,36 @@
                             <img src="../assets/img/portfolio-photo1.png" class="float-left pr-4 pb-4" alt="...">
                             <h5>APOE 4</h5>
                         </div>
-                        
+
                         <div class="col-5 pb-4 pt-4">
                             <img src="../assets/img/portfolio-photo2.png" class="float-left pb-4" alt="...">
                             <h5>Ziki</h5>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-12">
                         <div class="row">
                             <div class="col-5 pb-4 pt-4">
                                 <img src="../assets/img/portfolio-photo1.png" class="float-left pr-4 pb-4" alt="...">
                                 <h5>Google X</h5>
                             </div>
-                            
+
                             <div class="col-5 pb-4 pt-4">
                                 <img src="../assets/img/portfolio-photo2.png" class="float-left pb-4" alt="...">
                                 <h5>Lucid</h5>
                             </div>
                         </div>
                     </div>
-                    
-                
+
+
             </div>
 
-        
+
         </div>
     </div>
 </div>
 
-<script src="vendors/jquery.min.js"></script>
-<script src="vendors/bootstrap-4.0.0-beta.3-dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
