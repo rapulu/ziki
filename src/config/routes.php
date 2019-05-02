@@ -205,6 +205,16 @@ Router::get('/portfolio', function($request) {
 });
 // End- Portfolio page
 
+// Start- Portfolio_expanded page
+Router::get('/portfolio-expanded', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    return $this->template->render('portfolio-expanded.html');
+});
+// End- Portfolio_expanded 
+
 
 // Start- followers page
 Router::get('/followers', function($request) {
