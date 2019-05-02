@@ -52,7 +52,7 @@
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
   }
 
   .purple {
@@ -74,12 +74,14 @@
     padding-top: 20px;
     padding-bottom: 20px;
     font-weight: bolder;
-    border-bottom: 2px solid #000
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   }
 
   .nav-item {
     padding-top: 8px;
   }
+
+  .footer-item{color: #fff !important; padding-top: 10px;}
 
   .footer {
     background-color: #280A66;
@@ -219,8 +221,8 @@
 
   #sidebar ul li.active>a,
   a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
+    /*color: #fff;
+    background: #6d7fcc;*/
   }
 
   a[data-toggle="collapse"] {
@@ -237,8 +239,6 @@
 
   ul ul a {
     font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
   }
 
   ul.CTAs {
@@ -648,15 +648,21 @@
               {% if user.role == 'admin' %}
               <li><a href="/timeline"><h6 class="text-center"><span><b>TIMELINE</b></span></h6></a></li>
               <li>
-                <div class="dropdown">
-                         <span class=" dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <b>MY POSTS</b>
-                         </span>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item"> <a href="/published-posts">Published Posts</a></button>
-                    <button class="dropdown-item"> <a href="/drafts">Drafts</a></button>
-                  </div>
-                </div>
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                      <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+                  </a>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <li>
+                          <a href="/published-posts">
+                            <h6 class="text-center"><span><b>PUBLISHED POSTS</b></span></h6>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/drafts">
+                          <h6 class="text-center"><span><b>DRAFTS</b></span></h6>
+                          </a>
+                      </li>
+                  </ul>
               </li>
 
               <li><a href="/videos"><h6 class="text-center"><span><b>VIDEOS</b></span></h6></a></li>
@@ -668,16 +674,23 @@
               {% else %}
               <li><a href="/"><h6 class="text-center"><span><b>HOME</b></span></h6></a></li>
               <li>
-                <div class="dropdown">
-                         <span class=" dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <b>MY POSTS</b>
-                         </span>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <button class="dropdown-item"> <a href="/published-posts">PUBLISHED POSTS</a></button>
-                    <button class="dropdown-item"> <a href="/drafts">DRAFTS</a></button>
-                  </div>
-                </div>
-              </li>              <li><a href="/profile"><h6 class="text-center"><span><b>PROFILE</b></span></h6></a></li>
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                      <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+                  </a>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <li>
+                          <a href="/published-posts">
+                            <h6 class="text-center"><span><b>PUBLISHED POSTS</b></span></h6>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/drafts">
+                          <h6 class="text-center"><span><b>DRAFTS</b></span></h6>
+                          </a>
+                      </li>
+                  </ul>
+              </li>             
+              <li><a href="/profile"><h6 class="text-center"><span><b>PROFILE</b></span></h6></a></li>
               <li><a href="/about"><h6 class="text-center"><span><b>ABOUT</b></span></h6></a></li>
               {% endif %}
             </ul>
