@@ -5,7 +5,7 @@ page_content %}
     /* colors to use */
     --lucid-purple: #280a66;
     --lucid-white: #fff;
-    --lucid-gray: #888;
+    --lucid-gray: #666;
     --lucid-alt-black: #202020;
     --lucid-black: #000;
 
@@ -14,6 +14,7 @@ page_content %}
     --main-text-color: var(--lucid-black);
     --blog-date-text-color: var(--lucid-purple);
     --blog-preview-text-color: var(--lucid-gray);
+    --blog-title-text-color: var(--lucid-black);
     --tag-name-text-color: var(--lucid-purple);
     --tag-badge-border-color: var(--lucid-purple);
   }
@@ -23,6 +24,7 @@ page_content %}
     --main-text-color: var(--lucid-white);
     --blog-date-text-color: var(--lucid-white);
     --blog-preview-text-color: var(--lucid-white);
+    --blog-title-text-color: var(--lucid-white);
     --tag-name-text-color: var(--lucid-white);
     --tag-badge-border-color: var(--lucid-white);
   }
@@ -58,7 +60,12 @@ page_content %}
     font-size: 0.8em;
   }
 
-  .blog-preview {
+  .blog-title p {
+    color: var(--blog-title-text-color);
+    font-weight: bold;
+  }
+
+  .blog-preview p {
     color: var(--blog-preview-text-color);
   }
 </style>
@@ -87,7 +94,7 @@ page_content %}
               <p class="blog-date">
                 {{ feed.timestamp | striptags | date("jS M Y") }}
               </p>
-              <h3 class="blog-title font-weight-bold">
+              <h3 class="blog-title">
                 <a href="/blog-details/{{ feed.slug }}"
                   >{{ feed.title | raw }}</a
                 >
