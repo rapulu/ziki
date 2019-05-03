@@ -20,11 +20,55 @@ class Auth {
     public static function setup ($data)
     {
         $check_settings = self::isInstalled();
-        if(!$check_settings) {
-            $s_file = "./src/config/auth.json";
-            $core = FileSysyem::read($s_file);
-            $doc = FileSystem::write($s_file, $data);
+        if($check_settings == true) {
+            $s_file = "./src/config";
+            $data['name'] = $data['firstname']." ".$data['lastname'];
+            $site_url = $data['domainName'].$data['domain'];
+            $data['image'] = "https://img.icons8.com/color/96/000000/user.png";
+            $save = json_encode($data);
+            $doc = FileSystem::write("{$s_file}/auth.json", $save);
+            $destination = $data['email'];
+            $subject = "Welcome To Lucid";
+
+            $message = "";
+
+            // Always set content-type when sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            // More headers
+            $headers .= 'From: <lucidowner.test@gmail.com>' . "\r\n";
+            $variables = array();
+            $variables['name'] = $data['name'];
+            $variables['address'] = $data['domainName'].$data['domain'];
+            $email_temp = "./src/config/email.php";
+            $template = file_get_contents($email_temp);
+            foreach($variables as $key => $value) {
+                $template = str_replace('{{ '.$key.' }}', $value, $template);
+            }
+            $msg= $template;
+            @mail($destination, $subject, $msg, $headers) ;
+            /*$url = "https://auth.techteel.com/api/login/email?address={$data['email']}?domain={$site_url}";
+            $ch = curl_init();
+            //Set the URL that you want to GET by using the CURLOPT_URL option.
+            curl_setopt($ch, CURLOPT_URL, $url);
+            
+            //Set CURLOPT_RETURNTRANSFER so that the content is returned as a variable.
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            
+            //Set CURLOPT_FOLLOWLOCATION to true to follow redirects.
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            
+            //Execute the request.
+            $result = curl_exec($ch);
+            
+            //Close the cURL handle.
+            curl_close($ch);*/
+            $install = true;
         }
+        else{
+            $install = false;
+        }
+        return $install;
     }
     public static function getAuth($data, $role){
         $user['name'] = $data->name;

@@ -143,7 +143,7 @@ Router::post('/send', function ($request) {
     $SendMail->mailBody = $this->template->render('mail-template.html', ['guestName' => $request['guestName'], 'guestEmail' => $request['guestEmail'], 'guestMsg' => $request['guestMsg']]);
     $SendMail->sendMail($request);
     $SendMail->clientMessage();
-    return $SendMail->redirect('/contact-us');
+    return $SendMail->redirect('/about');
 });
 Router::get('delete/{id}', function ($request, $id) {
     $user = new Ziki\Core\Auth();
@@ -321,7 +321,19 @@ Router::get('/auth/{provider}/{token}', function ($request, $token) {
         return $user->redirect('/timeline');
     }
 });
-Router::get('/logout', function ($request) {
+
+Router::get('/setup/{provider}/{token}', function($request, $token){
+    $user = new Ziki\Core\Auth();
+    $check = $user->validateAuth($token);
+    if($_SESSION['login_user']['role'] == 'guest'){
+        return $user->redirect('/');
+    }
+    else{
+        return $user->redirect('/profile');
+    }
+});
+
+Router::get('/logout', function($request) {
     $user = new Ziki\Core\Auth();
     $user->log_out();
     return $user->redirect('/');
@@ -333,7 +345,19 @@ Router::post('/api/upload-image', function () {
     return (new Ziki\Core\UploadImage)->upload();
 });
 
-Router::get('/install', function ($request) {
+Router::post('/setup', function($request) {
+    $data = $request->getBody();
+    $user = new Ziki\Core\Auth();
+    $setup = $user->setup($data);
+    if($setup == true) {
+        return $user->redirect('/timeline');
+    }
+    else{
+        return $user->redirect('/install');
+    }
+});
+
+Router::get('/install', function($request) {
 
     $user = new Ziki\Core\Auth();
     $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";

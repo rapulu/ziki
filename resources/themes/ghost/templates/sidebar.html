@@ -71,14 +71,25 @@
 
   .temp-nav {
     color: #280A66;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-weight: bolder;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   }
 
+  .navbar{
+    border: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
   .nav-item {
-    padding-top: 8px;
+    padding-top: 9px;
+    cursor: pointer;
+  }
+
+  .dotted{
+    font-size: 2rem; 
+    margin-top: -20px !important;
   }
 
   .footer-item{color: #fff !important; padding-top: 10px;}
@@ -623,14 +634,14 @@
         <div class="sidebar-header pt-5">
           <div class="row">
             <div class="col-12 col-sm-8 mx-auto d-block">
-              <img src="/resources/themes/ghost/assets/img/fiverr.jpg" alt="ziki logo"
+              <img src="{{settings.image}}" alt="ziki logo"
                 class="img-fluid profile-pic circle" />
             </div>
           </div>
           <div class="row">
             <div class="col-12 col-sm-12">
-              <h3 class="text-center pt-4 owner-name purple"><b>DESTINY IHEJIRIKA</b></h3>
-              <h6 class="text-center pt-2 owner-desc">Front End Developer, UI/UX Developer, Traveler, Friend</h6>
+              <h3 class="text-center pt-4 owner-name purple"><b>{{settings.name}}</b></h3>
+              <h6 class="text-center pt-2 owner-desc">{{settings.siteTagline}}</h6>
             </div>
           </div>
           <div class="row">
