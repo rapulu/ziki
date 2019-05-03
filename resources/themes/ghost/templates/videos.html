@@ -1,5 +1,116 @@
 {% set title = "Videos"%}
 {% extends 'layout.html' %} {% block page_content %}
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+
+        .drafts .draft-date {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            color: #280A66;
+        }
+
+
+        /****MODAL STYLING****/
+        .no-border {
+            border: none;
+        }
+
+        .modal-content {
+            border-radius: .7rem;
+        }
+
+        .modal-header .close {
+            opacity: 1;
+        }
+
+        .cancel-modal-text {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            margin-top: 1.2rem;
+        }
+
+        .btn.btn-primary.canel-post {
+            background-color: transparent !important;
+            border: 1px solid red;
+            color: red;
+            padding: 6px 20px;
+        }
+
+        .btn.btn-primary.publish-post {
+            background-color: #280a66 !important;
+            border: 1px solid #280a66;
+            padding: 6px 20px;
+        }
+
+        .btn.btn-primary.canel-post,
+        .btn.btn-primary.publish-post {
+            margin-left: 15px;
+        }
+
+        /****MODAL STYLING****/
+
+
+
+        /****MEDIA QUERIES****/
+        @media screen and (max-width:700px) {
+            .drafts .post-item:after {
+                content: "";
+                display: block;
+                position: relative;
+                width: 90%;
+                border-bottom: 1px solid #ebebeb;
+            }
+
+            .drafts .draft-date {
+                margin-top: 1em;
+            }
+
+            .drafts .icon {
+                position: relative;
+                left: 5em;
+                margin-top: 1em;
+                margin-left: 2em;
+                color: #280a66;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            .drafts .dropdown-menu {
+                margin-left: -3.9em;
+                margin-bottom: 20px;
+            }
+
+            .drafts .draft-bottom:after {
+                content: "";
+                position: relative;
+                display: block;
+                border-bottom: 1px solid rgb(209, 209, 209);
+                width: 90%;
+                margin: 0 auto;
+                padding-top: 1em;
+            }
+        }
+
+        @media screen and (max-width:900px) and (min-width:700px) {
+            .drafts .dropdown-menu {
+                position: relative;
+                margin-top: 2em;
+                margin-left: -8em;
+            }
+
+        }
+
+        /****MEDIA QUERIES****/
+    </style>
+</head>
+
 
 <body>
 <div id="content">
@@ -14,6 +125,7 @@
                                     data-toggle="modal" data-target="#addVideo">
                                 + ADD VIDEO
                             </button>
+
 
                         </div>
                         <br><br>
@@ -114,6 +226,9 @@
         </div>
     </div>
 </div>
+<>
+
+
 
 
 <!-- modal ends here -->
