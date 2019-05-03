@@ -24,7 +24,7 @@ class Auth {
             $s_file = "./src/config";
             $data['name'] = $data['firstname']." ".$data['lastname'];
             $site_url = $data['domainName'].$data['domain'];
-            $data['image'] = "https://img.icons8.com/color/96/000000/user.png";
+            $data['image'] = "https://res.cloudinary.com/dc9kfp5gt/image/upload/v1556862782/business-color_business-contact-86_icon-icons.com_53469_ckkqq7.png";
             $save = json_encode($data);
             $doc = FileSystem::write("{$s_file}/auth.json", $save);
             $destination = $data['email'];
