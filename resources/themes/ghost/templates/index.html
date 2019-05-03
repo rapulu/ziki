@@ -1,224 +1,106 @@
 {% set title = "Welcome to Ziki"%}
 {% extends 'layout.html' %} {% block page_content %}
 
-<style>
-  :root {
-    --post-heading-text-color: #1b1b1b;
-    --post-body-text-color: #717171;
-    --ziki-purple: #280966;
-  }
-
-  .nav-tabs .nav-link.active {
-    border-top: 0px solid #280966 !important;
-    border-right: 0px solid #280966 !important;
-    border-left: 0px solid #280966 !important;
-    border-bottom: 4px solid #280966 !important;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-  }
-  .nav-tabs .nav-link {
-    color: #280966;
-  }
-  .category-switch {
-    padding-bottom: 40px;
-  }
-  .timeline-wrapper {
-    padding-top: 70px;
-    padding-bottom: 70px;
-  }
-  .post-area {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  .post-content {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  .author-image .side-header {
-    display: flex;
-    justify-content: center;
-  }
-  .author-image {
-    border-radius: 50%;
-  }
-  .post-author {
-    display: none;
-  }
-  .post-title {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-
-  .post-title a:hover{
-    text-decoration: none;
-    color: #280a66;
-    transition: all ease-in 0.3s;
-  }
-
-  .post-title a,
-  .post-title a:focus {
-    color: var(--post-heading-text-color);
-    transition: all ease-in 0.3s;
-  }
-
-  .post-detail {
-    color: var(--post-body-text-color);
-  }
-
-  .post-action-bar {
-    color: var(--ziki-purple);
-    font-size: 0.8em;
-  }
-
-  .btn.btn-primary.canel-post {
-    background-color: transparent !important;
-    border: 1px solid red;
-    color: red;
-    padding: 6px 20px;
-  }
-  .btn.btn-primary.publish-post {
-    background-color: #280a66 !important;
-    border: 1px solid #280a66;
-    padding: 6px 20px;
-  }
-  .btn.btn-primary.canel-post,
-  .btn.btn-primary.publish-post {
-    margin-left: 15px;
-  }
-
-  .main-content {
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-  .btn-info {
-    background-color: #280a66 !important;
-    border: 0 !important;
-  }
-
-  /*Main content Css ends here*/
-
-  /* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
-  #content {
-    width: 100%;
-    min-height: 100vh;
-    transition: all 0.3s;
-  }
-
-  /* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
-  @media screen and (min-width: 768px) {
-    .post-author {
-      display: block;
-      color: var(--ziki-purple);
-      font-size: 0.8em;
-    }
-
-    .post-title {
-      font-size: 1.5em;
-      font-weight: initial;
-    }
-
-    .post-date {
-      color: var(--post-body-text-color);
-    }
-
-    .post-comment {
-      font-size: 1.2em;
-    }
-  }
-
-  @media screen and (min-width: 992px) {
-    .post-title {
-      font-size: 2em;
-    }
-  }
-</style>
-<div class="container-fluid py-3">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
-
-    <!-- Page Content -->
-    <div id="content" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-      <!-- Used as our Nav... -->
-      <div class="container-fluid">
-        <!--
-          Nav Bar intentionally spelt fully to prevent conflict please don't touch
-        -->
-        <div class="row navigation-bar">
-         <!-- <div class="col-12 text-right">
-
-            <a href="/"
-              ><img src="resources/themes/ghost/assets/img/logo.png"
-		    /></a>
-	 </div> -->
-        </div>
-      </div>
-
-      <!-- Main content Area -->
-      <div class="main-content">
-        <!-- Page body goes here -->
+      <!-- Page Content section -->
+      <div id="content">
+        <!-- editor -->
         <div class="row">
-          <!-- main content.. -->
           <div class="col-12">
-            <!-- SleekX's code goes here.. -->
-            <div class="row">
-              <div class="col-12">
-                <!-- category select area -->
-                <!-- cNAVBAR WAS REMOVED FROM THIS SECTION, NESSA -->
-                <!-- category select area ends here -->
-
-                <!-- Posts from here.. -->
-                <article class="post-area">
-                    {% for key, feed in posts %}
-                    <div
-                    class="row d-flex justify-content-center justify-content-lg-start post-content"
-                  >
-                    <div class="col-11 col-xl-10">
-                      <div class="row">
-                        <div class="col-2 col-sm-1 px-md-1">
-                          <img
-                            class="img-fluid author-image"
-                            src="{{feed.img | raw}}"
-                          />
-                        </div>
-                        <div class="col-10 col-sm-11">
-                          <h5 class="post-author">{{feed.site | raw}}</h5>
-                          <h2 class="post-title">
-                            <a href="/blog-details/{{feed.link}}"
-                              >{{feed.title | raw}}</a
-                            >
-                          </h2>
-                          <p class="post-detail">
-                            {{feed.desc | raw}}
-                          </p>
-                          <div class="row post-action-bar">
-                            <div class="col-6 col-sm-6 post-date text-left">
-                              <p>{{feed.date | raw}}</p>
-                            </div>
-                            <div class="col-6 col-sm-6 post-comment text-right">
-                              <p>Comment</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
-                  {% endfor %}
-                </article>
-                <!-- Post section ends here. -->
-              </div>
-            </div>
+            <!-- <div id="editor"></div> -->
           </div>
         </div>
+
+        <!-- Feed listing -->
+        <div class="row">
+          <div class="col-12">
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-3 col-md-3 col-lg-3">
+                  <img src="/resources/themes/ghost/assets/img/active.jpg" alt="ziki logo" class="img-fluid" />
+              </div>
+              <div class="col-10 col-sm-8 col-md-8 col-lg-7">
+                <div class="second">
+                  <h6 class="purple"><b>2nd April 2019</b></h6>
+                  <h3><b>What i think of Donald Golver's Video</b></h3>
+                  <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-3 col-md-3 col-lg-3">
+                  <img src="/resources/themes/ghost/assets/img/ziki-banner.jpg" alt="ziki logo" class="img-fluid" />
+              </div>
+              <div class="col-10 col-sm-8 col-md-8 col-lg-7">
+                <div class="second">
+                  <h6 class="purple"><b>2nd April 2019</b></h6>
+                  <h3><b>What i think of Donald Golver's Video</b></h3>
+                  <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-12 col-sm-11 col-md-11 col-lg-10">
+                <div class="second">
+                  <h6 class="purple"><b>2nd April 2019</b></h6>
+                  <h3><b>What i think of Donald Golver's Video</b></h3>
+                  <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-12 col-sm-11 col-md-11 col-lg-10">
+                <div class="second">
+                  <h6 class="purple"><b>2nd April 2019</b></h6>
+                  <h3><b>What i think of Donald Golver's Video</b></h3>
+                  <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-3 col-md-3 col-lg-3">
+                  <img src="/resources/themes/ghost/assets/img/travis.jpg" alt="ziki logo" class="img-fluid" />
+              </div>
+              <div class="col-10 col-sm-8 col-md-8 col-lg-7">
+                <div class="second">
+                  <h6 class="purple"><b>2nd April 2019</b></h6>
+                  <h3><b>What i think of Donald Golver's Video</b></h3>
+                  <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-3 col-md-3 col-lg-3">
+                  <img src="/resources/themes/ghost/assets/img/banner-image.png" alt="ziki logo" class="img-fluid" />
+              </div>
+              <div class="col-10 col-sm-8 col-md-8 col-lg-7">
+                <div class="second">
+                  <h6 class="purple"><b>2nd April 2019</b></h6>
+                  <h3><b>What i think of Donald Golver's Video</b></h3>
+                  <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-3 col-md-3 col-lg-3">
+                  <img src="/resources/themes/ghost/assets/img/cancel-post-modal.png" alt="ziki logo" class="img-fluid" />
+              </div>
+              <div class="col-10 col-sm-8 col-md-8 col-lg-7">
+                <div class="second">
+                  <h6 class="purple"><b>2nd April 2019</b></h6>
+                  <h3><b>What i think of Donald Golver's Video</b></h3>
+                  <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Feed section ends here -->
       </div>
     </div>
   </div>

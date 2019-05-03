@@ -2,136 +2,194 @@
 {% extends 'layout.html' %} {% block page_content%}
 
 <!-- content goes here -->
+<style>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <!-- for the sidebar -->
-        </div>
+.nav-item .navbar-link.active {
+	border-bottom: 2px solid #280966;
+	padding-bottom: 1em;
+ }
 
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt-3">
+ .nav-item {
+	list-style-type: none;
+	font-family: Lato;
+ }
 
-            <!-- for any other part of the page -->
-            <div class="row profile-header d-flex flex-row justify-content-between pt-5 pb-1 px-3 flex-nowrap">
-                <div class="col profilenav-area">
-                    <nav class="navbar pb-0 row">
-                        <ul class="d-flex flex-row navbar-nav col-12">
-                            <li class="p-3">
-                                <a href="/profile" class="profile-top-link">Profile</a>
-                            </li>
-                            <li class="p-3">
-                                <a href="/settings" class="profile-top-link">Settings</a>
-                            </li>
-                            <li class="p-3">
-                                <a href="/following" class="profile-top-link"><span class="follow-numbers">76</span>
-                                    Following</a>
-                            </li>
-                            <li class="p-3 active">
-                                <a href="/followers" class="profile-top-link "><span class="follow-numbers">52</span>
-                                    Followers</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+.nav-item a {
+	color: #5c5c5c;
+	-webkit-transition: all ease-in .3s;
+	transition: all ease-in .3s;
+	font-size: 20px;
+	text-transform: uppercase;
+}
 
-            </div>
+.nav-item a:hover {
+	color: #280a66;
+	text-decoration: none;
+	-webkit-transition: all ease-in .3s;
+	transition: all ease-in .3s;
+ }
 
-            <div class="row profile-main py-2">
-                <div class="col-10 subscription-content-area p-1 pb-5 my-5 mx-auto px-4">
+.nav-item a .active {
+	color: #280a66 !important;
+	font-weight: bold;
+}
 
-                    <div class="px-3">
-                        <div class="subscription-content-header row d-flex align-items-center ">
+.following .post-detail {
+	width: 45vw;
+	font-size: 16px;
+}
 
-                            <div class="col-lg-4 col-md-4 col-sm-12">
-                                <p class="followed-text text-nowrap">You're followed by</p>
-                            </div>
+.following .post-author {
+	font-size: 22px;
+}
 
-                            <div class="col-lg-4 col-md-4 col-sm-12 search-area">
-                                <form action="post">
-                                    <div class="form-group has-search">
-                                        <span class="fa fa-search form-control-feedback ml-1"></span>
-                                        <input type="text" class="form-control form-control-no-border"
-                                            placeholder="Search">
-                                    </div>
-                                </form>
-                            </div>
+.following .btn {
+  border: 1px solid #280a66;
+  border-radius: 2px;
+  background: #280a66;
+  font-weight: bold;
+  color: #ffffff;
+  text-transform: uppercase;
+}
 
-                            <!--<div class="following-area">-->
-                            <div class="col-lg-4 col-md-4 col-sm-12 py-3">
-                                <button type="button" class="btn following-button text-nowrap mb-3" data-toggle="modal"
-                                    data-target="#subscribe-here">
-                                    Follow
-                                </button>
-                            </div>
+.following .following-area {
+	margin: -4em -2em 0 0;
+}
 
-                        </div>
+.following .max-width {
+	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+}
 
-                        <div class="row justify-content-center my-3">
+.following .following-box {
+	margin-top: -0.8em;
+}
 
-                            <div class="col-12 col-sm-10 py-1 following-content">
+@media screen and (max-width: 600px) {
+	.nav-item a {
+		font-size: 16px;
+	}
 
-                                <div class="d-flex align-items-center px-3 subscribe-box-area justify-content-between">
+	.following .max-width {
+		display: none !important;
+	}
 
-                                    <div class=" author-image  p-2">
-                                        <img class="max-width"
-                                            src="resources/themes/ghost/assets/img/Ellipse (1).png" />
-                                    </div>
+	.following .post-detail {
+		width: 60vw;
+		font-size: 12px;
+	}
 
-                                    <div class="py-4  post-sm-content">
-                                        <div class="px-2">
-                                            <h5 class="post-author font-weight-bold">Mercy Ikpe</h5>
-                                            <p class="post-detail">
-                                                Storyteller | Combat wounded veteran | Designer | https://ziki.hng.tech
-                                            </p>
-                                        </div>
-                                    </div>
+	.following .btn {
+		width: 80px !important;
+		height: 30px;
+		font-size: 10px !important;
+		text-align: center;
+	}
 
-                                    <div class=" p-2  not-following-area">
-                                        <button type="button" class="following-button btn" data-toggle="modal" data-target="#subscribe-here">
-                                            Follow
-                                        </button>
-                                    </div>
-                                </div>
+	.following .following-button {
+	margin: -13.5em 1em 0 0!important;
+	}
 
-                            </div>
-                        </div>
+	.following .following-area {
+		margin: 0 !important;
+	}
 
-                        <div class="row justify-content-center my-3">
+	.following .following-box {
+	margin-top: 2em !important;
+	}
 
-                            <div class="col-12 col-sm-10 py-1 following-content">
+	.following .post-author {
+	font-size: 20px;
+	}
+}
 
-                                <div class="d-flex align-items-center px-3 subscribe-box-area justify-content-between">
+@media screen and (max-width: 768px) {
+	.nav-item a {
+		font-size: 18px;
+	}
 
-                                    <div class=" author-image  p-2">
-                                        <img class="max-width"
-                                            src="resources/themes/ghost/assets/img/Ellipse (1).png" />
-                                    </div>
+	.following .max-width {
+		display: block;
+		width: 60px;
+		height: 60px;
+		margin: 0 0 0 -3em !important;
+	}
 
-                                    <div class="py-4  post-sm-content">
-                                        <div class="px-2">
-                                            <h5 class="post-author font-weight-bold">Mercy Ikpe</h5>
-                                            <p class="post-detail">
-                                                Storyteller | Combat wounded veteran | Designer | https://ziki.hng.tech
-                                            </p>
-                                        </div>
-                                    </div>
+	.following .post-detail {
+		width: 70vw !important;
+		font-size: 14px;
+	}
 
-                                    <div class=" p-2  not-following-area">
-                                        <button type="button" class="following-button btn" data-toggle="modal" data-target="#subscribe-here">
-                                            Follow
-                                        </button>
-                                    </div>
-                                </div>
+	.following .btn {
+		width: 110px;
+		height: 30px;
+		font-size: 12px;
+		text-align: center;
+	}
 
-                            </div>
-                        </div>
+	.following .following-button {
+	margin: -7em 4em 0 0;
+	}
 
-                    </div>
+	.following .following-area {
+		margin: 0 !important;
+	}
 
-                </div>
-            </div>
-        </div>
-    </div>
+	.following .following-box {
+	margin-top: -1em !important;
+	}
+}
+</style>
 
+<body>
+	<div class="container-fluid following">
+		<div class="row">
+			<div class="col-12 col-sm-3">
+				<!--Sidebar-->
+			</div>
+			<!--Navbar-->
+			<div class="col-12 col-sm-9">
+				<div class="row col-sm-10 mt-3">
+					{% set navigation = [
+						{'href': 'followers', 'caption': 'Followers'},
+						{'href': 'following', 'caption': 'Following'}
+						]
+					%}
+					{% include "navtabs.html" with {'current_page': 'followers'} %}
+				</div>
+
+				<!--Following Content-->
+				{% for key, list in sub %}
+					<div class="row mt-5">
+						<div class="col-12">
+							<div class="row pt-3 pb-4 following-box">
+								<div class="col-1 col-sm-1"><img class="max-width" src="{{list.image | raw }}" alt="follower's-image"></div>
+								<div class="col-10 col-sm-9">
+									<div>
+										<h5 class="post-author font-weight-bold">{{list.name | raw }}</h5>
+										<p class="post-detail">
+											{{list.desc | raw }}
+										</p>
+									</div>
+									<div class="following-area d-flex justify-content-end">
+										<button type="button" class="following-button btn text-nowrap mb-3">
+											Following
+										</button>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+					</div>
+					{% endfor %}
+				</div>
+
+		</div>
+</div>
+</div>
+</div>
 
 {% endblock page_content %}

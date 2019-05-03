@@ -1,124 +1,241 @@
 {% set title = "Videos"%}
 {% extends 'layout.html' %} {% block page_content %}
-<html>
-<style>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 
-    video-wrapper {
-        width: 1020px;
-        height: auto;
-        margin: 0 auto;
-    }
-    video-first {
-
-        float: left;
-        margin-left: auto;
-        position: absolute;
-
-    }
-
-    video-second {
-        float: right;
-        margin-right: 50px;
-        position: relative;
-    }
-
-    video-text{
-
-        font-style: normal;
-        font-weight: bold;
-        font-size: 14px;
-        color: #280A66;
-    }
-    .clear{
-        clear: both;
-    }
-
-    @media (max-width:767px) {
-        video-wrapper{
-            width: 100%;
-            height: auto;
-
-        }
-        video-first {
-            width: 100%;
-            height: auto;
-            float: right;
-            border: 100px;
-
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
         }
 
-    }
-</style>
-<body>
-
-<div class="container-fluid ">
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
-
-        </div>
+        .drafts .draft-date {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            color: #280A66;
+        }
 
 
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt-5 pt-2">
+        /****MODAL STYLING****/
+        .no-border {
+            border: none;
+        }
 
-            <div class=" video-wrapper row col-12">
-                <div class = "video-first col-6" >
-                    <p class="video-class"> 2nd April, 2019</p>
+        .modal-content {
+            border-radius: .7rem;
+        }
 
-                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s" width="400px" controls/>
+        .modal-header .close {
+            opacity: 1;
+        }
 
+        .cancel-modal-text {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            margin-top: 1.2rem;
+        }
+
+        .btn.btn-primary.canel-post {
+            background-color: transparent !important;
+            border: 1px solid red;
+            color: red;
+            padding: 6px 20px;
+        }
+
+        .btn.btn-primary.publish-post {
+            background-color: #280a66 !important;
+            border: 1px solid #280a66;
+            padding: 6px 20px;
+        }
+
+        .btn.btn-primary.canel-post,
+        .btn.btn-primary.publish-post {
+            margin-left: 15px;
+        }
+
+        /****MODAL STYLING****/
+
+
+
+        /****MEDIA QUERIES****/
+        @media screen and (max-width:700px) {
+            .drafts .post-item:after {
+                content: "";
+                display: block;
+                position: relative;
+                width: 90%;
+                border-bottom: 1px solid #ebebeb;
+            }
+
+            .drafts .draft-date {
+                margin-top: 1em;
+            }
+
+            .drafts .icon {
+                position: relative;
+                left: 5em;
+                margin-top: 1em;
+                margin-left: 2em;
+                color: #280a66;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            .drafts .dropdown-menu {
+                margin-left: -3.9em;
+                margin-bottom: 20px;
+            }
+
+            .drafts .draft-bottom:after {
+                content: "";
+                position: relative;
+                display: block;
+                border-bottom: 1px solid rgb(209, 209, 209);
+                width: 90%;
+                margin: 0 auto;
+                padding-top: 1em;
+            }
+        }
+
+        @media screen and (max-width:900px) and (min-width:700px) {
+            .drafts .dropdown-menu {
+                position: relative;
+                margin-top: 2em;
+                margin-left: -8em;
+            }
+
+        }
+
+        /****MEDIA QUERIES****/
+    </style>
+</head>
+
+
+<div>
+<div id="content">
+    <div class="container-fluid drafts">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class=" row col-12 col-sm-12 col-xs-12">
+                        <div class="col-sm-12 col-xs-6  pb-4 ">
+                            <button type="submit"
+                                    class="btn float-md-left profile-submit-btn text-white    "
+                                    data-toggle="modal" data-target="#addVideo">
+                                + ADD VIDEO
+                            </button>
+
+
+                        </div>
+                        <br><br>
+                        <div class="col-sm-6 col-xs-6">
+                            <p class="draft-date"> 2nd April, 2019</p>
+
+                            <iframe  width="420" height="315"
+                                     src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                            </iframe>
+
+                            <h5 class="video-class">Exploring the rocky hills of the Azerbaijan (Part 1) (Vlog)</h5>
+                            <p>As part of our trip to the East, me and Mike had an amazing drive through the rocky hills of the coast. Not everytime lorem ipsum, sometimes type something yourself ...</p>
+
+
+                        </div>
+
+                        <div class="col-sm-6 col-xs-6">
+                            <p class="draft-date"> 2nd April, 2019</p>
+
+                            <iframe  width="420" height="315"
+                                     src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                            </iframe>
+
+                            <h5 class="video-class">Exploring the rocky hills of the Azerbaijan (Part 1) (Vlog)</h5>
+                            <p>As part of our trip to the East, me and Mike had an amazing drive through the rocky hills of the coast. Not everytime lorem ipsum, sometimes type something yourself ...</p>
+
+                        </div>
+
+
+                    </div>
                 </div>
-
-                <br/><br/> <br/>
-
-                <div class = "video-second col-md-4   col-sm-3 col-xs-12 "  >
-                    <p class="video-class">2nd April, 2019</p>
-
-                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
-
-                </div>
-            </div>
-
-            <div class=" video-wrapper row col-12">
-
-                <div class = "video-first col-6" >
-                    <p class="video-class">2nd April, 2019</p>
-                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
-
-                </div>
-                <br/><br/> <br/>
-
-                <div class = "video-second col-md-4   col-sm-3 col-xs-12 "  >
-                <p class="video-class">2nd April, 2019</p>
-                <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
-
-            </div>
-            </div>
-
-            <div class=" video-wrapper row col-12">
-
-                <div class = "video-first col-6" >
-                    <p class="video-class">2nd April, 2019</p>
-                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
-
-                </div>
-                <br/><br/> <br/>
-                <div class = "video-second col-md-4   col-sm-3 col-xs-12 "  >
-                    <p class="video-class">2nd April, 2019</p>
-                    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4s"  width="400px"  controls/>
-
-                </div>
-            </div>
-
-
-            </div>
-
-
             </div>
         </div>
     </div>
-    <!-- using semantic tags -->
+
 </div>
-</body>
-</html>
+<!-- modal begins here -->
+
+<!-- Modal -->
+<div
+        class="modal fade"
+        id="addVideo"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="add-video-label"
+        aria-hidden="true"
+>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="add-video-label">
+                    Add a Video
+                </h5>
+                <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="" action="/addvideo" class="add-video-form" method="post">
+                    <div class="form-group">
+                        <label>Video URL</label>
+                        <input type="url" class="form-control" name="domain"
+                               id="url" value="" placeholder="video.mp4"
+                               required
+                        />
+                        <br>
+
+                        <label>Video Title</label>
+                        <input type="title" class="form-control" name="title"
+                               id="title" value="" placeholder="Explore Africa"
+                               required
+                        />
+                        <br>
+
+                        <label>Video Description</label>
+                        <input type="description" class="form-control" name="description"
+                               id="description" value="" placeholder="As part of our trip to the East, me and Mike had an amazing drive"
+                               required
+                        />
+                    </div>
+                </form>
+                <br>
+                <form>
+                <button id="submitButton" type="submit"  class="btn btn-success">
+                    Add Video
+                </button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<>
+
+
+
+
+<!-- modal ends here -->
+</div>
+</div>
+</div>
 
 {% endblock page_content %}
