@@ -55,7 +55,14 @@
     .rss-input:focus{
         outline: none;
     }
-
+    .rss-subcription-btn{
+        width: 200px;
+        color: white;
+        background-color: #17A2B8;
+        border: 1px solid rgba(17, 20, 76, 0.25);
+        padding: 0.8rem;
+        border-radius: 4px;
+    }
     .unfollow-btn{
         border: 1px solid #C61639;
         box-sizing: border-box;
@@ -110,7 +117,12 @@
                         <input class="rss-input" type="text" placeholder="Search by website or RSS link">
                     </form>
                 </div>
-
+                <div class="">
+                    <button type="button" class="rss-subcription-btn" data-toggle="modal"
+                        data-target="#add-subscription">
+                        Add subscription
+                    </button>
+                </div>
                 {% for key, list in sub %}
                 <div class="d-flx j-c-sb al-i-c martop-1 marbot-1">
                     <div class="d-flx al-i-c">
