@@ -346,6 +346,18 @@ Router::post('/api/upload-image', function() {
     return (new Ziki\Core\UploadImage)->upload();
 });
 
+Router::post('/setup', function($request) {
+    $data = $request->getBody();
+    $user = new Ziki\Core\Auth();
+    $setup = $user->setup($data);
+    if($setup == true) {
+        return $user->redirect('/timeline');
+    }
+    else{
+        return $user->redirect('/install');
+    }
+});
+
 Router::get('/install', function($request) {
 
     $user = new Ziki\Core\Auth();
