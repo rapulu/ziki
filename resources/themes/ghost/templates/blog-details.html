@@ -209,19 +209,10 @@
                 <div id="disqus_thread"></div>
 
 
-<script>
-(function() {
-    // your code here
-})();
-</script>
-
-
-
+{% if COMMENT_PLUGIN == "disqus" %}
                 <script>//alert("{{COMMENT_PLUGIN}}");
 	
 
-	var plugin = "{{COMMENT_PLUGIN}}";
-	if ( plugin == disqus) {
                     /**
                      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
                      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -238,10 +229,12 @@
                         s.setAttribute('data-timestamp', +new Date());
                         (d.head || d.body).appendChild(s);
                     })();
-	}
+
                 </script>
                 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% else %}
 <div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
+{% endif %}
             </div>
         </div>
     </div>

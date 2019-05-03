@@ -160,9 +160,9 @@
 				</div>
 
 				<!--Following Content-->
+				{% for key, list in sub %}
 					<div class="row mt-5">
 						<div class="col-12">
-              {% for key, list in sub %}
 							<div class="row pt-3 pb-4 following-box">
 								<div class="col-1 col-sm-1"><img class="max-width" src="{{list.image | raw }}" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
@@ -180,14 +180,16 @@
 								</div>
 							</div>
 
-{% endfor %}
 
 						</div>
 
 					</div>
+					{% endfor %}
 				</div>
-			</div>
+
 		</div>
-	</div>
+</div>
+</div>
+</div>
 
 {% endblock page_content %}
