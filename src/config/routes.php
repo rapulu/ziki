@@ -390,7 +390,7 @@ Router::get('/videos', function ($request) {
     $directory = "./storage/videos/";
     $ziki = new Ziki\Core\Document($directory);
     $Videos = $ziki->getVideo();
-    print_r($Videos);
+    //print_r($Videos);
     return $this->template->render('videos.html', ['videos' => $Videos]);
 });
 
