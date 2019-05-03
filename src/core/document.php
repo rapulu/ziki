@@ -341,21 +341,20 @@ class Document
     {
         $db = "storage/rss/subscriber.json";
         $file = FileSystem::read($db);
-          $data = json_decode($file, true);
-          if (count($data) >= 1) {
-          unset($file);
-          $posts = [];
-          foreach ($data as $key => $value) {
+        $data = json_decode($file, true);
+        if (count($data) >= 1) {
+            unset($file);
+            $posts = [];
+            foreach ($data as $key => $value) {
 
-            $content['name'] = $value['name'];
-            $content['img'] = $value['img'];
-            $content['time'] = $value['time'];
-            $content['desc'] = $value['desc'];
-              array_push($posts, $content);
-          }
-          return $posts;
+                $content['name'] = $value['name'];
+                $content['img'] = $value['img'];
+                $content['time'] = $value['time'];
+                $content['desc'] = $value['desc'];
+                array_push($posts, $content);
+            }
+            return $posts;
         }
-
     }
     public function subscription()
     {
@@ -412,58 +411,57 @@ class Document
     // post
     public function update($id)
     {
-            $finder = new Finder();
-            // find all files in the current directory
-            $finder->files()->in($this->file);
-            $posts = [];
-            if ($finder->hasResults()) {
-                foreach ($finder as $file) {
-                    $document = $file->getContents();
-                    $parser = new Parser();
-                    $document = $parser->parse($document);
-                    $yaml = $document->getYAML();
-                    $body = $document->getContent();
-                    //$document = FileSystem::read($this->file);
-                    $parsedown  = new Parsedown();
-                    // skip this document if it has no tags
-                    if (!isset($yaml['tags'])) {
-                      continue;
-                    }
-                        $tags = $yaml['tags'];
-                       for($i = 0; $i<count($tags); $i++){
-                            // strip away the leading "#" of the tag name
-                            if(substr($tags[$i], 1) == $id){
-                            $slug = $parsedown->text($yaml['slug']);
-                            $title = $parsedown->text($yaml['title']);
-                            $bd = $parsedown->text($body);
+        $finder = new Finder();
+        // find all files in the current directory
+        $finder->files()->in($this->file);
+        $posts = [];
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                // skip this document if it has no tags
+                if (!isset($yaml['tags'])) {
+                    continue;
+                }
+                $tags = $yaml['tags'];
+                for ($i = 0; $i < count($tags); $i++) {
+                    // strip away the leading "#" of the tag name
+                    if (substr($tags[$i], 1) == $id) {
+                        $slug = $parsedown->text($yaml['slug']);
+                        $title = $parsedown->text($yaml['title']);
+                        $bd = $parsedown->text($body);
 
-                            // get the first image in the post body
-                            // it will serve as the preview image
-                            preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
-                            $first_img = false;
-                            if (isset($matches[1])) {
-                              // there are images
-                              $first_img = $matches[1];
-                              // strip all images from the text
-                              $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
-                            }
-                            $time = $parsedown->text($yaml['timestamp']);
-                            $url = $parsedown->text($yaml['post_dir']);
-                            $content['title'] = $title;
-                            $content['body'] = $bd;
-                            $content['url'] = $url;
-                            $content['timestamp'] = $time;
-                            $content['tags'] = $tags;
-                            $content['slug'] = $yaml['slug'];
-                            $content['preview_img'] = $first_img;
-                            array_push($posts, $content);
-                            }
+                        // get the first image in the post body
+                        // it will serve as the preview image
+                        preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                        $first_img = false;
+                        if (isset($matches[1])) {
+                            // there are images
+                            $first_img = $matches[1];
+                            // strip all images from the text
+                            $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
                         }
-
+                        $time = $parsedown->text($yaml['timestamp']);
+                        $url = $parsedown->text($yaml['post_dir']);
+                        $content['title'] = $title;
+                        $content['body'] = $bd;
+                        $content['url'] = $url;
+                        $content['timestamp'] = $time;
+                        $content['tags'] = $tags;
+                        $content['slug'] = $yaml['slug'];
+                        $content['preview_img'] = $first_img;
+                        array_push($posts, $content);
                     }
+                }
             }
-            return $posts;
         }
+        return $posts;
+    }
 
     //kjarts code for deleting post
     public function delete($id, $extra)
@@ -553,47 +551,47 @@ class Document
         return $content;
     }
 
-     // Start-  Creating New Portfolio
-     // David's code for creating md from Add portfolio button(AFKj)
-     // Start- Creating new portfolio
-public function createNewPortfolio($title, $content,$image)
-{
-    $time = date("F j, Y, g:i a");
-    $unix = strtotime($time);
-    // Write md file
-    $document = FrontMatter::parse($content);
-    $md = new Parser();
-    $markdown = $md->parse($document);
+    // Start-  Creating New Portfolio
+    // David's code for creating md from Add portfolio button(AFKj)
+    // Start- Creating new portfolio
+    public function createNewPortfolio($title, $content, $image)
+    {
+        $time = date("F j, Y, g:i a");
+        $unix = strtotime($time);
+        // Write md file
+        $document = FrontMatter::parse($content);
+        $md = new Parser();
+        $markdown = $md->parse($document);
 
-    $yaml = $markdown->getYAML();
-    $html = $markdown->getContent();
-    //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
+        $yaml = $markdown->getYAML();
+        $html = $markdown->getContent();
+        //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
 
-    $yamlfile = new Doc();
-    $yamlfile['title'] = $title;
+        $yamlfile = new Doc();
+        $yamlfile['title'] = $title;
 
-    if(!empty($image)){
-        foreach($image as $key => $value){
-        $decoded = base64_decode($image[$key]);
-        $url = "./storage/images/".$key;
-        FileSystem::write($url,$decoded);
+        if (!empty($image)) {
+            foreach ($image as $key => $value) {
+                $decoded = base64_decode($image[$key]);
+                $url = "./storage/images/" . $key;
+                FileSystem::write($url, $decoded);
+            }
+        }
+
+        // create slug by first removing spaces
+        $striped = str_replace(' ', '-', $title);
+        // then removing encoded html chars
+        $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
+        $yamlfile['slug'] = $striped . "-{$unix}";
+        $yamlfile['timestamp'] = $time;
+        $yamlfile->setContent($content);
+        $yaml = FrontMatter::dump($yamlfile);
+        $file = $this->file;
+        $dir = $file . $unix . ".md";
+        //return $dir; die();
+        $doc = FileSystem::write($dir, $yaml);
     }
-}
-
-    // create slug by first removing spaces
-    $striped = str_replace(' ', '-', $title);
-    // then removing encoded html chars
-    $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
-    $yamlfile['slug'] = $striped . "-{$unix}";
-    $yamlfile['timestamp'] = $time;
-    $yamlfile->setContent($content);
-    $yaml = FrontMatter::dump($yamlfile);
-    $file = $this->file;
-    $dir = $file . $unix . ".md";
-    //return $dir; die();
-    $doc = FileSystem::write($dir, $yaml);
-}
-// End- Creating new portfolio
+    // End- Creating new portfolio
 
     public function addVideo($url, $title, $content)
     {
@@ -658,7 +656,7 @@ public function createNewPortfolio($title, $content,$image)
             }
             return $videos;
         } else {
-            return false;
+            return $videos;
         }
     }
 }
