@@ -1,226 +1,224 @@
 {% set title = "Drafts"%}
 {% extends 'layout.html' %} {% block page_content %}
 
-<head>
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
-
     <style>
-        body {
-            font-family: 'Lato', sans-serif;
-        }
+        
+  /*****************************DRAFTS PAGE STYLING*****************************/
+  .drafts .draft-date {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #280a66;
+  }
 
-        .drafts .draft-date {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 17px;
-            color: #280A66;
-        }
+  .drafts .draft-title a {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 130%;
+    color: #000000;
+    transition: all ease-in 0.3s;
+  }
 
-        .drafts .draft-title a {
-            font-style: normal;
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 130%;
-            color: #000000;
-            transition: all ease-in 0.3s;
-        }
+  .drafts .draft-title a:hover {
+    cursor: pointer;
+    color: #280a66;
+    text-decoration: none;
+    transition: all ease-in 0.3s;
+  }
 
-        .drafts .draft-title a:hover {
-            cursor: pointer;
-            color: #280A66;
-            text-decoration: none;
-            transition: all ease-in 0.3s;
-        }
+  .drafts .draft-content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 140%;
+    color: #7a7a7a;
+  }
 
-        .drafts .draft-content {
+  .no-drafts-alert p {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    color: #979797;
+  }
 
-            font-style: normal;
-            font-weight: normal;
-            font-size: 16px;
-            line-height: 140%;
-            color: #7A7A7A;
-        }
+  .draft-img {
+    height:189px;
+    width: 270px;
+  }
 
-        .no-drafts-alert p {
+  /**DROPDOWN STYLING**/
+  .drafts .dropdown-menu {
+    position: relative;
+    margin-top: 0.9em;
+    margin-left: -3.9em;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
-            font-style: italic;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 130%;
-            color: #979797;
-        }
+  .drafts .dropdown-menu button {
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all ease-in 0.3s;
+  }
 
-        .draft-img {
-            height: 100%;
-            width: 100%;
-        }
+  .drafts .dropdown-menu button:hover {
+    color: #280a66;
+    transition: all ease-in 0.3s;
+  }
 
-        /**DROPDOWN STYLING**/
-        .drafts .dropdown-menu {
-            position: relative;
-            margin-top: 0.9em;
-            margin-left: -3.9em;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
-            border-radius: 5px;
-            padding-top: 20px;
-            padding-bottom: 20px;
-        }
+  .drafts .icon {
+    font-size: 20px;
+    margin-left: -30px;
+  }
 
-        .drafts .dropdown-menu button {
-            text-align: center;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 12px;
-            line-height: 17px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all ease-in 0.3s;
-        }
+  .drafts .dropdown-btn-link {
+    font-size: 15px;
+    color: #280a66;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s;
+  }
 
-        .drafts .dropdown-menu button:hover {
-            color: #280A66;
-            transition: all ease-in 0.3s;
-        }
+  .drafts .dropdown-btn-link:hover {
+    text-decoration: none;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s;
+  }
 
-        .drafts .icon {
-            font-size: 20px;
-            margin-left: -30px;
-        }
+  .drafts .edit-post {
+    color: black;
+  }
 
+  .drafts .edit-post:active:active {
+    color: #fff;
+  }
 
-        .drafts .dropdown-btn-link {
-            font-size: 15px;
-            color: #280a66;
-            -webkit-transition: all ease-in .3s;
-            transition: all ease-in .3s;
-        }
+  .drafts .edit-post:hover {
+    color: black;
+    text-decoration: none;
+  }
 
-        .drafts .dropdown-btn-link:hover {
-            text-decoration: none;
-            -webkit-transition: all ease-in .3s;
-            transition: all ease-in .3s;
-        }
+  /**DROPDOWN STYLING**/
 
-        .drafts .edit-post {
-            color: black;
-        }
+  /****MODAL STYLING****/
+  .no-border {
+    border: none;
+  }
 
-        .drafts .edit-post:active:active {
-            color: #fff;
-        }
+  .modal-content {
+    border-radius: 0.7rem;
+  }
 
-        .drafts .edit-post:hover {
-            color: black;
-            text-decoration: none;
-        }
+  .modal-header .close {
+    opacity: 1;
+  }
 
-        /**DROPDOWN STYLING**/
+  .cancel-modal-text {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    margin-top: 1.2rem;
+  }
 
+  .btn.btn-primary.canel-post {
+    background-color: transparent !important;
+    border: 1px solid red;
+    color: red;
+    padding: 6px 20px;
+  }
 
+  .btn.btn-primary.publish-post {
+    background-color: #280a66 !important;
+    border: 1px solid #280a66;
+    padding: 6px 20px;
+  }
 
-        /****MODAL STYLING****/
-        .no-border {
-            border: none;
-        }
+  .btn.btn-primary.canel-post,
+  .btn.btn-primary.publish-post {
+    margin-left: 15px;
+  }
 
-        .modal-content {
-            border-radius: .7rem;
-        }
+  /****MODAL STYLING****/
 
-        .modal-header .close {
-            opacity: 1;
-        }
+  /****MEDIA QUERIES****/
+  @media screen and (max-width: 700px) {
+    .drafts .post-item:after {
+      content: "";
+      display: block;
+      position: relative;
+      width: 90%;
+      border-bottom: 1px solid #ebebeb;
+    }
 
-        .cancel-modal-text {
-            font-size: 1.1rem;
-            margin-bottom: 0;
-            margin-top: 1.2rem;
-        }
+    .drafts .draft-date {
+      margin-top: 1em;
+    }
 
-        .btn.btn-primary.canel-post {
-            background-color: transparent !important;
-            border: 1px solid red;
-            color: red;
-            padding: 6px 20px;
-        }
+    .drafts .icon {
+      position: relative;
+      left: 5em;
+      margin-top: 1em;
+      margin-left: 2em;
+      color: #280a66;
+      font-size: 20px;
+      text-align: center;
+    }
 
-        .btn.btn-primary.publish-post {
-            background-color: #280a66 !important;
-            border: 1px solid #280a66;
-            padding: 6px 20px;
-        }
+    .drafts .dropdown-menu {
+      margin-left: -3.9em;
+      margin-bottom: 20px;
+    }
 
-        .btn.btn-primary.canel-post,
-        .btn.btn-primary.publish-post {
-            margin-left: 15px;
-        }
+    .drafts .draft-bottom:after {
+      content: "";
+      position: relative;
+      display: block;
+      border-bottom: 1px solid rgb(209, 209, 209);
+      width: 90%;
+      margin: 0 auto;
+      padding-top: 1em;
+    }
 
-        /****MODAL STYLING****/
+    .draft-img {
+      height:289.8px;
+      width: 414px;
+    }
+  }
 
+  @media screen and (max-width: 900px) and (min-width: 700px) {
+    .drafts .dropdown-menu {
+      position: relative;
+      margin-top: 2em;
+      margin-left: -4em;
+    }
 
+    
+    .draft-img {
+      height:168px;
+      width: 240px;
+    }
+  }
+  /****MEDIA QUERIES****/
+  /*****************************DRAFTS PAGE STYLING*****************************/
 
-        /****MEDIA QUERIES****/
-        @media screen and (max-width:700px) {
-            .drafts .post-item:after {
-                content: "";
-                display: block;
-                position: relative;
-                width: 90%;
-                border-bottom: 1px solid #ebebeb;
-            }
-
-            .drafts .draft-date {
-                margin-top: 1em;
-            }
-
-            .drafts .icon {
-                position: relative;
-                left: 5em;
-                margin-top: 1em;
-                margin-left: 2em;
-                color: #280a66;
-                font-size: 20px;
-                text-align: center;
-            }
-
-            .drafts .dropdown-menu {
-                margin-left: -3.9em;
-                margin-bottom: 20px;
-            }
-
-            .drafts .draft-bottom:after {
-                content: "";
-                position: relative;
-                display: block;
-                border-bottom: 1px solid rgb(209, 209, 209);
-                width: 90%;
-                margin: 0 auto;
-                padding-top: 1em;
-            }
-        }
-
-        @media screen and (max-width:900px) and (min-width:700px) {
-            .drafts .dropdown-menu {
-                position: relative;
-                margin-top: 2em;
-                margin-left: -8em;
-            }
-
-        }
-
-        /****MEDIA QUERIES****/
     </style>
-</head>
 
 <body>
+        <div id="content">
     <div class="container-fluid drafts">
+        <div id="content">
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <!--SIDEBAR CONTENTS HERE-->>
-            </div>
 
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <div class="col-12">
+                
                 <div class="row">
                     <div class="col-12">
                         <div class="row pt-4 pb-4  draft-bottom  draft-content">
@@ -353,5 +351,6 @@
         </div>
         <!-- modal ends here -->
     </div>
+</div></div></div>
 
-    {% endblock page_content %}
+{% endblock page_content %}

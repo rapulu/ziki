@@ -9,7 +9,8 @@
 
       {% set navigation = [
         {'href': 'settings', 'caption': 'Settings'},
-        {'href': 'profile', 'caption': 'Profile'}
+        {'href': 'profile', 'caption': 'Profile'},
+        {'href': 'subscriptions', 'caption': 'Subscriptions'}
         ]
       %}
 
@@ -28,11 +29,31 @@
               <form class="pb-5">
                 <div class="form-group">
                   <label for="fullName" class="font-weight-bold profile-edit-label d-none">Full Name</label>
-                  <input type="text" class="form-control" id="" aria-describedby="fullname" value="{{settings.name}}" placeholder="Full Name">
+                  <input type="text" class="form-control" id="fullname" aria-describedby="fullname" value="{{settings.name}}" placeholder="Full Name">
                 </div>
                 <div class="form-group">
-                  <label for="about" class="font-weight-bold profile-edit-label d-none">About</label>
+                  <label for="shortbio" class="font-weight-bold profile-edit-label d-none">Short Bio</label>
+                  <textarea class="form-control" id="shortbio" placeholder="Short Bio" rows="3"></textarea>
+                </div>
+                <button type="submit"
+                  class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3 text-upppercase">update</button>
+              </form>
+
+              <form class="pb-5 mt-5">
+                
+                <div class="form-group">
+                  <label for="about" class="font-weight-bold profile-edit-label">About Me</label>
                   <textarea class="form-control" id="about" placeholder="About" rows="5"></textarea>
+                </div>
+                <button type="submit"
+                  class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3 text-upppercase">update</button>
+              </form>
+
+              <form class="pb-5 mt-5">
+                
+                <div class="form-group">
+                  <label for="email" class="font-weight-bold profile-edit-label">Contact Email</label>
+                  <input class="form-control" type="email" id="email" placeholder="Email"/>
                 </div>
                 <button type="submit"
                   class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3 text-upppercase">update</button>
