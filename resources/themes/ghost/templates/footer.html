@@ -123,7 +123,7 @@
     formData.set('tags', selectedTags);
 
     // send the form data
-    fetch(newPostIsBeingCreated ? '/publish' : '/draft', {
+    fetch(newPostIsBeingCreated ? '/publish' : '/saveDraft', {
       method: 'POST',
       body: formData
     }).then(res => res.text()).then((res) => {
