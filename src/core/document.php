@@ -412,41 +412,58 @@ class Document
     // post
     public function update($id)
     {
-        $finder = new Finder();
-        // find all files in the current directory
-        $finder->files()->in($this->file);
-        $posts = [];
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $document = $file->getContents();
-                $parser = new Parser();
-                $document = $parser->parse($document);
-                $yaml = $document->getYAML();
-                $body = $document->getContent();
-                //$document = FileSystem::read($this->file);
-                $parsedown  = new Parsedown();
-                $tags = $yaml['tags'];
-                for ($i = 0; $i < count($tags); $i++) {
-                    // strip away the leading "#" of the tag name
-                    if (substr($tags[$i], 1) == $id) {
-                        $slug = $parsedown->text($yaml['slug']);
-                        $title = $parsedown->text($yaml['title']);
-                        $bd = $parsedown->text($body);
-                        $time = $parsedown->text($yaml['timestamp']);
-                        $url = $parsedown->text($yaml['post_dir']);
-                        $content['title'] = $title;
-                        $content['body'] = $bd;
-                        $content['url'] = $url;
-                        $content['timestamp'] = $time;
-                        $content['tags'] = $tags;
-                        $content['slug'] = $yaml['slug'];
-                        array_push($posts, $content);
+            $finder = new Finder();
+            // find all files in the current directory
+            $finder->files()->in($this->file);
+            $posts = [];
+            if ($finder->hasResults()) {
+                foreach ($finder as $file) {
+                    $document = $file->getContents();
+                    $parser = new Parser();
+                    $document = $parser->parse($document);
+                    $yaml = $document->getYAML();
+                    $body = $document->getContent();
+                    //$document = FileSystem::read($this->file);
+                    $parsedown  = new Parsedown();
+                    // skip this document if it has no tags
+                    if (!isset($yaml['tags'])) {
+                      continue;
                     }
-                }
+                        $tags = $yaml['tags'];
+                       for($i = 0; $i<count($tags); $i++){
+                            // strip away the leading "#" of the tag name
+                            if(substr($tags[$i], 1) == $id){
+                            $slug = $parsedown->text($yaml['slug']);
+                            $title = $parsedown->text($yaml['title']);
+                            $bd = $parsedown->text($body);
+
+                            // get the first image in the post body
+                            // it will serve as the preview image
+                            preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                            $first_img = false;
+                            if (isset($matches[1])) {
+                              // there are images
+                              $first_img = $matches[1];
+                              // strip all images from the text
+                              $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
+                            }
+                            $time = $parsedown->text($yaml['timestamp']);
+                            $url = $parsedown->text($yaml['post_dir']);
+                            $content['title'] = $title;
+                            $content['body'] = $bd;
+                            $content['url'] = $url;
+                            $content['timestamp'] = $time;
+                            $content['tags'] = $tags;
+                            $content['slug'] = $yaml['slug'];
+                            $content['preview_img'] = $first_img;
+                            array_push($posts, $content);
+                            }
+                        }
+
+                    }
             }
             return $posts;
         }
-    }
 
     //kjarts code for deleting post
     public function delete($id, $extra)
@@ -554,7 +571,7 @@ public function createNewPortfolio($title, $content,$image)
 
     $yamlfile = new Doc();
     $yamlfile['title'] = $title;
-    
+
     if(!empty($image)){
         foreach($image as $key => $value){
         $decoded = base64_decode($image[$key]);

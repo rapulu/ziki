@@ -220,18 +220,19 @@
             <div class="col-12 col-sm-11">
                 <div class="row">
                     <div class="col-12">
+                        {% for key, draft in drafts %}
                         <div class="row pt-4 pb-4  draft-bottom  draft-content">
                             <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
                                     src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
                                     class="img-fluid draft-img"></div>
                             <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
                                 <div class="second">
-                                    <p class="draft-date">2nd April, 2019</p>
+                                    <p class="draft-date">{{ draft.timestamp | raw }}</p>
                                     <h6 class="draft-title">
-                                        <a href=""> I was always on the run, travelling </a>
+                                        <a href=""> {{ draft.title | raw}} </a>
                                     </h6>
                                     <p class="draft-content">
-                                        Travelling, it was just a dream. The light ones suffering...
+                                    {{ draft.body | raw }}
                                     </p>
                                 </div>
                             </div>
@@ -242,7 +243,7 @@
 
                                     </span>
                                     <div class="dropdown-menu">
-                                        <button class="dropdown-item"> <a href="\editor" class="edit-post">Edit
+                                        <button class="dropdown-item"> <a href="/editor" class="edit-post">Edit
                                                 post</a></button>
                                         <button class="dropdown-item" data-toggle="modal"
                                             data-target="#cancelModal">Delete
@@ -252,8 +253,13 @@
                             </div>
                         </div>
 
+                    {% endfor %}
 
+                       
 
+<<<<<<< HEAD
+                    
+=======
                         <div class="row pt-4 pb-4  draft-bottom  draft-content">
                             <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
                                     src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
@@ -319,6 +325,7 @@
                     </div>
                 </div>
 
+>>>>>>> 5e8a57de0ee692c147da0f111143085e97a2a9da
                 <div class="row">
                     <div class="no-drafts-alert mx-auto">
                         <p class="text-grey">
