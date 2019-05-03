@@ -58,11 +58,6 @@ page_content %}
     border-radius: 5px;
   }
 
-  .img-container {
-    background: url('/resources/themes/ghost/assets/img/active.jpg') no-repeat
-      center / cover;
-  }
-
   .blog-date {
     color: var(--blog-date-text-color);
     font-size: 0.8em;
@@ -98,7 +93,11 @@ page_content %}
         <div class="col-12">
           {% if posts %} {% for key, feed in posts %}
           <div class="row pt-4 pb-4">
-            <div class="col-3 img-container"></div>
+            {% if feed.preview_img %}
+            <div
+              class="col-3 img-container"
+              style="background: url('{{ feed.preview_img }}') no-repeat center / cover;"
+            ></div>
             <div class="col-8">
               <p class="blog-date">
                 {{ feed.timestamp | striptags | date("jS M Y") }}
@@ -110,6 +109,19 @@ page_content %}
               </h3>
               <div class="blog-preview">{{ feed.body | raw }}</div>
             </div>
+            {% else %}
+            <div class="col-11">
+              <p class="blog-date">
+                {{ feed.timestamp | striptags | date("jS M Y") }}
+              </p>
+              <h3 class="blog-title">
+                <a href="/blog-details/{{ feed.slug }}"
+                  >{{ feed.title | raw }}</a
+                >
+              </h3>
+              <div class="blog-preview">{{ feed.body | raw }}</div>
+            </div>
+            {% endif %}
           </div>
           {% endfor %} {% else %}
           <h3 class="no-posts text-center py-5">
