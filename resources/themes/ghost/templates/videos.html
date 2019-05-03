@@ -129,13 +129,18 @@
 
                         </div>
                         <br><br>
+                        {% if videos %}
+                        {% for video in videos %}
                           <div class="col-sm-6 col-xs-6">
                               <p class="draft-date"> {{ video.timestamp|striptags }} </p>
                               <iframe  width="420" height="315" src="{{ video.domain|striptags }}"></iframe>
                               <h5 class="video-class">{{ video.title|striptags }}</h5>
-                              <p>{{ video.description }}<p>
+                              <p>{{ video.description|striptags }}<p>
                           </div>
-                        {% endfor %}
+                       {% endfor %}
+                       {% else %}
+                            <h5>No video available</h5>
+                       {% endif %}
                     </div>
                 </div>
             </div>
@@ -207,11 +212,6 @@
         </div>
     </div>
 </div>
-<>
-
-
-
-
 <!-- modal ends here -->
 </div>
 </div>

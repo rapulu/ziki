@@ -466,5 +466,8 @@ Router::post('/addvideo', function ($request) {
     $video_title = $data['title'];
     $video_about = $data['description'];
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->addVideo($video_url, $video_title, $video_about);
+    $ziki->addVideo($video_url, $video_title, $video_about);
+    $Videos = $ziki->getVideo();
+    //print_r($Videos);
+    return $this->template->render('videos.html', ['videos' => $Videos]);
 });
