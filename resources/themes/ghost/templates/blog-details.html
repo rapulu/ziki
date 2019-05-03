@@ -9,6 +9,7 @@
         font-family: Lato;
         letter-spacing: 0.03em;
         font-size: 14px;
+	color: black;
     }
     
     .blog-details .img-logo {
@@ -75,9 +76,12 @@
     }
     
     .blog-details .categories {
-        padding: 5px 9px;
         border: 1px solid blueviolet;
-        border-radius: 2px;
+        border-radius: 4px;
+	font-weight: 500;
+        font-size: 14px;
+        padding: 15px;
+	color: blueviolet;
     }
     
     .categories {
@@ -89,6 +93,13 @@
     .blog-details .categories:hover {
         cursor: pointer;
         transition: all ease-in 0.3s;
+	border: 1px solid blueviolet;
+        border-radius: 4px;
+	font-weight: 500;
+        font-size: 14px;
+        padding: 15px;
+	color: white;;
+	background-color: blueviolet;
     }
     
     .blog-details .guest-action-items span {
@@ -141,7 +152,7 @@
 </style>
 <div class="container-fluid blog-details">
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 sidebar">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 sidebar">
 
         </div>
 
@@ -159,7 +170,7 @@
                         <!--<p class="blog-source p-0 m-0">{{result.title | raw}}</p>
                         <p class="blog-date p-0 m-0">{{result.timestamp | raw}}</p>-->
                         <p class="blog-date p-0 m-0">12<sup>th</sup> April 2019</p>
-                        <p class="blog-source p-0 m-0">James Rogger</p>s
+                        <p class="blog-source p-0 m-0">James Rogger</p>
                     </div>
 
                     <div class="col-4">
@@ -193,7 +204,7 @@
                             <a href="#"><span class="categories">Privacy</span></a>
                             <a href="#"><span class="categories">Privacy</span></a>
                         </div>
-                        <div class="social-media mt-3">
+                        <div class="social-media mt-5">
                             <a href="#"><img src="/resources/themes/ghost/assets/img/facebookicon.png" alt="tag-label">
                             </a>
                             <a href="#"><img src="/resources/themes/ghost/assets/img/twitter (1).png" alt="tag-label">
