@@ -368,19 +368,19 @@
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 25px; padding-bottom: 20px; font-family: Arial, sans-serif"><![endif]-->
 <div style="color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;padding-top:25px;padding-right:10px;padding-bottom:20px;padding-left:10px;">
 <div style="font-size: 12px; line-height: 14px; color: #555555; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-<p style="font-size: 12px; line-height: 26px; text-align: center; margin: 0;"><span style="font-size: 22px;"><strong><span style="line-height: 26px; color: #5533ac; font-size: 22px;">Hello {{ name }}, here is your Ziki login link!</span></strong></span></p>
+<p style="font-size: 12px; line-height: 26px; text-align: center; margin: 0;"><span style="font-size: 22px;"><strong><span style="line-height: 26px; color: #5533ac; font-size: 22px;">Welcome to Lucid {{ name }}!</span></strong></span></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
 <div style="color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
 <div style="font-size: 12px; line-height: 14px; color: #555555; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-<p style="font-size: 12px; line-height: 21px; text-align: center; margin: 0;"><span style="color: #000000; font-size: 18px;">Here is a magic link to quickly sign in to your Ziki website</span></p>
+<p style="font-size: 12px; line-height: 21px; text-align: center; margin: 0;"><span style="color: #000000; font-size: 18px;">Your Lucid blog installation was successful, you can now login with a social media attached with your email address.</span></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 <div align="center" class="button-container" style="padding-top:20px;padding-right:10px;padding-bottom:15px;padding-left:10px;">
-<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 20px; padding-right: 10px; padding-bottom: 15px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{address}}" style="height:37.5pt; width:97.5pt; v-text-anchor:middle;" arcsize="20%" stroke="false" fillcolor="#5332AC"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:20px"><![endif]--><a href="{{address}}" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #5332AC; border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px; width: auto; width: auto; border-top: 1px solid #5332AC; border-right: 1px solid #5332AC; border-bottom: 1px solid #5332AC; border-left: 1px solid #5332AC; padding-top: 5px; padding-bottom: 5px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:35px;padding-right:35px;font-size:20px;display:inline-block;">
+<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-top: 20px; padding-right: 10px; padding-bottom: 15px; padding-left: 10px" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{address}}" style="height:37.5pt; width:97.5pt; v-text-anchor:middle;" arcsize="20%" stroke="false" fillcolor="#5332AC"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:20px"><![endif]--><a href={{address}} style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #5332AC; border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px; width: auto; width: auto; border-top: 1px solid #5332AC; border-right: 1px solid #5332AC; border-bottom: 1px solid #5332AC; border-left: 1px solid #5332AC; padding-top: 5px; padding-bottom: 5px; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:35px;padding-right:35px;font-size:20px;display:inline-block;">
 <span style="font-size: 12px; line-height: 24px;"><span style="font-size: 20px; line-height: 40px;"><strong>Login</strong></span></span>
 </span></a>
 <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
@@ -388,28 +388,26 @@
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 20px; padding-bottom: 20px; font-family: Arial, sans-serif"><![endif]-->
 <div style="color:#717171;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;padding-top:20px;padding-right:10px;padding-bottom:20px;padding-left:10px;">
 <div style="font-size: 12px; line-height: 14px; color: #717171; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-<p style="font-size: 12px; line-height: 15px; text-align: center; margin: 0;"><span style="font-size: 13px; mso-ansi-font-size: 14px;">You may copy/paste this link into your browser.</span></p>
+<p style="font-size: 12px; line-height: 15px; text-align: center; margin: 0;"><span style="font-size: 13px; mso-ansi-font-size: 14px;">Visit your lucid blog, login to get started.</span></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
 <div style="color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
 <div style="font-size: 12px; line-height: 14px; color: #555555; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-<p style="font-size: 12px; line-height: 14px; text-align: center; margin: 0;"><a href="{{address}}" rel="noopener" style="text-decoration: none; color: #973793;" target="_blank">{{address}}</a></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 20px; padding-left: 20px; padding-top: 35px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
 <div style="color:#000000;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:120%;padding-top:35px;padding-right:20px;padding-bottom:10px;padding-left:20px;">
 <div style="font-size: 12px; line-height: 14px; color: #000000; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-<p style="font-size: 12px; line-height: 15px; text-align: center; margin: 0;"><span style="color: #000000; font-size: 16px;">Note: Your magic link will expire in 24 hours, and can only be used once</span><span style="color: #000000; font-size: 13px; mso-ansi-font-size: 14px;"></span></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 40px; padding-left: 40px; padding-top: 10px; padding-bottom: 40px; font-family: Arial, sans-serif"><![endif]-->
 <div style="color:#555555;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;line-height:150%;padding-top:10px;padding-right:40px;padding-bottom:40px;padding-left:40px;">
 <div style="font-size: 12px; line-height: 18px; color: #555555; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;">
-<p style="font-size: 12px; line-height: 24px; text-align: center; margin: 0;"><span style="font-size: 16px; color: #000000;">Cheers, </span><span style="font-size: 16px; line-height: 24px; color: #000000;">Ziki.</span></p>
+<p style="font-size: 12px; line-height: 24px; text-align: center; margin: 0;"><span style="font-size: 16px; color: #000000;">Cheers, </span><span style="font-size: 16px; line-height: 24px; color: #000000;">Lucid.</span></p>
 </div>
 </div>
 <!--[if mso]></td></tr></table><![endif]-->
