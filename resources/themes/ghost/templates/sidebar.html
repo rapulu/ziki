@@ -527,6 +527,13 @@
     width: 250px;
   }
 
+  .dropdown-toggle::after {
+    border: none;
+    font: normal normal normal 12px/1 'Font Awesome 5 Free';
+    content: "";
+    vertical-align: 0;
+  }
+
   @media only screen and (max-width: 767px) {
 
     /* modal styling For mobile phones: */
@@ -662,7 +669,7 @@
               <li><a href="/timeline"><h6 class="text-center"><span><b>TIMELINE</b></span></h6></a></li>
               <li>
                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                      <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+                      <h6 class="text-center"><span><b>MY POSTS</b><span class="ml-2 fa fa-angle-down"></span></span></h6> 
                   </a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
                       <li>
@@ -688,7 +695,7 @@
               <li><a href="/"><h6 class="text-center"><span><b>HOME</b></span></h6></a></li>
               <li>
                   <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                      <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+                    <h6 class="text-center"><span><b>MY POSTS</b><span class="ml-2 fa fa-angle-down"></span></span></h6> 
                   </a>
                   <ul class="collapse list-unstyled" id="homeSubmenu">
                       <li>
