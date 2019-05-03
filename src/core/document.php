@@ -464,7 +464,6 @@ class Document
             }
             return $posts;
         }
-    }
 
     //kjarts code for deleting post
     public function delete($id, $extra)
