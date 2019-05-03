@@ -145,7 +145,7 @@ Router::post('/send',function($request){
     $SendMail->mailBody= $this->template->render('mail-template.html',['guestName'=>$request['guestName'],'guestEmail'=>$request['guestEmail'],'guestMsg'=>$request['guestMsg']]);
     $SendMail->sendMail($request);
     $SendMail->clientMessage();
-    return $SendMail->redirect('/contact-us');
+    return $SendMail->redirect('/about');
 });
 Router::get('delete/{id}', function($request, $id) {
     $user = new Ziki\Core\Auth();
