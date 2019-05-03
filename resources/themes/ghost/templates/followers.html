@@ -160,88 +160,16 @@
 				</div>
 
 				<!--Following Content-->
+				{% for key, list in sub %}
 					<div class="row mt-5">
 						<div class="col-12">
 							<div class="row pt-3 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="/resources/themes/ghost/assets/img/tsr-logo-img.png" alt="follower's-image"></div>
+								<div class="col-1 col-sm-1"><img class="max-width" src="{{list.image | raw }}" alt="follower's-image"></div>
 								<div class="col-10 col-sm-9">
 									<div>
-										<h5 class="post-author font-weight-bold">Mercy Ikpe</h5>
+										<h5 class="post-author font-weight-bold">{{list.name | raw }}</h5>
 										<p class="post-detail">
-											Proud Ibibio Girl with Big dreams | Fashion Blogger | Female PR | Black and Beautiful | DM is open
-											if you follow back
-										</p>
-									</div>
-									<div class="following-area d-flex justify-content-end">
-										<button type="button" class="following-button btn text-nowrap mb-3">
-											Following
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Ellipse.png" alt="follower's-image"></div>
-								<div class="col-10 col-md-9">
-									<div>
-										<h5 class="post-author font-weight-bold">Mark Essien</h5>
-										<p class="post-detail">
-											Proud Ibibio Girl with Big dreams | Fashion Blogger | Female PR | Black and Beautiful | DM is open
-											if you follow back
-										</p>
-									</div>
-									<div class="following-area d-flex justify-content-end">
-										<button type="button" class="following-button btn text-nowrap mb-3">
-											Follow
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Ellipse (1).png" alt="follower's-image"></div>
-								<div class="col-10 col-sm-9">
-									<div>
-										<h5 class="post-author font-weight-bold">Chimdike</h5>
-										<p class="post-detail">
-											Proud Ibibio Girl with Big dreams | Fashion Blogger | Female PR | Black and Beautiful | DM is open
-											if you follow back
-										</p>
-									</div>
-									<div class="following-area d-flex justify-content-end">
-										<button type="button" class="following-button btn text-nowrap mb-3">
-											Following
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Ellipse (2).png" alt="follower's-image"></div>
-								<div class="col-10 col-sm-9">
-									<div>
-										<h5 class="post-author font-weight-bold">Lovisgod</h5>
-										<p class="post-detail">
-											Proud Ibibio Girl with Big dreams | Fashion Blogger | Female PR | Black and Beautiful | DM is open
-											if you follow back
-										</p>
-									</div>
-									<div class="following-area d-flex justify-content-end">
-										<button type="button" class="following-button btn text-nowrap mb-3">
-											Following
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Ellipse (3).png" alt="follower's-image"></div>
-								<div class="col-10 col-sm-9">
-									<div>
-										<h5 class="post-author font-weight-bold">Jeff</h5>
-										<p class="post-detail">
-											Proud Ibibio Girl with Big dreams | Fashion Blogger | Female PR | Black and Beautiful | DM is open
-											if you follow back
+											{{list.desc | raw }}
 										</p>
 									</div>
 									<div class="following-area d-flex justify-content-end">
@@ -253,29 +181,15 @@
 							</div>
 
 
-							<div class="row pt-4 pb-4 following-box">
-								<div class="col-1 col-sm-1"><img class="max-width" src="resources/themes/ghost/assets/img/Ellipse.png" alt="follower's-image"></div>
-								<div class="col-10 col-sm-9">
-									<div>
-										<h5 class="post-author font-weight-bold">Mercy Ikpe</h5>
-										<p class="post-detail">
-											Proud Ibibio Girl with Big dreams | Fashion Blogger | Female PR | Black and Beautiful | DM is open
-											if you follow back
-										</p>
-									</div>
-									<div class="following-area d-flex justify-content-end">
-										<button type="button" class="following-button btn text-nowrap mb-3">
-											Following
-										</button>
-									</div>
-								</div>
-							</div>
 						</div>
 
 					</div>
+					{% endfor %}
 				</div>
-			</div>
+
 		</div>
-	</div>
+</div>
+</div>
+</div>
 
 {% endblock page_content %}
