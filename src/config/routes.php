@@ -224,9 +224,9 @@ Router::post('/appsetting', function ($request) {
 // profile page
 Router::get('/profile', function ($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
+    // if (!$user->is_logged_in()) {
+    //     return $user->redirect('/');
+    // }
     return $this->template->render('profile.html');
 });
 
