@@ -378,6 +378,15 @@ Router::get('/videos', function ($request) {
     //print_r($Videos);
     return $this->template->render('videos.html', ['videos' => $Videos, 'user' => $user]);
 });
+Router::get('/microblog', function ($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    //print_r($Videos);
+    return $this->template->render('microblog.html');
+});
+
 
 
 // Router::get('/about', function ($request) {
