@@ -20,7 +20,7 @@ Router::get('/', function ($request) {
         return $this->template->render('index.html', ['host' => $host], ['posts' => $feed], ['host' => $host, 'count' => $count,'fcount' => $fcount] );
     }
 });
-Router::get('blog-details/{id}', function ($request, $id) {
+Router::get('/blog-details/{id}', function ($request, $id) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
