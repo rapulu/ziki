@@ -40,8 +40,6 @@
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
     <style>
         .ziki-logo {
             position: relative;
@@ -62,6 +60,35 @@
     BUTTONS HERE>>> THEY ARE USED TO TOGGLE THE SIDE BAR ON OR OFF BOTH ON
     DESKTOP AND MOBILE SCREENS>>>>-->
     <div class="temp-nav">
+        <div class="container">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info">
+                            <i class="fas fa-align-left"></i>
+                            <span>Toggle Sidebar</span>
+                        </button>
+                    </a>
+                </li>
+
+                {% if user.role == 'admin' %}
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="dotted">...</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">SETTINGS</a>
+                            <a class="dropdown-item" href="#">LOGOUT</a>
+                        </div>
+                    </li>
+                {% elseif user.role == 'guest' %}
+                    <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
+                {% else %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+<!--     <div class="temp-nav">
         <div class="container"> 
             <div class="row">
                 <div class="col-6">
@@ -74,13 +101,13 @@
                     {% if user.role == 'admin' %}
                         <span class="nav-item dotted" data-toggle="modal" data-target="#modalLoginForm">...</span>
                     {% elseif user.role == 'guest' %}
-                        <a href="/logout"><span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span></a>
+                        <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
                     {% else %}
                     {% endif %}
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Temporary nav code ends here -->
 
 
