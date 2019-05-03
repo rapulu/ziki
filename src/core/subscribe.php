@@ -51,7 +51,7 @@ public function extract($url)
               $this->setSubDesc($description);
               $this->setSubImg($image);
 
-              $db = "storage/rss/subscriber.json";
+              $db = "storage/rss/subscription.json";
 
               $file = FileSystem::read($db);
               $data=json_decode($file, true);
@@ -74,13 +74,13 @@ public function extract($url)
               }
               if ($message == "true") {
 
-              //  $db_json = file_get_contents("storage/rss/subscriber.json");
+              //  $db_json = file_get_contents("storage/rss/subscription.json");
 
                 $time = date("Y-m-d h:i:sa");
                   $img = $this->img;
                   $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'img'=> $this->img, 'time' => $time);
 
-                  $json_db = "storage/rss/subscriber.json";
+                  $json_db = "storage/rss/subscription.json";
                   $file = file_get_contents($db);
                   $prev_sub = json_decode($file);
                   $new =array_merge($sub, $prev_sub);
@@ -92,7 +92,7 @@ public function extract($url)
               $img = $this->img;
               $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'img'=> $this->img, 'time' => $time);
 
-              $json_db = "storage/rss/subscriber.json";
+              $json_db = "storage/rss/subscription.json";
               $file = file_get_contents($db);
               $prev_sub = json_decode($file);
 
@@ -106,7 +106,7 @@ public function extract($url)
   }
   public function unfollow($del)
   {
-    $db = "storage/rss/subscriber.json";
+    $db = "storage/rss/subscription.json";
     $file = FileSystem::read($db);
     $data = json_decode($file, true);
     unset($file);
@@ -124,6 +124,16 @@ public function extract($url)
     unset($result);
   }
   public function count()
+  {
+    $db = "storage/rss/subscription.json";
+
+    $file = FileSystem::read($db);
+    $data=json_decode($file,true);
+    unset($file);
+   return count($data);
+
+  }
+  public function fcount()
   {
     $db = "storage/rss/subscriber.json";
 

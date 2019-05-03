@@ -41,9 +41,17 @@
       .then((res) => { return res.json() })
       .then((data) => {
         console.log(data)
+        if(data.error === false) {
           form_l.style.display = 'none';
           congrat.style.display = 'block';
           message.innerHTML = "Magic link sent successfully, check your email.";
+        }
+        else{
+          form_l.style.display = 'none';
+          congrat.style.display = 'block';
+          message.innerHTML = data.message;
+        }
+          
       })
       .catch((e) => {
         console.log(e)
@@ -123,7 +131,7 @@
     formData.set('tags', selectedTags);
 
     // send the form data
-    fetch(newPostIsBeingCreated ? '/publish' : '/draft', {
+    fetch(newPostIsBeingCreated ? '/publish' : '/saveDraft', {
       method: 'POST',
       body: formData
     }).then(res => res.text()).then((res) => {
