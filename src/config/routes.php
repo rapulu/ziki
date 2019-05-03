@@ -57,7 +57,8 @@ Router::get('/tags/{id}', function ($request, $id) {
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $result = $ziki->update($id);
-    return $this->template->render('timeline.html', ['posts' => $result]);
+    $twig_vars = ['posts' => $result, 'tag' => $id];
+    return $this->template->render('tags.html', $twig_vars);
 });
 Router::post('/publish', function ($request) {
     $user = new Ziki\Core\Auth();
@@ -82,7 +83,7 @@ Router::post('/publish', function ($request) {
     }
     //return json_encode([$images]);
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->create($title, $body, $tags, $images);
+    $result = $ziki->create($title, $body, $tags, $images, $extra);
     return $this->template->render('timeline.html', ['ziki' => $result]);
 });
 /* Working on draft by devmohy */
