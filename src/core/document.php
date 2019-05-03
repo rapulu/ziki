@@ -436,6 +436,17 @@ class Document
                             $slug = $parsedown->text($yaml['slug']);
                             $title = $parsedown->text($yaml['title']);
                             $bd = $parsedown->text($body);
+
+                            // get the first image in the post body
+                            // it will serve as the preview image
+                            preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                            $first_img = false;
+                            if (isset($matches[1])) {
+                              // there are images
+                              $first_img = $matches[1];
+                              // strip all images from the text
+                              $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
+                            }
                             $time = $parsedown->text($yaml['timestamp']);
                             $url = $parsedown->text($yaml['post_dir']);
                             $content['title'] = $title;
@@ -444,6 +455,7 @@ class Document
                             $content['timestamp'] = $time;
                             $content['tags'] = $tags;
                             $content['slug'] = $yaml['slug'];
+                            $content['preview_img'] = $first_img;
                             array_push($posts, $content);
                             }
                         }
