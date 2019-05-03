@@ -40,6 +40,8 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
     <style>
         .ziki-logo {
             position: relative;
@@ -72,7 +74,7 @@
                     {% if user.role == 'admin' %}
                         <span class="nav-item dotted" data-toggle="modal" data-target="#modalLoginForm">...</span>
                     {% elseif user.role == 'guest' %}
-                        <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
+                        <a href="/logout"><span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span></a>
                     {% else %}
                     {% endif %}
                 </div>
