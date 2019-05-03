@@ -322,6 +322,18 @@ Router::get('/auth/{provider}/{token}', function($request, $token){
         return $user->redirect('/timeline');
     }
 });
+
+Router::get('/setup/{provider}/{token}', function($request, $token){
+    $user = new Ziki\Core\Auth();
+    $check = $user->validateAuth($token);
+    if($_SESSION['login_user']['role'] == 'guest'){
+        return $user->redirect('/');
+    }
+    else{
+        return $user->redirect('/profile');
+    }
+});
+
 Router::get('/logout', function($request) {
     $user = new Ziki\Core\Auth();
     $user->log_out();
@@ -332,6 +344,18 @@ Router::get('/api/images', function() {
 });
 Router::post('/api/upload-image', function() {
     return (new Ziki\Core\UploadImage)->upload();
+});
+
+Router::post('/setup', function($request) {
+    $data = $request->getBody();
+    $user = new Ziki\Core\Auth();
+    $setup = $user->setup($data);
+    if($setup == true) {
+        return $user->redirect('/timeline');
+    }
+    else{
+        return $user->redirect('/install');
+    }
 });
 
 Router::get('/install', function($request) {
