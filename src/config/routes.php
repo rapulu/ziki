@@ -322,6 +322,18 @@ Router::get('/auth/{provider}/{token}', function($request, $token){
         return $user->redirect('/timeline');
     }
 });
+
+Router::get('/setup/{provider}/{token}', function($request, $token){
+    $user = new Ziki\Core\Auth();
+    $check = $user->validateAuth($token);
+    if($_SESSION['login_user']['role'] == 'guest'){
+        return $user->redirect('/');
+    }
+    else{
+        return $user->redirect('/profile');
+    }
+});
+
 Router::get('/logout', function($request) {
     $user = new Ziki\Core\Auth();
     $user->log_out();
