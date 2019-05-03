@@ -61,26 +61,25 @@
       to be replaced by the actual one.. BUT PLEASE DO WELL TO TRANSFER THE
     BUTTONS HERE>>> THEY ARE USED TO TOGGLE THE SIDE BAR ON OR OFF BOTH ON
     DESKTOP AND MOBILE SCREENS>>>>-->
-    <div class="container-fluid">
-      <div class="row temp-nav">
-        <div class="col-6">
-          <button type="button" id="sidebarCollapse" class="btn btn-info">
-            <i class="fas fa-align-left"></i>
-            <span>Toggle Sidebar</span>
-          </button>
+    <div class="temp-nav">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-6">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>
+                </div>
+                <div class="col-6 text-right ">
+                    {% if user.role == 'admin' %}
+                        <span class="nav-item dotted" data-toggle="modal" data-target="#modalLoginForm">...</span>
+                    {% elseif user.role == 'guest' %}
+                        <a href="/logout"><span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span></a>
+                    {% else %}
+                    {% endif %}
+                </div>
+            </div>
         </div>
-	{% if not user.email %}
-        <div class="col-6 text-right ">
-          <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
-        </div>
-	{% else %}
-	<div class="col-6 text-right ">
-	<a href="/logout">
-          <span class="nav-item" >LOGOUT</span>
-	</a>
-	{% endif %}
-        </div>
-      </div>
     </div>
     <!-- Temporary nav code ends here -->
 
