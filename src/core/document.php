@@ -533,7 +533,7 @@ public function update($id)
         return $content;
      }
 
-     // PORTFOLIO STARTS HERE
+     // Start-  Creating New Portfolio
      // David's code for creating md from Add portfolio button(AFKj)
      // Start- Creating new portfolio
 public function createNewPortfolio($title, $content,$image)
