@@ -83,7 +83,7 @@ Router::post('/publish', function ($request) {
     }
     //return json_encode([$images]);
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->create($title, $body, $tags, $images);
+    $result = $ziki->create($title, $body, $tags, $images, $extra);
     return $this->template->render('timeline.html', ['ziki' => $result]);
 });
 /* Working on draft by devmohy */
