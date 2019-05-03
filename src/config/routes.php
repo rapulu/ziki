@@ -118,7 +118,7 @@ Router::post('/saveDraft', function($request) {
 });
 /* Working on draft by devmohy */
 
-Router::get('/contact-us', function($request) {
+Router::get('/about', function($request) {
     include ZIKI_BASE_PATH."/src/core/SendMail.php";
     $checkifOwnersMailIsprovided = new  SendContactMail();
     $checkifOwnersMailIsprovided->getOwnerEmail();
@@ -393,9 +393,9 @@ Router::get('/videos', function ($request) {
 });
 
 
-Router::get('/about', function ($request) {
-    return $this->template->render('about-us.html');
-});
+// Router::get('/about', function ($request) {
+//     return $this->template->render('about-us.html');
+// });
 
 //download page
 Router::get('/download', function ($request) {
