@@ -83,6 +83,15 @@
                             <a class="dropdown-item" href="/logout">LOGOUT</a>
                         </div>
                     </li>
+                {% elseif user.role == 'guest' %}
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="dotted">...</span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/logout">LOGOUT</a>
+                        </div>
+                    </li>
                 {% else %}
                     <li class="nav-item ml-auto">
                         <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
