@@ -41,9 +41,17 @@
       .then((res) => { return res.json() })
       .then((data) => {
         console.log(data)
+        if(data.error === false) {
           form_l.style.display = 'none';
           congrat.style.display = 'block';
           message.innerHTML = "Magic link sent successfully, check your email.";
+        }
+        else{
+          form_l.style.display = 'none';
+          congrat.style.display = 'block';
+          message.innerHTML = data.message;
+        }
+          
       })
       .catch((e) => {
         console.log(e)
