@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% set title = "Portfolio"%}
 {% extends 'layout.html' %} {% block page_content%}
 
@@ -535,203 +536,43 @@
 <!-- content goes here -->
 
 <div class="container-fluid">
+=======
+{% set title = "Portfolio"%} {% extends 'layout.html' %} {% block page_content %}
+
+<div class="col-12 col-sm-9 two">
+>>>>>>> 7287fe8c1b94c7a635a796477c3f8bbe4a018c93
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <!-- for the sidebar -->
-            <div class="container-fluid py-3 sidebar-container position-fixed">
-  <div class="row">
-    <div class="col-6 text-left">
-      <button
-        type="button"
-        id="sidebarCollapse"
-        class="btn btn-info side-trigger"
-      >
-        <i class="fas fa-align-left"></i> <span></span>
-      </button>
-      <img
-        src="resources/themes/ghost/assets/img/faviconimage.png"
-        alt="logo"
-        class="sidebar-logo p-3"
-      />
-    </div>
-    <div class="col-6 text-right">
-      <button type="button" class="sidebar-close">&times;</button>
-    </div>
-  </div>
-
-  <!-- Owner profile details -->
-  <div id="sidebar" class="">
-    <div class="owner-info">
-      <div class="row">
-        <div class="col-12 side-content pt-5">
-          <div>
-            <img class="img-fluid profile-pic" src="../assets/img/profiledp.png" />
-          </div>
-          <h4 class="owner-name">DESTINY IHEJIRIKA</h4>
-          <span class="text-center bio-text p-3 pt-1 font-italic w-75 mx-auto"
-            >Front end developer, ui/ux developer, friend and traveller.</span
-          >
-          <!-- <h6 class="bio">Owner's Bio</h6>
-          {% if not user.email %}
-          <a href="javascript:void(0)">
-            <button
-              class="btn btn-default login-button"
-              type="button"
-              data-toggle="modal"
-              data-target="#modalLoginForm"
-            >
-              Login
-            </button>
-          </a>
-          {% else %}
-          <a href="/logout">
-            <button class="btn btn-default login-button" type="button">
-              Logout
-            </button>
-          </a>
-          {% endif %} -->
+        <div class="col-12 pb-4 pt-4">
+            <a class="btn" style="background-color:#871E99; color:#fff" href="#" role="button">+ ADD PORTFOLIO</a>
         </div>
-      </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-5 pb-4 pt-4">
+                    <img src="resources/themes/ghost/assets/img/portfolio-photo1.png" class="float-left pr-4 pb-4" alt="...">
+                    <h5>Nike App</h5>
+                </div>
 
-      <hr />
-    </div>
-
-    <!-- side bar menu links -->
-    <div class="row">
-      <div class="col-12 col-sm-8 mx-md-auto">
-        <ul class="pl-0 mt-0">
-          {% if user.role == 'admin' %}
-          <li><a href="/timeline">TIMELINE</a></li>
-          <li><a href="/published-posts">MY POSTS</a></li>
-          <li><a href="/videos">VIDEOS</a></li>
-          <li><a href="/portfolio">PORTFOLIO</a></li>
-          <li><a href="/contact-us">CONTACT</a></li>
-          {% elseif user.role == 'guest' %}
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About Ziki</a></li>
-          <li><a href="/contact-us">Contact Me</a></li>
-          {% else %}
-          <li><a href="/">Home</a></li>
-          <li><a href="/published-posts">Published Posts</a></li>
-          <li><a href="/profile">Profile</a></li>
-          <li><a href="/about">About Ziki</a></li>
-          <li><a href="/contact-us">Contact Me</a></li>
-          {% endif %}
-        </ul>
-      </div>
-      <div class="pl-4 col-12">
-        <button
-          type="button"
-          class="mobile-login px-5 px-sm-3 px-md-5 py-2 mt-2 mt-sm-0 mt-md-2 btn btn-primary"
-        >
-          Login
-        </button>
-      </div>
-    </div>
-
-    <!-- bubble -->
-    <div class="row align-items-end sidebar-bubble">
-      <div class="col-12">
-        <img src="/resources/themes/ghost/assets/img/bubbles.png" alt="" />
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Login Modal -->
-<div
-  class="modal fade"
-  id="modalLoginForm"
-  style="background: rgba(255, 255, 255, 0.92);"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-lg modal-dialog-container" role="document">
-    <div class="modal-content">
-      <div class="row login-modal-border-radius">
-        <div class="col-md-6 login-modal-popup-left-column">
-          <div class="row">
-            <div class="col-6 logo">
-              <img src="/resources/themes/ghost/assets/img/faviconimage.png" />
+                <div class="col-5 pb-4 pt-4">
+                    <img src="resources/themes/ghost/assets/img/portfolio-photo2.png" class="float-left pb-4" alt="...">
+                    <h5>HNG Folio</h5>
+                </div>
             </div>
-            <div class="col-6">
-              <button
-                class="modal-close-button"
-                style="background: transparent; color:#fff; border: none; font-size: 3rem; position: relative;top: -30px;left: 60px;"
-                data-dismiss="modal"
-              >
-                &times;
-              </button>
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-5 pb-4 pt-4">
+                    <img src="resources/themes/ghost/assets/img/portfolio-photo1.png" class="float-left pr-4 pb-4" alt="...">
+                    <h5>APOE 4</h5>
+                </div>
+
+                <div class="col-5 pb-4 pt-4">
+                    <img src="resources/themes/ghost/assets/img/portfolio-photo2.png" class="float-left pb-4" alt="...">
+                    <h5>Ziki</h5>
+                </div>
             </div>
-            <div class="col-md-12 greetings">
-              <h3 class="text-center ziki-Welcome-msg" style="color:#fff;">
-                Welcome to Ziki
-              </h3>
-              <p class="text-center ziki-about-msg" style="color:#fff;">
-                Simplify your blogging experience.
-              </p>
-            </div>
-          </div>
         </div>
 
-        <!-- for the login auth -->
-        <div class="login-modal-popup-right-column col-md-6 text-center login-form">
-          <p class="mt-5 mb-5">LOGIN TO CONTINUE</p>
-          <div
-            class="signin-btn d-flex justify-content-between email-login-container"
-          >
-            <input class="host" type="hidden" value="{{host}}">
-            <input
-              type="email"
-              placeholder="Enter your Email Address"
-              class="width-100pc ml-1 no-border text-14px"
-              required
-            />
-              <svg
-                width="20"
-                height="16"
-                viewBox="0 0 30 26"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 25.7143L30 12.8571L0 0V10L21.4286 12.8571L0 15.7143V25.7143Z"
-                  fill="#682681"
-                />
-              </svg>
-          </div>
-          <p class="optional-login-text mt-5 mb-5">
-            <span>or sign in with</span>
-          </p>
-          <div class="d-flex justify-content-around mb-5 mb">
-            <a href="https://auth.techteel.com/login/facebook?type=login&url={{host}}" class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
-              <img src="/resources/themes/ghost/assets/img/facebook.png" alt="" class="s-avatar">
-              <p class="m-0">Facebook</p>
-            </a>
-            <a href="https://auth.techteel.com/login/google?type=login&url={{host}}" class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
-              <img src="/resources/themes/ghost/assets/img/google.png" alt="" class="s-avatar">
-              <p class="m-0">Google</p>
-            </a>
-          </div>
-        </div>
-          <div class="login-modal-popup-right-column col-md-6 text-center login-mail-sent">
-            <p class=" mt-5 fa-2x">
-              Check your Email
-            </p>
-            <img class="magic-link-img" src="resources/themes/ghost/assets/img/magic-link-img.png" alt="magic link image">
-            <p class="magic-msg">
-              
-            </p>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-        </div>
-
+<<<<<<< HEAD
         <!-- for any other part of the page -->
         <div class="col-12 col-sm-9 two">
 
@@ -829,16 +670,30 @@
                     </div>
                     
                 
+=======
+        <div class="col-12">
+            <div class="row">
+                <div class="col-5 pb-4 pt-4">
+                    <img src="resources/themes/ghost/assets/img/portfolio-photo1.png" class="float-left pr-4 pb-4" alt="...">
+                    <h5>Google X</h5>
+                </div>
+
+                <div class="col-5 pb-4 pt-4">
+                    <img src="resources/themes/ghost/assets/img/portfolio-photo2.png" class="float-left pb-4" alt="...">
+                    <h5>Lucid</h5>
+                </div>
+>>>>>>> 7287fe8c1b94c7a635a796477c3f8bbe4a018c93
             </div>
-
-        
         </div>
-    </div>
-</div>
 
-<script src="vendors/jquery.min.js"></script>
-<script src="vendors/bootstrap-4.0.0-beta.3-dist/js/bootstrap.min.js"></script>
-</body>
 
+<<<<<<< HEAD
 {% endblock page_content %}
+=======
+    </div>
 
+>>>>>>> 7287fe8c1b94c7a635a796477c3f8bbe4a018c93
+
+</div>
+</div></div></div>
+{% endblock page_content %}

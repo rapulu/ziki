@@ -1,224 +1,223 @@
 {% set title = "Drafts"%}
 {% extends 'layout.html' %} {% block page_content %}
 
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+
     <style>
-        
-  /*****************************DRAFTS PAGE STYLING*****************************/
-  .drafts .draft-date {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
-    color: #280a66;
-  }
+        body {
+            font-family: 'Lato', sans-serif;
+        }
 
-  .drafts .draft-title a {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 130%;
-    color: #000000;
-    transition: all ease-in 0.3s;
-  }
+        .drafts .draft-date {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 17px;
+            color: #280A66;
+        }
 
-  .drafts .draft-title a:hover {
-    cursor: pointer;
-    color: #280a66;
-    text-decoration: none;
-    transition: all ease-in 0.3s;
-  }
+        .drafts .draft-title a {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 130%;
+            color: #000000;
+            transition: all ease-in 0.3s;
+        }
 
-  .drafts .draft-content {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 140%;
-    color: #7a7a7a;
-  }
+        .drafts .draft-title a:hover {
+            cursor: pointer;
+            color: #280A66;
+            text-decoration: none;
+            transition: all ease-in 0.3s;
+        }
 
-  .no-drafts-alert p {
-    font-style: italic;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 130%;
-    color: #979797;
-  }
+        .drafts .draft-content {
 
-  .draft-img {
-    height:189px;
-    width: 270px;
-  }
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 140%;
+            color: #7A7A7A;
+        }
 
-  /**DROPDOWN STYLING**/
-  .drafts .dropdown-menu {
-    position: relative;
-    margin-top: 0.9em;
-    margin-left: -3.9em;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
-    border-radius: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
+        .no-drafts-alert p {
 
-  .drafts .dropdown-menu button {
-    text-align: center;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 17px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all ease-in 0.3s;
-  }
+            font-style: italic;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 130%;
+            color: #979797;
+        }
 
-  .drafts .dropdown-menu button:hover {
-    color: #280a66;
-    transition: all ease-in 0.3s;
-  }
+        .draft-img {
+            height: 100%;
+            width: 100%;
+        }
 
-  .drafts .icon {
-    font-size: 20px;
-    margin-left: -30px;
-  }
+        /**DROPDOWN STYLING**/
+        .drafts .dropdown-menu {
+            position: relative;
+            margin-top: 0.9em;
+            margin-left: -3.9em;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.24);
+            border-radius: 5px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
 
-  .drafts .dropdown-btn-link {
-    font-size: 15px;
-    color: #280a66;
-    -webkit-transition: all ease-in 0.3s;
-    transition: all ease-in 0.3s;
-  }
+        .drafts .dropdown-menu button {
+            text-align: center;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 12px;
+            line-height: 17px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all ease-in 0.3s;
+        }
 
-  .drafts .dropdown-btn-link:hover {
-    text-decoration: none;
-    -webkit-transition: all ease-in 0.3s;
-    transition: all ease-in 0.3s;
-  }
+        .drafts .dropdown-menu button:hover {
+            color: #280A66;
+            transition: all ease-in 0.3s;
+        }
 
-  .drafts .edit-post {
-    color: black;
-  }
+        .drafts .icon {
+            font-size: 20px;
+            margin-left: -30px;
+        }
 
-  .drafts .edit-post:active:active {
-    color: #fff;
-  }
 
-  .drafts .edit-post:hover {
-    color: black;
-    text-decoration: none;
-  }
+        .drafts .dropdown-btn-link {
+            font-size: 15px;
+            color: #280a66;
+            -webkit-transition: all ease-in .3s;
+            transition: all ease-in .3s;
+        }
 
-  /**DROPDOWN STYLING**/
+        .drafts .dropdown-btn-link:hover {
+            text-decoration: none;
+            -webkit-transition: all ease-in .3s;
+            transition: all ease-in .3s;
+        }
 
-  /****MODAL STYLING****/
-  .no-border {
-    border: none;
-  }
+        .drafts .edit-post {
+            color: black;
+        }
 
-  .modal-content {
-    border-radius: 0.7rem;
-  }
+        .drafts .edit-post:active:active {
+            color: #fff;
+        }
 
-  .modal-header .close {
-    opacity: 1;
-  }
+        .drafts .edit-post:hover {
+            color: black;
+            text-decoration: none;
+        }
 
-  .cancel-modal-text {
-    font-size: 1.1rem;
-    margin-bottom: 0;
-    margin-top: 1.2rem;
-  }
+        /**DROPDOWN STYLING**/
 
-  .btn.btn-primary.canel-post {
-    background-color: transparent !important;
-    border: 1px solid red;
-    color: red;
-    padding: 6px 20px;
-  }
 
-  .btn.btn-primary.publish-post {
-    background-color: #280a66 !important;
-    border: 1px solid #280a66;
-    padding: 6px 20px;
-  }
 
-  .btn.btn-primary.canel-post,
-  .btn.btn-primary.publish-post {
-    margin-left: 15px;
-  }
+        /****MODAL STYLING****/
+        .no-border {
+            border: none;
+        }
 
-  /****MODAL STYLING****/
+        .modal-content {
+            border-radius: .7rem;
+        }
 
-  /****MEDIA QUERIES****/
-  @media screen and (max-width: 700px) {
-    .drafts .post-item:after {
-      content: "";
-      display: block;
-      position: relative;
-      width: 90%;
-      border-bottom: 1px solid #ebebeb;
-    }
+        .modal-header .close {
+            opacity: 1;
+        }
 
-    .drafts .draft-date {
-      margin-top: 1em;
-    }
+        .cancel-modal-text {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+            margin-top: 1.2rem;
+        }
 
-    .drafts .icon {
-      position: relative;
-      left: 5em;
-      margin-top: 1em;
-      margin-left: 2em;
-      color: #280a66;
-      font-size: 20px;
-      text-align: center;
-    }
+        .btn.btn-primary.canel-post {
+            background-color: transparent !important;
+            border: 1px solid red;
+            color: red;
+            padding: 6px 20px;
+        }
 
-    .drafts .dropdown-menu {
-      margin-left: -3.9em;
-      margin-bottom: 20px;
-    }
+        .btn.btn-primary.publish-post {
+            background-color: #280a66 !important;
+            border: 1px solid #280a66;
+            padding: 6px 20px;
+        }
 
-    .drafts .draft-bottom:after {
-      content: "";
-      position: relative;
-      display: block;
-      border-bottom: 1px solid rgb(209, 209, 209);
-      width: 90%;
-      margin: 0 auto;
-      padding-top: 1em;
-    }
+        .btn.btn-primary.canel-post,
+        .btn.btn-primary.publish-post {
+            margin-left: 15px;
+        }
 
-    .draft-img {
-      height:289.8px;
-      width: 414px;
-    }
-  }
+        /****MODAL STYLING****/
 
-  @media screen and (max-width: 900px) and (min-width: 700px) {
-    .drafts .dropdown-menu {
-      position: relative;
-      margin-top: 2em;
-      margin-left: -4em;
-    }
 
-    
-    .draft-img {
-      height:168px;
-      width: 240px;
-    }
-  }
-  /****MEDIA QUERIES****/
-  /*****************************DRAFTS PAGE STYLING*****************************/
 
+        /****MEDIA QUERIES****/
+        @media screen and (max-width:700px) {
+            .drafts .post-item:after {
+                content: "";
+                display: block;
+                position: relative;
+                width: 90%;
+                border-bottom: 1px solid #ebebeb;
+            }
+
+            .drafts .draft-date {
+                margin-top: 1em;
+            }
+
+            .drafts .icon {
+                position: relative;
+                left: 5em;
+                margin-top: 1em;
+                margin-left: 2em;
+                color: #280a66;
+                font-size: 20px;
+                text-align: center;
+            }
+
+            .drafts .dropdown-menu {
+                margin-left: -3.9em;
+                margin-bottom: 20px;
+            }
+
+            .drafts .draft-bottom:after {
+                content: "";
+                position: relative;
+                display: block;
+                border-bottom: 1px solid rgb(209, 209, 209);
+                width: 90%;
+                margin: 0 auto;
+                padding-top: 1em;
+            }
+        }
+
+        @media screen and (max-width:900px) and (min-width:700px) {
+            .drafts .dropdown-menu {
+                position: relative;
+                margin-top: 2em;
+                margin-left: -8em;
+            }
+
+        }
+
+        /****MEDIA QUERIES****/
     </style>
+</head>
 
 <body>
-        <div id="content">
     <div class="container-fluid drafts">
-        <div id="content">
         <div class="row">
-
-            <div class="col-12">
-                
+            <div class="col-12 col-sm-1"></div>
+            <div class="col-12 col-sm-11">
                 <div class="row">
                     <div class="col-12">
                         <div class="row pt-4 pb-4  draft-bottom  draft-content">
@@ -256,36 +255,36 @@
 
 
                         <div class="row pt-4 pb-4  draft-bottom  draft-content">
-                                <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
-                                        src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
-                                        class="img-fluid draft-img"></div>
-                                <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
-                                    <div class="second">
-                                        <p class="draft-date">2nd April, 2019</p>
-                                        <h6 class="draft-title">
-                                            <a href=""> I was always on the run, travelling </a>
-                                        </h6>
-                                        <p class="draft-content">
-                                            Travelling, it was just a dream. The light ones suffering...
-                                        </p>
-                                    </div>
+                            <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
+                                    src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
+                                    class="img-fluid draft-img"></div>
+                            <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
+                                <div class="second">
+                                    <p class="draft-date">2nd April, 2019</p>
+                                    <h6 class="draft-title">
+                                      <a href="">  I know a place where it's always so perfect and blue...</a>
+                                    </h6>
+                                    <p class="draft-content">
+                                        And the boy says babe believe me it's all for you, the fortune said. Flowers bloom with no regret
+                                    </p>
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                    <div class="dropdown col-2 mx-auto" style="cursor:pointer">
-                                        <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
-                                            aria-expanded="false" data-toggle="dropdown">
-    
-                                        </span>
-                                        <div class="dropdown-menu">
-                                            <button class="dropdown-item"> <a href="\editor" class="edit-post">Edit
-                                                    post</a></button>
-                                            <button class="dropdown-item" data-toggle="modal"
-                                                data-target="#cancelModal">Delete
-                                                post</button>
-                                        </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                <div class="dropdown col-2 mx-auto" style="cursor:pointer">
+                                    <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
+                                        aria-expanded="false" data-toggle="dropdown">
+
+                                    </span>
+                                    <div class="dropdown-menu">
+                                        <button class="dropdown-item"> <a href="\editor" class="edit-post">Edit
+                                                post</a></button>
+                                        <button class="dropdown-item" data-toggle="modal"
+                                            data-target="#cancelModal">Delete
+                                            post</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
 
                         <div class="row pt-4 pb-4  draft-bottom  draft-content">
@@ -352,5 +351,4 @@
         <!-- modal ends here -->
     </div>
 </div></div></div>
-
-{% endblock page_content %}
+    {% endblock page_content %}

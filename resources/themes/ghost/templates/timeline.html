@@ -1,351 +1,120 @@
 {% set title = "Timeline"%} {% extends 'layout.html' %} {% block page_content %}
-<style>
-  :root {
-    --post-heading-text-color: #1b1b1b;
-    --post-body-text-color: #717171;
-    --ziki-purple: #280966;
-  }
-
-  .nav-tabs .nav-link.active {
-    border-top: 0px solid #280966 !important;
-    border-right: 0px solid #280966 !important;
-    border-left: 0px solid #280966 !important;
-    border-bottom: 4px solid #280966 !important;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-  }
-  .nav-tabs .nav-link {
-    color: #280966;
-  }
-  .category-switch {
-    padding-bottom: 40px;
-  }
-  .timeline-wrapper {
-    padding-top: 70px;
-    padding-bottom: 70px;
-  }
-  .post-area {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  .post-content {
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  .author-image .side-header {
-    display: flex;
-    justify-content: center;
-  }
-  .author-image {
-    border-radius: 50%;
-  }
-  .post-author {
-    display: none;
-  }
-  .post-title {
-    font-size: 1.2em;
-    font-weight: bold;
-  }
-
-  .post-title a,
-  .post-title a:focus {
-    color: var(--post-heading-text-color);
-    transition: all ease-in 0.3s;
-  }
-
-  .post-title a:hover {
-    color: var(--ziki-purple);
-    text-decoration: none;
-    transition: all ease-in 0.3s;
-  }
-
-  .post-detail {
-    color: var(--post-body-text-color);
-  }
-
-  .post-action-bar {
-    color: var(--ziki-purple);
-    font-size: 0.8em;
-  }
-
-  .editor-row {
-    margin-bottom: 50px;
-  }
-  .ql-toolbar.ql-snow {
-    box-sizing: border-box;
-    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    padding: 8px;
-    background-color: #f5f5f5;
-  }
-
-  .ql-editor.ql-blank {
-    box-sizing: border-box;
-    height: 100%;
-    background-color: #f5f5f5;
-    border: 0 !important;
-  }
-
-  #editor {
-    height: 20vh !important;
-  }
-
-  .btn.btn-primary.canel-post {
-    background-color: transparent !important;
-    border: 1px solid red;
-    color: red;
-    padding: 6px 20px;
-  }
-  .btn.btn-primary.publish-post {
-    background-color: #280a66 !important;
-    border: 1px solid #280a66;
-    padding: 6px 20px;
-  }
-  .btn.btn-primary.save-draft {
-    background-color: #fff !important;
-    color: #280a66 !important;
-    border: 1px solid #280a66;
-    padding: 6px 20px;
-  }
-  .btn.btn-primary.canel-post,
-  .btn.btn-primary.save-draft,
-  .btn.btn-primary.publish-post {
-    margin-left: 15px;
-  }
-
-  .main-content {
-    padding-top: 30px;
-    padding-bottom: 30px;
-  }
-
-  .btn-info {
-    background-color: #280a66 !important;
-    border: 0 !important;
-  }
-
-  /*Main content Css ends here*/
-
-  /* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
-  #content {
-    width: 100%;
-    min-height: 100vh;
-    transition: all 0.3s;
-  }
-
-  .post-comment a {
-    color: var(--ziki-purple);
-    transition: all ease-in 0.3s;
-  }
-
-  .post-comment a:hover {
-    text-decoration: none;
-    transition: all ease-in 0.3s;
-  }
-
-  /* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
-  @media screen and (min-width: 768px) {
-    .post-author {
-      display: block;
-      color: var(--ziki-purple);
-      font-size: 0.8em;
-    }
-
-    .post-title {
-      font-size: 1.5em;
-      font-weight: initial;
-    }
-
-    .post-date {
-      color: var(--post-body-text-color);
-    }
-
-    .post-comment {
-      font-size: 1.2em;
-    }
-  }
-
-  @media screen and (min-width: 992px) {
-    .post-title {
-      font-size: 2em;
-    }
-  }
-</style>
-<div class="container-fluid py-3">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12"></div>
-
-    <!-- Page Content -->
-    <div id="content" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-      <!-- Used as our Nav... -->
-      <div class="container-fluid">
-        <!--
-          Nav Bar intentionally spelt fully to prevent conflict please don't touch
-        -->
-        <div class="row navigation-bar">
-          <!--
-            <div class="col-12 text-right">
-
-                   <a href="/"
-                       ><img src="resources/themes/ghost/assets/img/logo.png"
-                /></a>
-            </div>
-          -->
-        </div>
-      </div>
-
-      <!-- Main content Area -->
-      <div class="main-content">
-        <!-- Page body goes here -->
+      <!-- Page Content section -->
+      <div id="content">
+        <!-- editor -->
         <div class="row">
-          <!-- main content.. -->
           <div class="col-12">
-            <!-- SleekX's code goes here.. -->
-            <div class="row">
-              <div class="col-12">
-                <!-- category select area -->
-                <ul class="nav nav-tabs category-switch">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">Tech</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Machine Learning</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Comedy</a>
-                  </li>
-                </ul>
-                <!-- category select area ends here -->
-
-                <!-- Editor starts here -->
-                <div class="row editor-row">
-                  <div class="col-12">
-                    <!-- The editor code goes here -->
-                    <div id="form-container">
-                      <form
-                        method="POST"
-                        class="timeline-editor"
-                        id="editor-form"
-                      >
-                        <!-- Quill editor code goes here -->
-                        <div class="row">
-                          <div class="col-12">
-                            <div class="row form-group">
-                              <div class="col-12 py-3">
-                                <label for="new-post-title" class="sr-only"
-                                  >Title</label
-                                >
-                                <input
-                                  type="text"
-                                  name="title"
-                                  id="new-post-title"
-                                  class="form-control"
-                                  placeholder="Title"
-                                  required
-                                />
-                              </div>
-                              <div class="col-12 py-3">
-                                <label for="new-post-tags">Post tags</label>
-                                <select
-                                  multiple
-                                  class="form-control"
-                                  id="new-post-tags"
-                                >
-                                  <option value="#politics">politics</option>
-                                  <option value="#sports">sports</option>
-                                  <option value="#food-health"
-                                    >food/health</option
-                                  >
-                                  <option value="#travel">travel</option>
-                                  <option value="#technology"
-                                    >technology</option
-                                  >
-                                  <option value="#music">music</option>
-                                  <option value="#news-lifestyle"
-                                    >news/lifestyle</option
-                                  >
-                                  <option value="#fitness">fitness</option>
-                                  <option value="#movies">movies</option>
-                                  <option value="#culture">culture</option>
-                                </select>
-                              </div>
-                              <div class="col-12"><div id="editor"></div></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-12 d-flex flex-row-reverse">
-                            <input
-                              type="submit"
-                              class="btn btn-primary publish-post"
-                              value="Publish"
-                            />
-                            <input
-                              type="button"
-                              class="btn btn-primary save-draft"
-                              value="Save Draft"
-                            />
-                            <input
-                              type="reset"
-                              class="btn btn-primary canel-post"
-                              value="Cancel"
-                            />
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-                <!-- Editor ends here -->
-
-                <!-- Posts from here.. -->
-                <article class="post-area">
-                  {% for key, feed in posts %}
-                  <div
-                    class="row d-flex justify-content-center justify-content-lg-start post-content"
-                  >
-                    <div class="col-11 col-xl-10">
-                      <div class="row">
-                        <div class="col-2 col-sm-1 px-md-1">
-                          <img
-                            class="img-fluid author-image"
-                            src="{{feed.img | raw}}"
-                          />
-                        </div>
-                        <div class="col-10 col-sm-11">
-                          <h5 class="post-author">{{feed.site | raw}}</h5>
-                          <h2 class="post-title">
-                            <a href="{{feed.link}}"
-                              >{{feed.title | raw}}</a
-                            >
-                          </h2>
-                          <p class="post-detail">{{feed.desc | raw}}</p>
-                          <div class="row post-action-bar">
-                            <div class="col-6 col-sm-6 post-date text-left">
-                              <p>{{feed.date | raw}}</p>
-                            </div>
-                            <div class="col-6 col-sm-6 post-comment text-right">
-                              <p>Comment</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
-                  {% endfor %}
-                </article>
-                <!-- Post section ends here. -->
-              </div>
-            </div>
+            <!-- <div id="editor"></div> -->
           </div>
         </div>
+
+        <!-- Feed listing -->
+        <div class="row">
+          <div class="col-12">
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-2 text-right">
+                <img src="/resources/themes/ghost/assets/img/active.jpg" alt="ziki logo" class=" blogger-image" />
+              </div>
+              <div class="col-9 col-sm-9">
+                <div class="row second">
+                  <div class="col-12">
+                    <h6 class="purple"><b>2nd April 2019</b></h6>
+                    <h3><b>What i think of Donald Golver's Video</b></h3>
+                    <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Author's Name</div>
+                  <div class="col-6 text-right">Comment</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-2 text-right">
+                <img src="/resources/themes/ghost/assets/img/active.jpg" alt="ziki logo" class="img-fluid rounded-circle blogger-image" />
+              </div>
+              <div class="col-9 col-sm-9">
+                <div class="row second">
+                  <div class="col-12">
+                    <h6 class="purple"><b>2nd April 2019</b></h6>
+                    <h3><b>What i think of Donald Golver's Video</b></h3>
+                    <div class="row">
+                      <div class="col-12">
+                        <img src="/resources/themes/ghost/assets/img/travis.jpg" alt="ziki logo" class="img-fluid" />
+                      </div>
+                    </div>
+                    <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Author's Name</div>
+                  <div class="col-6 text-right">Comment</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-2 text-right">
+                <img src="/resources/themes/ghost/assets/img/active.jpg" alt="ziki logo" class="img-fluid rounded-circle blogger-image" />
+              </div>
+              <div class="col-9 col-sm-9">
+                <div class="row second">
+                  <div class="col-12">
+                    <h6 class="purple"><b>2nd April 2019</b></h6>
+                    <h3><b>What i think of Donald Golver's Video</b></h3>
+                    <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Author's Name</div>
+                  <div class="col-6 text-right">Comment</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-2 text-right">
+                <img src="/resources/themes/ghost/assets/img/active.jpg" alt="ziki logo" class="img-fluid rounded-circle blogger-image" />
+              </div>
+              <div class="col-9 col-sm-9">
+                <div class="row second">
+                  <div class="col-12">
+                    <h6 class="purple"><b>2nd April 2019</b></h6>
+                    <h3><b>What i think of Donald Golver's Video</b></h3>
+                    <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Author's Name</div>
+                  <div class="col-6 text-right">Comment</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row pt-4 pb-4">
+              <div class="col-2 col-sm-2 text-right">
+                <img src="/resources/themes/ghost/assets/img/active.jpg" alt="ziki logo" class="img-fluid rounded-circle blogger-image" />
+              </div>
+              <div class="col-9 col-sm-9">
+                <div class="row second">
+                  <div class="col-12">
+                    <h6 class="purple"><b>2nd April 2019</b></h6>
+                    <h3><b>What i think of Donald Golver's Video</b></h3>
+                    <p>Lorem Ipsum is a dummy text used for things like this, i am actually typing this because i feel too lazy to get the dummy text from google because i feel too lazy to get the dummy text from google.. </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">Author's Name</div>
+                  <div class="col-6 text-right">Comment</div>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+        </div>
+        <!-- Feed section ends here -->
       </div>
     </div>
   </div>

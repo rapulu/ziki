@@ -21,7 +21,7 @@
         box-sizing: border-box;
         border-radius: 0px;
     }
-    
+
     .contact-us-form .form-label {
         font-family: Lato;
         font-style: normal;
@@ -31,7 +31,7 @@
         letter-spacing: -0.02em;
         color: #280A66;
     }
-    
+
     .contact-us-form button {
         font-family: Lato;
         font-style: normal;
@@ -45,7 +45,7 @@
         border-radius: 2px;
         border: 2px solid #280A66;
     }
-    
+
     .contact-us-form button:hover {
         font-family: Lato;
         font-style: normal;
@@ -61,7 +61,7 @@
         border: 2px solid #280A66;
     }
     /*media queries*/
-    
+
     @media screen and (max-width: 600px) {
         .contact-us-form .form-control {
             min-height: 40px;
@@ -121,20 +121,13 @@
     }
     /*media queries*/
 </style>
-<div class="container-fluid main-body">
+<div class="container px-5">
     <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 sidebar">
-            <!--
-                SIDE-BAR-ENTERS-HERE
-            -->
-
-        </div>
-
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 body-of-blog mt-5 pt-3">
            <div class="mb-4">
                 <h3 class="about__heading">About</h3>
             </div>
-            <div class="w-75">
+            <div class="w-100">
              <p class="text-justify about-text">I'm Matthias Endler, a Backend Engineer living in Düsseldorf, Germany. My interests are scalability, performance and distributed systems.<br><br>I have an M.Sc. in Computer Science from Universität Bayreuth. At work, I improve the Backend infrastructure of trivago by making it faster and more reliable.<br><br>Nowadays, I mostly use Golang, Python, and Rust to get stuff done. I run Hello, Rust!, a YouTube channel about the Rust programming language. <br><br>I'm an active member of the following usergroups: <br><ul><li>Rust Cologne</li><li>Web Engineering Düsseldorf</li><li>Python Meeting Düsseldorf (PyDDF)</li></ul><br>Here's a list of previous Talks I gave there and elsewhere.<br><br>At home I feel like riding my motorcycle, playing guitar in Rock bands and drinking hot chocolate. (In that order.) <br><br>You can find me on Twitter, LinkedIn, Stack Overflow, and Github or send me a mail</p>
             </div>
             <div class="mt-5">
@@ -207,4 +200,5 @@
         document.getElementById('msgContainer').style.display='none';
     });
 </script>
+</div></div></div>
 {% endblock page_content %}
