@@ -445,7 +445,7 @@ Router::get('/install', function ($request) {
     $user = new Ziki\Core\Auth();
     if ($user::isInstalled() == false) {
         return $user->redirect('/');
-    } else{
+    } else {
         $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
         $host = $user->hash($url);
         return $this->installer->render('install.html', ['host' => $host]);
@@ -453,7 +453,7 @@ Router::get('/install', function ($request) {
 });
 
 /* Add Video*/
-Router::post('/addvideo', function ($request) {
+Router::post('/videos', function ($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
