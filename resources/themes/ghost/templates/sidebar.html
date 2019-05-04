@@ -712,6 +712,7 @@
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>
+
               {% else %}
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
@@ -739,6 +740,11 @@
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>
+              <ul class="list-unstyled CTAs d-flex justify-content-center">
+                <li>
+                  <a href="#"><button class="btn btn-light">Follow Me</button></a>
+                </li>
+              </ul>
               {% endif %}
             </ul>
             {% if user.role == 'guest' | default(null) %}
