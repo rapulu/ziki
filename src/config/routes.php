@@ -15,6 +15,8 @@ Router::get('/', function ($request) {
         // Render our view
         //print_r($feed);
         $count = new Ziki\Core\Subscribe();
+        $setting = new Ziki\Core\Setting();
+        $settings = $setting->getSetting();
         $fcount = $count->fcount();
         $count = $count->count();
         return $this->template->render('index.html', ['host' => $host], ['posts' => $feed], ['host' => $host, 'count' => $count, 'fcount' => $fcount]);
@@ -175,7 +177,7 @@ Router::get('/settings', function ($request) {
     }
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
-    return $this->template->render('settings.html', $settings);
+    return $this->template->render('settings.html');
 });
 
 // ahmzyjazzy add this (^_^) : setting api
@@ -475,11 +477,14 @@ Router::post('/setup', function ($request) {
 });
 
 Router::get('/install', function ($request) {
-
     $user = new Ziki\Core\Auth();
-    $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
-    $host = $user->hash($url);
-    return $this->installer->render('install.html', ['host' => $host]);
+    if ($user::isInstalled() == false) {
+        return $user->redirect('/');
+    } else {
+        $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+        $host = $user->hash($url);
+        return $this->installer->render('install.html', ['host' => $host]);
+    }
 });
 
 /* Add Video*/
@@ -488,6 +493,8 @@ Router::post('/addvideo', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
+    //echo "I reach here";
+    //exit();
     $directory = "./storage/videos/";
     $data = $request->getBody();
     $video_url = $data['domain'];
@@ -496,6 +503,7 @@ Router::post('/addvideo', function ($request) {
     $ziki = new Ziki\Core\Document($directory);
     $ziki->addVideo($video_url, $video_title, $video_about);
     $Videos = $ziki->getVideo();
+    return $user->redirect('/videos');
     //print_r($Videos);
-    return $this->template->render('videos.html', ['videos' => $Videos]);
+    //return $this->template->render('videos.html', ['videos' => $Videos]);
 });
