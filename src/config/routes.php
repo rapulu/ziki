@@ -184,10 +184,10 @@ Router::get('/settings', function ($request) {
 Router::post('/appsetting', function ($request) {
 
     //create middleware to protect api from non auth user
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
-    }
+    //$user = new Ziki\Core\Auth();
+    //if (!$user->is_logged_in()) {
+    //    return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
+    //}
 
     $data = $request->getBody();
     $field = $data['field']; //field to update in  app.json
@@ -498,7 +498,7 @@ Router::post('/addvideo', function ($request) {
 
     //Get youtube url id for embed
     parse_str(parse_url($data['domain'], PHP_URL_QUERY), $YouTubeId);
-    $video_url = "https://www.youtube.com/embed/" . $YouTubeId;
+    $video_url = "https://www.youtube.com/embed/" . $YouTubeId['v'];
     $video_title = $data['title'];
     $video_about = $data['description'];
     $ziki = new Ziki\Core\Document($directory);
