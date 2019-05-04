@@ -714,12 +714,13 @@
               <li><a href="/about"><h6 class="text-center"><span><b>ABOUT</b></span></h6></a></li>
               {% endif %}
             </ul>
-
+            {% if user.role == 'guest' | default(null) %}
             <ul class="list-unstyled CTAs d-flex justify-content-center">
               <li>
                 <a href="#"><button class="btn btn-light">Follow Me</button></a>
               </li>
             </ul>
+            {% endif %}
           </div>
         </div>
       </div>
