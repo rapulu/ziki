@@ -33,11 +33,11 @@
             transition: all ease-in 0.3s;
         }
 
-        .drafts .draft-content {
+        .drafts .draft-content p{
 
             font-style: normal;
             font-weight: normal;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 140%;
             color: #7A7A7A;
         }
@@ -174,7 +174,7 @@
                 border-bottom: 1px solid #ebebeb;
             }
 
-            .drafts .draft-date {
+            .drafts .draft-date p{
                 margin-top: 1em;
             }
 
@@ -202,6 +202,10 @@
                 margin: 0 auto;
                 padding-top: 1em;
             }
+
+            .drafts .draft-content {
+               max-height: 627px;
+            }
         }
 
         @media screen and (max-width:900px) and (min-width:700px) {
@@ -209,6 +213,10 @@
                 position: relative;
                 margin-top: 2em;
                 margin-left: -8em;
+            }
+
+            .drafts .draft-content {
+                max-height: 253px;
             }
 
         }

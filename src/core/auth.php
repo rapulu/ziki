@@ -1,6 +1,9 @@
 <?php
+
 namespace Ziki\Core;
+
 use Ziki\Core\FileSystem;
+use PHPMailer\PHPMailer\PHPMailer;
 class Auth {
     /**
      * This function will get the auth details from specified url
@@ -17,6 +20,42 @@ class Auth {
         }
         return $install;
     }
+
+    public static function sendMail($destination, $name, $address) {
+         // Send success mail
+         $mail = new PHPMailer;
+         $mail->isSMTP();                         
+         $mail->Host = "smtp.gmail.com";
+         $mail->SMTPAuth = true;     
+         $mail->Username = "zikihnginternssmtp@gmail.com";                 
+         $mail->Password = "zikiinterns";
+         $mail->SMTPSecure = "tls";
+         $mail->Port = 587;                                   
+
+         $mail->From = "zikihnginternssmtp@gmail.com";
+         $mail->FromName = "Lucid";
+         $mail->addAddress($destination, $name);
+         $mail->isHTML(true);
+         $variables = array();
+         $variables['name'] = $name;
+         $variables['address'] = $address;
+         $email_temp = "./src/config/email.php";
+         $template = file_get_contents($email_temp);
+         foreach($variables as $key => $value) {
+             $template = str_replace('{{ '.$key.' }}', $value, $template);
+         }
+         $mail->Subject = "Welcome To Lucid";
+         $mail->Body = $template;
+
+         if(!$mail->send()) 
+         {
+             return false;
+         } 
+         else 
+         {
+             return true;
+         }
+    }
     public static function setup ($data)
     {
         $check_settings = self::isInstalled();
@@ -28,25 +67,8 @@ class Auth {
             $save = json_encode($data);
             $doc = FileSystem::write("{$s_file}/auth.json", $save);
             $destination = $data['email'];
-            $subject = "Welcome To Lucid";
-
-            $message = "";
-
-            // Always set content-type when sending HTML email
-            $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-            // More headers
-            $headers .= 'From: <lucidowner.test@gmail.com>' . "\r\n";
-            $variables = array();
-            $variables['name'] = $data['name'];
-            $variables['address'] = $data['domainName'].$data['domain'];
-            $email_temp = "./src/config/email.php";
-            $template = file_get_contents($email_temp);
-            foreach($variables as $key => $value) {
-                $template = str_replace('{{ '.$key.' }}', $value, $template);
-            }
-            $msg= $template;
-            @mail($destination, $subject, $msg, $headers) ;
+            $mail_check = self::sendMail($destination, $data['name'], $site_url);
+            
             /*$url = "https://auth.techteel.com/api/login/email?address={$data['email']}?domain={$site_url}";
             $ch = curl_init();
             //Set the URL that you want to GET by using the CURLOPT_URL option.
@@ -63,12 +85,11 @@ class Auth {
             
             //Close the cURL handle.
             curl_close($ch);*/
-            $install = true;
+             return $mail_check;
         }
         else{
-            $install = false;
+            return false;
         }
-        return $install;
     }
     public static function getAuth($data, $role){
         $user['name'] = $data->name;
@@ -101,6 +122,7 @@ class Auth {
     // Log in user check
     public function is_logged_in() {
         // Check if user session has been set
+        // echo json_encode($_SESSION); -- it shows that the SESSION is empty because you login owner after install and you never setup session for them
         if (isset($_SESSION['login_user']) && ($_SESSION['login_user']['login_token'] != '')) {
             return $_SESSION;
         }

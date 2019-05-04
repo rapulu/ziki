@@ -624,11 +624,9 @@ class Document
         //return $dir; die();
         $doc = FileSystem::write($dir, $yaml);
         if ($doc) {
-            $result = array("error" => false, "message" => "Video added successfully");
-        } else {
-            $result = array("error" => true, "message" => "Fail while publishing, please try again");
+            return true;
         }
-        return $result;
+        return false;
     }
 
     //get video
