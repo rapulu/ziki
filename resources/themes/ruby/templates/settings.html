@@ -242,17 +242,13 @@
                                                 app.handleServerRequest(action, value, function (res) {
                                                     console.log(res.status, action, value, caption);
                                                     if (res.status == 'success' && !caption.includes('theme')) {
-                                                        value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
+                                                        return value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
                                                     } else if (res.status == 'success' && caption == 'theme') {
                                                         themeCaption.innerHTML = value ? 'Dark Mode' : 'Light Mode';
-                                                        value ? app.showToast('Dark mode enabled', res.status) : app.showToast('Light mode enabled', res.status);
-                                                        app.toggleDarkLight();
+                                                        return value ? app.showToast('Dark theme enabled', res.status) : app.showToast('Light theme enabled', res.status);
                                                     } else {
-                                                        app.showToast(res.msg, res.status);
+                                                        return app.showToast(res.msg, res.status);
                                                     }
-                                                    setTimeout(function () {
-                                                        window.location.reload();
-                                                    }, 3000);
                                                 })
                                             });
                                         });
@@ -268,9 +264,7 @@
                                                 if (current_theme == themeName) return
                                                 app.handleServerRequest('THEME', themeName.toLowerCase(), function (res) {
                                                     app.showToast(res.msg, res.status);
-                                                    setTimeout(function () {
-                                                        window.location.reload();
-                                                    }, 3000);
+                                                    window.location.reload();
                                                 })
                                             });
                                         });
@@ -300,9 +294,6 @@
                                             }
                                             app.handleServerRequest(action, value, function (res) {
                                                 res.status == 'success' ? app.showToast('Discuss enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
-                                                setTimeout(function () {
-                                                    window.location.reload();
-                                                }, 3000);
                                             }) //for disqus only
 
                                         });
@@ -319,19 +310,10 @@
                                                 app.handleServerRequest('FACEBOOK_APP_ID', appID, function () {
                                                     app.handleServerRequest('FACEBOOK_DOMAIN_URL', domainUrl, function (res) {
                                                         res.status == 'success' ? app.showToast('Facebook enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
-                                                        setTimeout(function () {
-                                                            window.location.reload();
-                                                        }, 3000);
                                                     });
                                                 })
                                             })
                                         });
-                                    },
-                                    toggleDarkLight: function () {
-                                        var body = document.getElementById("body");
-                                        var currentClass = body.className;
-                                        body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
-                                        localStorage.setItem('theme_mode', body.className);
                                     },
                                     showToast: function (msg, type, duration) {
                                         console.log(msg, type, duration);

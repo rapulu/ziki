@@ -41,20 +41,11 @@
     <link href="//cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet" />
     <link href="//cdn.quilljs.com/1.0.0/quill.bubble.css" rel="stylesheet" />
 
-
-</head>
-
-<body id="body">
-    <!-- script to switch dark and light mode -->
-    <script>
-        var currentClass = localStorage.getItem('theme_mode') !== null ? localStorage.getItem('theme_mode') : 'light-mode';
-        var body = document.getElementById("body");
-        body.className = currentClass;
-    </script>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
     <style>
+        :root {
+            --ruby-body-color: pink;
+        }
+
         .ziki-logo {
             position: relative;
             top: 3.8em;
@@ -100,7 +91,33 @@
                 right: 38%;
             }
         }
+
+        /* override styles  */
+        .temp-nav {
+            background: red !important;
+        }
+
+        #content,
+        .ruby,
+        #content .container,
+        #content.dflex,
+        #content .navbar,
+        #content .themes-content-area {
+            background: pink;
+        }
+
+        .sidebar-header,
+        #sidebar {
+            background: darkred !important;
+        }
     </style>
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
+
     <!-- Note that this nav code is recognised as temporary
       to be replaced by the actual one.. BUT PLEASE DO WELL TO TRANSFER THE
     BUTTONS HERE>>> THEY ARE USED TO TOGGLE THE SIDE BAR ON OR OFF BOTH ON
