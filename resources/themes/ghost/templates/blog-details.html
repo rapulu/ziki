@@ -9,7 +9,7 @@
         font-family: Lato;
         letter-spacing: 0.03em;
         font-size: 14px;
-	color: black;
+        color: black;
     }
     
     .blog-details .img-logo {
@@ -78,10 +78,10 @@
     .blog-details .categories {
         border: 1px solid blueviolet;
         border-radius: 4px;
-	font-weight: 500;
+        font-weight: 500;
         font-size: 14px;
         padding: 15px;
-	color: blueviolet;
+        color: blueviolet;
     }
     
     .categories {
@@ -93,13 +93,14 @@
     .blog-details .categories:hover {
         cursor: pointer;
         transition: all ease-in 0.3s;
-	border: 1px solid blueviolet;
+        border: 1px solid blueviolet;
         border-radius: 4px;
-	font-weight: 500;
+        font-weight: 500;
         font-size: 14px;
         padding: 15px;
-	color: white;;
-	background-color: blueviolet;
+        color: white;
+        ;
+        background-color: blueviolet;
     }
     
     .blog-details .guest-action-items span {
@@ -152,7 +153,7 @@
 </style>
 <div class="container-fluid blog-details">
     <div class="row">
-        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 sidebar">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
 
         </div>
 
@@ -220,9 +221,10 @@
                 <div id="disqus_thread"></div>
 
 
-{% if COMMENT_PLUGIN == "disqus" %}
-                <script>//alert("{{COMMENT_PLUGIN}}");
-	
+                {% if COMMENT_PLUGIN == "disqus" %}
+                <script>
+                    //alert("{{COMMENT_PLUGIN}}");
+
 
                     /**
                      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -240,12 +242,10 @@
                         s.setAttribute('data-timestamp', +new Date());
                         (d.head || d.body).appendChild(s);
                     })();
-
                 </script>
-                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-{% else %}
-<div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
-{% endif %}
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> {% else %}
+                <div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
+                {% endif %}
             </div>
         </div>
     </div>

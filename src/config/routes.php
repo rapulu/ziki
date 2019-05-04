@@ -15,6 +15,8 @@ Router::get('/', function ($request) {
         // Render our view
         //print_r($feed);
         $count = new Ziki\Core\Subscribe();
+        $setting = new Ziki\Core\Setting();
+        $settings = $setting->getSetting();
         $fcount = $count->fcount();
         $count = $count->count();
         return $this->template->render('index.html', ['host' => $host], ['posts' => $feed], ['host' => $host, 'count' => $count, 'fcount' => $fcount]);
@@ -158,7 +160,7 @@ Router::get('/settings', function ($request) {
     }
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
-    return $this->template->render('settings.html', $settings);
+    return $this->template->render('settings.html');
 });
 
 // ahmzyjazzy add this (^_^) : setting api
