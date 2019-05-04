@@ -21,11 +21,13 @@
 
                     <div class="row d-flex flex-column px-3 pb-4">
 
-                        <div class="col-lg-5 col-md-3 col-sm-12 col-xs-12 order-lg-1 order-md-1 order-sm-1 order-1 pb-3 px-0">
+                        <div
+                            class="col-lg-5 col-md-3 col-sm-12 col-xs-12 order-lg-1 order-md-1 order-sm-1 order-1 pb-3 px-0">
                             <h6 class="h6 mb-0 font-weight-bold">Comment Plugin</h6>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-2 order-md-2 order-sm-2 order-1 d-flex align-items-center px-0 pb-5">
+                        <div
+                            class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-2 order-md-2 order-sm-2 order-1 d-flex align-items-center px-0 pb-5">
                             <div class="lucid-custom-select w-100">
                                 <select class="w-100" placeholder="Select Plugin" id="comment_select">
                                     <option selected>Select Plugin</option>
@@ -48,26 +50,31 @@
                                         <input type="url" class="form-control" id="domainurl" aria-describedby="appid"
                                             value="{{FACEBOOK_DOMAIN_URL}}" placeholder="Domain URL" required>
                                     </div>
-                                    <button type="submit" class="col-sm-2 btn profile-submit-btn text-white text-upppercase mx-sm-3"
+                                    <button type="submit"
+                                        class="col-sm-2 btn profile-submit-btn text-white text-upppercase mx-sm-3"
                                         id="btnFbcomment">
                                         Update</button>
                                 </div>
                             </form>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0 pb-2">
+                        <div
+                            class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0 pb-2">
                             <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Videos Page</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="ENABLE_VIDEOS_PAGE" {% if
-                                    ENABLE_VIDEOS_PAGE=="true" %} checked {% endif %}><span class="slider round"></span>
+                                    ENABLE_VIDEOS_PAGE=="true" %} checked {% endif %} data-caption="Video page"><span
+                                    class="slider round"></span>
                             </label>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
+                        <div
+                            class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
                             <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Portfolio Page</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="ENABLE_PORTFOLIO_PAGE" {%
-                                    if ENABLE_PORTFOLIO_PAGE=="true" %} checked {% endif %}><span class="slider round"></span>
+                                    if ENABLE_PORTFOLIO_PAGE=="true" %} checked {% endif %}
+                                    data-caption="Portfolio page"><span class="slider round"></span>
                             </label>
                         </div>
 
@@ -79,12 +86,15 @@
                             <h6 class="h6 mb-0 font-weight-bold">Themes</h6>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
-                            <h6 class="switch-text flex-grow-1 font-weight-normal">{% if THEME_STATE == "false" %}
+                        <div
+                            class="col-lg-4 col-md-4 col-sm-6 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
+                            <h6 class="switch-text flex-grow-1 font-weight-normal" id="theme-caption">
+                                {% if THEME_STATE == "false" %}
                                 Light Mode {% else %} Dark Mode {% endif %}</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="THEME_STATE" {% if
-                                    THEME_STATE=="true" %} checked {% endif %}><span class="slider round"></span>
+                                    THEME_STATE=="true" %} checked {% endif %} data-caption="theme">
+                                <span class="slider round"></span>
                             </label>
                         </div>
                     </div>
@@ -105,9 +115,10 @@
                         {% for theme in themeList %}
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xm-12 pb-2 theme-item mt-3 d-flex flex-column"
                             data-name="{{ theme.name }}" title="Click to set {{ theme.name }} theme">
-                            <figure class="px-0 py-0 mb-0">
+                            <figure class="px-0 py-0 mb-0" style="position:relative;">
                                 <img src="{{ theme.imagePath }}" alt="" class="img-fluid w-100 rounded-top">
-                                {% if theme.isActive %} <p class="d-md-none"></p> {% endif %}
+                                {% if theme.isActive %} <p class="font-weight-bold theme-active">ACTIVE</p>
+                                {% endif %}
                             </figure>
                             <div class="theme-state d-flex justify-content-start align-items-center px-3 py-2 rounded-bottom"
                                 {% if theme.color %} style="background-color:{{ theme.color }};" {% endif %}>
@@ -119,7 +130,7 @@
                     </div>
                     <script>
                         window.addEventListener('load', function () {
-
+                            var isfirst = true;
                             var app = (function () {
 
                                 return {
@@ -135,7 +146,8 @@
                                         })
                                             .then(response => response.json())
                                             .then((data) => {
-                                                console.log(data);
+                                                if (data)
+                                                    console.log(data);
                                                 (cb && cb !== undefined && typeof cb == 'function') && cb(data);
                                             });
                                     },
@@ -219,12 +231,23 @@
                                     },
                                     handleCheckbox: function () {
                                         var checkBoxes = document.querySelectorAll('.setting_checkbox');
+                                        var themeCaption = document.getElementById('theme-caption');
                                         //Attach event listener to checkboxed
                                         checkBoxes.forEach(function (checkbox) {
                                             checkbox.addEventListener('change', function () {
                                                 var action = this.dataset.action;
                                                 var value = this.checked;
-                                                app.handleServerRequest(action, value)
+                                                var caption = this.dataset.caption;
+                                                app.handleServerRequest(action, value, function (res) {
+                                                    console.log(res.status, action, value, caption);
+                                                    if (res.status == 'success' && !caption.includes('theme')) {
+                                                        return value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
+                                                    } else if (res.status == 'success' && caption == 'theme') {
+                                                        return value ? app.showToast('Dark theme enabled', res.status) : app.showToast('Light theme enabled', res.status);
+                                                    } else {
+                                                        return app.showToast(res.msg, res.status);
+                                                    }
+                                                })
                                             });
                                         });
                                     },
@@ -234,13 +257,24 @@
                                             var fbCont = document.getElementById('facebook-cont');
                                             var action = 'COMMENT_PLUGIN';
                                             var value = this.value;
+
                                             if (value === 'facebook') {
                                                 //display a content                                                
                                                 fbCont.classList.remove('d-none');
+                                                app.showToast('Enter credentials to use facebook as comment plugin', 'info');
+                                                isfirst = false;
                                                 return false;
                                             }
-                                            app.handleServerRequest(action, value) //for disqus only
                                             !fbCont.classList.contains('d-none') ? fbCont.classList.add('d-none') : null;
+                                            //block sending request to server when setting already saved value  (for DISQUS only)                                          
+                                            if (isfirst) {
+                                                isfirst = false;
+                                                return;
+                                            }
+                                            app.handleServerRequest(action, value, function (res) {
+                                                res.status == 'success' ? app.showToast('Discuss enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
+                                            }) //for disqus only
+
                                         });
                                     },
                                     handleFacebookComment: function () {
@@ -253,17 +287,37 @@
                                             console.log(selectElem, appID, domainUrl);
                                             app.handleServerRequest('COMMENT_PLUGIN', selectElem, function () {
                                                 app.handleServerRequest('FACEBOOK_APP_ID', appID, function () {
-                                                    app.handleServerRequest('FACEBOOK_DOMAIN_URL', domainUrl, function (response) {
-                                                        console.log('response from server:', response);
-                                                    })
+                                                    app.handleServerRequest('FACEBOOK_DOMAIN_URL', domainUrl, function (res) {
+                                                        res.status == 'success' ? app.showToast('Facebook enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
+                                                    });
                                                 })
                                             })
                                         });
                                     },
+                                    showToast: function (msg, type, duration) {
+                                        var msgState = {
+                                            error: 'pink',
+                                            success: 'lightgreen',
+                                            info: 'lightblue'
+                                        }
+                                        var options = {
+                                            style: {
+                                                main: {
+                                                    background: Object.keys(msgState).includes(type.toLowerCase()) ? msgState[type] : msgState.info,
+                                                    color: '#000000b3',
+                                                    'box-shadow': '0 0 50px rgba(0, 0, 0, .7)'
+                                                }
+                                            },
+                                            settings: {
+                                                duration: duration | 3000
+                                            }
+                                        };
+                                        return iqwerty.toast.Toast(msg ? msg : 'No message', options);
+                                    },
                                     init: function () {
                                         app.initLucidSelect();
                                         app.handleCheckbox();
-                                        app.handleFacebookComment();
+                                        app.handleFacebookComment()
                                         //read twig data from javascript
                                         var commentPlugin = '{{ COMMENT_PLUGIN }}';
                                         //set the select dropdown value 
