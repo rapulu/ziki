@@ -15,7 +15,7 @@
 
     /**the important was added so the styles would be forced when the titles are dynamically added**/
 
-    .published-posts .published-post-date p {
+    .published-posts .published-post-date {
       font-style: normal !important;
       font-weight: 500 !important;
       font-size: 14px !important;
@@ -25,7 +25,7 @@
 
     /**the important was added so the styles would be forced when the titles are dynamically added**/
 
-    .published-posts .published-post-title a p {
+    .published-posts .published-post-title a {
       font-style: normal;
       font-weight: bold;
       font-size: 24px;
@@ -34,30 +34,34 @@
       transition: all ease-in 0.3s;
     }
 
-    .published-posts .published-post-title a p:hover {
+    .published-posts .published-post-title a:hover {
       cursor: pointer;
       color: #280A66;
       text-decoration: none;
       transition: all ease-in 0.3s;
     }
 
-    .published-posts .published-post-content p {
+    .published-posts .published-post-content {
 
       font-style: normal;
       font-weight: normal;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 140%;
       color: #7A7A7A;
     }
 
-    .no-published-posts-alert p {
-
-      font-style: italic;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 130%;
-      color: #979797;
+    .published-posts .published-post-content a{
+      color: #280A66;
+      transition: all ease-in 0.3s;
     }
+
+    .published-posts .published-post-content a:hover {
+      color: rgb(27, 7, 66);
+      text-decoration: none;
+      cursor:pointer;
+      transition: all ease-in 0.3s;
+    }
+
 
     .published-post-img {
       height: 100%;
@@ -178,7 +182,7 @@
         border-bottom: 1px solid #ebebeb;
       }
 
-      .published-posts .published-post-date p {
+      .published-posts .published-post-date{
         margin-top: 1em;
       }
 
@@ -238,7 +242,7 @@
 
           <div class="row pt-4 pb-4  published-post-bottom  published-post-content">
             <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
-                src="/resources/themes/ghost/assets/img/published-post-img.png" alt="the-image-for-published-posts"
+                src="/resources/themes/ghost/assets/img/published-posts-img.jpg" alt="the-image-for-published-posts"
                 class="img-fluid published-post-img"></div>
             <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
 
@@ -250,6 +254,7 @@
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. In harum laboriosam non facilis qui nostrum
                   nam necessitatibus labore, illum hic! Est suscipit et id, tenetur atque corrupti quae eius rem!
+                  ...<span> <a href="#" class="read-more">Read More</a> </span>
                 </p>
               </div>
 
@@ -275,7 +280,7 @@
 
           <div class="row pt-4 pb-4  published-post-bottom  published-post-content">
             <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
-                src="/resources/themes/ghost/assets/img/published-post-img.png" alt="the-image-for-published-posts"
+                src="/resources/themes/ghost/assets/img/published-posts-img.jpg" alt="the-image-for-published-posts"
                 class="img-fluid published-post-img"></div>
             <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
 
@@ -287,6 +292,7 @@
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. In harum laboriosam non facilis qui nostrum
                   nam necessitatibus labore, illum hic! Est suscipit et id, tenetur atque corrupti quae eius rem!
+                  ...<span> <a href="#" class="read-more">Read More</a> </span>
                 </p>
               </div>
 
@@ -321,6 +327,7 @@
                 <p>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. In harum laboriosam non facilis qui nostrum
                   nam necessitatibus labore, illum hic! Est suscipit et id, tenetur atque corrupti quae eius rem!
+                  ...<span> <a href="#" class="read-more">Read More</a> </span>
                 </p>
               </div>
 
