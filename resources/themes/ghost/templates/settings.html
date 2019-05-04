@@ -44,11 +44,13 @@
                                 <div class="row d-flex flex-row justify-content-start align-items-center pr-5">
                                     <div class="col-md-5">
                                         <input type="text" class="form-control" id="appid" aria-describedby="appid"
-                                            value="{{FACEBOOK_APP_ID}}" placeholder="Facebook App ID" required>
+                                            value="{{appsettings.FACEBOOK_APP_ID}}" placeholder="Facebook App ID"
+                                            required>
                                     </div>
                                     <div class="col-md-5 my-2">
                                         <input type="url" class="form-control" id="domainurl" aria-describedby="appid"
-                                            value="{{FACEBOOK_DOMAIN_URL}}" placeholder="Domain URL" required>
+                                            value="{{appsettings.FACEBOOK_DOMAIN_URL}}" placeholder="Domain URL"
+                                            required>
                                     </div>
                                     <button type="submit"
                                         class="col-sm-2 btn profile-submit-btn text-white text-upppercase mx-sm-3"
@@ -63,8 +65,8 @@
                             <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Videos Page</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="ENABLE_VIDEOS_PAGE" {% if
-                                    ENABLE_VIDEOS_PAGE=="true" %} checked {% endif %} data-caption="Video page"><span
-                                    class="slider round"></span>
+                                    appsettings.ENABLE_VIDEOS_PAGE=="true" %} checked {% endif %}
+                                    data-caption="Video page"><span class="slider round"></span>
                             </label>
                         </div>
 
@@ -73,7 +75,7 @@
                             <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Portfolio Page</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="ENABLE_PORTFOLIO_PAGE" {%
-                                    if ENABLE_PORTFOLIO_PAGE=="true" %} checked {% endif %}
+                                    if appsettings.ENABLE_PORTFOLIO_PAGE=="true" %} checked {% endif %}
                                     data-caption="Portfolio page"><span class="slider round"></span>
                             </label>
                         </div>
@@ -89,11 +91,11 @@
                         <div
                             class="col-lg-4 col-md-4 col-sm-6 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
                             <h6 class="switch-text flex-grow-1 font-weight-normal" id="theme-caption">
-                                {% if THEME_STATE == "false" %}
+                                {% if appsettings.THEME_STATE == "false" %}
                                 Light Mode {% else %} Dark Mode {% endif %}</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="THEME_STATE" {% if
-                                    THEME_STATE=="true" %} checked {% endif %} data-caption="theme">
+                                    appsettings.THEME_STATE=="true" %} checked {% endif %} data-caption="theme">
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -262,8 +264,11 @@
                                             if (value === 'facebook') {
                                                 //display a content                                                
                                                 fbCont.classList.remove('d-none');
+                                                if (isfirst) {
+                                                    isfirst = false;
+                                                    return;
+                                                }
                                                 app.showToast('Enter credentials to use facebook as comment plugin', 'info');
-                                                isfirst = false;
                                                 return false;
                                             }
                                             !fbCont.classList.contains('d-none') ? fbCont.classList.add('d-none') : null;
@@ -320,7 +325,7 @@
                                         app.handleCheckbox();
                                         app.handleFacebookComment()
                                         //read twig data from javascript
-                                        var commentPlugin = '{{ COMMENT_PLUGIN }}';
+                                        var commentPlugin = '{{ appsettings.COMMENT_PLUGIN }}';
                                         //set the select dropdown value 
                                         options = document.querySelectorAll('.select-items div')
                                         options.forEach(function (elem) {

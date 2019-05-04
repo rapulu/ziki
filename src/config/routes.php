@@ -160,7 +160,7 @@ Router::get('/settings', function ($request) {
     }
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
-    return $this->template->render('settings.html', $settings);
+    return $this->template->render('settings.html');
 });
 
 // ahmzyjazzy add this (^_^) : setting api
