@@ -54,7 +54,7 @@
 
         .s-avatar {
             width: 20px;
-            height:20px;
+            height: 20px;
         }
 
         .width-100-150px {
@@ -73,12 +73,14 @@
                 position: relative;
                 top: 1em;
             }
-            
+
         }
+
         @media screen and (min-width: 768px) {
             .width-100-150px {
-            width: 150px;
+                width: 150px;
             }
+
             .optiona-login-text {
                 width: 100%;
                 text-align: center;
@@ -86,16 +88,15 @@
                 line-height: 0.1em;
                 margin: 10px 0 20px;
                 color: #979797;
-                }
+            }
 
-                .optiona-login-text span {
+            .optiona-login-text span {
                 background: #fff;
                 padding: 0 10px;
                 position: absolute;
                 right: 38%;
-                }
+            }
         }
-
     </style>
     <!-- Note that this nav code is recognised as temporary
       to be replaced by the actual one.. BUT PLEASE DO WELL TO TRANSFER THE
@@ -113,7 +114,7 @@
                     </a>
                 </li>
 
-                {% if settings.role == 'Site Administrator' %}
+                {% if user.role == 'admin' %}
                 <li class="nav-item ml-auto">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                         aria-haspopup="true" aria-expanded="false">
@@ -124,7 +125,7 @@
                         <a class="dropdown-item" href="/logout">LOGOUT</a>
                     </div>
                 </li>
-                {% elseif settings.role == 'guest' %}
+                {% elseif user.role == 'guest' %}
                 <li class="nav-item ml-auto">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                         aria-haspopup="true" aria-expanded="false">
@@ -192,15 +193,17 @@
                             <span>or sign in with</span>
                         </p>
                         <div class="d-flex justify-content-around mb-5 mb">
-                            <a href="https://auth.techteel.com/login/facebook?type=login&url={{host}}" class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
-                              <img src="/resources/themes/ghost/assets/img/facebook.png" alt="" class="s-avatar">
-                              <p class="m-0">Facebook</p>
+                            <a href="https://auth.techteel.com/login/facebook?type=login&url={{host}}"
+                                class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
+                                <img src="/resources/themes/ghost/assets/img/facebook.png" alt="" class="s-avatar">
+                                <p class="m-0">Facebook</p>
                             </a>
-                            <a href="https://auth.techteel.com/login/google?type=login&url={{host}}" class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
-                              <img src="/resources/themes/ghost/assets/img/google.png" alt="" class="s-avatar">
-                              <p class="m-0">Google</p>
+                            <a href="https://auth.techteel.com/login/google?type=login&url={{host}}"
+                                class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
+                                <img src="/resources/themes/ghost/assets/img/google.png" alt="" class="s-avatar">
+                                <p class="m-0">Google</p>
                             </a>
-                          </div>
+                        </div>
                     </div>
 
 
