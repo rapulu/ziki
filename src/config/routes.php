@@ -36,7 +36,7 @@ Router::get('blog-details/{id}', function ($request, $id) {
     $fcount = $count->fcount();
     $count = $count->count();
 
-    return $this->template->render('blog-details.html', $settings, ['result' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
+    return $this->template->render('blog-details.html',['result' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount, 'settings'=> $setting]);
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
@@ -59,7 +59,7 @@ Router::get('/tags/{id}', function ($request, $id) {
     }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->update($id);
+    $result = $ziki->tagPosts($id);
     $twig_vars = ['posts' => $result, 'tag' => $id];
     return $this->template->render('tags.html', $twig_vars);
 });
@@ -406,12 +406,14 @@ Router::get('/drafts', function ($request) {
 //videos page
 Router::get('/videos', function ($request) {
     $user = new Ziki\Core\Auth();
-
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $directory = "./storage/videos/";
     $ziki = new Ziki\Core\Document($directory);
     $Videos = $ziki->getVideo();
     //print_r($Videos);
-    return $this->template->render('videos.html', ['videos' => $Videos, 'user' => $user]);
+    return $this->template->render('videos.html', ['videos' => $Videos]);
 });
 Router::get('/microblog', function ($request) {
     $user = new Ziki\Core\Auth();
