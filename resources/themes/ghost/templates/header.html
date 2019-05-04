@@ -10,22 +10,25 @@
     <link rel="stylesheet" href="/resources/themes/ghost/assets/main.css" />
     <link rel="stylesheet" href="/resources/themes/ghost/assets/css/profile.css" />
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
     <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" />
 
     <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+        integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
         crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+        integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
         crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
 
     <!-- Themify Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
@@ -40,8 +43,9 @@
 </head>
 
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
     <style>
         .ziki-logo {
             position: relative;
@@ -74,34 +78,39 @@
                 </li>
 
                 {% if user.role == 'admin' %}
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="dotted">...</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/settings">SETTINGS</a>
-                            <a class="dropdown-item" href="/logout">LOGOUT</a>
-                        </div>
-                    </li>
+                <li class="nav-item ml-auto">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="dotted">...</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/settings">SETTINGS</a>
+                        <a class="dropdown-item" href="/logout">LOGOUT</a>
+                    </div>
+                </li>
                 {% elseif user.role == 'guest' %}
-                    <li class="nav-item ml-auto">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <span class="dotted">...</span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <span class="dropdown-item">You are logged in as guest</span>
-                            <a class="dropdown-item" href="/logout">LOGOUT</a>
-                        </div>
-                    </li>
+                <li class="nav-item ml-auto">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="dotted">...</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <span class="dropdown-item">You are logged in as guest</span>
+                        <a class="dropdown-item" href="/logout">LOGOUT</a>
+                    </div>
+                </li>
                 {% else %}
-                    <li class="nav-item ml-auto">
-                        <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
-                    </li>
+                <li class="nav-item ml-auto">
+                    <span class="nav-item" data-toggle="modal" data-target="#modalLoginForm">LOGIN</span>
+                </li>
                 {% endif %}
+                <li>
+                    {{ user.role }}
+                </li>
             </ul>
         </div>
     </div>
-<!--     <div class="temp-nav">
+    <!--     <div class="temp-nav">
         <div class="container"> 
             <div class="row">
                 <div class="col-6">
@@ -126,8 +135,8 @@
 
 
     <!-- Login Modal -->
-    <div class="modal fade" id="modalLoginForm" style="background: rgba(255, 255, 255, 0.92);" tabindex="-1" role="dialog"
-        aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalLoginForm" style="background: rgba(255, 255, 255, 0.92);" tabindex="-1"
+        role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-container" role="document">
             <div class="modal-content">
                 <div class="row login-modal-border-radius">
@@ -137,7 +146,8 @@
                                 <img src="/resources/themes/ghost/assets/img/faviconimage.png" />
                             </div>
                             <div class="col-6">
-                                <button class="modal-close-button" style="background: transparent; color:#fff; border: none; font-size: 3rem; position: relative;top: -30px;left: 60px;"
+                                <button class="modal-close-button"
+                                    style="background: transparent; color:#fff; border: none; font-size: 3rem; position: relative;top: -30px;left: 60px;"
                                     data-dismiss="modal">
                                     &times;
                                 </button>
@@ -158,11 +168,13 @@
                         <p class="mt-5">LOGIN TO CONTINUE</p>
                         <div class="signin-btn d-flex justify-content-between email-login-container">
                             <input class="host" type="hidden" value="{{host}}">
-                            <input type="email" placeholder="Enter your Email Address" class="width-100pc ml-1 no-border email-input"
-                                required />
+                            <input type="email" placeholder="Enter your Email Address"
+                                class="width-100pc ml-1 no-border email-input" required />
                             <button class="email-login-button">
-                                <svg width="20" height="16" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0 25.7143L30 12.8571L0 0V10L21.4286 12.8571L0 15.7143V25.7143Z" fill="#682681" />
+                                <svg width="20" height="16" viewBox="0 0 30 26" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0 25.7143L30 12.8571L0 0V10L21.4286 12.8571L0 15.7143V25.7143Z"
+                                        fill="#682681" />
                                 </svg>
                             </button>
                         </div>
@@ -184,7 +196,8 @@
                         <p class=" mt-5 fa-2x">
                             Check your Email
                         </p>
-                        <img class="magic-link-img" src="resources/themes/ghost/assets/img/magic-link-img.png" alt="magic link image">
+                        <img class="magic-link-img" src="resources/themes/ghost/assets/img/magic-link-img.png"
+                            alt="magic link image">
                         <p class="magic-msg">
 
                         </p>
