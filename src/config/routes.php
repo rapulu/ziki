@@ -40,9 +40,9 @@ Router::get('blog-details/{id}', function ($request, $id) {
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $post = $ziki->fetchAllRss();
@@ -65,9 +65,9 @@ Router::get('/tags/{id}', function ($request, $id) {
 });
 Router::post('/publish', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $directory = "./storage/contents/";
     $data = $request->getBody();
     $title = $data['title'];
@@ -303,9 +303,9 @@ Router::get('/subscribers', function ($request) {
 // 404 page
 Router::get('/editor', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     return $this->template->render('editor.html');
 });
 Router::get('/404', function ($request) {
@@ -366,9 +366,9 @@ Router::get('/following', function ($request) {
 /* Save draft*/
 Router::post('/saveDraft', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $directory = "./storage/drafts/";
     $data = $request->getBody();
     $title = $data['title'];
@@ -394,9 +394,9 @@ Router::post('/saveDraft', function ($request) {
 /* Get all saved draft */
 Router::get('/drafts', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $directory = "./storage/drafts/";
     $ziki = new Ziki\Core\Document($directory);
     $draft = $ziki->get();
