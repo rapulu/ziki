@@ -11,70 +11,70 @@
         font-size: 14px;
         color: black;
     }
-    
+
     .blog-details .img-logo {
         padding-top: 15px;
         padding-bottom: 20px;
     }
-    
+
     .blog-details .body-of-blog {
         border-radius: 4px;
     }
-    
+
     .blog-details .blog-post-title {
         letter-spacing: -0.02em;
     }
-    
+
     .blog-details .blog-post-title h3 {
         font-family: Lato;
         font-style: normal;
         font-weight: bold;
         font-size: 32px;
     }
-    
+
     .blog-details .about-blog-source {
         font-weight: bold;
     }
-    
+
     .blog-details .author-img {
         border-radius: 50%;
     }
-    
+
     .blog-source,
     .blog-date {
         font-size: 12px;
         font-family: 500;
         text-decoration: none;
     }
-    
+
     .blog-source {
         font-size: 12px;
         color: blueviolet;
     }
     /*  PLACEHOLDER STYLING  */
-    
+
      ::placeholder {
         /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: var(--custom-deep-purple);
         /* Firefox */
     }
-    
+
      :-ms-input-placeholder {
         /* Internet Explorer 10-11 */
         color: var(--custom-deep-purple);
     }
-    
+
      ::-ms-input-placeholder {
         /* Microsoft Edge */
         color: var(--custom-deep-purple);
     }
     /*  PLACEHOLDER STYLING  */
     /*  CATEGORIES TAGS STYLING  */
-    
+
     .blog-details .body-of-blog {
         border-radius: 4px;
     }
-    
+
     .blog-details .categories {
         border: 1px solid blueviolet;
         border-radius: 4px;
@@ -83,13 +83,13 @@
         padding: 15px;
         color: blueviolet;
     }
-    
+
     .categories {
         font-weight: 500;
         font-size: 14px;
         padding: 15px;
     }
-    
+
     .blog-details .categories:hover {
         cursor: pointer;
         transition: all ease-in 0.3s;
@@ -102,26 +102,26 @@
         ;
         background-color: blueviolet;
     }
-    
+
     .blog-details .guest-action-items span {
         margin-left: 10px;
         margin-right: 10px;
     }
-    
+
     .blog-posts a {
         text-decoration: none;
         color: #212529;
         line-height: 0.03em;
     }
     /*AUTHOR'S IMAGE*/
-    
+
     .author-img {
         position: absolute;
         width: 50px;
         height: 50px;
     }
     /*media queries*/
-    
+
     @media screen and (max-width: 617px) {
         .blog-details .author-img {
             width: 3em;
@@ -142,7 +142,7 @@
             margin-bottom: 2em;
         }
     }
-    
+
     @media (min-width:767px) {
         .about-blog-source {
             margin-left: 1.5em;
@@ -216,6 +216,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="comment-box mt-4 pl-4 pr-4 mx-auto">
                 <!-- this div is for the disqus commenting function -->
                 <div id="disqus_thread"></div>
@@ -247,7 +248,15 @@
                 <div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
                 {% endif %}
             </div>
+
+            <ul class="list-unstyled CTAs d-flex justify-content-center">
+                <li>
+                    <a href="#"><button class="btn btn-light">Go back Home</button></a>
+                </li>
+            </ul>
         </div>
+
+
     </div>
 </div>
 </div>
