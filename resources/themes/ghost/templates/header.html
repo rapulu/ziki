@@ -52,6 +52,14 @@
             top: 3.8em;
         }
 
+        .s-avatar {
+            width: 20px;
+            height:20px;
+        }
+
+        .width-100-150px {
+            width: 100px;
+        }
         /**media queries**/
 
         @media screen and (max-width: 700px) {
@@ -59,7 +67,29 @@
                 position: relative;
                 top: 1em;
             }
+            
         }
+        @media screen and (min-width: 768px) {
+            .width-100-150px {
+            width: 150px;
+            }
+            .optiona-login-text {
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid #979797;
+                line-height: 0.1em;
+                margin: 10px 0 20px;
+                color: #979797;
+                }
+
+                .optiona-login-text span {
+                background: #fff;
+                padding: 0 10px;
+                position: absolute;
+                right: 38%;
+                }
+        }
+
     </style>
     <!-- Note that this nav code is recognised as temporary
       to be replaced by the actual one.. BUT PLEASE DO WELL TO TRANSFER THE
@@ -152,17 +182,19 @@
                                 </svg>
                             </button>
                         </div>
-                        <p class="optional-login-text mt-5 mb-5">
+                        <p class="optiona-login-text mt-5 mb-5">
                             <span>or sign in with</span>
                         </p>
-                        <div class="d-flex justify-content-around mb-5">
-                            <a href="https://auth.techteel.com/login/facebook?type=login&url={{host}}">
-                                <button class="signin-btn width-150px">facebook</button>
+                        <div class="d-flex justify-content-around mb-5 mb">
+                            <a href="https://auth.techteel.com/login/facebook?type=login&url={{host}}" class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
+                              <img src="/resources/themes/ghost/assets/img/facebook.png" alt="" class="s-avatar">
+                              <p class="m-0">Facebook</p>
                             </a>
-                            <a href="https://auth.techteel.com/login/google?type=login&url={{host}}">
-                                <button class="signin-btn width-150px">google</button>
+                            <a href="https://auth.techteel.com/login/google?type=login&url={{host}}" class="width-100-150px d-flex signin-btn align-items-center justify-content-between">
+                              <img src="/resources/themes/ghost/assets/img/google.png" alt="" class="s-avatar">
+                              <p class="m-0">Google</p>
                             </a>
-                        </div>
+                          </div>
                     </div>
 
 
