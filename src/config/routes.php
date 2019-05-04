@@ -458,6 +458,8 @@ Router::post('/videos', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
+    echo "I reach here";
+    exit();
     $directory = "./storage/videos/";
     $data = $request->getBody();
     $video_url = $data['domain'];
@@ -467,5 +469,5 @@ Router::post('/videos', function ($request) {
     $ziki->addVideo($video_url, $video_title, $video_about);
     $Videos = $ziki->getVideo();
     //print_r($Videos);
-    return $this->template->render('videos.html', ['videos' => $Videos]);
+    //return $this->template->render('videos.html', ['videos' => $Videos]);
 });
