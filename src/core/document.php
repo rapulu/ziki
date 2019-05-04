@@ -127,6 +127,9 @@ class Document
                 $content['body'] = $bd;
                 $content['url'] = $url;
                 $content['slug'] = $slug;
+                $file = explode("-", $slug);
+                $filename = $file[count($file) - 1];
+                $content['filename'] = $filename;
                 $content['timestamp'] = $time;
                 $content['image'] = $image;
                 array_push($posts, $content);
