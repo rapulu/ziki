@@ -19,7 +19,7 @@ Router::get('/', function ($request) {
         $settings = $setting->getSetting();
         $fcount = $count->fcount();
         $count = $count->count();
-        return $this->template->render('index.html', ['host' => $host], ['posts' => $feed], ['host' => $host, 'count' => $count, 'fcount' => $fcount]);
+        return $this->template->render('index.html', ['posts' => $feed ,'host' => $host, 'count' => $count, 'fcount' => $fcount]);
     }
 });
 Router::get('blog-details/{id}', function ($request, $id) {

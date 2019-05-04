@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
 <channel>
-<title>Ahmed Olanrewaju</title>
+<title>Elijah Okokon</title>
 <link>http://localhost:8000/</link>
 <description><![CDATA[]]></description>
-<image><title>Ahmed Olanrewaju</title>
+<image><title>Elijah Okokon</title>
 <link></link>
-<url>https://res.cloudinary.com/dc9kfp5gt/image/upload/v1556862782/business-color_business-contact-86_icon-icons.com_53469_ckkqq7.png</url>
+<url>https://lh4.googleusercontent.com/-Sft-MftI38Q/AAAAAAAAAAI/AAAAAAAADho/4sp40SN0sTc/photo.jpg</url>
 </image>
 <language>en-US</language>
-<lastBuildDate>Sat, 04 May 2019 06:50:58 +0000</lastBuildDate>
+<lastBuildDate>Sat, 04 May 2019 20:08:10 +0000</lastBuildDate>
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
 <creativeCommons:license>http://www.creativecommons.org/licenses/by/1.0</creativeCommons:license>
 <generator>Ziki</generator>
 <item>
-<title>THIS IS MY FIRST POST</title>
-<link>THIS-IS-MY-FIRST-POST-1556952600</link>
-<description><![CDATA[Just for you to know, i so much love eating.&#10;&#10;]]></description>
-<pubDate>Sun, 07 Apr 2013 00:50:30 +0000</pubDate>
-<author>hollaraywaju@gmail.com (Ahmed Olanrewaju)</author>
-<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556952600&quot;&gt;http://localhost:8000//storage/contents/1556952600&lt;/a&gt;&lt;/p&gt;</guid>
-<source url="http://localhost:8000/">Ahmed Olanrewaju's page</source>
+<title>Lucid and exclusive app</title>
+<link>Lucid-and-exclusive-app-1556982960</link>
+<description><![CDATA[ this is an amazing application for publications]]></description>
+<pubDate>Sat, 04 May 2019 20:08:10 +0000</pubDate>
+<author>okoelijah@gmail.com (Elijah Okokon)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556982960&quot;&gt;http://localhost:8000//storage/contents/1556982960&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Elijah Okokon's page</source>
+<image>/storage/images/img-p5iep2yk3m.jpeg</image>
 </item>
 </channel>
 </rss>
