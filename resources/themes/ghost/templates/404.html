@@ -1,31 +1,7 @@
-{% set title = "404"%}
-{% extends 'layout.html' %} {% block page_content %}
+{% set title = "404"%} {% extends 'layout.html' %} {% block page_content %}
 <style>
     @import url(https://fonts.googleapis.com/css?family=Lemonada);
     /*NAVBAR STYLING BEGINNING*/
-    
-    .nav-bar ul {
-        list-style: none;
-    }
-    
-    .nav-bar ul .nav-items a {
-        color: var(--number-of-followers-font-color);
-        -webkit-transition: all ease-in .3s;
-        transition: all ease-in .3s;
-        font-size: 20px;
-    }
-    
-    .nav-bar ul .nav-items a:hover {
-        color: var(--custom-deep-purple);
-        text-decoration: none;
-        -webkit-transition: all ease-in .3s;
-        transition: all ease-in .3s;
-    }
-    
-    .nav-bar {
-        border-bottom: 1px solid #a4a4a4;
-    }
-    /*NAVBAR STYLING END*/
     
     .main-body {
         background-color: var(--dark-bg-color);
@@ -65,11 +41,6 @@
         border: 0;
     }
     
-    .main-body .homepage-btn:hover {
-        opacity: 0.8;
-        border: 0;
-    }
-    
     .main-body .error-image {
         width: 30%;
         margin-top: 2em;
@@ -86,19 +57,12 @@
     /*media queries*/
 </style>
 <div class="container-fluid main-body">
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12 sidebar">
-            <!--
-                SIDE-BAR-ENTERS-HERE
-            -->
-
-        </div>
-
-        <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 body-of-blog">
+    <div class="row justify-content-lg-center justify-content-md-center">
+        <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 body-of-blog mt-5 pt-2 offset-lg-4 justify-content-center">
             <!--
                 LOGO
             -->
-        <!--    <div class="m-4 text-right">
+            <!--    <div class="m-4 text-right">
 		         <img src="resources/themes/ghost/assets/img/Vector.png" alt="ZIKI" class="img-ziki-logo"> 
 	    </div>  -->
             <div class="row justify-content-lg-center justify-content-md-center justify-content-sm-center">
@@ -115,5 +79,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 {% endblock page_content %}
