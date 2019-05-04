@@ -13,7 +13,7 @@ class SendContactMail{
     public $mailBody;
     public $error=[];
     public $successMsg=[];
-
+    public $about;
     public $ownerMail;
 
     public function __construct()
@@ -153,14 +153,122 @@ class SendContactMail{
     public function getOwnerEmail()
     {
         $dir = "./src/config/auth.json";
-        if(file_exists($dir))
+
+        $app_json ="./src/config/app.json";
+        $getContent = [];
+        if(file_exists($app_json))
         {
-            $getOwnerEmail = file_get_contents($dir);
-            if($getOwnerEmail)
+            $getContent = json_decode(file_get_contents($app_json),true);
+        }
+        
+
+        if(isset($getContent['CONTACT_EMAIL']) && !empty($getContent['CONTACT_EMAIL']))
+        {
+            return $getContent['CONTACT_EMAIL'];
+        }
+        else
+        {
+            if(file_exists($dir))
             {
-                $getOwnerEmail = json_decode($getOwnerEmail,true);
-                return $getOwnerEmail['email'];
+                $getOwnerEmail = file_get_contents($dir);
+                if($getOwnerEmail)
+                {
+                    $getOwnerEmail = json_decode($getOwnerEmail,true);
+                    return $getOwnerEmail['email'];
+                }
             }
         }
     }
+
+    public function setContactEmail($request)
+    {
+        if(empty(trim($request['contactEMail'])))
+        {
+            $this->error['emailError'] = "Please set your contact email";
+        }
+        else
+        {
+            if(filter_var($request['contactEMail'],FILTER_VALIDATE_EMAIL) === false)
+            {
+                $this->error['emailError'] = 'Please input a valid email address';
+                $this->guestEmail = $request['contactEMail'];
+            }
+            else
+            {
+                $this->guestEmail=$this->filterString($request['contactEMail']);
+            }
+        }
+
+        if(empty($this->error))
+        {
+            $app_json ="./src/config/app.json";
+            //$fopen = fopen($app_json,'w');
+            $getContent = json_decode(file_get_contents($app_json),true);
+            if(isset($getContent['CONTACT_EMAIL']))
+            {
+                $getContent['CONTACT_EMAIL'] = $this->guestEmail;
+            }
+            else
+            {
+                $getContent['CONTACT_EMAIL'] = $this->guestEmail;
+            }
+
+            if(file_put_contents($app_json,json_encode($getContent)))
+            {
+                $this->successMsg['success']='Successfully saved';
+                return $this->successMsg;
+            }
+            else
+            {
+                return $this->error['serverError'] = 'Settings could not be saved due technical issues! please try again later.';
+            }
+        }
+        else
+        {
+            $this->error['FormFieldError']='Your changes could not be saved due to the errors below!';
+            return $this->error;
+        }
+    }
+
+    public function updateAbout($request)
+    {
+        if(empty(trim($request['about'])))
+        {
+            $this->error['aboutError'] = 'This field Shouldn\'t be empty';
+        }
+        else
+        {
+            $this->about = strip_tags($request['about']);
+        }
+
+
+        if(empty($this->error))
+        {
+            $page = './storage/contents/pages/about.md';
+            if(file_put_contents($page,$this->about))
+            {
+                $this->successMsg['success']='Successfully saved';
+                return $this->successMsg;
+            }
+            else
+            {
+                return $this->error['serverError'] = 'Settings could not be saved due technical issues! please try again later.';
+            }
+        }
+        else
+        {
+            $this->error['FormFieldError']='Your changes could not be saved due to the errors below!';
+            return $this->error;
+        }
+    }
+
+    public function getPage()
+    {
+        $page = './storage/contents/pages/about.md';
+        if(file_exists($page))
+        {
+            return file_get_contents($page);
+        }
+    }
 }
+

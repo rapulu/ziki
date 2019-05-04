@@ -56,6 +56,12 @@
             width: 100px;
         }
 
+        input:focus {
+            border-color: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
         /**media queries**/
 
         @media screen and (max-width: 700px) {
@@ -89,7 +95,7 @@
         }
 
         /* DARK MODE */
-        .temp-nav {
+        .dark-mode .temp-nav {
             background: var(--dark);
             color: var(--light);
         }
@@ -113,7 +119,8 @@
 <body id="body">
     <!-- script to switch dark and light mode -->
     <script>
-        var currentClass = localStorage.getItem('theme_mode') !== null ? localStorage.getItem('theme_mode') : 'light-mode';
+        var currentMode = '{{ appsettings.THEME_STATE }}';
+        var currentClass = currentMode == 'true' ? 'dark-mode' : 'light-mode';
         var body = document.getElementById("body");
         body.className = currentClass;
     </script>
@@ -188,7 +195,7 @@
                             </div>
                             <div class="col-md-12 greetings">
                                 <h3 class="text-center ziki-Welcome-msg" style="color:#fff;">
-                                    Welcome to Ziki
+                                    Welcome to Lucid
                                 </h3>
                                 <p class="text-center ziki-about-msg" style="color:#fff;">
                                     Simplify your blogging experience.

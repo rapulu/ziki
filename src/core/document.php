@@ -66,6 +66,7 @@ class Document
             $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
         } else {
             $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
+            $yamlfile['image'] = "./storage/images/" . $key;
         }
 
         // create slug by first removing spaces
@@ -116,7 +117,9 @@ class Document
                 $parsedown  = new Parsedown();
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
+                $image = $parsedown->text($yaml['image']); 
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
+                $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
                 $time = $parsedown->text($yaml['timestamp']);
                 $url = $parsedown->text($yaml['post_dir']);
@@ -124,7 +127,11 @@ class Document
                 $content['body'] = $bd;
                 $content['url'] = $url;
                 $content['slug'] = $slug;
+                $file = explode("-", $slug);
+                $filename = $file[count($file) - 1];
+                $content['filename'] = $filename;
                 $content['timestamp'] = $time;
+                $content['image'] = $image;
                 array_push($posts, $content);
             }
             return $posts;
@@ -620,11 +627,9 @@ class Document
         //return $dir; die();
         $doc = FileSystem::write($dir, $yaml);
         if ($doc) {
-            $result = array("error" => false, "message" => "Video added successfully");
-        } else {
-            $result = array("error" => true, "message" => "Fail while publishing, please try again");
+            return true;
         }
-        return $result;
+        return false;
     }
 
     //get video
