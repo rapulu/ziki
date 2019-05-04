@@ -340,11 +340,6 @@ input:focus {
   cursor: pointer;
 }
 
-.theme-active {
-  background: var(--custom-deep-purple);
-  color: #fff;
-}
-
 .theme-state {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -928,13 +923,16 @@ input:focus {
   cursor: pointer;
 }
 
-.theme-active {
-  background: var(--custom-deep-purple);
-  color: #fff;
-}
-
 .theme-state {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.theme-active {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  color: #222222;
+  font-size: 24px;
 }
 
 .form-control-no-border:focus {
@@ -1215,3 +1213,57 @@ input:focus {
     margin: 10px 5px !important;
   }
 }
+
+/* lucid custom alert default */
+.lucid-custom-alert {
+  background: rgba(0, 0, 0, .85);
+	box-shadow: 0 0 10px rgba(0, 0, 0, .8);
+  border-radius: 3px;
+  z-index: 99999;
+  color: rgba(255, 255, 255, .9);
+  padding: 10px 15px;
+	max-width: 30%;
+	width: 100%;
+	word-break: keep-all;
+	margin: 0 auto;
+  text-align: center;
+  position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	-webkit-transform: translateY(150%) translateZ(0);
+	transform: translateY(150%) translateZ(0);
+	-webkit-filter: blur(0);
+	opacity: 0;
+}
+
+/* Extra small devices (<767px) */
+@media screen and (max-width: 767px) {
+  .lucid-custom-alert {
+    max-width: 100%;
+    -webkit-transform: translateY(0) translateZ(0);
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+/* Small Devices (≥768px) */
+@media screen and (min-width: 768px) {
+  .lucid-custom-alert {
+    max-width: 80%;
+  }
+}
+
+/* Medium Devices (≥992px) */
+@media screen and (min-width: 992px) {
+  .lucid-custom-alert {
+    max-width: 30%;
+  }
+}
+
+/* Medium Devices (≥1200px) */
+@media screen and (min-width: 1200px) {
+  .lucid-custom-alert {
+    max-width: 30%;
+  }
+}
+
