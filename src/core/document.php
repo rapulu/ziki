@@ -121,7 +121,7 @@ class Document
                 $tags = $yaml['tags'];
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
-                $image = $parsedown->text($yaml['image']); 
+                $image = $parsedown->text($yaml['image']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
@@ -138,19 +138,12 @@ class Document
                 $content['title'] = $title;
                 $content['body'] = $bd;
                 $content['url'] = $url;
-<<<<<<< HEAD
-                $content['timestamp'] = $time;
-                $content['tags'] = $tags;
-                $content['slug'] = $yaml['slug'];
-                $content['preview_img'] = $first_img;
-=======
                 $content['slug'] = $slug;
                 $file = explode("-", $slug);
                 $filename = $file[count($file) - 1];
                 $content['filename'] = $filename;
                 $content['timestamp'] = $time;
                 $content['image'] = $image;
->>>>>>> not-today
                 array_push($posts, $content);
             }
             return $posts;
