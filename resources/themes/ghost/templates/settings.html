@@ -243,6 +243,9 @@
                                                     console.log(res.status, action, value, caption);
                                                     if (res.status == 'success' && !caption.includes('theme')) {
                                                         value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
+                                                        setTimeout(function () {
+                                                            window.location.reload();
+                                                        }, 3000);
                                                     } else if (res.status == 'success' && caption == 'theme') {
                                                         themeCaption.innerHTML = value ? 'Dark Mode' : 'Light Mode';
                                                         value ? app.showToast('Dark mode enabled', res.status) : app.showToast('Light mode enabled', res.status);
@@ -250,9 +253,6 @@
                                                     } else {
                                                         app.showToast(res.msg, res.status);
                                                     }
-                                                    setTimeout(function () {
-                                                        window.location.reload();
-                                                    }, 3000);
                                                 })
                                             });
                                         });
