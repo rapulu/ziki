@@ -303,9 +303,9 @@ Router::get('/subscribers', function ($request) {
 // 404 page
 Router::get('/editor', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     return $this->template->render('editor.html');
 });
 Router::get('/404', function ($request) {

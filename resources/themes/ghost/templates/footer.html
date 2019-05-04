@@ -94,7 +94,7 @@
     // check if the form is being submitted
     // which would mean a new post is being created rather than saving a draft
     const newPostIsBeingCreated = event.target instanceof HTMLFormElement;
-    if (newPostIsBeingCreated) {
+    
       // get all imageURIs in the document
       let imageURIs = markdown.match(/\!\[\]\(data:image\/\w+;base64,[^)]*\)/g);
       // are there images in the blog post?
@@ -124,7 +124,7 @@
           formData.set(newImgName, uriData);
         });
       }
-    }
+  
 
     formData.set('postVal', markdown);
 
