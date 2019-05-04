@@ -243,6 +243,7 @@
                                                     if (res.status == 'success' && !caption.includes('theme')) {
                                                         return value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
                                                     } else if (res.status == 'success' && caption == 'theme') {
+                                                        themeCaption.innerHTML = value ? 'Dark Mode' : 'Light Mode';
                                                         return value ? app.showToast('Dark theme enabled', res.status) : app.showToast('Light theme enabled', res.status);
                                                     } else {
                                                         return app.showToast(res.msg, res.status);
@@ -344,7 +345,7 @@
     </div>
 </div>
 </div>
-  </div>
+</div>
 </div>
 
 
