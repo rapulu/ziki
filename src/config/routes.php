@@ -455,13 +455,13 @@ Router::get('/install', function ($request) {
 });
 
 /* Add Video*/
-Router::post('/videos', function ($request) {
+Router::post('/addvideo', function ($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    echo "I reach here";
-    exit();
+    //echo "I reach here";
+    //exit();
     $directory = "./storage/videos/";
     $data = $request->getBody();
     $video_url = $data['domain'];
@@ -470,6 +470,7 @@ Router::post('/videos', function ($request) {
     $ziki = new Ziki\Core\Document($directory);
     $ziki->addVideo($video_url, $video_title, $video_about);
     $Videos = $ziki->getVideo();
+    return $user->redirect('/videos');
     //print_r($Videos);
     //return $this->template->render('videos.html', ['videos' => $Videos]);
 });
