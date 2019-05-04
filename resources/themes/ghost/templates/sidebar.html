@@ -671,7 +671,7 @@
           <div class="col-12">
 
             <ul class="list-unstyled components text-center">
-              {% if settings.role == 'Site Administrator' %}
+              {% if settings.role == 'admin' %}
               <li><a href="/timeline">
                   <h6 class="text-center"><span><b>TIMELINE</b></span></h6>
                 </a></li>
@@ -692,13 +692,19 @@
                   </li>
                 </ul>
               </li>
-
+              <p>
+                {{ appsettings }}
+              </p>
+              {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
               <li><a href="/videos">
                   <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
                 </a></li>
+              {% endif %}
+              {% if appsettings.ENABLE_PORFOLIO_PAGE == 'true' %}
               <li><a href="/portfolio">
                   <h6 class="text-center"><span><b>PORTFOLIO</b></span></h6>
                 </a></li>
+              {% endif %}
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>
