@@ -122,6 +122,7 @@ class Auth {
     // Log in user check
     public function is_logged_in() {
         // Check if user session has been set
+        // echo json_encode($_SESSION); -- it shows that the SESSION is empty because you login owner after install and you never setup session for them
         if (isset($_SESSION['login_user']) && ($_SESSION['login_user']['login_token'] != '')) {
             return $_SESSION;
         }
