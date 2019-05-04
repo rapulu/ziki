@@ -31,7 +31,7 @@ class Document
 
     //for creating markdown files
     //kjarts code here
-    public function create($title, $content,$tags,$image,$extra)
+    public function create($title, $content, $tags, $image, $extra)
     {
         $time = date("F j, Y, g:i a");
         $unix = strtotime($time);
@@ -46,25 +46,25 @@ class Document
 
         $yamlfile = new Doc();
         $yamlfile['title'] = $title;
-        if($tags != ""){
-        $tag = explode(",",$tags);
-        $put = [];
-        foreach ($tag as $value) {
-            array_push($put, $value);
+        if ($tags != "") {
+            $tag = explode(",", $tags);
+            $put = [];
+            foreach ($tag as $value) {
+                array_push($put, $value);
+            }
+            $yamlfile['tags'] = $put;
         }
-        $yamlfile['tags'] = $put;
-    }
-        if(!empty($image)){
-            foreach($image as $key => $value){
-            $decoded = base64_decode($image[$key]);
-            $url = "./storage/images/".$key;
-            FileSystem::write($url,$decoded);
+        if (!empty($image)) {
+            foreach ($image as $key => $value) {
+                $decoded = base64_decode($image[$key]);
+                $url = "./storage/images/" . $key;
+                FileSystem::write($url, $decoded);
+            }
         }
-    }
 
-        if(!$extra){
+        if (!$extra) {
             $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
-        }else{
+        } else {
             $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
         }
 
@@ -80,14 +80,14 @@ class Document
         $dir = $file . $unix . ".md";
         //return $dir; die();
         $doc = FileSystem::write($dir, $yaml);
-        if(!$extra){
+        if (!$extra) {
             if ($doc) {
                 $result = array("error" => false, "message" => "Post published successfully");
                 $this->createRSS();
             } else {
                 $result = array("error" => true, "message" => "Fail while publishing, please try again");
             }
-        }else{
+        } else {
             if ($doc) {
                 $result = array("error" => false, "message" => "Draft saved successfully");
             } else {
@@ -139,7 +139,7 @@ class Document
     {
         $rss = new \DOMDocument();
         $feed = [];
-        $data = file_get_contents("storage/rss/subscriber.json");
+        $data = file_get_contents("storage/rss/subscription.json");
         $urlArray = json_decode($data, true);
 
         //$urlArray = array(array('name' => 'Elijah Okokn', 'url' => 'storage/contents/rss.xml'),
@@ -166,7 +166,7 @@ class Document
         });
         return $feed;
     }
-      //RSS designed By DMAtrix;
+    //RSS designed By DMAtrix;
     public function fetchRss()
     {
         $rss = new \DOMDocument();
@@ -200,10 +200,10 @@ class Document
     //store rss By DMAtrix
     public function createRSS()
     {
-      $user = file_get_contents("src/config/auth.json");
-      $user = json_decode($user, true);
+        $user = file_get_contents("src/config/auth.json");
+        $user = json_decode($user, true);
 
-          date_default_timezone_set('UTC');
+        date_default_timezone_set('UTC');
         $Feed = new RSS2;
         // Setting some basic channel elements. These three elements are mandatory.
         $Feed->setTitle($user['name']);
@@ -219,7 +219,7 @@ class Document
         $Feed->setChannelElement('pubDate', date(\DATE_RSS, strtotime('2013-04-06')));
 
 
-        $Feed->setSelfLink(SITE_URL.'storage/rss/rss.xml');
+        $Feed->setSelfLink(SITE_URL . 'storage/rss/rss.xml');
         $Feed->setAtomLink('http://pubsubhubbub.appspot.com', 'hub');
 
         $Feed->addNamespace('creativeCommons', 'http://backend.userland.com/creativeCommonsRssModule');
@@ -255,15 +255,15 @@ class Document
 
                 $newItem->setAuthor($user['name'], $user['email']);
                 $newItem->setId($url, true);
-                $newItem->addElement('source', $user['name'].'\'s page', array('url' => SITE_URL));
+                $newItem->addElement('source', $user['name'] . '\'s page', array('url' => SITE_URL));
                 $Feed->addItem($newItem);
             }
             $myFeed = $Feed->generateFeed();
-  $handle = "storage/rss/rss.xml";
-  $doc = FileSystem::write($handle, $myFeed);
-    //        fwrite($handle, $myFeed);
-      //      fclose($handle);
-      $strxml= $Feed->printFeed();
+            $handle = "storage/rss/rss.xml";
+            $doc = FileSystem::write($handle, $myFeed);
+            //        fwrite($handle, $myFeed);
+            //      fclose($handle);
+            $strxml = $Feed->printFeed();
         } else {
             return false;
         }
@@ -272,10 +272,10 @@ class Document
     //RSS designed By DMAtrix;
     public function getRss()
     {
-      $user = file_get_contents("src/config/auth.json");
-      $user = json_decode($user, true);
+        $user = file_get_contents("src/config/auth.json");
+        $user = json_decode($user, true);
 
-          date_default_timezone_set('UTC');
+        date_default_timezone_set('UTC');
         $Feed = new RSS2;
         // Setting some basic channel elements. These three elements are mandatory.
         $Feed->setTitle($user['name']);
@@ -291,7 +291,7 @@ class Document
         $Feed->setChannelElement('pubDate', date(\DATE_RSS, strtotime('2013-04-06')));
 
 
-        $Feed->setSelfLink(SITE_URL.'storage/rss/rss.xml');
+        $Feed->setSelfLink(SITE_URL . 'storage/rss/rss.xml');
         $Feed->setAtomLink('http://pubsubhubbub.appspot.com', 'hub');
 
         $Feed->addNamespace('creativeCommons', 'http://backend.userland.com/creativeCommonsRssModule');
@@ -327,12 +327,12 @@ class Document
 
                 $newItem->setAuthor($user['name'], $user['email']);
                 $newItem->setId($url, true);
-                $newItem->addElement('source', $user['name'].'\'s page', array('url' => SITE_URL));
+                $newItem->addElement('source', $user['name'] . '\'s page', array('url' => SITE_URL));
                 $Feed->addItem($newItem);
             }
             $myFeed = $Feed->generateFeed();
 
-      $strxml= $Feed->printFeed();
+            $strxml = $Feed->printFeed();
         } else {
             return false;
         }
@@ -342,20 +342,23 @@ class Document
         $db = "storage/rss/subscriber.json";
         $file = FileSystem::read($db);
         $data = json_decode($file, true);
-        unset($file);
-        $posts = [];
-        foreach ($data as $key => $value) {
+        if (count($data) >= 1) {
+            unset($file);
+            $posts = [];
+            foreach ($data as $key => $value) {
 
-            $content['name'] = $value['name'];
-            $content['img'] = $value['img'];
-            $content['desc'] = $value['desc'];
-            array_push($posts, $content);
+                $content['name'] = $value['name'];
+                $content['img'] = $value['img'];
+                $content['time'] = $value['time'];
+                $content['desc'] = $value['desc'];
+                array_push($posts, $content);
+            }
+            return $posts;
         }
-        return $posts;
     }
     public function subscription()
     {
-        $db = "storage/rss/subscriber.json";
+        $db = "storage/rss/subscription.json";
         $file = FileSystem::read($db);
         $data = json_decode($file, true);
         unset($file);
@@ -406,44 +409,59 @@ class Document
     //end of get a post function
 
     // post
-public function update($id)
+    public function update($id)
     {
-            $finder = new Finder();
-            // find all files in the current directory
-            $finder->files()->in($this->file);
-            $posts = [];
-            if ($finder->hasResults()) {
-                foreach ($finder as $file) {
-                    $document = $file->getContents();
-                    $parser = new Parser();
-                    $document = $parser->parse($document);
-                    $yaml = $document->getYAML();
-                    $body = $document->getContent();
-                    //$document = FileSystem::read($this->file);
-                    $parsedown  = new Parsedown();
-                        $tags = $yaml['tags'];
-                       for($i = 0; $i<count($tags); $i++){
-                            // strip away the leading "#" of the tag name
-                            if(substr($tags[$i], 1) == $id){
-                            $slug = $parsedown->text($yaml['slug']);
-                            $title = $parsedown->text($yaml['title']);
-                            $bd = $parsedown->text($body);
-                            $time = $parsedown->text($yaml['timestamp']);
-                            $url = $parsedown->text($yaml['post_dir']);
-                            $content['title'] = $title;
-                            $content['body'] = $bd;
-                            $content['url'] = $url;
-                            $content['timestamp'] = $time;
-                            $content['tags'] = $tags;
-                            $content['slug'] = $yaml['slug'];
-                            array_push($posts, $content);
-                            }
-                        }
+        $finder = new Finder();
+        // find all files in the current directory
+        $finder->files()->in($this->file);
+        $posts = [];
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                // skip this document if it has no tags
+                if (!isset($yaml['tags'])) {
+                    continue;
+                }
+                $tags = $yaml['tags'];
+                for ($i = 0; $i < count($tags); $i++) {
+                    // strip away the leading "#" of the tag name
+                    if (substr($tags[$i], 1) == $id) {
+                        $slug = $parsedown->text($yaml['slug']);
+                        $title = $parsedown->text($yaml['title']);
+                        $bd = $parsedown->text($body);
 
+                        // get the first image in the post body
+                        // it will serve as the preview image
+                        preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                        $first_img = false;
+                        if (isset($matches[1])) {
+                            // there are images
+                            $first_img = $matches[1];
+                            // strip all images from the text
+                            $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
+                        }
+                        $time = $parsedown->text($yaml['timestamp']);
+                        $url = $parsedown->text($yaml['post_dir']);
+                        $content['title'] = $title;
+                        $content['body'] = $bd;
+                        $content['url'] = $url;
+                        $content['timestamp'] = $time;
+                        $content['tags'] = $tags;
+                        $content['slug'] = $yaml['slug'];
+                        $content['preview_img'] = $first_img;
+                        array_push($posts, $content);
                     }
-                return $posts;
+                }
             }
         }
+        return $posts;
+    }
 
     //kjarts code for deleting post
     public function delete($id, $extra)
@@ -466,26 +484,26 @@ public function update($id)
                     $delete = "File deleted successfully";
                 }
             }
-            if(!$extra){
+            if (!$extra) {
                 $this->createRSS();
             }
             return $delete;
         }
-     }
+    }
 
-     /**
-      * updates a post stored in an md file
-      * and echos a json object;
-      *
-      * @param [type] $mdfile
-      * @param [type] $title
-      * @param [type] $content
-      * @param [type] $tags
-      * @param [type] $image
-      * @return void
-      */
-     public function updatePost($mdfile,$title,$content,$tags,$image)
-     {
+    /**
+     * updates a post stored in an md file
+     * and echos a json object;
+     *
+     * @param [type] $mdfile
+     * @param [type] $title
+     * @param [type] $content
+     * @param [type] $tags
+     * @param [type] $image
+     * @return void
+     */
+    public function updatePost($mdfile, $title, $content, $tags, $image)
+    {
         $text = file_get_contents($mdfile);
         $document = FrontMatter::parse($text);
         $date = date("F j, Y, g:i a");
@@ -494,16 +512,16 @@ public function update($id)
         // var_dump($document->getContent());
         // var_dump($document['tags']);
         $document = new Doc();
-        $tmp_title = explode(' ',$title);
-        $slug = implode('-',$tmp_title);
+        $tmp_title = explode(' ', $title);
+        $slug = implode('-', $tmp_title);
         $document['title'] = $title;
         $document['slug'] = $slug;
         $document['timestamp'] = $date;
-        $document['tags'] = explode(',',$tags);
+        $document['tags'] = explode(',', $tags);
         $hashedTags = [];
         // adding hash to the tags before storage
         foreach ($document['tags'] as $tag) {
-        $hashedTags[] = '#'.$tag;
+            $hashedTags[] = '#' . $tag;
         }
         $document['tags'] = $hashedTags;
         $document['image'] = $image;
@@ -517,10 +535,10 @@ public function update($id)
             $result = array("error" => true, "message" => "Fail while publishing, please try again");
         }
         echo json_encode($result);
-     }
+    }
 
-     public function getSinglePost($id)
-     {
+    public function getSinglePost($id)
+    {
         $directory = "./storage/contents/${id}.md";
         // var_dump($directory);
         $document = FrontMatter::parse(file_get_contents($directory));
@@ -531,6 +549,114 @@ public function update($id)
         $content['timestamp'] = $document['timestamp'];
 
         return $content;
-     }
+    }
 
+    // Start-  Creating New Portfolio
+    // David's code for creating md from Add portfolio button(AFKj)
+    // Start- Creating new portfolio
+    public function createNewPortfolio($title, $content, $image)
+    {
+        $time = date("F j, Y, g:i a");
+        $unix = strtotime($time);
+        // Write md file
+        $document = FrontMatter::parse($content);
+        $md = new Parser();
+        $markdown = $md->parse($document);
+
+        $yaml = $markdown->getYAML();
+        $html = $markdown->getContent();
+        //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
+
+        $yamlfile = new Doc();
+        $yamlfile['title'] = $title;
+
+        if (!empty($image)) {
+            foreach ($image as $key => $value) {
+                $decoded = base64_decode($image[$key]);
+                $url = "./storage/images/" . $key;
+                FileSystem::write($url, $decoded);
+            }
+        }
+
+        // create slug by first removing spaces
+        $striped = str_replace(' ', '-', $title);
+        // then removing encoded html chars
+        $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
+        $yamlfile['slug'] = $striped . "-{$unix}";
+        $yamlfile['timestamp'] = $time;
+        $yamlfile->setContent($content);
+        $yaml = FrontMatter::dump($yamlfile);
+        $file = $this->file;
+        $dir = $file . $unix . ".md";
+        //return $dir; die();
+        $doc = FileSystem::write($dir, $yaml);
+    }
+    // End- Creating new portfolio
+
+    public function addVideo($url, $title, $content)
+    {
+        $time = date("F j, Y, g:i a");
+        $unix = strtotime($time);
+        // Write md file
+        $document = FrontMatter::parse($content);
+        $md = new Parser();
+        $markdown = $md->parse($document);
+
+        $yaml = $markdown->getYAML();
+        $html = $markdown->getContent();
+        //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
+
+        $yamlfile = new Doc();
+        $yamlfile['title'] = $title;
+        $yamlfile['url'] = $url;
+
+        $striped = str_replace(' ', '-', $title);
+        $yamlfile['slug'] = $striped . "-{$unix}";
+        $yamlfile['timestamp'] = $time;
+        $yamlfile->setContent($content);
+        $yaml = FrontMatter::dump($yamlfile);
+        $file = $this->file;
+        $dir = $file . $unix . ".md";
+        //return $dir; die();
+        $doc = FileSystem::write($dir, $yaml);
+        if ($doc) {
+            $result = array("error" => false, "message" => "Video added successfully");
+        } else {
+            $result = array("error" => true, "message" => "Fail while publishing, please try again");
+        }
+        return $result;
+    }
+
+    //get video
+    public function getVideo()
+    {
+        $finder = new Finder();
+
+        // find all files in the current directory
+        $finder->files()->in($this->file);
+        $videos = [];
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                $title = $parsedown->text($yaml['title']);
+                $bd = $parsedown->text($body);
+                $time = $parsedown->text($yaml['timestamp']);
+                $url = $parsedown->text($yaml['url']);
+                $content['title'] = $title;
+                $content['description'] = $bd;
+                $content['domain'] = $url;
+                $content['timestamp'] = $time;
+                array_push($videos, $content);
+            }
+            return $videos;
+        } else {
+            return $videos;
+        }
+    }
 }

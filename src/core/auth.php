@@ -1,6 +1,9 @@
 <?php
+
 namespace Ziki\Core;
+
 use Ziki\Core\FileSystem;
+use PHPMailer\PHPMailer\PHPMailer;
 class Auth {
     /**
      * This function will get the auth details from specified url
@@ -17,13 +20,75 @@ class Auth {
         }
         return $install;
     }
+
+    public static function sendMail($destination, $name, $address) {
+         // Send success mail
+         $mail = new PHPMailer;
+         $mail->isSMTP();                         
+         $mail->Host = "smtp.gmail.com";
+         $mail->SMTPAuth = true;     
+         $mail->Username = "zikihnginternssmtp@gmail.com";                 
+         $mail->Password = "zikiinterns";
+         $mail->SMTPSecure = "tls";
+         $mail->Port = 587;                                   
+
+         $mail->From = "zikihnginternssmtp@gmail.com";
+         $mail->FromName = "Lucid";
+         $mail->addAddress($destination, $name);
+         $mail->isHTML(true);
+         $variables = array();
+         $variables['name'] = $name;
+         $variables['address'] = $address;
+         $email_temp = "./src/config/email.php";
+         $template = file_get_contents($email_temp);
+         foreach($variables as $key => $value) {
+             $template = str_replace('{{ '.$key.' }}', $value, $template);
+         }
+         $mail->Subject = "Welcome To Lucid";
+         $mail->Body = $template;
+
+         if(!$mail->send()) 
+         {
+             return false;
+         } 
+         else 
+         {
+             return true;
+         }
+    }
     public static function setup ($data)
     {
         $check_settings = self::isInstalled();
-        if(!$check_settings) {
-            $s_file = "./src/config/auth.json";
-            $core = FileSysyem::read($s_file);
-            $doc = FileSystem::write($s_file, $data);
+        if($check_settings == true) {
+            $s_file = "./src/config";
+            $data['name'] = $data['firstname']." ".$data['lastname'];
+            $site_url = $data['domainName'].$data['domain'];
+            $data['image'] = "https://res.cloudinary.com/dc9kfp5gt/image/upload/v1556862782/business-color_business-contact-86_icon-icons.com_53469_ckkqq7.png";
+            $save = json_encode($data);
+            $doc = FileSystem::write("{$s_file}/auth.json", $save);
+            $destination = $data['email'];
+            $mail_check = self::sendMail($destination, $data['name'], $site_url);
+            
+            /*$url = "https://auth.techteel.com/api/login/email?address={$data['email']}?domain={$site_url}";
+            $ch = curl_init();
+            //Set the URL that you want to GET by using the CURLOPT_URL option.
+            curl_setopt($ch, CURLOPT_URL, $url);
+            
+            //Set CURLOPT_RETURNTRANSFER so that the content is returned as a variable.
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            
+            //Set CURLOPT_FOLLOWLOCATION to true to follow redirects.
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            
+            //Execute the request.
+            $result = curl_exec($ch);
+            
+            //Close the cURL handle.
+            curl_close($ch);*/
+             return $mail_check;
+        }
+        else{
+            return false;
         }
     }
     public static function getAuth($data, $role){
