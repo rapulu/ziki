@@ -9,21 +9,18 @@
             font-family: 'Lato', sans-serif;
         }
 
-        .drafts .draft-content {
-            max-height: 220px;
-        }
-
-          /**the important was added so the styles would be forced when the titles are dynamically added**/
-        .drafts .draft-date p{
-            font-style: normal !important; 
+        /**the important was added so the styles would be forced when the titles are dynamically added**/
+        .drafts .draft-date p {
+            font-style: normal !important;
             font-weight: 500 !important;
             font-size: 14px !important;
             line-height: 17px !important;
             color: #280A66 !important;
         }
-  /**the important was added so the styles would be forced when the titles are dynamically added**/
-  
-        .drafts .draft-title a p{
+
+        /**the important was added so the styles would be forced when the titles are dynamically added**/
+
+        .drafts .draft-title a p {
             font-style: normal;
             font-weight: bold;
             font-size: 24px;
@@ -32,18 +29,18 @@
             transition: all ease-in 0.3s;
         }
 
-        .drafts .draft-title a p:hover {
+        .drafts .draft-title a:hover p {
             cursor: pointer;
             color: #280A66;
             text-decoration: none;
             transition: all ease-in 0.3s;
         }
 
-        .drafts .draft-content p{
+        .drafts .draft-content p {
 
             font-style: normal;
             font-weight: normal;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 140%;
             color: #7A7A7A;
         }
@@ -58,8 +55,12 @@
         }
 
         .draft-img {
-            height: 100%;
+            height: auto;
             width: 100%;
+        }
+
+        .draft-content p img {
+            display: none;
         }
 
         /**DROPDOWN STYLING**/
@@ -176,7 +177,7 @@
                 border-bottom: 1px solid #ebebeb;
             }
 
-            .drafts .draft-date p{
+            .drafts .draft-date p {
                 margin-top: 1em;
             }
 
@@ -206,8 +207,10 @@
             }
 
             .drafts .draft-content {
-               max-height: 627px;
+                max-height: 627px;
             }
+
+            
         }
 
         @media screen and (max-width:900px) and (min-width:700px) {
@@ -218,7 +221,7 @@
             }
 
             .drafts .draft-content {
-                max-height: 253px;
+                max-height: 400px;
             }
 
         }
@@ -234,41 +237,40 @@
             <div class="row">
                 <div class="col-12">
                     {% for key, draft in drafts %}
-                    <div class="row pt-4 pb-4  draft-bottom  draft-content">
-                        <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
-                                src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
-                                class="img-fluid draft-img"></div>
+                    <div class="row pt-4 pb-4 draft-bottom  draft-content">
+                        {% if draft.image != "" %}
+                        <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 ">
+                            <img src="{{ draft.image }}" alt="the-image-for-drafts" class="img-fluid draft-img">
+                        </div>
+                        {% endif %}
                         <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
-                            
-                                <div class="draft-date">{{ draft.timestamp | raw }}</div>
+                            <div class="second">
+                                <div class="draft-date ">{{ draft.timestamp | raw }}</div>
                                 <h6 class="draft-title">
                                     <a href=""> {{ draft.title | raw}} </a>
                                 </h6>
-                                <div class="draft-content">
+                                <p class="draft-content">
                                     {{ draft.body | raw }}
-                                </div>
-                            
+                                </p>
+                            </div>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                             <div class="dropdown col-2 mx-auto" style="cursor:pointer">
-                                    <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
-                                          aria-expanded="false" data-toggle="dropdown">
+                                <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
+                                    aria-expanded="false" data-toggle="dropdown">
 
-                                    </span>
+                                </span>
                                 <div class="dropdown-menu">
-                                    <button class="dropdown-item"> <a href="/editor" class="edit-post">Edit
-                                        draft</a></button>
-                                    <button class="dropdown-item" data-toggle="modal"
-                                            data-target="#cancelModal">Delete
+                                    <button class="dropdown-item"> <a href="/editor/{{ draft.filename | raw }}"
+                                            class="edit-post">Edit
+                                            draft</a></button>
+                                    <button class="dropdown-item" data-toggle="modal" data-target="#cancelModal">Delete
                                         draft</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     {% endfor %}
-
-
 
 
                     <div class="row">
@@ -289,8 +291,9 @@
                         </div>
                         <div class="modal-body no-border">
                             <img src="/resources/themes/ghost/assets/img/cancel-post-modal.png"
-                                 class="img-fluid mx-auto d-block dialog-img" alt="cancel post image">
-                            <p class="cancel-modal-text text-center font-weight-bold">Do you want to delete this post?</p>
+                                class="img-fluid mx-auto d-block dialog-img" alt="cancel post image">
+                            <p class="cancel-modal-text text-center font-weight-bold">Do you want to delete this post?
+                            </p>
                         </div>
                         <div class="modal-footer no-border mx-auto d-block">
 
@@ -302,6 +305,10 @@
             </div>
             <!-- modal ends here -->
         </div>
-    </div></div></div></div></div>
+    </div>
+</div>
+</div>
+</div>
+</div>
 
 {% endblock page_content %}
