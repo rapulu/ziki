@@ -2,6 +2,7 @@ composer.phar
 /vendor/
 /src/config/settings.json
 /src/config/auth.json
+/src/config/app.json
 composer.dev.*
 node_modules/
 build/

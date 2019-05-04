@@ -68,11 +68,6 @@ class Auth {
             $doc = FileSystem::write("{$s_file}/auth.json", $save);
             $destination = $data['email'];
             $mail_check = self::sendMail($destination, $data['name'], $site_url);
-
-            /* --ahmzy comment: when OWNER is fully setup then you should set their SESSION variable here 
-            because - SESSION is only working with auth(google/fbk), since you are automatically login them in*/
-            self::getAuth($data, 'Site Administrator'); //Site Administrator was the role you save in auth.json
-            /*---------------*/
             
             /*$url = "https://auth.techteel.com/api/login/email?address={$data['email']}?domain={$site_url}";
             $ch = curl_init();
@@ -166,7 +161,7 @@ class Auth {
         if(!$check_settings) {
             $json_user = FileSystem::write($dir, $result);
             if($json_user){
-                $role = "Site Administrator";
+                $role = "admin";
                 $auth =self::getAuth($res, $role);
                 $auth_response = $auth;
             }
@@ -174,7 +169,7 @@ class Auth {
         else{
             $check_prev = json_decode($check_settings);
             if($check_prev->email == $res->email){
-                $role = "Site Administrator";
+                $role = "admin";
                 $auth = self::getAuth($check_prev, $role);
                 $auth_response = $auth;
             }

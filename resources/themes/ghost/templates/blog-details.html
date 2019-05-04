@@ -1,4 +1,4 @@
-{% set title = "Welcome to Ziki"%} {% extends 'layout.html' %}{% block page_content %}
+{% set title = "Lucid"%} {% extends 'layout.html' %}{% block page_content %}
 <style>
     h1,
     h2,
@@ -9,118 +9,119 @@
         font-family: Lato;
         letter-spacing: 0.03em;
         font-size: 14px;
-	color: black;
+        color: black;
     }
-    
+
     .blog-details .img-logo {
         padding-top: 15px;
         padding-bottom: 20px;
     }
-    
+
     .blog-details .body-of-blog {
         border-radius: 4px;
     }
-    
+
     .blog-details .blog-post-title {
         letter-spacing: -0.02em;
     }
-    
+
     .blog-details .blog-post-title h3 {
         font-family: Lato;
         font-style: normal;
         font-weight: bold;
         font-size: 32px;
     }
-    
+
     .blog-details .about-blog-source {
         font-weight: bold;
     }
-    
+
     .blog-details .author-img {
         border-radius: 50%;
     }
-    
+
     .blog-source,
     .blog-date {
         font-size: 12px;
         font-family: 500;
         text-decoration: none;
     }
-    
+
     .blog-source {
         font-size: 12px;
         color: blueviolet;
     }
     /*  PLACEHOLDER STYLING  */
-    
+
      ::placeholder {
         /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: var(--custom-deep-purple);
         /* Firefox */
     }
-    
+
      :-ms-input-placeholder {
         /* Internet Explorer 10-11 */
         color: var(--custom-deep-purple);
     }
-    
+
      ::-ms-input-placeholder {
         /* Microsoft Edge */
         color: var(--custom-deep-purple);
     }
     /*  PLACEHOLDER STYLING  */
     /*  CATEGORIES TAGS STYLING  */
-    
+
     .blog-details .body-of-blog {
         border-radius: 4px;
     }
-    
+
     .blog-details .categories {
         border: 1px solid blueviolet;
         border-radius: 4px;
-	font-weight: 500;
+        font-weight: 500;
         font-size: 14px;
         padding: 15px;
-	color: blueviolet;
+        color: blueviolet;
     }
-    
+
     .categories {
         font-weight: 500;
         font-size: 14px;
         padding: 15px;
     }
-    
+
     .blog-details .categories:hover {
         cursor: pointer;
         transition: all ease-in 0.3s;
-	border: 1px solid blueviolet;
+        border: 1px solid blueviolet;
         border-radius: 4px;
-	font-weight: 500;
+        font-weight: 500;
         font-size: 14px;
         padding: 15px;
-	color: white;;
-	background-color: blueviolet;
+        color: white;
+        ;
+        background-color: blueviolet;
     }
-    
+
     .blog-details .guest-action-items span {
         margin-left: 10px;
         margin-right: 10px;
     }
-    
+
     .blog-posts a {
         text-decoration: none;
         color: #212529;
         line-height: 0.03em;
     }
     /*AUTHOR'S IMAGE*/
-    
+
     .author-img {
         position: absolute;
         width: 50px;
         height: 50px;
     }
     /*media queries*/
-    
+
     @media screen and (max-width: 617px) {
         .blog-details .author-img {
             width: 3em;
@@ -140,8 +141,12 @@
         .body-of-blog .info-on-author {
             margin-bottom: 2em;
         }
+        .blog-post-title {
+            margin-top: 3em;
+            padding-top: 2em;
+        }
     }
-    
+
     @media (min-width:767px) {
         .about-blog-source {
             margin-left: 1.5em;
@@ -152,11 +157,11 @@
 </style>
 <div class="container-fluid blog-details">
     <div class="row">
-        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 sidebar">
+        <div class="col-lg-1 col-md-1 col-sm-7 col-xs-7">
 
         </div>
 
-        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 mt-5 pt-3">
+        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 mt-5 pt-3">
             <!-- LOGO -->
             <!--     <div class="img-logo text-right">
                 <img src="resources/themes/ghost/assets/img/Vector.png" alt="logo" width="34" height="35">
@@ -177,7 +182,7 @@
 
                     </div>
                 </div>
-                <div class="blog-post-title mt-3">
+                <div class="blog-post-title mt-4">
                     <h3>Looking for where to spend christmas</h3>
                 </div>
                 <div class="blog-info">
@@ -215,14 +220,16 @@
                     </div>
                 </div>
             </div>
+
             <div class="comment-box mt-4 pl-4 pr-4 mx-auto">
                 <!-- this div is for the disqus commenting function -->
                 <div id="disqus_thread"></div>
 
 
-{% if COMMENT_PLUGIN == "disqus" %}
-                <script>//alert("{{COMMENT_PLUGIN}}");
-	
+                {% if COMMENT_PLUGIN == "disqus" %}
+                <script>
+                    //alert("{{COMMENT_PLUGIN}}");
+
 
                     /**
                      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -240,14 +247,20 @@
                         s.setAttribute('data-timestamp', +new Date());
                         (d.head || d.body).appendChild(s);
                     })();
-
                 </script>
-                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-{% else %}
-<div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
-{% endif %}
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> {% else %}
+                <div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
+                {% endif %}
             </div>
+
+            <ul class="list-unstyled CTAs d-flex justify-content-center">
+                <li>
+                    <a href="#"><button class="btn btn-light">Go back Home</button></a>
+                </li>
+            </ul>
         </div>
+
+
     </div>
 </div>
 </div>
