@@ -26,6 +26,14 @@
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
     });
+  }); 
+
+  $(document).ready(function () {
+    $('#sidebar-Collapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      $('#sidebar-collapse').toggleClass('hidden fas fa-arrow-circle-left fa-2x');
+      $('#sidebar-collapse-2').toggleClass('visible fas fa-arrow-circle-right fa-2x');
+    });
   });
 </script>
 
