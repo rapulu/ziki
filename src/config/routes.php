@@ -500,7 +500,7 @@ Router::post('/addvideo', function ($request) {
 
     //Get youtube url id for embed
     parse_str(parse_url($data['domain'], PHP_URL_QUERY), $YouTubeId);
-    $video_url = "https://www.youtube.com/embed/" . $YouTubeId;
+    $video_url = "https://www.youtube.com/embed/" . $YouTubeId['v'];
     $video_title = $data['title'];
     $video_about = $data['description'];
     $ziki = new Ziki\Core\Document($directory);
