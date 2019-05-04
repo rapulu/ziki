@@ -110,10 +110,39 @@
         #sidebar {
             background: darkred !important;
         }
+
+        /* DARK MODE */
+        .dark-mode .temp-nav {
+            background: #520606 !important;
+            color: var(--light);
+        }
+
+        .dark-mode #content,
+        .dark-mode .ruby,
+        .dark-mode .ghost,
+        .dark-mode #content .container,
+        .dark-mode #content .container-fluid,
+        .dark-mode #content.dflex,
+        .dark-mode #content .navbar,
+        .dark-mode #content .themes-content-area {
+            background: #670819 !important;
+        }
+
+        .dark-mode .sidebar-header,
+        .dark-mode #sidebar {
+            background: #350d0d !important;
+        }
     </style>
 </head>
 
-<body>
+<body id="body">
+    <!-- script to switch dark and light mode -->
+    <script>
+        var currentMode = '{{ appsettings.THEME_STATE }}';
+        var currentClass = currentMode == 'true' ? 'dark-mode' : 'light-mode';
+        var body = document.getElementById("body");
+        body.className = currentClass;
+    </script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
