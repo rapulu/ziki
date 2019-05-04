@@ -447,7 +447,7 @@ Router::get('/install', function ($request) {
     $user = new Ziki\Core\Auth();
     if ($user::isInstalled() == false) {
         return $user->redirect('/');
-    } else{
+    } else {
         $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
         $host = $user->hash($url);
         return $this->installer->render('install.html', ['host' => $host]);
@@ -460,6 +460,8 @@ Router::post('/addvideo', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
+    //echo "I reach here";
+    //exit();
     $directory = "./storage/videos/";
     $data = $request->getBody();
     $video_url = $data['domain'];
@@ -468,6 +470,7 @@ Router::post('/addvideo', function ($request) {
     $ziki = new Ziki\Core\Document($directory);
     $ziki->addVideo($video_url, $video_title, $video_about);
     $Videos = $ziki->getVideo();
+    return $user->redirect('/videos');
     //print_r($Videos);
-    return $this->template->render('videos.html', ['videos' => $Videos]);
+    //return $this->template->render('videos.html', ['videos' => $Videos]);
 });
