@@ -38,31 +38,68 @@
                 <button type="submit"
                   class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3 text-upppercase">update</button>
               </form>
-
-              <form class="pb-5 mt-5">
+              <!-- Please the form fields below should not be touched and ensure to contact @porh if 
+              you don't understand -->
+              <form class="pb-5 mt-5" action="/updateabout" method="POST">
 
                 <div class="form-group">
+                    {% if message.aboutError %}
+                    <span class="text-danger">{{ message.aboutError }}</span>
+                    {% else %}
                   <label for="about" class="font-weight-bold profile-edit-label">About Me</label>
-                  <textarea class="form-control" id="about" placeholder="About" rows="5"></textarea>
+                    {% endif %}
+                  <textarea class="form-control" name="about" id="about" placeholder="About" rows="5">{{ about | raw }}</textarea>
                 </div>
                 <button type="submit"
                   class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3 text-upppercase">update</button>
               </form>
 
-              <form class="pb-5 mt-5">
+              {% if message.success %}
+              <div class="alert alert-success" id="msgContainer"  style="width:40%;top:120px;right:10px;position:fixed;z-index: 9999999;">
+                  <div class="row">
+                      <div class="col-11">{{ message.success }}</div>
+                      <div class="col-1 text-right"><a id="closebtn" href="javascript:void(0)" style="text-decoration:none;color:#111;">&times;</a></div>
+                  </div>
+              </div>
+              {% elseif message.FormFieldError %}
+              
+              <div class="alert alert-danger" id="msgContainer"  style="width:40%;top:120px;right:10px;position:fixed;z-index: 9999999;">
+                  <div class="row">
+                      <div class="col-11">{{ message.FormFieldError }}</div>
+                      <div class="col-1 text-right"><a id="closebtn" href="javascript:void(0)" style="text-decoration:none;color:#111;">&times;</a></div>
+                  </div>
+              </div>
+              {% elseif message.serverError %}
+              <div class="alert alert-warning" id="msgContainer"  style="width:40%;top:120px;right:10px;position:fixed;z-index: 9999999;">
+                  <div class="row">
+                      <div class="col-11">{{ message.serverError }}</div>
+                      <div class="col-1 text-right"><a id="closebtn" href="javascript:void(0)" style="text-decoration:none;color:#111;">&times;</a></div>
+                  </div>
+              </div>
+              {% endif %}
+
+              <form class="pb-5 mt-5" method="POST" action="/setcontactemail">
 
                 <div class="form-group">
+                  
+                  {% if message.emailError %}
+                      <span class="text-danger">{{ message.emailError }}</span>
+                  {% else %}
                   <label for="email" class="font-weight-bold profile-edit-label">Contact Email</label>
-                  <input class="form-control" type="email" id="email" placeholder="Email"/>
+                  {% endif %}
+                  <input class="form-control" value="{{ userEmailAddr }}" type="email" name="contactEMail" id="email" placeholder="Email"/>
+                  
                 </div>
                 <button type="submit"
                   class="btn float-md-right profile-submit-btn text-white d-block mx-auto mt-3 text-upppercase">update</button>
               </form>
+              <!-- My task field ended here should not be touched and ensure to contact @porh if 
+              you don't understand -->
             </div>
           </div>
-
         </div>
       </div>
+      
       <script>
         // handle image upload
         var defaultImagePath = '/resources/themes/ghost/assets/img/user-icon-placeholder.png';
@@ -109,6 +146,21 @@
             alert(`Upload request failed : ${err.message}`);
           });
         }
+        //please don't touch the code below
+        //it's a core part of this script
+        window.onscroll = function() {MsgContainer()};
+
+        function MsgContainer() {
+          if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            document.getElementById("msgContainer").style.top = "30px";
+          } else {
+            document.getElementById("msgContainer").style.top = "120px";
+          }
+        }
+        let closeBtn = document.getElementById('closebtn');
+        closeBtn.addEventListener('click',function(){
+            document.getElementById('msgContainer').style.display='none';
+        });
       </script>
     </div>
   </div>

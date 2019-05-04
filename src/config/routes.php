@@ -92,6 +92,7 @@ Router::get('/about', function ($request) {
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
     $checkifOwnersMailIsprovided = new  SendContactMail();
     $checkifOwnersMailIsprovided->getOwnerEmail();
+    $aboutContent = $checkifOwnersMailIsprovided->getPage();
     $message = [];
     if (empty($checkifOwnersMailIsprovided->getOwnerEmail())) {
         $message['ownerEmailNotProvided'] = true;
@@ -100,7 +101,7 @@ Router::get('/about', function ($request) {
         $message = $_SESSION['messages'];
         unset($_SESSION['messages']);
     }
-    return $this->template->render('about.html', ['message' => $message]);
+    return $this->template->render('about.html', ['message' => $message,'about'=>$aboutContent]);
 });
 Router::post('/send', function ($request) {
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
@@ -110,6 +111,22 @@ Router::post('/send', function ($request) {
     $SendMail->sendMail($request);
     $SendMail->clientMessage();
     return $SendMail->redirect('/about');
+});
+Router::post('/setcontactemail',function($request){
+    include ZIKI_BASE_PATH."/src/core/SendMail.php";
+    $request = $request->getBody();
+    $SetContactEmail = new SendContactMail();
+    $SetContactEmail->setContactEmail($request);
+    $SetContactEmail->clientMessage();
+    return $SetContactEmail->redirect('/profile');
+});
+Router::post('/updateabout',function($request){
+    include ZIKI_BASE_PATH."/src/core/SendMail.php";
+    $request = $request->getBody();
+    $updateabout= new SendContactMail();
+    $updateabout->updateAbout($request);
+    $updateabout->clientMessage();
+    return $updateabout->redirect('/profile');
 });
 Router::get('delete/{id}', function ($request, $id) {
     $user = new Ziki\Core\Auth();
@@ -192,11 +209,27 @@ Router::post('/appsetting', function ($request) {
 
 // profile page
 Router::get('/profile', function ($request) {
+    ///please don't remove or change the included path
+    include ZIKI_BASE_PATH . "/src/core/SendMail.php";
+    //please don't rename the variables 
+    $userSiteDetails= new  SendContactMail();
+    //this  gets the owners email address
+    $userEmailAddr=$userSiteDetails->getOwnerEmail();
+    //this gets the page content
+    $getAboutPageContent = $userSiteDetails->getPage();
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    return $this->template->render('profile.html');
+    //this for error and successs messages
+    $message = [];
+    if(isset($_SESSION['messages']))
+    {
+        $message = $_SESSION['messages'];
+        unset($_SESSION['messages']);
+    }
+
+    return $this->template->render('profile.html',['message'=>$message,'userEmailAddr'=>$userEmailAddr,'about'=>$getAboutPageContent]);
 });
 
 // following page
