@@ -235,9 +235,12 @@
                 <div class="col-12">
                     {% for key, draft in drafts %}
                     <div class="row pt-4 pb-4  draft-bottom  draft-content">
-                        <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 "><img
-                                src="/resources/themes/ghost/assets/img/draft-img.png" alt="the-image-for-drafts"
-                                class="img-fluid draft-img"></div>
+                        {% if draft.image != "" %}
+                                <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 ">
+                                    <img src="{{ draft.image }}" alt="the-image-for-drafts"
+                                        class="img-fluid draft-img">
+                                </div>
+                             
                         <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
                             
                                 <div class="draft-date">{{ draft.timestamp | raw }}</div>
@@ -256,7 +259,7 @@
 
                                     </span>
                                 <div class="dropdown-menu">
-                                    <button class="dropdown-item"> <a href="/editor" class="edit-post">Edit
+                                    <button class="dropdown-item"> <a href="/editor/{{ draft.slug | raw }}" class="edit-post">Edit
                                         draft</a></button>
                                     <button class="dropdown-item" data-toggle="modal"
                                             data-target="#cancelModal">Delete
@@ -265,7 +268,40 @@
                             </div>
                         </div>
                     </div>
+                   
+                    {% elseif draft.image == "" %}
+                 
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                
+                    <div class="draft-date">{{ draft.timestamp | raw }}</div>
+                    <h6 class="draft-title">
+                        <a href=""> {{ draft.title | raw}} </a>
+                    </h6>
+                    <div class="draft-content">
+                        {{ draft.body | raw }}
+                    </div>
+                
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div class="dropdown col-2 mx-auto" style="cursor:pointer">
+                        <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
+                              aria-expanded="false" data-toggle="dropdown">
 
+                        </span>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item"> <a href="/editor/{{ draft.slug | raw }}" class="edit-post">Edit
+                            draft</a></button>
+                        <button class="dropdown-item" data-toggle="modal"
+                                data-target="#cancelModal">Delete
+                            draft</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+                    {% endif %}
                     {% endfor %}
 
 
