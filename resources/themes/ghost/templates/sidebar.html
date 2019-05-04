@@ -671,30 +671,15 @@
           <div class="col-12">
 
             <ul class="list-unstyled components text-center">
-              {% if settings.role == 'admin' %}
+              {% if user.role == 'admin' %}
               <li><a href="/timeline">
                   <h6 class="text-center"><span><b>TIMELINE</b></span></h6>
                 </a></li>
-              <li>
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                  <h6 class="text-center"><span><b>MY POSTS</b><span class="ml-2 fa fa-angle-down"></span></span></h6>
-                </a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                  <li>
-                    <a href="/published-posts">
-                      <h6 class="text-center"><span><b>PUBLISHED POSTS</b></span></h6>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/drafts">
-                      <h6 class="text-center"><span><b>DRAFTS</b></span></h6>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <p>
-                {{ appsettings }}
-              </p>
+
+                <li><a href="/published-posts">
+                  <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+                </a></li>
+
               {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
               <li><a href="/videos">
                   <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
@@ -708,43 +693,35 @@
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>
-              {% elseif settings.role == 'guest' %}
+              {% elseif user.role == 'guest' %}
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
                 </a></li>
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>
+
               {% else %}
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
                 </a></li>
-              <li>
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                  <h6 class="text-center"><span><b>MY POSTS</b><span class="ml-2 fa fa-angle-down"></span></span></h6>
-                </a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                  <li>
-                    <a href="/published-posts">
-                      <h6 class="text-center"><span><b>PUBLISHED POSTS</b></span></h6>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/drafts">
-                      <h6 class="text-center"><span><b>DRAFTS</b></span></h6>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+                <li><a href="/published-posts">
+                  <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+                </a></li>
               <li><a href="/profile">
                   <h6 class="text-center"><span><b>PROFILE</b></span></h6>
                 </a></li>
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>
+              <ul class="list-unstyled CTAs d-flex justify-content-center">
+                <li>
+                  <a href="#"><button class="btn btn-light">Follow Me</button></a>
+                </li>
+              </ul>
               {% endif %}
             </ul>
-            {% if settings.role == 'guest' | default(null) %}
+            {% if user.role == 'guest' | default(null) %}
             <ul class="list-unstyled CTAs d-flex justify-content-center">
               <li>
                 <a href="#"><button class="btn btn-light">Follow Me</button></a>

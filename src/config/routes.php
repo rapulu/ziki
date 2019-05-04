@@ -94,6 +94,7 @@ Router::get('/about', function ($request) {
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
     $checkifOwnersMailIsprovided = new  SendContactMail();
     $checkifOwnersMailIsprovided->getOwnerEmail();
+    $aboutContent = $checkifOwnersMailIsprovided->getPage();
     $message = [];
     if (empty($checkifOwnersMailIsprovided->getOwnerEmail())) {
         $message['ownerEmailNotProvided'] = true;
@@ -102,7 +103,7 @@ Router::get('/about', function ($request) {
         $message = $_SESSION['messages'];
         unset($_SESSION['messages']);
     }
-    return $this->template->render('about.html', ['message' => $message]);
+    return $this->template->render('about.html', ['message' => $message,'about'=>$aboutContent]);
 });
 Router::post('/send', function ($request) {
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
@@ -112,6 +113,22 @@ Router::post('/send', function ($request) {
     $SendMail->sendMail($request);
     $SendMail->clientMessage();
     return $SendMail->redirect('/about');
+});
+Router::post('/setcontactemail',function($request){
+    include ZIKI_BASE_PATH."/src/core/SendMail.php";
+    $request = $request->getBody();
+    $SetContactEmail = new SendContactMail();
+    $SetContactEmail->setContactEmail($request);
+    $SetContactEmail->clientMessage();
+    return $SetContactEmail->redirect('/profile');
+});
+Router::post('/updateabout',function($request){
+    include ZIKI_BASE_PATH."/src/core/SendMail.php";
+    $request = $request->getBody();
+    $updateabout= new SendContactMail();
+    $updateabout->updateAbout($request);
+    $updateabout->clientMessage();
+    return $updateabout->redirect('/profile');
 });
 Router::get('delete/{id}', function ($request, $id) {
     $user = new Ziki\Core\Auth();
@@ -167,10 +184,10 @@ Router::get('/settings', function ($request) {
 Router::post('/appsetting', function ($request) {
 
     //create middleware to protect api from non auth user
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
-    }
+    //$user = new Ziki\Core\Auth();
+    //if (!$user->is_logged_in()) {
+    //    return json_encode(array("msg" => "Authentication failed, pls login.", "status" => "error", "data" => null));
+    //}
 
     $data = $request->getBody();
     $field = $data['field']; //field to update in  app.json
@@ -194,11 +211,27 @@ Router::post('/appsetting', function ($request) {
 
 // profile page
 Router::get('/profile', function ($request) {
+    ///please don't remove or change the included path
+    include ZIKI_BASE_PATH . "/src/core/SendMail.php";
+    //please don't rename the variables 
+    $userSiteDetails= new  SendContactMail();
+    //this  gets the owners email address
+    $userEmailAddr=$userSiteDetails->getOwnerEmail();
+    //this gets the page content
+    $getAboutPageContent = $userSiteDetails->getPage();
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    return $this->template->render('profile.html');
+    //this for error and successs messages
+    $message = [];
+    if(isset($_SESSION['messages']))
+    {
+        $message = $_SESSION['messages'];
+        unset($_SESSION['messages']);
+    }
+
+    return $this->template->render('profile.html',['message'=>$message,'userEmailAddr'=>$userEmailAddr,'about'=>$getAboutPageContent]);
 });
 
 // following page
@@ -447,7 +480,7 @@ Router::get('/install', function ($request) {
     $user = new Ziki\Core\Auth();
     if ($user::isInstalled() == false) {
         return $user->redirect('/');
-    } else{
+    } else {
         $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
         $host = $user->hash($url);
         return $this->installer->render('install.html', ['host' => $host]);
@@ -462,12 +495,13 @@ Router::post('/addvideo', function ($request) {
     }
     $directory = "./storage/videos/";
     $data = $request->getBody();
-    $video_url = $data['domain'];
+
+    //Get youtube url id for embed
+    parse_str(parse_url($data['domain'], PHP_URL_QUERY), $YouTubeId);
+    $video_url = "https://www.youtube.com/embed/" . $YouTubeId;
     $video_title = $data['title'];
     $video_about = $data['description'];
     $ziki = new Ziki\Core\Document($directory);
     $ziki->addVideo($video_url, $video_title, $video_about);
-    $Videos = $ziki->getVideo();
-    //print_r($Videos);
-    return $this->template->render('videos.html', ['videos' => $Videos]);
+    return $user->redirect('/videos');
 });
