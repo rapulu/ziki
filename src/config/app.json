@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+{"APP_NAME":"Ziki App","THEME":"ghost","ZIKI_CACHE_ENABLED":true,"ZIKI_DEBUG_ENABLED":false,"ZIKI_PROD":false,"COMMENT_PLUGIN":"disqus","ENABLE_VIDEOS_PAGE":"true","ENABLE_PORTFOLIO_PAGE":"true","THEME_STATE":"false","FACEBOOK_APP_ID":"2207275122694029","FACEBOOK_DOMAIN_URL":"https:\/\/ziki.techteel.com"}
+=======
 {"APP_NAME":"Ziki App","THEME":"ghost","ZIKI_CACHE_ENABLED":true,"ZIKI_DEBUG_ENABLED":false,"ZIKI_PROD":false,"COMMENT_PLUGIN":"facebook","ENABLE_VIDEOS_PAGE":"true","ENABLE_PORTFOLIO_PAGE":"true","THEME_STATE":"false","FACEBOOK_APP_ID":"2207275122694029","FACEBOOK_DOMAIN_URL":"https:\/\/ziki.techteel.com"}
+>>>>>>> 6a5bf57a70e1e54ebe14938302380d7429b6d4b2
