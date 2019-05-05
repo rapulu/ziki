@@ -15,6 +15,7 @@ window.onload = function() {
   document
     .getElementById("previousButton")
     .addEventListener("click", function() {
+      event.preventDefault();
       stepTwoForm.style.display = "none";
       stepOneForm.style.display = "initial";
     });

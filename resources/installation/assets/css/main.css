@@ -89,11 +89,15 @@ select {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
-.social-auth button {
+.social-auth a {
+  padding: 1rem;
   background: transparent;
   color: #ffffff;
   width: 100%;
   border: none;
+}
+.social-auth a:hover, .social-auth a:active, .social-auth a:visited {
+  color: #ffffff;
 }
 .facebook-auth {
   background: rgba(71, 89, 147, 0.81);
