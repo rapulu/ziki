@@ -1,135 +1,14 @@
 {% set title = "About"%} {% extends 'layout.html' %} {% block page_content %}
-<style>
-    .about__heading {
-        font-family: Lato;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: normal;
-    }
-    .contact-us-form .form-control {
-        min-height: 50px;
-        background: #FFFFFF;
-        border: 1px solid #280A66;
-        font-family: Lato;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: normal;
-        letter-spacing: -0.02em;
-        color: #280A66;
-        box-sizing: border-box;
-        border-radius: 0px;
-    }
-
-    .contact-us-form .form-label {
-        font-family: Lato;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: normal;
-        letter-spacing: -0.02em;
-        color: #280A66;
-    }
-
-    .contact-us-form button {
-        font-family: Lato;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: normal;
-        letter-spacing: -0.02em;
-        color: #FFFFFF;
-        padding: 10px 30px;
-        background: #280A66;
-        border-radius: 2px;
-        border: 2px solid #280A66;
-    }
-
-    .contact-us-form button:hover {
-        font-family: Lato;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: normal;
-        letter-spacing: -0.02em;
-        color: #FFFFFF;
-        opacity: 0.8;
-        padding: 10px 30px;
-        background: #280A66;
-        border-radius: 2px;
-        border: 2px solid #280A66;
-    }
-    /*media queries*/
-
-    @media screen and (max-width: 600px) {
-        .contact-us-form .form-control {
-            min-height: 40px;
-            background: #FFFFFF;
-            border: 0;
-            font-family: Lato;
-            font-style: normal;
-            font-weight: normal;
-            font-size: 14px;
-            line-height: normal;
-            letter-spacing: -0.02em;
-            color: #280A66;
-            box-sizing: border-box;
-            border-radius: 0px;
-            box-shadow: 0px 1px 10px rgba(170, 170, 170, 0.25);
-        }
-        .contact-us-form .form-label {
-            font-family: Lato;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 14px;
-            line-height: normal;
-            letter-spacing: -0.02em;
-            color: #280A66;
-        }
-        .contact-us-form {
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-        .contact-us-form button {
-            font-family: Lato;
-            margin-top: 10px;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: normal;
-            color: #FFFFFF;
-            padding: 10px 30px;
-            background: #280A66;
-            border-radius: 2px;
-            border: 1px solid #280A66;
-        }
-        .contact-us-form button:hover {
-            font-family: Lato;
-            margin-top: 10px;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: normal;
-            color: #FFFFFF;
-            padding: 10px 30px;
-            background: #280A66;
-            border-radius: 2px;
-            border: 1px solid #280A66;
-            opacity: 0.8;
-        }
-    }
-    /*media queries*/
-</style>
-<div class="container px-5">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 body-of-blog mt-5 pt-3">
-           <div class="mb-4">
+<div class="container-fluid px-5" id="content">
+        <div class="row d-block">
+            <div class="mb-4">
                 <h3 class="about__heading">About</h3>
             </div>
             <div class="w-100">
-             <p class="text-justify about-text">{{ about | raw }}</p>
+                <p class="text-justify about-text">{{ about | raw }}</p>
             </div>
+        </div>
+        <div class="row d-block">
             <div class="mt-5">
                 <h3 class="about__heading">Contact</h3>
             </div>
@@ -191,14 +70,16 @@
 
             </div>
 
-        </div>
-    </div>
+            </div>
+        
+        <script>
+            let closeBtn = document.getElementById('closebtn');
+            closeBtn.addEventListener('click',function(){
+                document.getElementById('msgContainer').style.display='none';
+            });
+        </script>
 </div>
-<script>
-    let closeBtn = document.getElementById('closebtn');
-    closeBtn.addEventListener('click',function(){
-        document.getElementById('msgContainer').style.display='none';
-    });
-</script>
-</div></div></div>
+</div>
+</div>
+</div>
 {% endblock page_content %}

@@ -61,7 +61,7 @@
                         </div>
 
                         <div
-                            class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0 pb-2">
+                            class="col-lg-6 col-md-6 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0 pb-2">
                             <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Videos Page</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="ENABLE_VIDEOS_PAGE" {% if
@@ -71,7 +71,7 @@
                         </div>
 
                         <div
-                            class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
+                            class="col-lg-6 col-md-6 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
                             <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Portfolio Page</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="ENABLE_PORTFOLIO_PAGE" {%
@@ -103,13 +103,9 @@
 
                     <!-- theme list: the idea is to load from a theme.json file -->
                     {% set themeList = [
-                    {'name': 'Ghost', 'imagePath': '/resources/themes/ghost/assets/img/theme1.png', isActive: true,
-                    color: '#280A66'},
-                    {'name': 'Ruby', 'imagePath': '/resources/themes/ghost/assets/img/theme2.png', isActive: false,
-                    color: '#C61639'},
-                    {'name': 'Pine', 'imagePath': '/resources/themes/ghost/assets/img/theme3.png', isActive: false,
-                    color: '#4A794F'},
-                    ]
+                        {'name': 'Ghost', 'alias': 'ghost', 'imagePath': '/resources/themes/ghost/assets/img/theme1.png', color: '#280A66'},
+                        {'name': 'Ruby', 'alias': 'ruby', 'imagePath': '/resources/themes/ghost/assets/img/theme2.png', color: '#C61639'},
+                        ]
                     %}
 
                     <div class="row themes-main px-0 themes-cont">
@@ -119,7 +115,8 @@
                             data-name="{{ theme.name }}" title="Click to set {{ theme.name }} theme">
                             <figure class="px-0 py-0 mb-0" style="position:relative;">
                                 <img src="{{ theme.imagePath }}" alt="" class="img-fluid w-100 rounded-top">
-                                {% if theme.isActive %} <p class="font-weight-bold theme-active">ACTIVE</p>
+                                {% if appsettings.THEME == theme.alias %} <p class="font-weight-bold theme-active">
+                                    ACTIVE</p>
                                 {% endif %}
                             </figure>
                             <div class="theme-state d-flex justify-content-start align-items-center px-3 py-2 rounded-bottom"
@@ -133,6 +130,7 @@
                     <script>
                         window.addEventListener('load', function () {
                             var isfirst = true;
+                            var current_theme = '{{ appsetting.THEME }}';
                             var app = (function () {
 
                                 return {
@@ -243,13 +241,35 @@
                                                 app.handleServerRequest(action, value, function (res) {
                                                     console.log(res.status, action, value, caption);
                                                     if (res.status == 'success' && !caption.includes('theme')) {
-                                                        return value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
+                                                        value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
+                                                        setTimeout(function () {
+                                                            window.location.reload();
+                                                        }, 3000);
                                                     } else if (res.status == 'success' && caption == 'theme') {
                                                         themeCaption.innerHTML = value ? 'Dark Mode' : 'Light Mode';
-                                                        return value ? app.showToast('Dark theme enabled', res.status) : app.showToast('Light theme enabled', res.status);
+                                                        value ? app.showToast('Dark mode enabled', res.status) : app.showToast('Light mode enabled', res.status);
+                                                        app.toggleDarkLight();
                                                     } else {
-                                                        return app.showToast(res.msg, res.status);
+                                                        app.showToast(res.msg, res.status);
                                                     }
+                                                })
+                                            });
+                                        });
+                                    },
+                                    handleThemeSwitch: function () {
+                                        var themes = document.querySelectorAll('.theme-item');
+
+                                        //Attach event listener to checkboxed
+                                        themes.forEach(function (theme) {
+                                            theme.addEventListener('click', function () {
+                                                var themeName = this.dataset.name;
+                                                //call server and post theme name
+                                                if (current_theme == themeName) return
+                                                app.handleServerRequest('THEME', themeName.toLowerCase(), function (res) {
+                                                    app.showToast(res.msg, res.status);
+                                                    setTimeout(function () {
+                                                        window.location.reload();
+                                                    }, 3000);
                                                 })
                                             });
                                         });
@@ -279,6 +299,9 @@
                                             }
                                             app.handleServerRequest(action, value, function (res) {
                                                 res.status == 'success' ? app.showToast('Discuss enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
+                                                setTimeout(function () {
+                                                    window.location.reload();
+                                                }, 3000);
                                             }) //for disqus only
 
                                         });
@@ -295,12 +318,22 @@
                                                 app.handleServerRequest('FACEBOOK_APP_ID', appID, function () {
                                                     app.handleServerRequest('FACEBOOK_DOMAIN_URL', domainUrl, function (res) {
                                                         res.status == 'success' ? app.showToast('Facebook enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
+                                                        setTimeout(function () {
+                                                            window.location.reload();
+                                                        }, 3000);
                                                     });
                                                 })
                                             })
                                         });
                                     },
+                                    toggleDarkLight: function () {
+                                        var body = document.getElementById("body");
+                                        var currentClass = body.className;
+                                        body.className = currentClass == "dark-mode" ? "light-mode" : "dark-mode";
+                                        localStorage.setItem('theme_mode', body.className);
+                                    },
                                     showToast: function (msg, type, duration) {
+                                        console.log(msg, type, duration);
                                         var msgState = {
                                             error: 'pink',
                                             success: 'lightgreen',
@@ -324,6 +357,7 @@
                                         app.initLucidSelect();
                                         app.handleCheckbox();
                                         app.handleFacebookComment()
+                                        app.handleThemeSwitch();
                                         //read twig data from javascript
                                         var commentPlugin = '{{ appsettings.COMMENT_PLUGIN }}';
                                         //set the select dropdown value 

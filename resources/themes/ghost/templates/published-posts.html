@@ -68,6 +68,28 @@
       width: 100%;
     }
 
+
+    .published-posts .view-draft-btn {
+      background-color: #280A66;
+      padding: 10px 20px;
+      border:none;
+      border-radius: 5px;
+      transition: all ease-in 0.3s;
+      text-transform: uppercase;
+      font-family: Lato;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 13px;
+      line-height: 16px;
+    }
+
+    .published-posts .view-draft-btn:hover {
+      background-color: rgb(27, 7, 66);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all ease-in 0.3s;
+    }
+
     /**DROPDOWN STYLING**/
     .published-posts .dropdown-menu {
       position: relative;
@@ -234,6 +256,16 @@
 </head>
 
 <div class="container-fluid published-posts">
+
+    <div class="row">
+        <div class=" col-12 text-right">
+          <button class="my-4 view-draft-btn">
+            <a class="text-white" href="/drafts">my drafts</a>
+          </button>
+        </div>
+
+      </div>
+  
   <div class="row">
     <div class="col-12 col-sm-1"></div>
     <div class="col-12 col-sm-11">

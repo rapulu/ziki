@@ -180,25 +180,42 @@ class Document
     {
         $rss = new \DOMDocument();
         $feed = [];
+        $user = file_get_contents("src/config/auth.json");
+        $user = json_decode($user, true);
         $data = file_get_contents("storage/rss/subscription.json");
         $urlArray = json_decode($data, true);
 
-        //$urlArray = array(array('name' => 'Elijah Okokn', 'url' => 'storage/contents/rss.xml'),
+        $urlArray2 = array(array('name' => $user['name'], 'rss' => 'storage/rss/rss.xml','desc' => '', 'link' => '', 'img' => $user['image'], 'time' => ''),
         //                array('name' => 'Sample',  'url' => 'rss/rss.xml')
-        //                );
-
-        foreach ($urlArray as $url) {
+                        );
+$result = array_merge($urlArray,$urlArray2);
+                      //  print_r($result);
+        foreach ($result as $url) {
             $rss->load($url['rss']);
 
             foreach ($rss->getElementsByTagName('item') as $node) {
+                if (!isset($node->getElementsByTagName('image')->item(0)->nodeValue)) {
+
                 $item = array(
                     'site'  => $url['name'],
                     'img'  => $url['img'],
                     'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
                     'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
                     'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
-                    'date'  => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+                    'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
+
                 );
+              }else {
+                $item = array(
+                    'site'  => $url['name'],
+                    'img'  => $url['img'],
+                    'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+                    'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
+                    'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                    'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
+                    'image'  => $node->getElementsByTagName('image')->item(0)->nodeValue,
+                );
+              }
                 array_push($feed, $item);
             }
         }

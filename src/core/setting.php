@@ -2,6 +2,7 @@
 namespace Ziki\Core;
 
 use Ziki\Core\FileSystem;
+use Symfony\Component\Finder\Finder;
 
 class Setting {
     /**
@@ -32,18 +33,19 @@ class Setting {
         $settingDir = "./src/config/app.json";     
         $content = FileSystem::read($settingDir); 
 
-        if (!$content)
+        if (!$content){
             return false;
+        }else{
+            // converts json data into array
+            $json_data = json_decode($content, true);
+            
+            //update field if exist or add if not exist
+            $json_data[$field] = $value; 
 
-         // converts json data into array
-         $json_data = json_decode($content, true);
-        
-        //update field if exist or add if not exist
-        $json_data[$field] = $value; 
-
-        //write the new update file
-        $isSave = self::writeJson($settingDir, $json_data);
-        return $isSave ? json_decode(FileSystem::read($settingDir), true) : $isSave;
+            //write the new update file
+            $isSave = self::writeJson($settingDir, $json_data);
+            return $isSave ? json_decode(FileSystem::read($settingDir), true) : $isSave;
+        }
     }
 
     public static function writeJson($file, $content)
@@ -58,6 +60,7 @@ class Setting {
             fclose($file);
             return true;
         }
+        fclose($file);
         return false;
     }
 
