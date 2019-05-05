@@ -190,20 +190,22 @@ Router::post('/appsetting', function ($request) {
     $field = $data['field']; //field to update in  app.json
     $value = $data['value']; //value for setting field in app.json
 
-    $setting = new Ziki\Core\Setting();
+        $setting = new Ziki\Core\Setting();
 
-    try {
-        $result = $setting->updateSetting($field, $value);
-        if ($result) {
-            echo json_encode(array("msg" => "Setting updated successfully", "status" => "success", "data" => $result));
-        } else {
-            echo json_encode(array("msg" => "Field does not exist", "status" => "error", "data" => null));
+        try {
+            $result = $setting->updateSetting($field, $value);
+            if ($result) {
+                echo json_encode(array("msg" => "Setting updated successfully", "status" => "success", "data" => $result));
+            } else {
+                if($field === 'THEME'){
+                    echo json_encode(array("msg" => "Theme does not exist", "status" => "error", "data" => null));
+                }else{
+                    echo json_encode(array("msg" => "Unable to update setting, please try again", "status" => "error", "data" => null));
+                }
+            }
+        } catch (Exception $e) {
+            echo json_encode(array("msg" => "Caught exception: ",  $e->getMessage(), "\n", "status" => "error", "data" => null));
         }
-    } catch (Exception $e) {
-        echo json_encode(array("msg" => "Caught exception: ",  $e->getMessage(), "\n", "status" => "error", "data" => null));
-    }
-
-    return;
 });
 
 // profile page
