@@ -715,7 +715,7 @@
                 </a></li>
 
                 <li><a href="/published-posts">
-                  <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+                  <h6 class="text-center"><span><b>POSTS</b></span></h6>
                 </a></li>
 
               {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
@@ -735,7 +735,7 @@
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
                 </a></li>
-	      {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
+	            {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
               <li><a href="/videos">
                   <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
                 </a></li>
@@ -748,12 +748,11 @@
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
                 </a></li>
-                <li><a href="/published-posts">
-                  <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+              {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
+              <li><a href="/videos">
+                  <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
                 </a></li>
-              <li><a href="/profile">
-                  <h6 class="text-center"><span><b>PROFILE</b></span></h6>
-                </a></li>
+              {% endif %}
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>

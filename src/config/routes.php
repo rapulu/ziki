@@ -19,14 +19,11 @@ Router::get('/', function ($request) {
         $settings = $setting->getSetting();
         $fcount = $count->fcount();
         $count = $count->count();
-        return $this->template->render('index.html', ['host' => $host], ['posts' => $feed], ['host' => $host, 'count' => $count, 'fcount' => $fcount]);
+        return $this->template->render('index.html', ['posts' => $feed ,'host' => $host, 'count' => $count, 'fcount' => $fcount]);
     }
 });
 Router::get('blog-details/{id}', function ($request, $id) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
+    
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $result = $ziki->getEach($id);
@@ -405,10 +402,7 @@ Router::get('/drafts', function ($request) {
 
 //videos page
 Router::get('/videos', function ($request) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
+    
     $directory = "./storage/videos/";
     $ziki = new Ziki\Core\Document($directory);
     $Videos = $ziki->getVideo();
