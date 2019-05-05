@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
 <channel>
-<title>Elijah Okokon</title>
+<title>Vanessa Christian</title>
 <link>http://localhost:8000/</link>
 <description><![CDATA[]]></description>
-<image><title>Elijah Okokon</title>
+<image><title>Vanessa Christian</title>
 <link></link>
-<url>https://lh4.googleusercontent.com/-Sft-MftI38Q/AAAAAAAAAAI/AAAAAAAADho/4sp40SN0sTc/photo.jpg</url>
+<url>https://lh5.googleusercontent.com/-NxpKZhgov1A/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rd4GusXI7R-h-vS0k5venufElYjRQ/mo/photo.jpg</url>
 </image>
 <language>en-US</language>
-<lastBuildDate>Sat, 04 May 2019 20:08:10 +0000</lastBuildDate>
+<lastBuildDate>Sun, 05 May 2019 18:56:20 +0000</lastBuildDate>
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
 <creativeCommons:license>http://www.creativecommons.org/licenses/by/1.0</creativeCommons:license>
 <generator>Ziki</generator>
 <item>
-<title>Lucid and exclusive app</title>
-<link>Lucid-and-exclusive-app-1556982960</link>
-<description><![CDATA[ this is an amazing application for publications]]></description>
-<pubDate>Sat, 04 May 2019 20:08:10 +0000</pubDate>
-<author>okoelijah@gmail.com (Elijah Okokon)</author>
-<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556982960&quot;&gt;http://localhost:8000//storage/contents/1556982960&lt;/a&gt;&lt;/p&gt;</guid>
-<source url="http://localhost:8000/">Elijah Okokon's page</source>
-<image>/storage/images/img-p5iep2yk3m.jpeg</image>
+<title>This is to test the draft</title>
+<link>This-is-to-test-the-draft-1556709480</link>
+<description><![CDATA[The unset() function allows removing keys from an array. Be aware that the array will not be re]]></description>
+<pubDate>Sun, 05 May 2019 18:56:20 +0000</pubDate>
+<author>vanessa.xtian@gmail.com (Vanessa Christian)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556709480&quot;&gt;http://localhost:8000//storage/contents/1556709480&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Vanessa Christian's page</source>
+<image>/storage/images/img-098cvdigsg.png</image>
+</item>
+<item>
+<title>A new day</title>
+<link>A-new-day-1556709512</link>
+<description><![CDATA[Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam dolorum autem possimus dicta porro ha]]></description>
+<pubDate>Sun, 05 May 2019 18:56:20 +0000</pubDate>
+<author>vanessa.xtian@gmail.com (Vanessa Christian)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556709512&quot;&gt;http://localhost:8000//storage/contents/1556709512&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Vanessa Christian's page</source>
+<image></image>
 </item>
 </channel>
 </rss>
