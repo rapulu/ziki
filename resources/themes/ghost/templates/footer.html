@@ -26,6 +26,14 @@
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
     });
+  }); 
+
+  $(document).ready(function () {
+    $('#sidebar-Collapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+      $('#sidebar-collapse').toggleClass('hidden fas fa-arrow-circle-left fa-2x');
+      $('#sidebar-collapse-2').toggleClass('visible fas fa-arrow-circle-right fa-2x');
+    });
   });
 </script>
 
@@ -35,8 +43,19 @@
   let congrat = $$('.login-mail-sent')
   let form_l = $$('.login-form')
   let message = $$('.magic-msg')
+
+  // new scripts start here
+  let loader_container = $$('#loader-container');
+  let loader_content = $$('#loader-content')
+  let mail_sent = $$('.mail-sent');
+  let mail_error = $$('.mail-error');
+
+  // new scripts end here
   congrat.style.display = 'none';
   let sendEmail = () => {
+    
+    loader_container.style.display = 'initial'; // new script
+
     let param = $$('.email-input').value;
     let host = $$('.host').value;
     let url = `https://auth.techteel.com/api/login/email?address=${param}?domain=${host}`;
@@ -45,14 +64,21 @@
       .then((data) => {
         console.log(data)
         if (data.error === false) {
-          form_l.style.display = 'none';
-          congrat.style.display = 'block';
-          message.innerHTML = "Magic link sent successfully, check your email.";
+          // changing from confirmation modal to full page
+
+          //form_l.style.display = 'none';
+          //congrat.style.display = 'block';
+          //message.innerHTML = "Magic link sent successfully, check your email.";
+          loader_content.style.display = 'none';
+          mail_sent.style.display = 'block';
+
         }
         else {
-          form_l.style.display = 'none';
-          congrat.style.display = 'block';
-          message.innerHTML = data.message;
+          // form_l.style.display = 'none';
+          // congrat.style.display = 'block';
+          // message.innerHTML = data.message;
+          loader_content.style.display = 'none';
+          mail_error.style.display = 'block';
         }
 
       })
@@ -60,7 +86,16 @@
         console.log(e)
       })
   };
+  let closeModal = () => {
+    loader_container.style.display = 'none'
+  }
   $$('.email-login-button').addEventListener('click', sendEmail);
+  // for close button on loader
+  document.addEventListener('click', function(event){
+    if(event.target.classList.contains('loader-close-button')){
+      closeModal();
+    }
+  }, false)
 </script>
 
 <!-- Convert to markdown script -->
