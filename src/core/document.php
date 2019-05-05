@@ -63,12 +63,13 @@ class Document
         }
 
         if (!$extra) {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
+           $yamlfile['type'] = "published";
         } else {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
-            $yamlfile['image'] = "./storage/images/" . $key;
+            $yamlfile['type'] = "published";
+            $yamlfile['image'] = $url;
         }
 
+        // $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
         // create slug by first removing spaces
         $striped = str_replace(' ', '-', $title);
         // then removing encoded html chars
@@ -139,8 +140,88 @@ class Document
             return false;
         }
     }
-
     //kjarts code for getting and creating markdown files end here
+
+    public function getDrafts()
+    {
+        $finder = new Finder();
+
+        // find all files in the current directory
+        $finder->files()->in($this->file);
+        $drafts = [];
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                $title = $parsedown->text($yaml['title']);
+                $slug = $parsedown->text($yaml['slug']);
+                $type = $parsedown->text($yaml['type']); 
+                $image = $parsedown->text($yaml['image']); 
+                $slug = preg_replace("/<[^>]+>/", '', $slug);
+                $image = preg_replace("/<[^>]+>/", '', $image);
+                $bd = $parsedown->text($body);
+                $time = $parsedown->text($yaml['timestamp']);
+                //$url = $parsedown->text($yaml['post_dir']);
+                if($type == "<p>draft</p>"){
+                    $content['title'] = $title;
+                    $content['body'] = $bd;
+                    //$content['url'] = $url;
+                    $content['slug'] = $slug;
+                    $file = explode("-", $slug);
+                    $filename = $file[count($file) - 1];
+                    $content['filename'] = $filename;
+                    $content['timestamp'] = $time;
+                    $content['image'] = $image;
+                    $content['type'] = $type;
+                    array_push($drafts, $content);
+                }
+                
+                
+            }
+            return $drafts;
+        } else {
+            return false;
+        }
+    }
+
+    public function editDraft($id)
+    {
+        $finder = new Finder();
+        // find all files in the current directory
+        $finder->files()->in($this->file);
+        $posts = [];
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                $slug = $parsedown->text($yaml['slug']);
+                $slug = preg_replace("/<[^>]+>/", '', $slug);
+                if ($slug == $id) {
+                    $title = $parsedown->text($yaml['title']);
+                    $bd = $parsedown->text($body);
+                    $time = $parsedown->text($yaml['timestamp']);
+                    //$url = $parsedown->text($yaml['post_dir']);
+                    $content['title'] = $title;
+                    $content['body'] = $bd;
+                    //$content['url'] = $url;
+                    $content['timestamp'] = $time;
+                    array_push($posts, $content);
+                }
+            }
+            return $posts;
+        }
+    }
+
 
     public function fetchAllRss()
     {

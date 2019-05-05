@@ -40,9 +40,9 @@ Router::get('blog-details/{id}', function ($request, $id) {
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
+    // if (!$user->is_logged_in()) {
+    //     return $user->redirect('/');
+    // }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $post = $ziki->fetchAllRss();
@@ -321,7 +321,6 @@ Router::get('/blog-details', function ($request) {
 // Start- Portfolio page
 
 Router::get('/portfolio', function ($request) {
-
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
@@ -366,10 +365,10 @@ Router::get('/following', function ($request) {
 /* Save draft*/
 Router::post('/saveDraft', function ($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-    $directory = "./storage/drafts/";
+    // if (!$user->is_logged_in()) {
+    //     return $user->redirect('/');
+    // }
+    $directory = "./storage/contents/";
     $data = $request->getBody();
     $title = $data['title'];
     $body = $data['postVal'];
@@ -394,14 +393,26 @@ Router::post('/saveDraft', function ($request) {
 /* Get all saved draft */
 Router::get('/drafts', function ($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-    $directory = "./storage/drafts/";
+    // if (!$user->is_logged_in()) {
+    //     return $user->redirect('/');
+    // }
+    $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-    $draft = $ziki->get();
+    $draft = $ziki->getDrafts();
     return $this->template->render('drafts.html', ['drafts' => $draft]);
 });
+
+Router::get('editor/{id}', function ($request, $id) {
+    $user = new Ziki\Core\Auth();
+    // if (!$user->is_logged_in()) {
+    //     return new RedirectResponse("/");
+    // }
+    $directory = "./storage/contents/";
+    $ziki = new Ziki\Core\Document($directory);
+    $result = $ziki->editDraft($id);
+    return $this->template->render('editor.html', ['posts' => $result]);
+});
+
 
 //videos page
 Router::get('/videos', function ($request) {
