@@ -121,7 +121,7 @@ class Document
                 $tags = $yaml['tags'];
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
-                $image = $parsedown->text($yaml['image']);
+                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):''; 
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
@@ -136,7 +136,7 @@ class Document
                 $time = $parsedown->text($yaml['timestamp']);
                 $url = $parsedown->text($yaml['post_dir']);
                 $content['title'] = $title;
-                $content['body'] = $bd;
+                $content['body'] = $this->trim_words($bd,200);
                 $content['url'] = $url;
                 $content['timestamp'] = $time;
                 $content['tags'] = $tags;
@@ -148,9 +148,11 @@ class Document
                 $content['filename'] = $filename;
                 //content['timestamp'] = $time;
                 $content['image'] = $image;
+                $content['date'] = date('d M Y ', $filename);
 
                 array_push($posts, $content);
             }
+            krsort($posts);
             return $posts;
         } else {
             return false;
@@ -158,6 +160,21 @@ class Document
     }
 
     //kjarts code for getting and creating markdown files end here
+
+    //trim_words used in triming strings by words
+    function trim_words($string,$limit,$break=".",$pad="...")
+    {
+        if(strlen($string) <= $limit ) return $string;
+
+        if(false !== ($breakpoint = strpos($string,$break,$limit) ))
+        {
+            if($breakpoint < strlen($string) -1 ){
+                $string = substr($string,0,$breakpoint).$pad;
+            }
+        }
+
+        return $string;
+    }
 
     public function fetchAllRss()
     {
@@ -546,6 +563,77 @@ $result = array_merge($urlArray,$urlArray2);
             return $delete;
         }
     }
+    //deleteapOST by ProblemSolved;
+    public function deletePost($post)
+    {
+        $finder = new Finder();
+        // find post in the current directory
+        $finder->files()->in($this->file)->name($post.'.md');
+        if (!$finder->hasResults()) {
+                return $this->redirect('/404');
+        }
+        else
+        {
+            ///coming back for some modifications 
+            unlink($this->file.$post.'.md');
+            return $this->redirect('/published-posts');
+        }
+    }
+    
+    //get single post 
+
+    public function getPost($post)
+    {
+        $finder = new Finder();
+        // find post in the current directory
+        $finder->files()->in($this->file)->name($post.'.md');;
+        $content = [];
+        if (!$finder->hasResults()) {
+            return $this->redirect('/404');
+        }
+        else
+        {
+            foreach ($finder as $file)
+            {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                $parsedown  = new Parsedown();
+                if (!isset($yaml['tags'])) {
+                    continue;
+                }
+                $tags=[];
+                foreach($yaml['tags'] as $tag)
+                {
+                    $removeHashTag = explode('#',$tag);
+                    $tags[]=trim(end($removeHashTag)); 
+                }
+                $slug = $parsedown->text($yaml['slug']);
+                $slug = preg_replace("/<[^>]+>/", '', $slug);
+                $title = $parsedown->text($yaml['title']);
+                $bd = $parsedown->text($body);
+                $time = $parsedown->text($yaml['timestamp']);
+                $url = $parsedown->text($yaml['post_dir']);
+                $content['tags'] = $tags;
+                $content['title'] = $title;
+                $content['body'] = $bd;
+                $content['url'] = $url;
+                $content['timestamp'] = $time;
+                
+            }
+            return $content;
+        }
+
+    }
+
+
+    public function redirect($location)
+    {
+        header('Location:'.$location);
+    }
+    //stupid code by problemSolved ends here
 
     /**
      * updates a post stored in an md file
