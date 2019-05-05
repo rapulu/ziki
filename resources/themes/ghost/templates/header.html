@@ -47,6 +47,74 @@
     <script async defer crossorigin="anonymous"
         src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
     <style>
+        /* loader styling starts here */
+        #loader-container{
+            display: none;
+            position: fixed;
+            top: 0;
+            z-index: 10000;
+            height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: #ffffff;
+        }
+        #loader-content, .mail-sent, .mail-error{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            width: 300px;
+            height: 300px;
+        }
+        #loader{
+            height: 30%;
+            width: 30%;
+            margin: 20px auto 20px;
+            border-radius: 50%;
+            border: 4px solid white;
+            border-left-color: var(--ziki-purple);
+            border-right-color:var(--ziki-purple);
+            animation: rotate .7s linear infinite;
+        }
+        #loader-text{
+            text-align: center;
+
+        }
+        .loader-close-button{
+            background: var(--ziki-purple);
+            border-radius: .5rem;
+            border: 1px solid var(--ziki-purple);
+            padding: 0.5rem 1rem;
+            color: #ffffff;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%)
+        }
+        .mail-sent{
+            display: none;
+            width: 80%;
+        }
+        .mail-sent .loader-close-button {
+            margin-top: 30px;
+        }
+        .mail-error{
+            display: none;
+        }
+        .mail-error p {
+            text-align: center;
+        }
+
+        @keyframes rotate {
+            from{
+                transform: rotate(0deg)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
+        /* loader styling ends here */
         .ziki-logo {
             position: relative;
             top: 3.8em;
@@ -73,10 +141,18 @@
                 position: relative;
                 top: 1em;
             }
-
+            /* css for loader */
+            .magic-link-img {
+                margin-right: 60px;
+            }
         }
 
         @media screen and (min-width: 768px) {
+            /* css for loader on big devices */
+            .mail-sent-text{
+                margin-top: 50px;
+                margin-right: 20px;
+            }
             .width-100-150px {
                 width: 150px;
             }
@@ -141,6 +217,33 @@
                 </li>
                 {% endif %}
             </ul>
+        </div>
+    </div>
+
+    <!-- Loader -->
+    <div id="loader-container">
+        <div id="loader-content">
+            <div id="loader">
+
+            </div>
+            <div id="loader-text"><span>making sure everything is ok...</span></div>
+        </div>
+        <div class="mail-sent">
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class="mail-sent-text">
+                    <h2>Email Sent!</h2>
+                    <p>please check your email</p>   
+                </div>
+
+                <img class="magic-link-img" src="resources/themes/ghost/assets/img/magic-link-img.png"
+                    alt="magic link image">
+            </div>
+            <button class="loader-close-button" >Close</button>
+        </div>
+
+        <div class="mail-error">
+            <p>Uh oh, It seems you're not an administrator, kindly sign in with a social account.</p>
+            <button class="loader-close-button" >Close</button>
         </div>
     </div>
 
