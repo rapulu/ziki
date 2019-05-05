@@ -10,6 +10,7 @@ class Subscribe
   var $rss;
   var $img;
   var $desc;
+  var $link;
 
   public function setSubName($value)
   {
@@ -22,6 +23,10 @@ class Subscribe
   public function setSubDesc($value)
   {
     $this->desc = $value;
+  }
+  public function setSubLink($value)
+  {
+    $this->link = $value;
   }
   public function setSubImg($value)
   {
@@ -50,6 +55,7 @@ public function extract($url)
               $this->setSubRss($url);
               $this->setSubDesc($description);
               $this->setSubImg($image);
+              $this->setSubLink($link);
 
               $db = "storage/rss/subscription.json";
 
@@ -78,7 +84,7 @@ public function extract($url)
 
                 $time = date("Y-m-d h:i:sa");
                   $img = $this->img;
-                  $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'img'=> $this->img, 'time' => $time);
+                  $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'link'=>$this->link, 'img'=> $this->img, 'time' => $time);
 
                   $json_db = "storage/rss/subscription.json";
                   $file = file_get_contents($db);
@@ -90,7 +96,7 @@ public function extract($url)
               }else {
               $time = date("Y-m-d h:i:sa");
               $img = $this->img;
-              $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'img'=> $this->img, 'time' => $time);
+              $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'link'=>$this->link, 'img'=> $this->img, 'time' => $time);
 
               $json_db = "storage/rss/subscription.json";
               $file = file_get_contents($db);
