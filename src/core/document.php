@@ -140,7 +140,7 @@ class Document
                 $content['url'] = $url;
                 $content['timestamp'] = $time;
                 $content['tags'] = $tags;
-                $content['slug'] = $yaml['slug'];
+                $content['slug'] = $slug;
                 $content['preview_img'] = $first_img;
                 //content['slug'] = $slug;
                 $file = explode("-", $slug);

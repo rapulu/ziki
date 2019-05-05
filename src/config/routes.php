@@ -26,14 +26,14 @@ Router::get('blog-details/{id}', function ($request, $id) {
     
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->getEach($id);
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
+    $result = $ziki->getEach($id);
     $count = new Ziki\Core\Subscribe();
     $fcount = $count->fcount();
     $count = $count->count();
 
-    return $this->template->render('blog-details.html',['result' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount, 'settings'=> $setting]);
+    return $this->template->render('blog-details.html', $settings, ['result' => $result, 'count' => $count, 'fcount' => $fcount]);
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
