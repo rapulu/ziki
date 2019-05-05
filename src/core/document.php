@@ -138,12 +138,17 @@ class Document
                 $content['title'] = $title;
                 $content['body'] = $bd;
                 $content['url'] = $url;
+                $content['timestamp'] = $time;
+                $content['tags'] = $tags;
                 $content['slug'] = $slug;
+                $content['preview_img'] = $first_img;
+                //content['slug'] = $slug;
                 $file = explode("-", $slug);
                 $filename = $file[count($file) - 1];
                 $content['filename'] = $filename;
-                $content['timestamp'] = $time;
+                //content['timestamp'] = $time;
                 $content['image'] = $image;
+
                 array_push($posts, $content);
             }
             return $posts;
