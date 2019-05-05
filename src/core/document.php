@@ -121,7 +121,7 @@ class Document
                 $tags = $yaml['tags'];
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
-                $image = $parsedown->text($yaml['image']); 
+                $image = $parsedown->text($yaml['image']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);

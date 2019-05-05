@@ -213,7 +213,7 @@ Router::post('/appsetting', function ($request) {
 Router::get('/profile', function ($request) {
     ///please don't remove or change the included path
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
-    //please don't rename the variables 
+    //please don't rename the variables
     $userSiteDetails = new  SendContactMail();
     //this  gets the owners email address
     $userEmailAddr = $userSiteDetails->getOwnerEmail();
@@ -298,7 +298,18 @@ Router::get('/subscribers', function ($request) {
 
     return $this->template->render('subscriber.html', ['sub' => $list, 'count' => $count, 'fcount' => $fcount]);
 });
+Router::get('/unsubscribe', function($request) {
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
 
+    $id = $_GET['n'];
+  $ziki = new Ziki\Core\Subscribe();
+  $list = $ziki->unfollow($id);
+
+  return $user->redirect('/subscriptions');
+    });
 // 404 page
 Router::get('/editor', function ($request) {
     $user = new Ziki\Core\Auth();
