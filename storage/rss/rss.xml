@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
 <channel>
-<<<<<<< HEAD
-<title>Oluwatomisin Lalude</title>
-<link>http://localhost:8000/</link>
-<description><![CDATA[]]></description>
-<image><title>Oluwatomisin Lalude</title>
-<link></link>
-<url>https://lh5.googleusercontent.com/-DnxiIvIJDwo/AAAAAAAAAAI/AAAAAAAAAPI/mypSZHoBgDE/photo.jpg</url>
-</image>
-<language>en-US</language>
-<lastBuildDate>Sat, 04 May 2019 20:22:09 +0000</lastBuildDate>
-=======
 <title>Elijah Okokon</title>
 <link>http://localhost:8000/</link>
 <description><![CDATA[]]></description>
@@ -21,22 +10,12 @@
 </image>
 <language>en-US</language>
 <lastBuildDate>Sat, 04 May 2019 20:08:10 +0000</lastBuildDate>
->>>>>>> 6a5bf57a70e1e54ebe14938302380d7429b6d4b2
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
 <creativeCommons:license>http://www.creativecommons.org/licenses/by/1.0</creativeCommons:license>
 <generator>Ziki</generator>
 <item>
-<<<<<<< HEAD
-<title>HNG INTERNSHIP</title>
-<link>HNG-INTERNSHIP-1557001320</link>
-<description><![CDATA[I am here, an intern. Interning and interning. Bleehhh. Basic stuff.  OLUWATOMISIN LALUDE]]></description>
-<pubDate>Sun, 07 Apr 2013 00:50:30 +0000</pubDate>
-<author>oluwatomisin1605@gmail.com (Oluwatomisin Lalude)</author>
-<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557001320&quot;&gt;http://localhost:8000//storage/contents/1557001320&lt;/a&gt;&lt;/p&gt;</guid>
-<source url="http://localhost:8000/">Oluwatomisin Lalude's page</source>
-=======
 <title>Lucid and exclusive app</title>
 <link>Lucid-and-exclusive-app-1556982960</link>
 <description><![CDATA[ this is an amazing application for publications]]></description>
@@ -45,7 +24,6 @@
 <guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556982960&quot;&gt;http://localhost:8000//storage/contents/1556982960&lt;/a&gt;&lt;/p&gt;</guid>
 <source url="http://localhost:8000/">Elijah Okokon's page</source>
 <image>/storage/images/img-p5iep2yk3m.jpeg</image>
->>>>>>> 6a5bf57a70e1e54ebe14938302380d7429b6d4b2
 </item>
 </channel>
 </rss>
