@@ -2,6 +2,7 @@
 namespace Ziki\Core;
 
 use Ziki\Core\FileSystem;
+use Symfony\Component\Finder\Finder;
 
 class Setting {
     /**

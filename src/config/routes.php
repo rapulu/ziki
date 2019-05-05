@@ -200,7 +200,11 @@ Router::post('/appsetting', function ($request) {
             if ($result) {
                 echo json_encode(array("msg" => "Setting updated successfully", "status" => "success", "data" => $result));
             } else {
-                echo json_encode(array("msg" => "Field does not exist", "status" => "error", "data" => null));
+                if($field === 'THEME'){
+                    echo json_encode(array("msg" => "Theme does not exist", "status" => "error", "data" => null));
+                }else{
+                    echo json_encode(array("msg" => "Unable to update setting, please try again", "status" => "error", "data" => null));
+                }
             }
         } catch (Exception $e) {
             echo json_encode(array("msg" => "Caught exception: ",  $e->getMessage(), "\n", "status" => "error", "data" => null));
