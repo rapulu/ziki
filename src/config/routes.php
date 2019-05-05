@@ -22,7 +22,7 @@ Router::get('/', function ($request) {
         return $this->template->render('index.html', ['posts' => $feed, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
     }
 });
-Router::get('blog-details/{id}', function ($request, $id) {
+Router::get('post/{id}', function ($request, $id) {
 
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
