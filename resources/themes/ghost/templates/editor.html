@@ -129,7 +129,7 @@
                           </select>
                         </div>
                         <div class="col-12">
-                          <div id="editor"></div>
+                          <div id="editor">{{ post.body|raw }}</div>
                         </div>
                       </div>
                     </div>
@@ -188,6 +188,7 @@
       let totalText = post.innerText.length;
       if (totalText > 100) {
         title.style.display = "block";
+        title.value = '{{ post.title|striptags }}';
         current.style.color = "red";
       } else {
         title.style.display = "none";
@@ -196,6 +197,11 @@
       return (current.textContent = totalText);
     };
     post.addEventListener("keyup", work);
+
+    window.onload=function()
+    {
+      work();
+    }
   
   </script>
   <div class="overlay"></div>

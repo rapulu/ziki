@@ -86,7 +86,8 @@ Router::post('/publish', function ($request) {
     $result = $ziki->create($title, $body, $tags, $images, $extra);
     return $this->template->render('timeline.html', ['ziki' => $result]);
 });
-
+//this are some stupid working code written by paul please don't edit 
+//without notifying me 
 Router::get('/about', function ($request) {
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
     $checkifOwnersMailIsprovided = new  SendContactMail();
@@ -127,6 +128,14 @@ Router::post('/updateabout', function ($request) {
     $updateabout->clientMessage();
     return $updateabout->redirect('/profile');
 });
+Router::get('/deletepost/{postId}',function($request,$postId){
+    $postid = explode('-',$postId);
+    $post = end($postid);
+    $directory = "./storage/contents/";
+    $ziki = new Ziki\Core\Document($directory);
+    $ziki->deletePost($post);
+});
+//the stupid codes ends here
 Router::get('delete/{id}', function ($request, $id) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -142,7 +151,10 @@ Router::get('/published-posts', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    return $this->template->render('published-posts.html');
+    $directory = "./storage/contents/";
+    $ziki = new Ziki\Core\Document($directory);
+    $posts = $ziki->get();
+    return $this->template->render('published-posts.html',['posts'=>$posts]);
 });
 
 // Start- Portfolio page
@@ -296,14 +308,21 @@ Router::get('/subscribers', function ($request) {
     return $this->template->render('subscriber.html', ['sub' => $list, 'count' => $count, 'fcount' => $fcount]);
 });
 
-// 404 page
-Router::get('/editor', function ($request) {
+//stupid code by problemSolved 
+Router::get('/editor/{postID}', function ($request,$postID) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    return $this->template->render('editor.html');
+    $postid = explode('-',$postID);
+    $post = end($postid);
+    $directory = "./storage/contents/";
+    $ziki = new Ziki\Core\Document($directory);
+    $post_details=$ziki->getPost($post);
+    return $this->template->render('editor.html',['post'=>$post_details]);
 });
+//ends here again;
+// 404 page
 Router::get('/404', function ($request) {
     return $this->template->render('404.html');
 });
