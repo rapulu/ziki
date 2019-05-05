@@ -33,7 +33,7 @@ class Document
     //kjarts code here
     public function create($title, $content, $tags, $image, $extra)
     {
-        $time = date("F j, Y, g:i a");
+        $time = date(DATE_RSS, time());
         $unix = strtotime($time);
         // Write md file
         $document = FrontMatter::parse($content);
@@ -115,23 +115,40 @@ class Document
                 $body = $document->getContent();
                 //$document = FileSystem::read($this->file);
                 $parsedown  = new Parsedown();
+                if (!isset($yaml['tags'])) {
+                    continue;
+                }
+                $tags = $yaml['tags'];
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
                 $image = $parsedown->text($yaml['image']); 
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
+                preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                $first_img = false;
+                if (isset($matches[1])) {
+                    // there are images
+                    $first_img = $matches[1];
+                    // strip all images from the text
+                    $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
+                }
                 $time = $parsedown->text($yaml['timestamp']);
                 $url = $parsedown->text($yaml['post_dir']);
                 $content['title'] = $title;
                 $content['body'] = $bd;
                 $content['url'] = $url;
+                $content['timestamp'] = $time;
+                $content['tags'] = $tags;
                 $content['slug'] = $slug;
+                $content['preview_img'] = $first_img;
+                //content['slug'] = $slug;
                 $file = explode("-", $slug);
                 $filename = $file[count($file) - 1];
                 $content['filename'] = $filename;
-                $content['timestamp'] = $time;
+                //content['timestamp'] = $time;
                 $content['image'] = $image;
+
                 array_push($posts, $content);
             }
             return $posts;
@@ -194,7 +211,8 @@ class Document
                     'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
                     'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
                     'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
-                    'date'  => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+                    'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
+                    'image'  => $node->getElementsByTagName('image')->item(0)->nodeValue,
                 );
                 array_push($feed, $item);
             }
@@ -246,11 +264,22 @@ class Document
                 $body = $document->getContent();
 
                 $parsedown  = new Parsedown();
-
+                if (!isset($yaml['tags'])) {
+                    continue;
+                }
+                $tags = $yaml['tags'];
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $bd = $parsedown->text($body);
+                preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                $first_img = false;
+                if (isset($matches[1])) {
+                    // there are images
+                    $first_img = $matches[1];
+                    // strip all images from the text
+                    $bd = preg_replace("/<img[^>]+\>/i", "", $bd);
+                }
                 $time = $parsedown->text(time());
                 $url = $parsedown->text($yaml['post_dir']);
 
@@ -258,11 +287,14 @@ class Document
                 $newItem->setTitle(strip_tags($title));
                 $newItem->setLink($slug);
                 $newItem->setDescription(substr(strip_tags($bd), 0, 100));
-                $newItem->setDate("2013-04-07 00:50:30");
+                $newItem->setDate(date(DATE_RSS, time()));
 
                 $newItem->setAuthor($user['name'], $user['email']);
                 $newItem->setId($url, true);
                 $newItem->addElement('source', $user['name'] . '\'s page', array('url' => SITE_URL));
+
+                $newItem->addElement('image', $first_img);
+
                 $Feed->addItem($newItem);
             }
             $myFeed = $Feed->generateFeed();

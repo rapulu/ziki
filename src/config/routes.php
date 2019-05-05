@@ -19,24 +19,21 @@ Router::get('/', function ($request) {
         $settings = $setting->getSetting();
         $fcount = $count->fcount();
         $count = $count->count();
-        return $this->template->render('index.html', ['host' => $host], ['posts' => $feed], ['host' => $host, 'count' => $count, 'fcount' => $fcount]);
+        return $this->template->render('index.html', ['posts' => $feed, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
     }
 });
 Router::get('blog-details/{id}', function ($request, $id) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
+
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->getEach($id);
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
+    $result = $ziki->getEach($id);
     $count = new Ziki\Core\Subscribe();
     $fcount = $count->fcount();
     $count = $count->count();
 
-    return $this->template->render('blog-details.html',['result' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount, 'settings'=> $setting]);
+    return $this->template->render('blog-details.html', $settings, ['result' => $result, 'count' => $count, 'fcount' => $fcount]);
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
@@ -103,7 +100,7 @@ Router::get('/about', function ($request) {
         $message = $_SESSION['messages'];
         unset($_SESSION['messages']);
     }
-    return $this->template->render('about.html', ['message' => $message,'about'=>$aboutContent]);
+    return $this->template->render('about.html', ['message' => $message, 'about' => $aboutContent]);
 });
 Router::post('/send', function ($request) {
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
@@ -114,18 +111,18 @@ Router::post('/send', function ($request) {
     $SendMail->clientMessage();
     return $SendMail->redirect('/about');
 });
-Router::post('/setcontactemail',function($request){
-    include ZIKI_BASE_PATH."/src/core/SendMail.php";
+Router::post('/setcontactemail', function ($request) {
+    include ZIKI_BASE_PATH . "/src/core/SendMail.php";
     $request = $request->getBody();
     $SetContactEmail = new SendContactMail();
     $SetContactEmail->setContactEmail($request);
     $SetContactEmail->clientMessage();
     return $SetContactEmail->redirect('/profile');
 });
-Router::post('/updateabout',function($request){
-    include ZIKI_BASE_PATH."/src/core/SendMail.php";
+Router::post('/updateabout', function ($request) {
+    include ZIKI_BASE_PATH . "/src/core/SendMail.php";
     $request = $request->getBody();
-    $updateabout= new SendContactMail();
+    $updateabout = new SendContactMail();
     $updateabout->updateAbout($request);
     $updateabout->clientMessage();
     return $updateabout->redirect('/profile');
@@ -216,9 +213,9 @@ Router::get('/profile', function ($request) {
     ///please don't remove or change the included path
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
     //please don't rename the variables 
-    $userSiteDetails= new  SendContactMail();
+    $userSiteDetails = new  SendContactMail();
     //this  gets the owners email address
-    $userEmailAddr=$userSiteDetails->getOwnerEmail();
+    $userEmailAddr = $userSiteDetails->getOwnerEmail();
     //this gets the page content
     $getAboutPageContent = $userSiteDetails->getPage();
     $user = new Ziki\Core\Auth();
@@ -227,13 +224,12 @@ Router::get('/profile', function ($request) {
     }
     //this for error and successs messages
     $message = [];
-    if(isset($_SESSION['messages']))
-    {
+    if (isset($_SESSION['messages'])) {
         $message = $_SESSION['messages'];
         unset($_SESSION['messages']);
     }
 
-    return $this->template->render('profile.html',['message'=>$message,'userEmailAddr'=>$userEmailAddr,'about'=>$getAboutPageContent]);
+    return $this->template->render('profile.html', ['message' => $message, 'userEmailAddr' => $userEmailAddr, 'about' => $getAboutPageContent]);
 });
 
 // following page
@@ -408,14 +404,12 @@ Router::get('/drafts', function ($request) {
 //videos page
 Router::get('/videos', function ($request) {
     $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
+
     $directory = "./storage/videos/";
     $ziki = new Ziki\Core\Document($directory);
     $Videos = $ziki->getVideo();
     //print_r($Videos);
-    return $this->template->render('videos.html', ['videos' => $Videos]);
+    return $this->template->render('videos.html', ['videos' => $Videos, 'user' => $user]);
 });
 Router::get('/microblog', function ($request) {
     $user = new Ziki\Core\Auth();
