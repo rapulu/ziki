@@ -496,6 +496,16 @@ Router::get('/install', function ($request) {
     }
 });
 
+Router::post('/addrss', function($request) {
+    $r = new Ziki\Core\Auth();
+    $data = $request->getBody();
+    $url = $_POST['domain'];
+    $ziki = new Ziki\Core\Subscribe();
+    $result = $ziki->extract($url);
+    return $r->redirect('/subscriptions');
+
+});
+
 /* Add Video*/
 Router::post('/addvideo', function ($request) {
     $user = new Ziki\Core\Auth();
