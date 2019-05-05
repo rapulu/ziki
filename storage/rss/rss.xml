@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
 <channel>
+<<<<<<< HEAD
 <title>ProblemSolved</title>
 <link>http://localhost:8000/</link>
 <description><![CDATA[]]></description>
@@ -10,12 +11,24 @@
 </image>
 <language>en-US</language>
 <lastBuildDate>Sat, 04 May 2019 17:26:51 +0000</lastBuildDate>
+=======
+<title>Elijah Okokon</title>
+<link>http://localhost:8000/</link>
+<description><![CDATA[]]></description>
+<image><title>Elijah Okokon</title>
+<link></link>
+<url>https://lh4.googleusercontent.com/-Sft-MftI38Q/AAAAAAAAAAI/AAAAAAAADho/4sp40SN0sTc/photo.jpg</url>
+</image>
+<language>en-US</language>
+<lastBuildDate>Sat, 04 May 2019 20:08:10 +0000</lastBuildDate>
+>>>>>>> f727d0795b8c0a05e32ffdff8540ad5fb92bb063
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
 <creativeCommons:license>http://www.creativecommons.org/licenses/by/1.0</creativeCommons:license>
 <generator>Ziki</generator>
 <item>
+<<<<<<< HEAD
 <title>Hello world war 3</title>
 <link>Hello-world-war-3-1556990220</link>
 <description><![CDATA[TO tell You there&#39;s no FOOD and medications i here by say foooooooooooooooooooooooood is finishe]]></description>
@@ -41,6 +54,16 @@
 <author>paulchibiukeigweze@gmail.com (ProblemSolved)</author>
 <guid isPermaLink="true"></guid>
 <source url="http://localhost:8000/">ProblemSolved's page</source>
+=======
+<title>Lucid and exclusive app</title>
+<link>Lucid-and-exclusive-app-1556982960</link>
+<description><![CDATA[ this is an amazing application for publications]]></description>
+<pubDate>Sat, 04 May 2019 20:08:10 +0000</pubDate>
+<author>okoelijah@gmail.com (Elijah Okokon)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556982960&quot;&gt;http://localhost:8000//storage/contents/1556982960&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Elijah Okokon's page</source>
+<image>/storage/images/img-p5iep2yk3m.jpeg</image>
+>>>>>>> f727d0795b8c0a05e32ffdff8540ad5fb92bb063
 </item>
 </channel>
 </rss>

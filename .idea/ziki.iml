@@ -19,38 +19,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHP" type="php">
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/erusev/parsedown" />
-          <root url="file://$MODULE_DIR$/vendor/kzykhys/yaml-front-matter" />
-          <root url="file://$MODULE_DIR$/vendor/mnapoli/front-yaml" />
-          <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
-          <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/finder" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
-          <root url="file://$MODULE_DIR$/vendor/twig/twig" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/composer" />
-          <root url="file://$MODULE_DIR$/vendor/erusev/parsedown" />
-          <root url="file://$MODULE_DIR$/vendor/kzykhys/yaml-front-matter" />
-          <root url="file://$MODULE_DIR$/vendor/mnapoli/front-yaml" />
-          <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
-          <root url="file://$MODULE_DIR$/vendor/psr/log" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/finder" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/http-foundation" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
-          <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
-          <root url="file://$MODULE_DIR$/vendor/twig/twig" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>
