@@ -9,7 +9,8 @@
     <link rel="shortcut icon" href="/resources/themes/ghost/assets/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="/resources/themes/ghost/assets/main.css" />
     <link rel="stylesheet" href="/resources/themes/ghost/assets/css/profile.css" />
-
+    <link rel="stylesheet" href="/resources/themes/ghost/assets/css/portfolio.css" />
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
@@ -40,12 +41,7 @@
 
     <link href="//cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet" />
     <link href="//cdn.quilljs.com/1.0.0/quill.bubble.css" rel="stylesheet" />
-</head>
 
-<body>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
     <style>
         /* loader styling starts here */
         #loader-container{
@@ -134,6 +130,7 @@
             box-shadow: none !important;
             outline: none !important;
         }
+
         /**media queries**/
 
         @media screen and (max-width: 700px) {
@@ -173,7 +170,43 @@
                 right: 38%;
             }
         }
+
+        /* DARK MODE */
+        .dark-mode .temp-nav {
+            background: var(--dark);
+            color: var(--light);
+        }
+
+        .dark-mode #content,
+        .dark-mode .main,
+        .dark-mode .ghost,
+        .dark-mode #content .container,
+        .dark-mode #content .container-fluid,
+        .dark-mode #content.dflex,
+        .dark-mode #content .navbar,
+        .dark-mode #content .themes-content-area {
+            background: #393e46 !important;
+        }
+
+        .dark-mode .sidebar-header,
+        .dark-mode #sidebar {
+            background: #222831 !important;
+        }
     </style>
+</head>
+
+<body id="body">
+    <!-- script to switch dark and light mode -->
+    <script>
+        var currentMode = '{{ appsettings.THEME_STATE }}';
+        var currentClass = currentMode == 'true' ? 'dark-mode' : 'light-mode';
+        var body = document.getElementById("body");
+        body.className = currentClass;
+    </script>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId={{FACEBOOK_APP_ID}}&autoLogAppEvents=1"></script>
+
     <!-- Note that this nav code is recognised as temporary
       to be replaced by the actual one.. BUT PLEASE DO WELL TO TRANSFER THE
     BUTTONS HERE>>> THEY ARE USED TO TOGGLE THE SIDE BAR ON OR OFF BOTH ON

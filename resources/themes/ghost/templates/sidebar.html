@@ -104,9 +104,9 @@
     padding-bottom: 15px;
   }
 
-  .lucid {
+  /* .lucid {
     color: ;
-  }
+  } */
 
   .btn-light:hover {
     border: 1px solid #fff;
@@ -155,19 +155,25 @@
     text-align: center;
   }
 
-  #sidebar.active .fa-arrow-circle-right{
+  #sidebar.active .fa-arrow-circle-right {
     text-align: center;
   }
 
-  #sidebar .collapse-control{
+  #sidebar .collapse-control {
     padding: 10px;
     color: #280A66;
   }
 
-  .visible{display: block;}
-  .hidden{display: none;}
+  .visible {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+
   .top-toggle {
-      display: none;
+    display: none;
   }
 
   #sidebar.active img.profile-pic {
@@ -377,11 +383,15 @@
       margin-left: 0;
     }
 
-    #sidebarCollapse, .top-toggle {
+    #sidebarCollapse,
+    .top-toggle {
       display: block;
     }
 
-    #sidebar-collapse, #sidebar-collapse-2{display: none}
+    #sidebar-collapse,
+    #sidebar-collapse-2 {
+      display: none
+    }
 
   }
 
@@ -649,6 +659,7 @@
   }
 
   @media screen and (min-width: 768px) {
+
     /* login modal for tabs */
     .modal-content {
       width: 125%;
@@ -671,14 +682,14 @@
 </style>
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row main">
     <div class="wrapper">
       <!-- side bar here -->
       <div id="sidebar">
         <div class="text-right collapse-control">
           <span id="sidebar-Collapse" class="">
-            <i id="sidebar-collapse"  class="visible fas fa-arrow-circle-left fa-2x"></i>
-            <i id="sidebar-collapse-2"  class=""></i>
+            <i id="sidebar-collapse" class="visible fas fa-arrow-circle-left fa-2x"></i>
+            <i id="sidebar-collapse-2" class=""></i>
           </span>
         </div>
         <div class="sidebar-header pt-5">
@@ -714,7 +725,7 @@
                   <h6 class="text-center"><span><b>TIMELINE</b></span></h6>
                 </a></li>
 
-                <li><a href="/published-posts">
+              <li><a href="/published-posts">
                   <h6 class="text-center"><span><b>POSTS</b></span></h6>
                 </a></li>
 
@@ -735,7 +746,7 @@
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
                 </a></li>
-	            {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
+              {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
               <li><a href="/videos">
                   <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
                 </a></li>
