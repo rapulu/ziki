@@ -152,32 +152,14 @@ select {
 
 /* media queries */
 @media screen and (max-width:767.98px){
-  .description-text{
+  .main{
     display: none;
   }
-  .main {
-    padding: 0.5rem 1rem;
-    width: 95%;
-  }
-  .social-auth{
-    width: 95%;
+  body::after{
+    content: 'Kindly do this on a bigger device for greater acessibility';
+    display: block;
+    width: 90%;
     margin: auto;
-    margin-bottom: 1rem;
-  }
-  .domain-name{
-    width: 65%
-  }
-  .domain {
-    width: 30%;
-  }
-}
-@media screen and (max-width: 320px){
-  a.btn {
-    padding: .375rem .75rem
-  }
-}
-@media(min-width: 768px) and (max-width: 800px){
-  a.btn {
-    padding: .375rem .75rem
+    text-align: center;
   }
 }
