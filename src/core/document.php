@@ -121,7 +121,7 @@ class Document
                 $tags = $yaml['tags'];
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
-                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):''; 
+                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):'';
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
@@ -188,7 +188,7 @@ class Document
         $urlArray2 = array(array('name' => $user['name'], 'rss' => 'storage/rss/rss.xml','desc' => '', 'link' => '', 'img' => $user['image'], 'time' => ''),
         //                array('name' => 'Sample',  'url' => 'rss/rss.xml')
                         );
-                        
+
                         $result = array_merge($urlArray,$urlArray2);
                       //  print_r($result);
         foreach ($result as $url) {
@@ -425,6 +425,7 @@ class Document
                 $content['img'] = $value['img'];
                 $content['time'] = $value['time'];
                 $content['desc'] = $value['desc'];
+                $content['link'] = $value['link'];
                 array_push($posts, $content);
             }
             return $posts;
@@ -443,6 +444,7 @@ class Document
             $content['img'] = $value['img'];
             $content['time'] = $value['time'];
             $content['desc'] = $value['desc'];
+            $content['link'] = $value['link'];
             array_push($posts, $content);
         }
         return $posts;
@@ -575,13 +577,13 @@ class Document
         }
         else
         {
-            ///coming back for some modifications 
+            ///coming back for some modifications
             unlink($this->file.$post.'.md');
             return $this->redirect('/published-posts');
         }
     }
-    
-    //get single post 
+
+    //get single post
 
     public function getPost($post)
     {
@@ -609,7 +611,7 @@ class Document
                 foreach($yaml['tags'] as $tag)
                 {
                     $removeHashTag = explode('#',$tag);
-                    $tags[]=trim(end($removeHashTag)); 
+                    $tags[]=trim(end($removeHashTag));
                 }
                 $slug = $parsedown->text($yaml['slug']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
@@ -622,7 +624,7 @@ class Document
                 $content['body'] = $bd;
                 $content['url'] = $url;
                 $content['timestamp'] = $time;
-                
+
             }
             return $content;
         }
