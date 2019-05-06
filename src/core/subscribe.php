@@ -10,6 +10,7 @@ class Subscribe
   var $rss;
   var $img;
   var $desc;
+  var $link;
 
   public function setSubName($value)
   {
@@ -22,6 +23,10 @@ class Subscribe
   public function setSubDesc($value)
   {
     $this->desc = $value;
+  }
+  public function setSubLink($value)
+  {
+    $this->link = $value;
   }
   public function setSubImg($value)
   {
@@ -50,6 +55,7 @@ public function extract($url)
               $this->setSubRss($url);
               $this->setSubDesc($description);
               $this->setSubImg($image);
+              $this->setSubLink($link);
 
               $db = "storage/rss/subscription.json";
 
@@ -78,7 +84,7 @@ public function extract($url)
 
                 $time = date("Y-m-d h:i:sa");
                   $img = $this->img;
-                  $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'img'=> $this->img, 'time' => $time);
+                  $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'link'=>$this->link, 'img'=> $this->img, 'time' => $time);
 
                   $json_db = "storage/rss/subscription.json";
                   $file = file_get_contents($db);
@@ -90,7 +96,7 @@ public function extract($url)
               }else {
               $time = date("Y-m-d h:i:sa");
               $img = $this->img;
-              $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'img'=> $this->img, 'time' => $time);
+              $sub[] = array('name'=> $this->name, 'rss'=>$this->rss,'desc'=>$this->desc, 'link'=>$this->link, 'img'=> $this->img, 'time' => $time);
 
               $json_db = "storage/rss/subscription.json";
               $file = file_get_contents($db);
@@ -104,6 +110,79 @@ public function extract($url)
           }
           header("loaction: /subscriptions");
   }
+  public function subc($url)
+  {
+    $rss = new \DOMDocument();
+
+
+        $rss->load(trim($url));
+        foreach ($rss->getElementsByTagName('channel') as $r) {
+          $title = $r->getElementsByTagName('title')->item(0)->nodeValue;
+          $link = $r->getElementsByTagName('link')->item(0)->nodeValue;
+          $description = $r->getElementsByTagName('description')->item(0)->nodeValue;
+          if (is_null($r->getElementsByTagName('image')->item(0)->nodeValue)) {
+          $image ="resources/themes/ghost/assets/img/bubbles.png";
+        }else {
+          $image = $r->getElementsByTagName('url')->item(0)->nodeValue;
+
+        }
+
+        }
+
+
+                $db = "storage/rss/subscriber.json";
+
+                $file = FileSystem::read($db);
+                $data=json_decode($file, true);
+                unset($file);
+
+                if (count($data) >= 1) {
+
+                foreach ($data as $key => $value) {
+                   if ($value["name"] == $title) {
+
+                     $message= "false";
+
+                     break;
+                   }else {
+                     $message= "true";
+
+                   }
+
+
+                }
+                if ($message == "true") {
+
+                //  $db_json = file_get_contents("storage/rss/subscriber.json");
+
+                  $time = date("Y-m-d h:i:sa");
+                    $img = $image;
+                    $sub[] = array('name'=> $title, 'rss'=>$url,'desc'=>$description, 'link'=>$link, 'img'=> $image, 'time' => $time);
+
+                    $json_db = "storage/rss/subscriber.json";
+                    $file = file_get_contents($db);
+                    $prev_sub = json_decode($file);
+                    $new =array_merge($sub, $prev_sub);
+                    $new = json_encode($new);
+                    $doc = FileSystem::write($json_db, $new);
+  }
+                }else {
+                $time = date("Y-m-d h:i:sa");
+                $img = $image;
+                $sub[] = array('name'=> $title, 'rss'=>$url,'desc'=>$description, 'link'=>$link, 'img'=> $image, 'time' => $time);
+
+                $json_db = "storage/rss/subscriber.json";
+                $file = file_get_contents($db);
+                $prev_sub = json_decode($file);
+
+                $new = array_merge($sub, $prev_sub);
+                $new = json_encode($new);
+                $doc = FileSystem::write($json_db, $new);
+
+
+            }
+            //header("loaction: /subscriptions");
+    }
   public function unfollow($del)
   {
     $db = "storage/rss/subscription.json";

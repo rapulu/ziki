@@ -1,80 +1,114 @@
 {% set title = "Lucid"%} {% extends 'layout.html' %}{% block page_content %}
 <style>
-    h1,
-    h2,
-    h4,
-    h5,
-    h6,
     p {
         font-family: Lato;
         letter-spacing: 0.03em;
-        font-size: 14px;
+        font-size: 18px;
         color: black;
+        margin-top: 15px;
     }
-
+    
+    blockquote {
+        display: block;
+        font-family: Lato;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 40px;
+        margin-right: 40px;
+        letter-spacing: 0.03em;
+        color: black;
+        font-weight: 200;
+        font-size: 18px;
+        font-style: italic;
+        border-left: 2px blueviolet solid;
+        padding-left: 15px;
+        font-size: 17px;
+    }
+    
     .blog-details .img-logo {
         padding-top: 15px;
         padding-bottom: 20px;
     }
-
+    
     .blog-details .body-of-blog {
         border-radius: 4px;
     }
-
+    
     .blog-details .blog-post-title {
         letter-spacing: -0.02em;
     }
-
+    
+    .blog-image-header {
+        font-size: 70%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #ddd;
+        line-height: 3.3;
+    }
+    
     .blog-details .blog-post-title h3 {
-        font-family: Lato;
-        font-style: normal;
-        font-weight: bold;
+        font-family: "MuseoSlabLight", Lato;
+        font-weight: normal;
+        line-height: 1.2;
         font-size: 32px;
     }
-
+    
     .blog-details .about-blog-source {
         font-weight: bold;
     }
-
-    .blog-details .author-img {
-        border-radius: 50%;
-    }
-
+    
     .blog-source,
     .blog-date {
         font-size: 12px;
         font-family: 500;
         text-decoration: none;
+        text-transform: uppercase;
     }
-
+    
+    div.post-tags {
+        font-size: 12px;
+    }
+    
+    div.post-tags a {
+        font-size: 12px;
+        text-decoration: underline;
+        color: blueviolet;
+    }
+    
     .blog-source {
         font-size: 12px;
         color: blueviolet;
+        font-weight: 700;
     }
     /*  PLACEHOLDER STYLING  */
-
+    
      ::placeholder {
         /* Chrome, Firefox, Opera, Safari 10.1+ */
         color: var(--custom-deep-purple);
         /* Firefox */
     }
-
+    
      :-ms-input-placeholder {
         /* Internet Explorer 10-11 */
         color: var(--custom-deep-purple);
     }
-
+    
      ::-ms-input-placeholder {
         /* Microsoft Edge */
         color: var(--custom-deep-purple);
     }
     /*  PLACEHOLDER STYLING  */
     /*  CATEGORIES TAGS STYLING  */
-
+    
     .blog-details .body-of-blog {
         border-radius: 4px;
     }
-
+    
+    .blog-posts p a {
+        color: blueviolet;
+        text-decoration: underline;
+        font-weight: 400;
+    }
+    
     .blog-details .categories {
         border: 1px solid blueviolet;
         border-radius: 4px;
@@ -83,13 +117,17 @@
         padding: 15px;
         color: blueviolet;
     }
-
+    
+    .card-post a:hover {
+        text-decoration: underline;
+    }
+    
     .categories {
         font-weight: 500;
         font-size: 14px;
         padding: 15px;
     }
-
+    
     .blog-details .categories:hover {
         cursor: pointer;
         transition: all ease-in 0.3s;
@@ -102,40 +140,64 @@
         ;
         background-color: blueviolet;
     }
-
+    
     .blog-details .guest-action-items span {
         margin-left: 10px;
         margin-right: 10px;
     }
-
+    
+    .blog-posts p {
+        text-decoration: none;
+        text-justify: auto;
+    }
+    
     .blog-posts a {
         text-decoration: none;
         color: #212529;
         line-height: 0.03em;
     }
+    
+    .blog-posts {
+        margin-top: 3em;
+    }
+    
+    span.more-post {
+        font-family: Lato;
+        font-size: 18px;
+    }
+    
+    .blog-posts .relate-post a {
+        font-size: 18px;
+        color: blueviolet;
+        text-decoration: underline;
+        line-height: 1.5em;
+    }
     /*AUTHOR'S IMAGE*/
-
+    
     .author-img {
         position: absolute;
         width: 50px;
         height: 50px;
+        border-radius: 50%;
+        left: 10px;
     }
     /*media queries*/
-
+    
     @media screen and (max-width: 617px) {
         .blog-details .author-img {
-            width: 3em;
-            height: 3em;
+            width: 36px;
+            height: 36px;
         }
         .author-img {
-            left: 0px;
+            left: 15px;
+            top: 6px;
         }
         .about-blog-source {
             position: absolute;
             left: 4em;
             padding: 0px;
             margin-top: 5px;
-            margin-left: 15px;
+            margin-left: 5px;
             width: 50%;
         }
         .body-of-blog .info-on-author {
@@ -145,8 +207,14 @@
             margin-top: 3em;
             padding-top: 2em;
         }
+        .blog-post-title h1 {
+            font-size: 28px;
+        }
     }
-
+    p img{
+        width:100%;
+    }
+    
     @media (min-width:767px) {
         .about-blog-source {
             margin-left: 1.5em;
@@ -156,12 +224,12 @@
     /*media queries*/
 </style>
 <div class="container-fluid blog-details">
-    <div class="row">
-        <div class="col-lg-1 col-md-1 col-sm-7 col-xs-7">
+    <div class="row justify-content-lg-left justify-content-sm-left">
+        <div class="col-lg-0 col-md-1 col-sm-1 col-xs-7">
 
         </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 mt-5 pt-3">
+        <div class="col-lg-9 col-md-9 col-sm-11 col-xs-7 mt-5 pt-3">
             <!-- LOGO -->
             <!--     <div class="img-logo text-right">
                 <img src="resources/themes/ghost/assets/img/Vector.png" alt="logo" width="34" height="35">
@@ -174,7 +242,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3 about-blog-source text-left p-0">
                         <!--<p class="blog-source p-0 m-0">{{result.title | raw}}</p>
                         <p class="blog-date p-0 m-0">{{result.timestamp | raw}}</p>-->
-                        <p class="blog-date p-0 m-0">12<sup>th</sup> April 2019</p>
+                        <p class="blog-date p-0 m-0">{{ post.date }}</p>
                         <p class="blog-source p-0 m-0">{{settings.name}}</p>
                     </div>
 
@@ -183,33 +251,32 @@
                     </div>
                 </div>
                 <div class="blog-post-title mt-4">
-                    <h3>Looking for where to spend christmas</h3>
+                    <h1>{{ post.title|striptags }}</h1>
                 </div>
                 <div class="blog-info">
-                    <div class="blog-image-header">
-                        <img src="/resources/themes/ghost/assets/img/Rectangle 2.1.png" alt="" class="blog-image w-100 mb-3 mt-3">
-                    </div>
+                    <!-- <figure class="blog-image-header">
+                        <img src="/resources/themes/ghost/assets/img/Rectangle 2.1.png" alt="" class="blog-image w-100" />
+                        <figcaption class="image-caption"><span style="padding-left: 10px">Grab a Series 4 Apple Watch for as low as 4500 naira. at Jumia Store.</span>
+                        </figcaption>
+                    </figure> -->
 
                     <div class="blog-posts">
                         <!--<p>{{result.body | raw}} </p>-->
-                        <p>
-                            placeat iusto! Eos magni quam aspernatur alias aut? Ea excepturi quasi, asperiores neque fugiat odio reprehenderit explicabo corrupti iste architecto sit nostrum in fuga sed animi incidunt repellendus quos quod, enim culpa, at labore cum ab? Ab fugit
-                            pariatur doloremque labore suscipit delectus unde minima molestias ullam, blanditiis sequi soluta atque odio exercitationem, eum nihil maxime tempora <br> obcaecati? Eius dolorem sapiente est ratione
-                            incidunt eum sit quidem error et distinctio accusantium molestias, quae voluptas quod autem veritatis, iure nulla dicta illo iste asperiores esse. Magni, repellendus! Perferendis amet a fugit earum. Sunt similique earum explicabo
-                            consequatur fugiat reiciendis iure amet hic! Fugit officia dolore magni, veritatis soluta temporibus voluptatum assumenda laboriosam praesentium totam.<br />
-                            <i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                tempor<br /> incididunt ut labore et dolore ,Lorem ipsum ipsum doloconsectetur adipiscing elit,<br /> sed do
-                                eiusmod tempor ut labore et dolore</i>
-                            <br /> Dignissimos nesciunt, quisquam accusantium aut qui possimus? Ipsa, eum repellendus. Quisquam est eveniet similique, aut corporis repudiandae eius molestiae itaque fuga quos autem nulla rerum sequi saepe debitis enim
-                            totam molestias, magni mollitia, doloribus non placeat fugiat! Veritatis sint iure, non dignissimos, suscipit ratione tempore illo, aspernatur soluta vel illum repellat molestias voluptatum nisi odit eos. Quisquam ipsam incidunt
-                            br recusandae soluta, exercitationem et doloremque ipsum voluptas eum mollitia accusantium dignissimos labore a dolores eius cupiditate minima deleniti. Reprehenderit, facilis!
-                        </p>
-
-                        <div class="mt-5">
-                            <a href="#"><span class="categories">Privacy</span></a>
-                            <a href="#"><span class="categories">Privacy</span></a>
+                        {{ post.body|raw }}
+                        {% if post.tags  %}
+                        <div class="post-tags">
+                            <span>TOPICS: </span>
+                            {% for tag in post.tags %}
+                            <a href="/tags/{{ tag }}">{{ tag }}  </a>
+                            {% endfor %}
                         </div>
+                        {% endif %}
+                        <!--<div class="mt-5">
+                            <a href="#"><span class="categories">Privacy</span></a>
+                            <a href="#"><span class="categories">Privacy</span></a>
+                        </div>-->
                         <div class="social-media mt-5">
+                            <span><i class="fa fa-share-square "style="font-size:24px; margin-left: 10px; color: grey; font-weight: 200; height: 21px; width: 21px; fill: #7d7d7d;"></i>SHARE</span>
                             <a href="#"><img src="/resources/themes/ghost/assets/img/facebookicon.png" alt="tag-label">
                             </a>
                             <a href="#"><img src="/resources/themes/ghost/assets/img/twitter (1).png" alt="tag-label">
@@ -218,6 +285,38 @@
                             </a>
                         </div>
                     </div>
+                    <div class="card-post mt-5">
+                        {% if relatedPosts %}
+                        <div class="" style="width: 50px; border-top: 5px solid orange;"></div>
+                        <h4 class="" style="padding-top: 10px;"><b>RELATED POSTS</b></h4>
+                        <div class="row ml-0">
+                            {% for relatedPost in relatedPosts %}
+                            {% if relatedPost.preview_img %}
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 mt-3">
+                                <img src="{{ relatedPost.preview_img }}" alt="" class="blog-image w-100" height="30%" />
+                                <div class="" style="background-color: #F9F9F9; margin-top: 0px;">
+                                    <p style="font-size: 12px; color: grey; padding-top: 10px; padding-left: 10px; margin: 0px;">{{ relatedPost.tags }}</p>
+                                    <a class="related-posts" href="/post/{{ relatedPost.slug|lower }}">
+                                        <h6 style="color: black; padding: 15px;">{{ relatedPost.title|striptags }}</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 mt-3">
+                                    <div class="" style="background-color: #F9F9F9; margin-top: 0px;">
+                                        <p style="font-size: 12px; color: grey; padding-top: 10px; padding-left: 10px; margin: 0px;">{{ relatedPost.tags }}</p>
+                                        <a class="related-posts" href="/post/{{ relatedPost.slug|lower }}">
+                                            <h6 style="color: black; padding: 15px;">{{ relatedPost.title|striptags }}</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -226,7 +325,7 @@
                 <div id="disqus_thread"></div>
 
 
-                {% if COMMENT_PLUGIN == "disqus" %}
+                {% if appsettings.COMMENT_PLUGIN == "disqus" %}
                 <script>
                     //alert("{{COMMENT_PLUGIN}}");
 
@@ -249,13 +348,13 @@
                     })();
                 </script>
                 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> {% else %}
-                <div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="5"></div>
+                <div class="fb-comments" data-href="{{ appsettings.FACEBOOK_DOMAIN_URL }}" data-width="" data-numposts="3"></div>
                 {% endif %}
             </div>
 
             <ul class="list-unstyled CTAs d-flex justify-content-center">
                 <li>
-                    <a href="#"><button class="btn btn-light">Go back Home</button></a>
+                    <a href="/"><button class="btn btn-light">Go back Home</button></a>
                 </li>
             </ul>
         </div>

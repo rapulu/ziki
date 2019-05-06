@@ -26,7 +26,7 @@
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
     });
-  }); 
+  });
 
   $(document).ready(function () {
     $('#sidebar-Collapse').on('click', function () {
@@ -35,6 +35,31 @@
       $('#sidebar-collapse-2').toggleClass('visible fas fa-arrow-circle-right fa-2x');
     });
   });
+
+
+  // Code for editor switching.... 
+  var content_id = 'editor';  
+
+  max = 10;
+
+  //binding keyup/down events on the contenteditable div
+  $('#'+content_id).keyup(function(e){ check_charcount(content_id, max, e); });
+  $('#'+content_id).keydown(function(e){ check_charcount(content_id, max, e); });
+
+  function check_charcount(content_id, max, e)
+  {   
+    if($('#'+content_id).text().length > max)
+    {
+      // e.preventDefault();
+      $('#new-post-title').addClass('form-control show');
+      document.getElementById("num_char").innerHTML = "Full Blog Mode";
+    }else{
+      $('#new-post-title').removeClass('form-control show');
+      document.getElementById("num_char").innerHTML = "Micro-blog Mode";
+    }
+  }
+
+  // code for editormode switching ends here..
 </script>
 
 <!--Email login modal (uncomment this code for modal to work, but then, the side war won't work-->
@@ -43,42 +68,24 @@
   let congrat = $$('.login-mail-sent')
   let form_l = $$('.login-form')
   let message = $$('.magic-msg')
-
-  // new scripts start here
-  let loader_container = $$('#loader-container');
-  let loader_content = $$('#loader-content')
-  let mail_sent = $$('.mail-sent');
-  let mail_error = $$('.mail-error');
-
-  // new scripts end here
   congrat.style.display = 'none';
   let sendEmail = () => {
-    
-    loader_container.style.display = 'initial'; // new script
-
     let param = $$('.email-input').value;
     let host = $$('.host').value;
-    let url = `https://auth.techteel.com/api/login/email?address=${param}?domain=${host}`;
+    let url = `https://auth.techteel.com/api/login/email?address=${param}&domain=${host}`;
     fetch(url)
       .then((res) => { return res.json() })
       .then((data) => {
         console.log(data)
         if (data.error === false) {
-          // changing from confirmation modal to full page
-
-          //form_l.style.display = 'none';
-          //congrat.style.display = 'block';
-          //message.innerHTML = "Magic link sent successfully, check your email.";
-          loader_content.style.display = 'none';
-          mail_sent.style.display = 'block';
-
+          form_l.style.display = 'none';
+          congrat.style.display = 'block';
+          message.innerHTML = "Magic link sent successfully, check your email.";
         }
         else {
-          // form_l.style.display = 'none';
-          // congrat.style.display = 'block';
-          // message.innerHTML = data.message;
-          loader_content.style.display = 'none';
-          mail_error.style.display = 'block';
+          form_l.style.display = 'none';
+          congrat.style.display = 'block';
+          message.innerHTML = data.message;
         }
 
       })
@@ -86,16 +93,7 @@
         console.log(e)
       })
   };
-  let closeModal = () => {
-    loader_container.style.display = 'none'
-  }
   $$('.email-login-button').addEventListener('click', sendEmail);
-  // for close button on loader
-  document.addEventListener('click', function(event){
-    if(event.target.classList.contains('loader-close-button')){
-      closeModal();
-    }
-  }, false)
 </script>
 
 <!-- Convert to markdown script -->
@@ -174,8 +172,7 @@
       body: formData
     }).then(res => res.text()).then((res) => {
       console.log(res);
-      if (window.confirm(`Check console for response.
-      Redirect to view new post?`)) {
+      if (alert("Post Update Made")) {
         window.location = '/timeline';
       }
     }).catch((err) => {
@@ -202,6 +199,9 @@
     placeholder: 'Compose an epic...'
   });
 </script>
+
+
+
 <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script>
 <footer>
   <div class="container-fluid">
