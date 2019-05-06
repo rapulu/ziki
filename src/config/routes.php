@@ -57,9 +57,9 @@ Router::get('/post/{post_id}', function ($request, $post_id) {
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $post = $ziki->fetchAllRss();
@@ -110,7 +110,6 @@ Router::post('/publish', function ($request) {
     $result = $ziki->create($title, $body, $tags, $images, $extra);
     return $this->template->render('timeline.html', ['ziki' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
 });
-
 //this are some stupid working code written by porh please don't edit
 //without notifying me
 Router::get('/about', function ($request) {
@@ -171,13 +170,9 @@ Router::get('delete/{id}', function ($request, $id) {
     }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->delete($id, true);
+    $result = $ziki->delete($id);
     return $this->template->render('timeline.html', ['delete' => $result]);
 });
-
-
-
-
 Router::get('/published-posts', function ($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -188,8 +183,6 @@ Router::get('/published-posts', function ($request) {
     $posts = $ziki->get();
     return $this->template->render('published-posts.html', ['posts' => $posts]);
 });
-
-// Kuforiji's codes start here
 
 // Start- Portfolio page
 Router::get('/portfolio', function ($request) {
@@ -217,73 +210,6 @@ Router::get('/portfolio-expanded', function ($request) {
 });
 // End- Portfolio_expanded
 
-// creating new portfolio
-Router::get('/create-portfolio', function ($request) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-    $count = new Ziki\Core\Subscribe();
-    $fcount = $count->fcount();
-    $count = $count->count();
-    return $this->template->render('create-portfolio.html');
-});
-
-// portfolio drafts
-Router::get('/portfolio-drafts', function ($request) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-    $count = new Ziki\Core\Subscribe();
-    $fcount = $count->fcount();
-    $count = $count->count();
-    return $this->template->render('drafts-portfolio.html');
-});
-
-// new portfolio
-Router::post('/newportfolio', function ($request) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-    $directory = "./storage/portfolio/";
-    $data = $request->getBody();
-    $title = $data['title'];
-    $body = $data['postVal'];
-    $tags = $data['tags'];
-    // filter out non-image data
-    $initial_images = array_filter($data, function ($key) {
-        return preg_match('/^img-\w*$/', $key);
-    }, ARRAY_FILTER_USE_KEY);
-    // PHP automatically converts the '.' of the extension to an underscore
-    // undo this
-    $images = [];
-    foreach ($initial_images as $key => $value) {
-        $newKey = preg_replace('/_/', '.', $key);
-        $images[$newKey] = $value;
-    }
-    //return json_encode([$images]);
-    $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->createportfolio($title, $body, $images);
-    return $this->template->render('portfolio.html');
-});
-
-// Get all portfolio files created
-Router::get('/portfolio-created', function ($request) {
-    $user = new Ziki\Core\Auth();
-    if (!$user->is_logged_in()) {
-        return $user->redirect('/');
-    }
-    $directory = "./storage/portfolio/";
-    $ziki = new Ziki\Core\Document($directory);
-    $posts = $ziki->get();
-    return $this->template->render('portfolio-created.html', ['posts' => $posts]);
-});
-
-
-
-// Kuforiji's codes end here
 
 // ahmzyjazzy add this (^_^) : setting page
 Router::get('/settings', function ($request) {
@@ -462,6 +388,22 @@ Router::get('/blog-details', function ($request) {
     return $this->template->render('blog-details.html', $settings);
 });
 
+// Start- Portfolio page
+
+Router::get('/portfolio', function ($request) {
+
+    $user = new Ziki\Core\Auth();
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
+    $count = new Ziki\Core\Subscribe();
+    $fcount = $count->fcount();
+    $count = $count->count();
+    return $this->template->render('portfolio.html', ['count' => $count, 'fcount' => $fcount]);
+});
+// End- Portfolio page
+
+
 // Start- followers page
 
 Router::get('/followers', function ($request) {
@@ -476,7 +418,6 @@ Router::get('/followers', function ($request) {
     return $this->template->render('followers.html',  ['count' => $count, 'fcount' => $fcount]);
 });
 // End- followers page
-
 
 // Start- following page
 
@@ -504,9 +445,8 @@ Router::post('/saveDraft', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    $directory = "./storage/contents/";
+    $directory = "./storage/drafts/";
     $data = $request->getBody();
-
     $title = $data['title'];
     $body = $data['postVal'];
     $tags = $data['tags'];
@@ -535,13 +475,14 @@ Router::get('/drafts', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    $directory = "./storage/contents/";
+    $directory = "./storage/drafts/";
     $ziki = new Ziki\Core\Document($directory);
-    $draft = $ziki->getDrafts();
+    $draft = $ziki->get();
+    $count = new Ziki\Core\Subscribe();
+    $fcount = $count->fcount();
+    $count = $count->count();
     return $this->template->render('drafts.html', ['drafts' => $draft]);
 });
-
-
 
 //videos page
 Router::get('/videos', function ($request) {
