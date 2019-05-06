@@ -1,11 +1,12 @@
 {% set title = "Profile"%}
-{% extends 'layout.html' %} {% block page_content%}
+{% extends 'layout.html' %} 
+{% block page_content%}
 
 <!-- content goes here -->
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3 offset-lg-4 offset-md-4 offset-sm-12 offset-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-10 mt-3 offset-lg-1 offset-md-1 offset-sm-1 offset-xs-1">
 
       {% set navigation = [
         {'href': 'settings', 'caption': 'Settings'},
@@ -26,7 +27,7 @@
               </figure>
             </div>
            
-              <form class="">
+              <form class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="form-group">
                   <label for="fullName" class="font-weight-bold profile-edit-label d-none">Full Name</label>
                   <input type="text" class="form-control " id="fullname" aria-describedby="fullname" value="{{settings.name}}" placeholder="Full Name">
@@ -40,7 +41,7 @@
               </form>
               <!-- Please the form fields below should not be touched and ensure to contact @porh if 
               you don't understand -->
-              <form class="pb-5 mt-5" action="/updateabout" method="POST">
+              <form class="pb-5 mt-5 col-lg-8 col-md-8 col-sm-12 col-xs-12" action="/updateabout" method="POST">
 
                 <div class="form-group">
                     {% if message.aboutError %}
@@ -78,7 +79,7 @@
               </div>
               {% endif %}
 
-              <form class="pb-5 mt-5" method="POST" action="/setcontactemail">
+              <form class="pb-5 mt-5 col-lg-8 col-md-8 col-sm-12 col-xs-12" method="POST" action="/setcontactemail">
 
                 <div class="form-group">
                   
@@ -164,6 +165,7 @@
       </script>
     </div>
   </div>
+</div>
 </div>
 </div>
 </div>
