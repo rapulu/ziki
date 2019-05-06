@@ -467,7 +467,7 @@ class Document
                 $slug = $parsedown->text($yaml['slug']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 if ($slug == $id) {
-                    $title = $parsedown->text($yaml['title']);
+                    $title = isset($yaml['title'])?$parsedown->text($yaml['title']):'';;
                     $bd = $parsedown->text($body);
                     $time = $parsedown->text($yaml['timestamp']);
                     $url = $parsedown->text($yaml['post_dir']);
@@ -612,7 +612,7 @@ class Document
                 }
                 $slug = $parsedown->text($yaml['slug']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
-                $title = $parsedown->text($yaml['title']);
+                $title = isset($yaml['title'])?$parsedown->text($yaml['title']):'';
                 $bd = $parsedown->text($body);
                 $time = $parsedown->text($yaml['timestamp']);
                 $url = $parsedown->text($yaml['post_dir']);
