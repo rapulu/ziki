@@ -43,9 +43,18 @@ Router::get('/post/{post_id}', function ($request, $post_id) {
 //echo $url;
     $post_id = explode('-',$post_id);
     $post = end($post_id);
-
     $post_details=$ziki->getPost($post);
-    return $this->template->render('blog-details.html',['result'=>$result,'setting' => $settings, 'count' => $count, 'fcount' => $fcount,'post'=>$post_details]);
+    $tags = [];
+    if(isset($post_details['tags']))
+    {
+        foreach ($post_details['tags'] as $tag)
+        {
+            $tags[]= '#'.$tag;
+        }
+    }
+    
+    $relatedPosts = $ziki->getRelatedPost(4,$tags,$post);
+    return $this->template->render($settings, 'blog-details.html',['result'=>$result, 'count' => $count, 'fcount' => $fcount,'post'=>$post_details,'relatedPosts'=>$relatedPosts]);
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
@@ -371,12 +380,12 @@ Router::get('/404', function ($request) {
   $count = $count->count();
     return $this->template->render('404.html', ['count' => $count, 'fcount' => $fcount]);
 });
-Router::get('/postag', function ($request) {
 
-    
-    $directory = "./storage/contents/";
-    $ziki = new Ziki\Core\Document($directory);
-    $ziki->getRelatedPost();
+//blog-details
+Router::get('/blog-details', function ($request) {
+    $setting = new Ziki\Core\Setting();
+    $settings = $setting->getSetting();
+    return $this->template->render('blog-details.html', $settings);
 });
 
 // Start- Portfolio page
