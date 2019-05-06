@@ -29,83 +29,10 @@ class Document
         return $this->file;
     }
 
-    //for creating markdown files
-    //kjarts code here
-    public function create($title, $content, $tags, $image, $extra)
+    //for creating markdown files for portfolio
+    public function createportf($title, $content, $tags, $image, $extra)
     {
-        $time = date(DATE_RSS, time());
-        $unix = strtotime($time);
-        // Write md file
-        $document = FrontMatter::parse($content);
-        $md = new Parser();
-        $markdown = $md->parse($document);
-
-        $yaml = $markdown->getYAML();
-        $html = $markdown->getContent();
-        //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
-
-        $yamlfile = new Doc();
-        if ($title != "") {
-            $yamlfile['title'] = $title;
-        }
-        if ($tags != "") {
-            $tag = explode(",", $tags);
-            $put = [];
-            foreach ($tag as $value) {
-                array_push($put, $value);
-            }
-            $yamlfile['tags'] = $put;
-        }
-        if (!empty($image)) {
-            foreach ($image as $key => $value) {
-                $decoded = base64_decode($image[$key]);
-                $url = "./storage/images/" . $key;
-                FileSystem::write($url, $decoded);
-            }
-        }
-
-        if (!$extra) {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
-        } else {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
-            $yamlfile['image'] = "./storage/images/" . $key;
-        }
-
-        // create slug by first removing spaces
-        $striped = str_replace(' ', '-', $title);
-        // then removing encoded html chars
-        $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
-        $yamlfile['slug'] = $striped . "-{$unix}";
-        $yamlfile['timestamp'] = $time;
-        $yamlfile->setContent($content);
-        $yaml = FrontMatter::dump($yamlfile);
-        $file = $this->file;
-        $dir = $file . $unix . ".md";
-        //return $dir; die();
-        $doc = FileSystem::write($dir, $yaml);
-        if (!$extra) {
-            if ($doc) {
-                $result = array("error" => false, "message" => "Post published successfully");
-                $this->createRSS();
-            } else {
-                $result = array("error" => true, "message" => "Fail while publishing, please try again");
-            }
-        } else {
-            if ($doc) {
-                $result = array("error" => false, "message" => "Draft saved successfully");
-            } else {
-                $result = array("error" => true, "message" => "Fail while publishing, please try again");
-            }
-        }
-
-        return $result;
-    }
-
-    // Start- create portfolio
-
-    public function createportfolio($title, $content, $image)
-    {
-        $time = date(DATE_RSS, time());
+        $time = date("F j, Y, g:i a");
         $unix = strtotime($time);
         // Write md file
         $document = FrontMatter::parse($content);
@@ -129,16 +56,16 @@ class Document
         if (!empty($image)) {
             foreach ($image as $key => $value) {
                 $decoded = base64_decode($image[$key]);
-                $url = "./storage/images/portfolio/" . $key;
+                $url = "./storage/images/portfolio-images" . $key;
                 FileSystem::write($url, $decoded);
             }
         }
 
         if (!$extra) {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/portfolio/{$unix}";
+            $yamlfile['post_dir'] = SITE_URL . "/storage/contents/portfolio{$unix}";
         } else {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/portfolio/{$unix}";
-            $yamlfile['image'] = "./storage/images/portfolio/" . $key;
+            $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/portfolio{$unix}";
+            $yamlfile['image'] = "./storage/images/portfolio-images" . $key;
         }
 
         // create slug by first removing spaces
@@ -156,6 +83,8 @@ class Document
         if (!$extra) {
             if ($doc) {
                 $result = array("error" => false, "message" => "Post published successfully");
+                
+                //Fix this
                 $this->createRSS();
             } else {
                 $result = array("error" => true, "message" => "Fail while publishing, please try again");
@@ -170,17 +99,14 @@ class Document
 
         return $result;
     }
-
-    //End- create  portfolio
-
     //get post
-    public function get()
+    public function getportf()
     {
         $finder = new Finder();
 
         // find all files in the current directory
         $finder->files()->in($this->file);
-        $posts = [];
+        $portfolio = [];
         if ($finder->hasResults()) {
             foreach ($finder as $file) {
                 $document = $file->getContents();
@@ -190,108 +116,56 @@ class Document
                 $body = $document->getContent();
                 //$document = FileSystem::read($this->file);
                 $parsedown  = new Parsedown();
-                $tags = isset($yaml['tags']) ? $yaml['tags'] : '';
-                $title = isset($yaml['title']) ? $parsedown->text($yaml['title']) : '';
+                $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
-                $image = isset($yaml['image']) ? $parsedown->text($yaml['image']) : '';
+                $image = $parsedown->text($yaml['image']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
-                ////
-                preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
-                $first_img = false;
-                if (isset($matches[1])) {
-                    // there are images
-                    $first_img = $matches[1];
-                    // strip all images from the text
-                    $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
-                }
                 $time = $parsedown->text($yaml['timestamp']);
                 $url = $parsedown->text($yaml['post_dir']);
                 $content['title'] = $title;
-                $content['body'] = $this->trim_words($bd, 200);
+                $content['body'] = $bd;
                 $content['url'] = $url;
-                $content['timestamp'] = $time;
-                $content['tags'] = $tags;
                 $content['slug'] = $slug;
-                $content['preview_img'] = $first_img;
-                //content['slug'] = $slug;
                 $file = explode("-", $slug);
                 $filename = $file[count($file) - 1];
                 $content['filename'] = $filename;
-                //content['timestamp'] = $time;
+                $content['timestamp'] = $time;
                 $content['image'] = $image;
-                $content['date'] = date('d M Y ', $filename);
-
-                array_push($posts, $content);
+                array_push($portfolio, $content);
             }
-            krsort($posts);
-            return $posts;
+            return $portfolio;
         } else {
             return false;
         }
     }
 
-    // end - get portfolio
-
     //kjarts code for getting and creating markdown files end here
-
-    //trim_words used in triming strings by words
-    function trim_words($string, $limit, $break = ".", $pad = "...")
-    {
-        if (strlen($string) <= $limit) return $string;
-
-        if (false !== ($breakpoint = strpos($string, $break, $limit))) {
-            if ($breakpoint < strlen($string) - 1) {
-                $string = substr($string, 0, $breakpoint) . $pad;
-            }
-        }
-
-        return $string;
-    }
 
     public function fetchAllRss()
     {
         $rss = new \DOMDocument();
         $feed = [];
-        $user = file_get_contents("src/config/auth.json");
-        $user = json_decode($user, true);
         $data = file_get_contents("storage/rss/subscription.json");
         $urlArray = json_decode($data, true);
 
-        $urlArray2 = array(
-            array('name' => $user['name'], 'rss' => 'storage/rss/rss.xml', 'desc' => '', 'link' => '', 'img' => $user['image'], 'time' => ''),
-            //                array('name' => 'Sample',  'url' => 'rss/rss.xml')
-        );
+        //$urlArray = array(array('name' => 'Elijah Okokn', 'url' => 'storage/contents/rss.xml'),
+        //                array('name' => 'Sample',  'url' => 'rss/rss.xml')
+        //                );
 
-        $result = array_merge($urlArray, $urlArray2);
-        //  print_r($result);
-        foreach ($result as $url) {
+        foreach ($urlArray as $url) {
             $rss->load($url['rss']);
 
             foreach ($rss->getElementsByTagName('item') as $node) {
-                if (!isset($node->getElementsByTagName('image')->item(0)->nodeValue)) {
-
-                    $item = array(
-                        'site'  => $url['name'],
-                        'img'  => $url['img'],
-                        'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
-                        'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
-                        'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue . "?d=" . base64_encode(SITE_URL),
-                        'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
-
-                    );
-                } else {
-                    $item = array(
-                        'site'  => $url['name'],
-                        'img'  => $url['img'],
-                        'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
-                        'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
-                        'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue . "?d=" . base64_encode(SITE_URL),
-                        'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
-                        'image'  => $node->getElementsByTagName('image')->item(0)->nodeValue,
-                    );
-                }
+                $item = array(
+                    'site'  => $url['name'],
+                    'img'  => $url['img'],
+                    'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+                    'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
+                    'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                    'date'  => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+                );
                 array_push($feed, $item);
             }
         }
@@ -321,8 +195,7 @@ class Document
                     'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
                     'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
                     'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
-                    'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
-                    'image'  => $node->getElementsByTagName('image')->item(0)->nodeValue,
+                    'date'  => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
                 );
                 array_push($feed, $item);
             }
@@ -364,7 +237,7 @@ class Document
 
         $finder = new Finder();
         $finder->files()->in($this->file);
-        //print_r($finder->hasResults());
+
         if ($finder->hasResults()) {
             foreach ($finder as $file) {
                 $document = $file->getContents();
@@ -377,34 +250,20 @@ class Document
 
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
-                $image = isset($yaml['image']) ? $parsedown->text($yaml['image']) : '';
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
-                $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
-
-                preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
-                $first_img = false;
-                if (isset($matches[1])) {
-                    // there are images
-                    $first_img = $matches[1];
-                    // strip all images from the text
-                    $bd = preg_replace("/<img[^>]+\>/i", "", $bd);
-                }
                 $time = $parsedown->text(time());
                 $url = $parsedown->text($yaml['post_dir']);
 
                 $newItem = $Feed->createNewItem();
                 $newItem->setTitle(strip_tags($title));
-                $newItem->setLink("/post/" . strtolower($slug));
+                $newItem->setLink($slug);
                 $newItem->setDescription(substr(strip_tags($bd), 0, 100));
-                $newItem->setDate(date(DATE_RSS, time()));
+                $newItem->setDate("2013-04-07 00:50:30");
 
                 $newItem->setAuthor($user['name'], $user['email']);
                 $newItem->setId($url, true);
                 $newItem->addElement('source', $user['name'] . '\'s page', array('url' => SITE_URL));
-
-                $newItem->addElement('image', $first_img);
-
                 $Feed->addItem($newItem);
             }
             $myFeed = $Feed->generateFeed();
@@ -493,17 +352,16 @@ class Document
         $data = json_decode($file, true);
         if (count($data) >= 1) {
             unset($file);
-            $posts = [];
+            $portfolio = [];
             foreach ($data as $key => $value) {
 
                 $content['name'] = $value['name'];
                 $content['img'] = $value['img'];
                 $content['time'] = $value['time'];
                 $content['desc'] = $value['desc'];
-                $content['link'] = $value['link'];
-                array_push($posts, $content);
+                array_push($portfolio, $content);
             }
-            return $posts;
+            return $portfolio;
         }
     }
     public function subscription()
@@ -512,17 +370,16 @@ class Document
         $file = FileSystem::read($db);
         $data = json_decode($file, true);
         unset($file);
-        $posts = [];
+        $portfolio = [];
         foreach ($data as $key => $value) {
 
             $content['name'] = $value['name'];
             $content['img'] = $value['img'];
             $content['time'] = $value['time'];
             $content['desc'] = $value['desc'];
-            $content['link'] = $value['link'];
-            array_push($posts, $content);
+            array_push($portfolio, $content);
         }
-        return $posts;
+        return $portfolio;
     }
     //code for returnng details of each codes
     public function getEach($id)
@@ -530,7 +387,7 @@ class Document
         $finder = new Finder();
         // find all files in the current directory
         $finder->files()->in($this->file);
-        $posts = [];
+        $portfolio = [];
         if ($finder->hasResults()) {
             foreach ($finder as $file) {
                 $document = $file->getContents();
@@ -543,7 +400,7 @@ class Document
                 $slug = $parsedown->text($yaml['slug']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 if ($slug == $id) {
-                    $title = isset($yaml['title']) ? $parsedown->text($yaml['title']) : '';;
+                    $title = $parsedown->text($yaml['title']);
                     $bd = $parsedown->text($body);
                     $time = $parsedown->text($yaml['timestamp']);
                     $url = $parsedown->text($yaml['post_dir']);
@@ -551,21 +408,21 @@ class Document
                     $content['body'] = $bd;
                     $content['url'] = $url;
                     $content['timestamp'] = $time;
-                    array_push($posts, $content);
+                    array_push($portfolio, $content);
                 }
             }
-            return $posts;
+            return $portfolio;
         }
     }
     //end of get a post function
 
     // post
-    public function tagPosts($id)
+    public function update($id)
     {
         $finder = new Finder();
         // find all files in the current directory
         $finder->files()->in($this->file);
-        $posts = [];
+        $portfolio = [];
         if ($finder->hasResults()) {
             foreach ($finder as $file) {
                 $document = $file->getContents();
@@ -606,12 +463,12 @@ class Document
                         $content['tags'] = $tags;
                         $content['slug'] = $yaml['slug'];
                         $content['preview_img'] = $first_img;
-                        array_push($posts, $content);
+                        array_push($portfolio, $content);
                     }
                 }
             }
         }
-        return $posts;
+        return $portfolio;
     }
 
     //kjarts code for deleting post
@@ -641,130 +498,6 @@ class Document
             return $delete;
         }
     }
-    //deleteapOST by ProblemSolved;
-    public function deletePost($post)
-    {
-        $finder = new Finder();
-        // find post in the current directory
-        $finder->files()->in($this->file)->name($post . '.md');
-        if (!$finder->hasResults()) {
-            return $this->redirect('/404');
-        } else {
-            ///coming back for some modifications
-            unlink($this->file . $post . '.md');
-            return $this->redirect('/published-posts');
-        }
-    }
-
-    //get single post
-
-    public function getPost($post)
-    {
-        $finder = new Finder();
-        // find post in the current directory
-        $finder->files()->in($this->file)->name($post . '.md');
-        $content = [];
-        if (!$finder->hasResults()) {
-            return $this->redirect('/404');
-        } else {
-            foreach ($finder as $file) {
-                $document = $file->getContents();
-                $parser = new Parser();
-                $document = $parser->parse($document);
-                $yaml = $document->getYAML();
-                $body = $document->getContent();
-                $parsedown  = new Parsedown();
-                $yamlTag = isset($yaml['tags']) ? $yaml['tags'] : [];
-                $tags = [];
-                foreach ($yamlTag as $tag) {
-                    $removeHashTag = explode('#', $tag);
-                    $tags[] = trim(end($removeHashTag));
-                }
-                $slug = $parsedown->text($yaml['slug']);
-                $slug = preg_replace("/<[^>]+>/", '', $slug);
-                $title = isset($yaml['title']) ? $parsedown->text($yaml['title']) : '';
-                $bd = $parsedown->text($body);
-                $time = $parsedown->text($yaml['timestamp']);
-                $url = $parsedown->text($yaml['post_dir']);
-                $content['tags'] = $tags;
-                $content['title'] = $title;
-                $content['body'] = $bd;
-                $content['url'] = $url;
-                $content['timestamp'] = $time;
-                $content['date'] = date('d M Y ', $post);
-            }
-            return $content;
-        }
-    }
-
-
-    public function redirect($location)
-    {
-        header('Location:' . $location);
-    }
-
-    public function getRelatedPost($limit = 4, $tags, $skip_post)
-    {
-
-        $finder = new Finder();
-        // find post in the current directory
-        $finder->files()->in($this->file)->notName($skip_post . '.md')->contains($tags);
-        $posts = [];
-        if ($finder->hasResults()) {
-            foreach ($finder as $file) {
-                $document = $file->getContents();
-                $parser = new Parser();
-                $document = $parser->parse($document);
-                $yaml = $document->getYAML();
-                $body = $document->getContent();
-                //$document = FileSystem::read($this->file);
-                $parsedown  = new Parsedown();
-                if (!isset($yaml['tags'])) {
-                    continue;
-                }
-                $tags = $yaml['tags'];
-                $title = $parsedown->text($yaml['title']);
-                $slug = $parsedown->text($yaml['slug']);
-                $image = isset($yaml['image']) ? $parsedown->text($yaml['image']) : '';
-                $slug = preg_replace("/<[^>]+>/", '', $slug);
-                $image = preg_replace("/<[^>]+>/", '', $image);
-                $bd = $parsedown->text($body);
-                preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
-                $first_img = false;
-                if (isset($matches[1])) {
-                    // there are images
-                    $first_img = $matches[1];
-                    // strip all images from the text
-                    $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
-                }
-                $time = $parsedown->text($yaml['timestamp']);
-                $url = $parsedown->text($yaml['post_dir']);
-                $content['title'] = $title;
-                $content['url'] = $url;
-                $content['timestamp'] = $time;
-                $content['tags'] = str_replace('#', '', implode(',', $tags));
-                $content['slug'] = $slug;
-                $content['preview_img'] = $first_img;
-                //content['slug'] = $slug;
-                $file = explode("-", $slug);
-                $filename = $file[count($file) - 1];
-                $content['filename'] = $filename;
-                //content['timestamp'] = $time;
-                $content['image'] = $image;
-                $content['date'] = date('d M Y ', $filename);
-
-                array_push($posts, $content);
-            }
-            krsort($posts);
-            $countPosts = count($posts);
-            if ($countPosts > $limit)
-                array_shift($posts);
-            return $posts;
-        } else {
-            return false;
-        }
-    }
-    //stupid code by problemSolved ends here
 
     /**
      * updates a post stored in an md file
