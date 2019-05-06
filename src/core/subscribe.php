@@ -181,7 +181,7 @@ public function extract($url)
 
 
             }
-            header("loaction: /subscriptions");
+            //header("loaction: /subscriptions");
     }
   public function unfollow($del)
   {

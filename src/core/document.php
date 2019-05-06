@@ -320,7 +320,7 @@ class Document
 
                 $newItem = $Feed->createNewItem();
                 $newItem->setTitle(strip_tags($title));
-                $newItem->setLink($slug);
+                $newItem->setLink("/post/".strtolower($slug));
                 $newItem->setDescription(substr(strip_tags($bd), 0, 100));
                 $newItem->setDate(date(DATE_RSS, time()));
 
