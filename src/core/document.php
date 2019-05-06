@@ -121,7 +121,7 @@ class Document
                 $tags = $yaml['tags'];
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
-                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):''; 
+                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):'';
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
@@ -188,7 +188,8 @@ class Document
         $urlArray2 = array(array('name' => $user['name'], 'rss' => 'storage/rss/rss.xml','desc' => '', 'link' => '', 'img' => $user['image'], 'time' => ''),
         //                array('name' => 'Sample',  'url' => 'rss/rss.xml')
                         );
-$result = array_merge($urlArray,$urlArray2);
+
+                        $result = array_merge($urlArray,$urlArray2);
                       //  print_r($result);
         foreach ($result as $url) {
             $rss->load($url['rss']);
@@ -201,7 +202,7 @@ $result = array_merge($urlArray,$urlArray2);
                     'img'  => $url['img'],
                     'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
                     'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
-                    'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                    'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue ."?d=".base64_encode(SITE_URL),
                     'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
 
                 );
@@ -211,7 +212,7 @@ $result = array_merge($urlArray,$urlArray2);
                     'img'  => $url['img'],
                     'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
                     'desc'  => $node->getElementsByTagName('description')->item(0)->nodeValue,
-                    'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue,
+                    'link'  => $node->getElementsByTagName('link')->item(0)->nodeValue."?d=".base64_encode(SITE_URL),
                     'date'  => date("F j, Y, g:i a", strtotime($node->getElementsByTagName('pubDate')->item(0)->nodeValue)),
                     'image'  => $node->getElementsByTagName('image')->item(0)->nodeValue,
                 );
@@ -424,6 +425,7 @@ $result = array_merge($urlArray,$urlArray2);
                 $content['img'] = $value['img'];
                 $content['time'] = $value['time'];
                 $content['desc'] = $value['desc'];
+                $content['link'] = $value['link'];
                 array_push($posts, $content);
             }
             return $posts;
@@ -442,6 +444,7 @@ $result = array_merge($urlArray,$urlArray2);
             $content['img'] = $value['img'];
             $content['time'] = $value['time'];
             $content['desc'] = $value['desc'];
+            $content['link'] = $value['link'];
             array_push($posts, $content);
         }
         return $posts;
@@ -574,13 +577,13 @@ $result = array_merge($urlArray,$urlArray2);
         }
         else
         {
-            ///coming back for some modifications 
+            ///coming back for some modifications
             unlink($this->file.$post.'.md');
             return $this->redirect('/published-posts');
         }
     }
-    
-    //get single post 
+
+    //get single post
 
     public function getPost($post)
     {
@@ -608,7 +611,7 @@ $result = array_merge($urlArray,$urlArray2);
                 foreach($yaml['tags'] as $tag)
                 {
                     $removeHashTag = explode('#',$tag);
-                    $tags[]=trim(end($removeHashTag)); 
+                    $tags[]=trim(end($removeHashTag));
                 }
                 $slug = $parsedown->text($yaml['slug']);
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
@@ -621,7 +624,7 @@ $result = array_merge($urlArray,$urlArray2);
                 $content['body'] = $bd;
                 $content['url'] = $url;
                 $content['timestamp'] = $time;
-                
+
             }
             return $content;
         }
