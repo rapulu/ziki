@@ -1,49 +1,69 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
 <channel>
-<title>Elijah Okokon</title>
+<title>Vanessa Christian</title>
 <link>http://localhost:8000/</link>
 <description><![CDATA[]]></description>
-<image><title>Elijah Okokon</title>
+<image><title>Vanessa Christian</title>
 <link></link>
-<url>https://lh4.googleusercontent.com/-Sft-MftI38Q/AAAAAAAAAAI/AAAAAAAADho/4sp40SN0sTc/photo.jpg</url>
+<url>https://lh5.googleusercontent.com/-NxpKZhgov1A/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rd4GusXI7R-h-vS0k5venufElYjRQ/mo/photo.jpg</url>
 </image>
 <language>en-US</language>
-<lastBuildDate>Mon, 06 May 2019 14:08:36 +0000</lastBuildDate>
+<lastBuildDate>Mon, 06 May 2019 14:55:30 +0000</lastBuildDate>
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
 <creativeCommons:license>http://www.creativecommons.org/licenses/by/1.0</creativeCommons:license>
 <generator>Ziki</generator>
 <item>
-<title>test from DMatrix</title>
-<link>/post/test-from-dmatrix-1556820900</link>
-<description><![CDATA[this is test post]]></description>
-<pubDate>Mon, 06 May 2019 14:08:36 +0000</pubDate>
-<author>okoelijah@gmail.com (Elijah Okokon)</author>
-<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556820900&quot;&gt;http://localhost:8000//storage/contents/1556820900&lt;/a&gt;&lt;/p&gt;</guid>
-<source url="http://localhost:8000/">Elijah Okokon's page</source>
+<title>I am a post</title>
+<link>/post/i-am-a-post-1557135170</link>
+<description><![CDATA[Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolorem omnis ducimus quam,&#13]]></description>
+<pubDate>Mon, 06 May 2019 14:55:30 +0000</pubDate>
+<author>vanessa.xtian@gmail.com (Vanessa Christian)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557135170&quot;&gt;http://localhost:8000//storage/contents/1557135170&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Vanessa Christian's page</source>
+<image>/storage/images/img-vb85vuwtw7.png</image>
+</item>
+<item>
+<title>I am a second test</title>
+<link>/post/i-am-a-second-test-1557149443</link>
+<description><![CDATA[,mgn.,sdjbkjdsf.,mnxz.g;jfd;gja;gfkha;jgfsb.gafsg;afsgh/kfdsa/ldskhdslkgfh/.dsknh/dzkhgfl&#39;fsaihg]]></description>
+<pubDate>Mon, 06 May 2019 14:55:30 +0000</pubDate>
+<author>vanessa.xtian@gmail.com (Vanessa Christian)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557149443&quot;&gt;http://localhost:8000//storage/contents/1557149443&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Vanessa Christian's page</source>
 <image></image>
 </item>
 <item>
-<title>Lucid an exclusive app</title>
-<link>/post/lucid-and-exclusive-app-1556982960</link>
-<description><![CDATA[ this is an amazing application for publications]]></description>
-<pubDate>Mon, 06 May 2019 14:08:36 +0000</pubDate>
-<author>okoelijah@gmail.com (Elijah Okokon)</author>
-<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556982960&quot;&gt;http://localhost:8000//storage/contents/1556982960&lt;/a&gt;&lt;/p&gt;</guid>
-<source url="http://localhost:8000/">Elijah Okokon's page</source>
-<image>/storage/images/img-p5iep2yk3m.jpeg</image>
+<title>Third test with picture</title>
+<link>/post/third-test-with-picture-1557149887</link>
+<description><![CDATA[mngvclsjb;kgfdha.dnf.gsdhgffghldsafhg/skfngkfdsglihfdsakfg.kag/lkhfdsga/lksfdhg/kahg/lkfhds/ghfd/ka/]]></description>
+<pubDate>Mon, 06 May 2019 14:55:30 +0000</pubDate>
+<author>vanessa.xtian@gmail.com (Vanessa Christian)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557149887&quot;&gt;http://localhost:8000//storage/contents/1557149887&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Vanessa Christian's page</source>
+<image>/storage/images/img-io0g2ukk16.png</image>
 </item>
 <item>
-<title>welcome to ziki</title>
-<link>/post/welcome-to-ziki-1557137959</link>
-<description><![CDATA[this is a test post]]></description>
-<pubDate>Mon, 06 May 2019 14:08:36 +0000</pubDate>
-<author>okoelijah@gmail.com (Elijah Okokon)</author>
-<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557137959&quot;&gt;http://localhost:8000//storage/contents/1557137959&lt;/a&gt;&lt;/p&gt;</guid>
-<source url="http://localhost:8000/">Elijah Okokon's page</source>
-<image>/storage/images/img-440bn8uxxc.jpeg</image>
+<title>A post from Vanessa</title>
+<link>/post/a-post-from-vanessa-1557154527</link>
+<description><![CDATA[My new post is here&#13;&#10;&#13;&#10;Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rep]]></description>
+<pubDate>Mon, 06 May 2019 14:55:30 +0000</pubDate>
+<author>vanessa.xtian@gmail.com (Vanessa Christian)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557154527&quot;&gt;http://localhost:8000//storage/contents/1557154527&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Vanessa Christian's page</source>
+<image>/storage/images/img-27jpqq667g.jpeg</image>
+</item>
+<item>
+<title>A post from Vanessa</title>
+<link>/post/a-post-from-vanessa-1557154530</link>
+<description><![CDATA[My new post is here&#13;&#10;&#13;&#10;Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rep]]></description>
+<pubDate>Mon, 06 May 2019 14:55:30 +0000</pubDate>
+<author>vanessa.xtian@gmail.com (Vanessa Christian)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557154530&quot;&gt;http://localhost:8000//storage/contents/1557154530&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Vanessa Christian's page</source>
+<image>/storage/images/img-5sv406oxxx.jpeg</image>
 </item>
 </channel>
 </rss>
