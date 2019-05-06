@@ -117,11 +117,8 @@ class Document
                 $body = $document->getContent();
                 //$document = FileSystem::read($this->file);
                 $parsedown  = new Parsedown();
-                if (!isset($yaml['tags'])) {
-                    continue;
-                }
-                $tags = $yaml['tags'];
-                $title = $parsedown->text($yaml['title']);
+                $tags = isset($yaml['tags'])?$yaml['tags']:'';
+                $title = isset($yaml['title'])?$parsedown->text($yaml['title']):'';
                 $slug = $parsedown->text($yaml['slug']);
                 $image = isset($yaml['image'])?$parsedown->text($yaml['image']):'';
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
@@ -606,11 +603,9 @@ class Document
                 $yaml = $document->getYAML();
                 $body = $document->getContent();
                 $parsedown  = new Parsedown();
-                if (!isset($yaml['tags'])) {
-                    continue;
-                }
+                $yamlTag = isset($yaml['tags'])?$yaml['tags']:[];
                 $tags=[];
-                foreach($yaml['tags'] as $tag)
+                foreach($yamlTag as $tag)
                 {
                     $removeHashTag = explode('#',$tag);
                     $tags[]=trim(end($removeHashTag));

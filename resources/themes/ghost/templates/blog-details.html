@@ -263,14 +263,14 @@
                     <div class="blog-posts">
                         <!--<p>{{result.body | raw}} </p>-->
                         {{ post.body|raw }}
-
-
+                        {% if post.tags  %}
                         <div class="post-tags">
                             <span>TOPICS: </span>
                             {% for tag in post.tags %}
                             <a href="/tags/{{ tag }}">{{ tag }}  </a>
                             {% endfor %}
                         </div>
+                        {% endif %}
                         <!--<div class="mt-5">
                             <a href="#"><span class="categories">Privacy</span></a>
                             <a href="#"><span class="categories">Privacy</span></a>
