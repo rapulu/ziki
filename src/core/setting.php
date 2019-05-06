@@ -20,10 +20,11 @@ class Setting {
             return false;
         
         // converts json data into array
-        $json_data = json_decode($content, true);
+        $json_data = json_decode($content,true);
         
         //return setting data
-        return $json_data; 
+	unset($content);
+   	return setting($json_data);
             
     }
 
