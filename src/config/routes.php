@@ -56,9 +56,9 @@ Router::get('/post/{post_id}', function ($request, $post_id) {
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $post = $ziki->fetchAllRss();
@@ -109,7 +109,6 @@ Router::post('/publish', function ($request) {
     $result = $ziki->create($title, $body, $tags, $images, $extra);
     return $this->template->render('timeline.html', ['ziki' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
 });
-
 //this are some stupid working code written by porh please don't edit
 //without notifying me
 Router::get('/about', function ($request) {
@@ -170,13 +169,9 @@ Router::get('delete/{id}', function ($request, $id) {
     }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->delete($id, true);
+    $result = $ziki->delete($id);
     return $this->template->render('timeline.html', ['delete' => $result]);
 });
-
-
-
-
 Router::get('/published-posts', function ($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -503,9 +498,8 @@ Router::post('/saveDraft', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    $directory = "./storage/contents/";
+    $directory = "./storage/drafts/";
     $data = $request->getBody();
-
     $title = $data['title'];
     $body = $data['postVal'];
     $tags = $data['tags'];
@@ -534,13 +528,14 @@ Router::get('/drafts', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    $directory = "./storage/contents/";
+    $directory = "./storage/drafts/";
     $ziki = new Ziki\Core\Document($directory);
-    $draft = $ziki->getDrafts();
+    $draft = $ziki->get();
+    $count = new Ziki\Core\Subscribe();
+    $fcount = $count->fcount();
+    $count = $count->count();
     return $this->template->render('drafts.html', ['drafts' => $draft]);
 });
-
-
 
 //videos page
 Router::get('/videos', function ($request) {
