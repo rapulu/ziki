@@ -640,17 +640,66 @@ class Document
 
     public function getRelatedPost()
     {
+        //$limit=1,$tags,$skip_post
+        $tags = ['#sports','#politics'];
         $finder = new Finder();
         // find post in the current directory
-        $finder->files()->in($this->file)->contains(['#sports']);
+        $finder->files()->in($this->file)->notName('1557022191'.'.md')->contains($tags);
+        $posts=[];
         if ($finder->hasResults()) 
         {
             foreach ($finder as $file)
             {
-                $filei = $file->getContents();
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                if (!isset($yaml['tags'])) {
+                    continue;
+                }
+                $tags = $yaml['tags'];
+                $title = $parsedown->text($yaml['title']);
+                $slug = $parsedown->text($yaml['slug']);
+                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):'';
+                $slug = preg_replace("/<[^>]+>/", '', $slug);
+                $image = preg_replace("/<[^>]+>/", '', $image);
+                $bd = $parsedown->text($body);
+                preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                $first_img = false;
+                if (isset($matches[1])) {
+                    // there are images
+                    $first_img = $matches[1];
+                    // strip all images from the text
+                    $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
+                }
+                $time = $parsedown->text($yaml['timestamp']);
+                $url = $parsedown->text($yaml['post_dir']);
+                $content['title'] = $title;
+                $content['body'] = $this->trim_words($bd,200);
+                $content['url'] = $url;
+                $content['timestamp'] = $time;
+                $content['tags'] = $tags;
+                $content['slug'] = $slug;
+                $content['preview_img'] = $first_img;
+                //content['slug'] = $slug;
+                $file = explode("-", $slug);
+                $filename = $file[count($file) - 1];
+                $content['filename'] = $filename;
+                //content['timestamp'] = $time;
+                $content['image'] = $image;
+                $content['date'] = date('d M Y ', $filename);
 
-                print_r($filei);
+                array_push($posts, $content);
             }
+            krsort($posts);
+            print_r($posts);
+        }
+        else
+        {
+            return false;
         }
 
     }
