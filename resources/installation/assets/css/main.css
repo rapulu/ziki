@@ -152,16 +152,6 @@ select {
 
 /* media queries */
 @media screen and (max-width:767.98px){
-  /* .main{
-    display: none;
-  }
-  body::after{
-    content: 'Kindly do this on a bigger device for greater acessibility';
-    display: block;
-    width: 90%;
-    margin: auto;
-    text-align: center;
-  } */
   .description-text{
     display: none;
   }
