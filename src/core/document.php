@@ -589,7 +589,7 @@ class Document
     {
         $finder = new Finder();
         // find post in the current directory
-        $finder->files()->in($this->file)->name($post.'.md');;
+        $finder->files()->in($this->file)->name($post.'.md');
         $content = [];
         if (!$finder->hasResults()) {
             return $this->redirect('/404');
@@ -624,6 +624,7 @@ class Document
                 $content['body'] = $bd;
                 $content['url'] = $url;
                 $content['timestamp'] = $time;
+                $content['date'] = date('d M Y ', $post);
 
             }
             return $content;
@@ -635,6 +636,23 @@ class Document
     public function redirect($location)
     {
         header('Location:'.$location);
+    }
+
+    public function getRelatedPost()
+    {
+        $finder = new Finder();
+        // find post in the current directory
+        $finder->files()->in($this->file)->contains(['#sports']);
+        if ($finder->hasResults()) 
+        {
+            foreach ($finder as $file)
+            {
+                $filei = $file->getContents();
+
+                print_r($filei);
+            }
+        }
+
     }
     //stupid code by problemSolved ends here
 

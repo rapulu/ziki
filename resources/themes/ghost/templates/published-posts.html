@@ -250,7 +250,20 @@
       }
 
     }
+    .no-post-alert p {
+      font-style: italic;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 130%;
+      color: #979797;
+      transition: all ease-in 0.3s;
+  }
 
+  .no-post-alert a:hover {
+    cursor: pointer;
+    color: #280a66;
+    transition: all ease-in 0.3s;
+}
     /****MEDIA QUERIES****/
   </style>
 </head>
@@ -281,12 +294,12 @@
 
               <div class="published-post-date">{{ post.date }}</div>
               <h6 class="published-post-title">
-                <a href="{{ post.slug |lower }}">{{ post.title|raw  }}</a>
+                <a href="/post/{{ post.slug |lower }}">{{ post.title|raw  }}</a>
               </h6>
               <div class="published-post-content">
                 <p>
                   {{ post.body|raw  }}
-                  <span> <a href="{{ post.slug |lower }}" class="read-more">Read More</a> </span>
+                  <span> <a href="/post/{{ post.slug |lower }}" class="read-more">Read More</a> </span>
                 </p>
               </div>
 
@@ -313,12 +326,12 @@
   
                 <div class="published-post-date">{{ post.date }}</div>
                 <h6 class="published-post-title">
-                  <a href="{{ post.slug |lower }}">{{ post.title |raw }}</a>
+                  <a href="/post/{{ post.slug |lower }}">{{ post.title |raw }}</a>
                 </h6>
                 <div class="published-post-content">
                   <p>
                       {{ post.body|raw  }}
-                    <span> <a href="{{ post.slug |lower }}" class="read-more">Read More</a> </span>
+                    <span> <a href="/post/{{ post.slug |lower }}" class="read-more">Read More</a> </span>
                   </p>
                 </div>
   
@@ -339,6 +352,14 @@
               </div>
             </div>
             {% endif %}
+            {% else %}
+            <div class="row">
+              <div class="no-post-alert mx-auto my-4">
+                  <p class="text-grey">
+                      You have no published posts yet. Click <a href="/timeline">here</a> to start publishing.
+                  </p>
+              </div>
+          </div>
           {% endfor %}
 
 
