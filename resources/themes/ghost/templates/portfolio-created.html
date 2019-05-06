@@ -9,7 +9,9 @@
       font-family: 'Lato', sans-serif;
     }
 
-
+    .published-posts .published-post-content {
+      max-height: 220px;
+    }
 
     /**the important was added so the styles would be forced when the titles are dynamically added**/
 
@@ -243,10 +245,9 @@
         margin-left: -5em;
       }
 
-      .published-posts .published-posts-content {
-        max-height: 300px;
-        padding-bottom: 3em;
-    }
+      .published-posts .published-post-content {
+        max-height: 253px;
+      }
 
     }
     .no-post-alert p {
@@ -321,7 +322,7 @@
           {% else %}
           <div class="row pt-4 pb-4  published-post-bottom  published-post-content">
             
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 mt-4">
+              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
   
                 <div class="published-post-date">{{ post.date }}</div>
                 <h6 class="published-post-title">

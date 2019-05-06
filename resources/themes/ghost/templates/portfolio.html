@@ -1,59 +1,41 @@
 {% set title = "Portfolio"%} {% extends 'layout.html' %} {% block page_content %}
 
-
-
 <!-- Trigger the modal with a button -->
 
-            <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-              <div class="modal-dialog">
+{# <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
+        <!-- Modal content-->
+    
+        <div id="portfolio-container">
+        
+            
+            <!-- form starts here-->
+        <form method="POST" class="create-portfolio" id="portfolio-id">
+            <div class="modal-content" >
+                <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <div class="modal-body">
-                    <p>
-                        <div class="form-group">
-                            <label for="text">Title</label>
-                            <input type="text" class="form-control" id="title" aria-describedby="#" placeholder="Enter title">
-                          </div>
-                          <div class="form-group">
-                            <label for="text">Text</label>
-                            <input type="text" class="form-control" id="title" placeholder="Enter Text">
-                          </div>
-                          <!-- Image upload starts here-->
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                  <label>Upload Image</label>
-                                  <div class="input-group">
-                                      <span class="input-group-btn">
-                                          <span class="btn btn-default btn-file">
-                                               <input type="file" id="imgInp">
-                                          </span>
-                                      </span>
-                                  </div>
-                                  <img id='img-upload'/>
-                              </div>
-                          </div>
-                          <!--Image upload ends here-->
-                          <button type="submit" class="btn btn-primary">Submit</button>
-                  </p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
                 </div>
-
-              </div>
+                <div class="modal-body" >
+                    <p>
+                        
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <!--End of Modal-->
+        </form>
+    </div>
+</div>
+</div>
+<!--End of Modal-->        #}
 
 <div class="">
     <div class="portfolio-container">
         <div class="add-portfolio-btn">
-            <a class="btn" style="background-color:#871E99; color:#fff" href="#" role="button" data-toggle="modal" data-target="#myModal">+ ADD PORTFOLIO</a>
+            <a class="btn" style="background-color:#871E99; color:#fff" href="/create-portfolio" role="button">+ ADD PORTFOLIO</a>
         </div>
         <div class="d-grid">
             <!-- Portfolio card 1 -->
@@ -176,5 +158,13 @@
 
 
 </div>
-</div></div></div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+
+
 {% endblock page_content %}
