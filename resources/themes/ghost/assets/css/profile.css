@@ -113,20 +113,6 @@ a {
   background: #dddde5;
 }
 
-/* Themes Page */
-.hide {
-  display: none !important;
-}
-
-.notfound {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  padding: 2rem;
-}
-
 .themes-logo-area img {
   object-fit: none;
 }
@@ -916,23 +902,6 @@ input:focus {
 
 .plugin-select option:not(seleted) {
   background: #fff;
-}
-
-/* thmes styles */
-.theme-item {
-  cursor: pointer;
-}
-
-.theme-state {
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.theme-active {
-  position: absolute;
-  top: 40%;
-  left: 30%;
-  color: #222222;
-  font-size: 24px;
 }
 
 .form-control-no-border:focus {

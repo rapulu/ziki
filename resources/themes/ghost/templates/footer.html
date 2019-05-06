@@ -91,7 +91,7 @@
 
     let param = $$('.email-input').value;
     let host = $$('.host').value;
-    let url = `https://auth.techteel.com/api/login/email?address=${param}?domain=${host}`;
+    let url = `https://auth.techteel.com/api/login/email?address=${param}&domain=${host}`;
     fetch(url)
       .then((res) => { return res.json() })
       .then((data) => {
