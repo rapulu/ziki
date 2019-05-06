@@ -22,28 +22,39 @@ Router::get('/', function ($request) {
         return $this->template->render('index.html', ['posts' => $feed, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
     }
 });
-Router::get('post/{id}', function ($request, $id) {
+Router::get('/post/{post_id}', function ($request, $post_id) {
 
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
    $data = $request->getBody();
-   echo $data;
-    $result = $ziki->getEach($id);
+   //echo $data;
+    $result = $ziki->getEach($post_id);
     $count = new Ziki\Core\Subscribe();
     $fcount = $count->fcount();
     $count = $count->count();
-    $url = $_GET['d'];
+    $url = isset($_GET['d'])?$_GET['d']:'';
     //echo $url;
-    $url = trim(base64_decode($_GET['d']));
+    $url = isset($_GET['d'])?trim(base64_decode($_GET['d'])):"";
     //echo $url;
     $url = $url ."storage/rss/rss.xml";
     $rss = Ziki\Core\Subscribe::subc($url);
-echo $url;
-
-
-    return $this->template->render('blog-details.html', $settings, ['result' => $result, 'count' => $count, 'fcount' => $fcount]);
+//echo $url;
+    $post_id = explode('-',$post_id);
+    $post = end($post_id);
+    $post_details=$ziki->getPost($post);
+    $tags = [];
+    if(isset($post_details['tags']))
+    {
+        foreach ($post_details['tags'] as $tag)
+        {
+            $tags[]= '#'.$tag;
+        }
+    }
+    
+    $relatedPosts = $ziki->getRelatedPost(4,$tags,$post);
+    return $this->template->render('blog-details.html',['result'=>$result, 'count' => $count, 'fcount' => $fcount,'post'=>$post_details,'relatedPosts'=>$relatedPosts]);
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
@@ -99,7 +110,7 @@ Router::post('/publish', function ($request) {
     $result = $ziki->create($title, $body, $tags, $images, $extra);
     return $this->template->render('timeline.html', ['ziki' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
 });
-//this are some stupid working code written by paul please don't edit
+//this are some stupid working code written by porh please don't edit
 //without notifying me
 Router::get('/about', function ($request) {
     include ZIKI_BASE_PATH . "/src/core/SendMail.php";
@@ -369,14 +380,12 @@ Router::get('/404', function ($request) {
   $count = $count->count();
     return $this->template->render('404.html', ['count' => $count, 'fcount' => $fcount]);
 });
-Router::get('/blog-details', function ($request) {
 
+//blog-details
+Router::get('/blog-details', function ($request) {
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
-    $count = new Ziki\Core\Subscribe();
-    $fcount = $count->fcount();
-    $count = $count->count();
-    return $this->template->render('blog-details.html', $settings, ['count' => $count, 'fcount' => $fcount]);
+    return $this->template->render('blog-details.html', $settings);
 });
 
 // Start- Portfolio page

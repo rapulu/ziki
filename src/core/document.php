@@ -45,7 +45,9 @@ class Document
         //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
 
         $yamlfile = new Doc();
+        if($title != ""){
         $yamlfile['title'] = $title;
+        }
         if ($tags != "") {
             $tag = explode(",", $tags);
             $put = [];
@@ -115,11 +117,8 @@ class Document
                 $body = $document->getContent();
                 //$document = FileSystem::read($this->file);
                 $parsedown  = new Parsedown();
-                if (!isset($yaml['tags'])) {
-                    continue;
-                }
-                $tags = $yaml['tags'];
-                $title = $parsedown->text($yaml['title']);
+                $tags = isset($yaml['tags'])?$yaml['tags']:'';
+                $title = isset($yaml['title'])?$parsedown->text($yaml['title']):'';
                 $slug = $parsedown->text($yaml['slug']);
                 $image = isset($yaml['image'])?$parsedown->text($yaml['image']):'';
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
@@ -589,7 +588,7 @@ class Document
     {
         $finder = new Finder();
         // find post in the current directory
-        $finder->files()->in($this->file)->name($post.'.md');;
+        $finder->files()->in($this->file)->name($post.'.md');
         $content = [];
         if (!$finder->hasResults()) {
             return $this->redirect('/404');
@@ -604,11 +603,9 @@ class Document
                 $yaml = $document->getYAML();
                 $body = $document->getContent();
                 $parsedown  = new Parsedown();
-                if (!isset($yaml['tags'])) {
-                    continue;
-                }
+                $yamlTag = isset($yaml['tags'])?$yaml['tags']:[];
                 $tags=[];
-                foreach($yaml['tags'] as $tag)
+                foreach($yamlTag as $tag)
                 {
                     $removeHashTag = explode('#',$tag);
                     $tags[]=trim(end($removeHashTag));
@@ -624,6 +621,7 @@ class Document
                 $content['body'] = $bd;
                 $content['url'] = $url;
                 $content['timestamp'] = $time;
+                $content['date'] = date('d M Y ', $post);
 
             }
             return $content;
@@ -635,6 +633,73 @@ class Document
     public function redirect($location)
     {
         header('Location:'.$location);
+    }
+
+    public function getRelatedPost($limit=4,$tags,$skip_post)
+    {
+        
+        $finder = new Finder();
+        // find post in the current directory
+        $finder->files()->in($this->file)->notName($skip_post.'.md')->contains($tags);
+        $posts=[];
+        if ($finder->hasResults()) 
+        {
+            foreach ($finder as $file)
+            {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                if (!isset($yaml['tags'])) {
+                    continue;
+                }
+                $tags = $yaml['tags'];
+                $title = $parsedown->text($yaml['title']);
+                $slug = $parsedown->text($yaml['slug']);
+                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):'';
+                $slug = preg_replace("/<[^>]+>/", '', $slug);
+                $image = preg_replace("/<[^>]+>/", '', $image);
+                $bd = $parsedown->text($body);
+                preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
+                $first_img = false;
+                if (isset($matches[1])) {
+                    // there are images
+                    $first_img = $matches[1];
+                    // strip all images from the text
+                    $bd = preg_replace("/<img[^>]+\>/i", " (image) ", $bd);
+                }
+                $time = $parsedown->text($yaml['timestamp']);
+                $url = $parsedown->text($yaml['post_dir']);
+                $content['title'] = $title;
+                $content['url'] = $url;
+                $content['timestamp'] = $time;
+                $content['tags'] = str_replace('#','',implode(',',$tags));
+                $content['slug'] = $slug;
+                $content['preview_img'] = $first_img;
+                //content['slug'] = $slug;
+                $file = explode("-", $slug);
+                $filename = $file[count($file) - 1];
+                $content['filename'] = $filename;
+                //content['timestamp'] = $time;
+                $content['image'] = $image;
+                $content['date'] = date('d M Y ', $filename);
+
+                array_push($posts, $content);
+            }
+            krsort($posts);
+            $countPosts = count($posts);
+            if($countPosts> $limit)
+                array_shift($posts);
+                return $posts;
+        }
+        else
+        {
+            return false;
+        }
+
     }
     //stupid code by problemSolved ends here
 
