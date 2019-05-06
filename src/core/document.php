@@ -124,6 +124,7 @@ class Document
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
+                ////
                 preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
                 $first_img = false;
                 if (isset($matches[1])) {
@@ -288,7 +289,7 @@ class Document
 
         $finder = new Finder();
         $finder->files()->in($this->file);
-
+//print_r($finder->hasResults());
         if ($finder->hasResults()) {
             foreach ($finder as $file) {
                 $document = $file->getContents();
@@ -298,14 +299,14 @@ class Document
                 $body = $document->getContent();
 
                 $parsedown  = new Parsedown();
-                if (!isset($yaml['tags'])) {
-                    continue;
-                }
-                $tags = $yaml['tags'];
+
                 $title = $parsedown->text($yaml['title']);
                 $slug = $parsedown->text($yaml['slug']);
+                $image = isset($yaml['image'])?$parsedown->text($yaml['image']):'';
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
+                $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
+
                 preg_match('/<img[^>]+src="((\/|\w|-)+\.[a-z]+)"[^>]*\>/i', $bd, $matches);
                 $first_img = false;
                 if (isset($matches[1])) {
@@ -637,12 +638,12 @@ class Document
 
     public function getRelatedPost($limit=4,$tags,$skip_post)
     {
-        
+
         $finder = new Finder();
         // find post in the current directory
         $finder->files()->in($this->file)->notName($skip_post.'.md')->contains($tags);
         $posts=[];
-        if ($finder->hasResults()) 
+        if ($finder->hasResults())
         {
             foreach ($finder as $file)
             {

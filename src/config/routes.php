@@ -52,7 +52,7 @@ Router::get('/post/{post_id}', function ($request, $post_id) {
             $tags[]= '#'.$tag;
         }
     }
-    
+
     $relatedPosts = $ziki->getRelatedPost(4,$tags,$post);
     return $this->template->render('blog-details.html',['result'=>$result, 'count' => $count, 'fcount' => $fcount,'post'=>$post_details,'relatedPosts'=>$relatedPosts]);
 });
@@ -89,7 +89,7 @@ Router::post('/publish', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
-    
+
     $directory = "./storage/contents/";
     $data = $request->getBody();
     $title = $data['title'];
