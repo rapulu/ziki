@@ -40,7 +40,7 @@
   // Code for editor switching.... 
   var content_id = 'editor';  
 
-  max = 10;
+  max = 50;
 
   //binding keyup/down events on the contenteditable div
   $('#'+content_id).keyup(function(e){ check_charcount(content_id, max, e); });
@@ -100,8 +100,7 @@
 <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
 <script src="https://unpkg.com/turndown-plugin-gfm/dist/turndown-plugin-gfm.js"></script>
 <!-- convert to markdown script ends -->
-
-
+ 
 <script>
   // added by sleekX
   var form = document.querySelector('.timeline-editor');
@@ -118,6 +117,11 @@
     const formData = new FormData(document.querySelector('#editor-form'));
     const blogBody = document.querySelector('.ql-editor').innerHTML;
 
+    const title = document.querySelector("#new-post-title").value;
+    if(title != ""){
+      formData.set('title', title);
+    }
+    
     // convert to markdown
     const turndownService = new TurndownService({ codeBlockStyle: 'fenced' });
     const gfm = turndownPluginGfm.gfm;
