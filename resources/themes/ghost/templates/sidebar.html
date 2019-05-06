@@ -16,17 +16,19 @@
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     padding: 8px;
     background-color: #f5f5f5;
+    border-radius: 10px 10px 0 0;
   }
 
   .ql-editor.ql-blank {
     box-sizing: border-box;
     height: 100%;
-    background-color: #f5f5f5;
+    background-color: #fff;
     border: 0 !important;
   }
 
   #editor {
-    height: 20vh !important;
+    min-height: 20vh !important;
+    width: 100%;
   }
 
   /**/
@@ -104,9 +106,9 @@
     padding-bottom: 15px;
   }
 
-  .lucid {
+  /* .lucid {
     color: ;
-  }
+  } */
 
   .btn-light:hover {
     border: 1px solid #fff;
@@ -409,6 +411,10 @@
     border-radius: 50%;
   }
 
+  .post-image{
+    height: 170px;
+    width: 100%;
+  }
   /*css for timeline page done*/
 
   /* beginning of styling for the login modal */
@@ -681,8 +687,8 @@
   }
 </style>
 
-<div class="container-fluid">
-  <div class="row main">
+<div class="container-fluid p-0">
+  <div class="main">
     <div class="wrapper">
       <!-- side bar here -->
       <div id="sidebar">
