@@ -15,6 +15,7 @@ class SendContactMail{
     public $successMsg=[];
     public $about;
     public $ownerMail;
+    public $guestSubject;
 
     public function __construct()
     {
@@ -47,6 +48,15 @@ class SendContactMail{
             {
                 $this->guestEmail=$this->filterString($request['guestEmail']);
             }
+        }
+
+        if(empty(trim($request['guestSubject'])))
+        {
+            $this->error['subjectError']= 'This is a required field';
+        }
+        else
+        {
+            $this->guestSubject = $this->filterString($request['guestSubject']);
         }
 
         if(empty(trim($request['guestMsg'])))
@@ -116,7 +126,7 @@ class SendContactMail{
             
         $mail->isHTML(true);                
 
-        $mail->Subject = $this->guestName.' Sent A Feedback.';
+        $mail->Subject = $this->guestSubject;
         $mail->Body    = $this->mailBody;
         $mail->AltBody = $this->guestMsg;
 
@@ -135,7 +145,7 @@ class SendContactMail{
 
     public function clientMessage()
     {
-         $inputdata = ['name'=>$this->guestName,'email'=>$this->guestEmail,'msg'=>$this->guestMsg];
+         $inputdata = ['name'=>$this->guestName,'email'=>$this->guestEmail,'msg'=>$this->guestMsg,'subject'=>$this->guestSubject];
         if(!empty($this->error))
         {
             $_SESSION['messages']=$this->error;
