@@ -54,7 +54,7 @@ Router::get('/post/{post_id}', function ($request, $post_id) {
     }
     
     $relatedPosts = $ziki->getRelatedPost(4,$tags,$post);
-    return $this->template->render('blog-details.html',['result'=>$result,'setting' => $settings, 'count' => $count, 'fcount' => $fcount,'post'=>$post_details,'relatedPosts'=>$relatedPosts]);
+    return $this->template->render('blog-details.html', $settings, ['result'=>$result, 'count' => $count, 'fcount' => $fcount,'post'=>$post_details,'relatedPosts'=>$relatedPosts]);
 });
 Router::get('/timeline', function ($request) {
     $user = new Ziki\Core\Auth();
