@@ -217,7 +217,7 @@
             .drafts .dropdown-menu {
                 position: relative;
                 margin-top: 2em;
-                margin-left: -5em;
+                margin-left: -8em;
             }
 
             .drafts .draft-content {
@@ -246,7 +246,7 @@
                              {% endif %}
                                 <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
                                     <div class="second">
-                                        <p class="draft-date">{{ draft.timestamp | raw }}</p>
+                                        <p class="draft-date">{{ draft.created_at | raw }}</p>
                                         <h6 class="draft-title">
                                             <a href=""> {{ draft.title | raw}} </a>
                                         </h6>
@@ -273,7 +273,7 @@
                         {% endfor %}
             </div>
             <!-- modal begins here -->
-            <div id="cancelModal" class="modal fade" role="dialog">
+            <!-- <div id="cancelModal" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content no-border">
                         <div class="modal-header no-border">
@@ -292,7 +292,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- modal ends here -->
         </div>
     </div>

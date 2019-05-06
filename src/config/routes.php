@@ -110,6 +110,7 @@ Router::post('/publish', function ($request) {
     $result = $ziki->create($title, $body, $tags, $images, $extra);
     return $this->template->render('timeline.html', ['ziki' => $result, 'host' => $host, 'count' => $count, 'fcount' => $fcount]);
 });
+
 //this are some stupid working code written by porh please don't edit
 //without notifying me
 Router::get('/about', function ($request) {
@@ -155,6 +156,7 @@ Router::post('/updateabout', function ($request) {
     $updateabout->clientMessage();
     return $updateabout->redirect('/profile');
 });
+
 Router::get('/deletepost/{postId}',function($request,$postId){
     $postid = explode('-',$postId);
     $post = end($postid);
@@ -170,9 +172,13 @@ Router::get('delete/{id}', function ($request, $id) {
     }
     $directory = "./storage/contents/";
     $ziki = new Ziki\Core\Document($directory);
-    $result = $ziki->delete($id);
+    $result = $ziki->delete($id, true);
     return $this->template->render('timeline.html', ['delete' => $result]);
 });
+
+
+
+
 Router::get('/published-posts', function ($request) {
     $user = new Ziki\Core\Auth();
     if (!$user->is_logged_in()) {
@@ -362,9 +368,9 @@ Router::get('/unsubscribe', function($request) {
 //stupid code by problemSolved
 Router::get('/editor/{postID}', function ($request,$postID) {
     $user = new Ziki\Core\Auth();
-    // if (!$user->is_logged_in()) {
-    //     return $user->redirect('/');
-    // }
+    if (!$user->is_logged_in()) {
+        return $user->redirect('/');
+    }
     $postid = explode('-',$postID);
     $post = end($postid);
     $directory = "./storage/contents/";
@@ -446,6 +452,7 @@ Router::post('/saveDraft', function ($request) {
     // }
     $directory = "./storage/contents/";
     $data = $request->getBody();
+
     $title = $data['title'];
     $body = $data['postVal'];
     $tags = $data['tags'];

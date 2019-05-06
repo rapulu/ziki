@@ -61,23 +61,31 @@ class Document
                 $decoded = base64_decode($image[$key]);
                 $url = "./storage/images/" . $key;
                 FileSystem::write($url, $decoded);
+                $yamlfile['image'] = $url;
             }
         }
 
         if (!$extra) {
            $yamlfile['type'] = "published";
+           $yamlfile['published_at'] = $time;
         } else {
-            $yamlfile['type'] = "published";
-            $yamlfile['image'] = $url;
+            $yamlfile['type'] = "draft";
+            $yamlfile['published_at'] = "";
         }
 
         // $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
         // create slug by first removing spaces
-        $striped = str_replace(' ', '-', $title);
+        if($title != ""){
+            $striped = str_replace(' ', '-', $title);
+        }else{
+            $striped = str_replace(' ', '-', $time);
+        }
+        
+        $yamlfile['updated_at'] = "";
+        $yamlfile['created_at'] = $time;
         // then removing encoded html chars
         $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
         $yamlfile['slug'] = $striped . "-{$unix}";
-        $yamlfile['timestamp'] = $time;
         $yamlfile->setContent($content);
         $yaml = FrontMatter::dump($yamlfile);
         $file = $this->file;
@@ -179,14 +187,22 @@ class Document
                 $body = $document->getContent();
                 //$document = FileSystem::read($this->file);
                 $parsedown  = new Parsedown();
-                $title = $parsedown->text($yaml['title']);
+                if(isset($yaml['title'])){
+                    $title = $parsedown->text($yaml['title']);
+                }else{
+                    $title = "";
+                }
+                if(isset($yaml['image'])){
+                    $image = $parsedown->text($yaml['image']);
+                }else{
+                    $image = "";
+                }
                 $slug = $parsedown->text($yaml['slug']);
                 $type = $parsedown->text($yaml['type']); 
-                $image = $parsedown->text($yaml['image']); 
                 $slug = preg_replace("/<[^>]+>/", '', $slug);
                 $image = preg_replace("/<[^>]+>/", '', $image);
                 $bd = $parsedown->text($body);
-                $time = $parsedown->text($yaml['timestamp']);
+                $time = $parsedown->text($yaml['created_at']);
                 //$url = $parsedown->text($yaml['post_dir']);
                 if($type == "<p>draft</p>"){
                     $content['title'] = $title;
@@ -214,7 +230,7 @@ class Document
     {
         $finder = new Finder();
         // find all files in the current directory
-        $finder->files()->in($this->file);
+        $finder->files()->in($this->file)->name($id.'.md');
         $posts = [];
         if ($finder->hasResults()) {
             foreach ($finder as $file) {
