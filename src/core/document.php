@@ -61,22 +61,31 @@ class Document
                 $decoded = base64_decode($image[$key]);
                 $url = "./storage/images/" . $key;
                 FileSystem::write($url, $decoded);
+                $yamlfile['image'] = $url;
             }
         }
 
         if (!$extra) {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
+           $yamlfile['type'] = "published";
+           $yamlfile['published_at'] = $time;
         } else {
-            $yamlfile['post_dir'] = SITE_URL . "/storage/drafts/{$unix}";
-            $yamlfile['image'] = "./storage/images/" . $key;
+            $yamlfile['type'] = "draft";
+            $yamlfile['published_at'] = "";
         }
 
+        // $yamlfile['post_dir'] = SITE_URL . "/storage/contents/{$unix}";
         // create slug by first removing spaces
-        $striped = str_replace(' ', '-', $title);
+        if($title != ""){
+            $striped = str_replace(' ', '-', $title);
+        }else{
+            $striped = str_replace(' ', '-', $time);
+        }
+        
+        $yamlfile['updated_at'] = "";
+        $yamlfile['created_at'] = $time;
         // then removing encoded html chars
         $striped = preg_replace("/(&#[0-9]+;)/", "", $striped);
         $yamlfile['slug'] = $striped . "-{$unix}";
-        $yamlfile['timestamp'] = $time;
         $yamlfile->setContent($content);
         $yaml = FrontMatter::dump($yamlfile);
         $file = $this->file;
@@ -231,10 +240,96 @@ class Document
             return false;
         }
     }
-
-    // end - get portfolio
-
     //kjarts code for getting and creating markdown files end here
+
+    public function getDrafts()
+    {
+        $finder = new Finder();
+
+        // find all files in the current directory
+        $finder->files()->in($this->file);
+        $drafts = [];
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                if(isset($yaml['title'])){
+                    $title = $parsedown->text($yaml['title']);
+                }else{
+                    $title = "";
+                }
+                if(isset($yaml['image'])){
+                    $image = $parsedown->text($yaml['image']);
+                }else{
+                    $image = "";
+                }
+                $slug = $parsedown->text($yaml['slug']);
+                $type = $parsedown->text($yaml['type']); 
+                $slug = preg_replace("/<[^>]+>/", '', $slug);
+                $image = preg_replace("/<[^>]+>/", '', $image);
+                $bd = $parsedown->text($body);
+                $time = $parsedown->text($yaml['created_at']);
+                //$url = $parsedown->text($yaml['post_dir']);
+                if($type == "<p>draft</p>"){
+                    $content['title'] = $title;
+                    $content['body'] = $bd;
+                    //$content['url'] = $url;
+                    $content['slug'] = $slug;
+                    $file = explode("-", $slug);
+                    $filename = $file[count($file) - 1];
+                    $content['filename'] = $filename;
+                    $content['timestamp'] = $time;
+                    $content['image'] = $image;
+                    $content['type'] = $type;
+                    array_push($drafts, $content);
+                }
+                
+                
+            }
+            return $drafts;
+        } else {
+            return false;
+        }
+    }
+
+    public function editDraft($id)
+    {
+        $finder = new Finder();
+        // find all files in the current directory
+        $finder->files()->in($this->file)->name($id.'.md');
+        $posts = [];
+        if ($finder->hasResults()) {
+            foreach ($finder as $file) {
+                $document = $file->getContents();
+                $parser = new Parser();
+                $document = $parser->parse($document);
+                $yaml = $document->getYAML();
+                $body = $document->getContent();
+                //$document = FileSystem::read($this->file);
+                $parsedown  = new Parsedown();
+                $slug = $parsedown->text($yaml['slug']);
+                $slug = preg_replace("/<[^>]+>/", '', $slug);
+                if ($slug == $id) {
+                    $title = $parsedown->text($yaml['title']);
+                    $bd = $parsedown->text($body);
+                    $time = $parsedown->text($yaml['timestamp']);
+                    //$url = $parsedown->text($yaml['post_dir']);
+                    $content['title'] = $title;
+                    $content['body'] = $bd;
+                    //$content['url'] = $url;
+                    $content['timestamp'] = $time;
+                    array_push($posts, $content);
+                }
+            }
+            return $posts;
+        }
+    }
+
 
     //trim_words used in triming strings by words
     function trim_words($string, $limit, $break = ".", $pad = "...")
@@ -685,7 +780,7 @@ class Document
                 $title = isset($yaml['title']) ? $parsedown->text($yaml['title']) : '';
                 $bd = $parsedown->text($body);
                 $time = $parsedown->text($yaml['timestamp']);
-                $url = $parsedown->text($yaml['post_dir']);
+                //$url = $parsedown->text($yaml['post_dir']);
                 $content['tags'] = $tags;
                 $content['title'] = $title;
                 $content['body'] = $bd;

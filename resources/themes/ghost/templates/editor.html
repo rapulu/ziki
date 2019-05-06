@@ -87,7 +87,7 @@
     <div class="container main-body">
       <!-- Page body goes here -->
       <div class="row">
-  
+        
   
         <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 body-of-blog mt-5 p-3">
           <!-- SleekX's code goes here.. -->
@@ -97,7 +97,6 @@
               <hr />
             </div>
           </div>
-  
           <!-- The editor code goes here -->
           <div class="row editor-row">
             <div class="col-12">
@@ -111,7 +110,7 @@
                         <div class="col-12 py-3">
                           <label for="new-post-title" class="sr-only">Title</label>
                           <input type="text" name="title" id="new-post-title" class="form-control" placeholder="Title"
-                            required />
+                            required value="{{ post[1].title }}"/>
                         </div>
                         <div class="col-12 py-3">
                           <label for="new-post-tags">Post tags</label>
@@ -183,7 +182,7 @@
     const post = document.querySelector("#editor");
     const current = document.querySelector("#current");
     //console.log(post.innerHTML.length);
-    title.style.display = "none";
+    //title.style.display = "none";
     const work = () => {
       let totalText = post.innerText.length;
       if (totalText > 100) {

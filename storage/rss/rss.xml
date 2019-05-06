@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
 <channel>
+<<<<<<< HEAD
+<title>Mohammed Yayah</title>
+<link>http://localhost:8000/</link>
+<description><![CDATA[]]></description>
+<image><title>Mohammed Yayah</title>
+<link></link>
+<url>https://res.cloudinary.com/dc9kfp5gt/image/upload/v1556862782/business-color_business-contact-86_icon-icons.com_53469_ckkqq7.png</url>
+</image>
+<language>en-US</language>
+<lastBuildDate>Mon, 06 May 2019 17:31:51 +0000</lastBuildDate>
+=======
 <title>david ibukun</title>
 <link>http://localhost:8000/</link>
 <description><![CDATA[]]></description>
@@ -28,11 +39,14 @@
 <language>en-US</language>
   
 <lastBuildDate>Mon, 06 May 2019 14:55:30 +0000</lastBuildDate>
+>>>>>>> 9f6e6af7a10720b6504fa6aebb1feb8e1cadf2a0
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
 <creativeCommons:license>http://www.creativecommons.org/licenses/by/1.0</creativeCommons:license>
 <generator>Ziki</generator>
+<<<<<<< HEAD
+=======
 <item>
 
 <title>TEST3</title>
@@ -123,5 +137,6 @@
 <source url="http://localhost:8000/">Vanessa Christian's page</source>
 <image>/storage/images/img-5sv406oxxx.jpeg</image>
 </item>
+>>>>>>> 9f6e6af7a10720b6504fa6aebb1feb8e1cadf2a0
 </channel>
 </rss>
