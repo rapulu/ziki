@@ -61,6 +61,7 @@
         font-size: 12px;
         font-family: 500;
         text-decoration: none;
+        text-transform: uppercase;
     }
     
     div.post-tags {
@@ -76,7 +77,7 @@
     .blog-source {
         font-size: 12px;
         color: blueviolet;
-        font-weight: 500;
+        font-weight: 700;
     }
     /*  PLACEHOLDER STYLING  */
     
@@ -143,6 +144,11 @@
     .blog-details .guest-action-items span {
         margin-left: 10px;
         margin-right: 10px;
+    }
+    
+    .blog-posts p {
+        text-decoration: none;
+        text-justify: auto;
     }
     
     .blog-posts a {
@@ -247,15 +253,15 @@
                 <div class="blog-info">
                     <figure class="blog-image-header">
                         <img src="/resources/themes/ghost/assets/img/Rectangle 2.1.png" alt="" class="blog-image w-100" />
-                        <figcaption class="image-caption"> Grab a Series 4 Apple Watch for as low as 4500 naira. at Jumia Store.
+                        <figcaption class="image-caption"><span style="padding-left: 10px">Grab a Series 4 Apple Watch for as low as 4500 naira. at Jumia Store.</span>
                         </figcaption>
                     </figure>
 
                     <div class="blog-posts">
                         <!--<p>{{result.body | raw}} </p>-->
                         <p>
-                            In case you missed it, Best Buy had a huge <a href="#">Apple Sale Event</a> last week. Virtually all Apple products were on sale — except for the Apple Watch Series 4. We’re not sure if they forgot to include it in the sale
-                            or if it was a strategic move, but regardless, they’re making up for it now.
+                            In case you missed it, jumia had a huge <a href="#">Apple Sale Event</a> last week. Virtually all Apple products were on sale — except for the Apple Watch Series 4. We’re not sure if they forgot to include it in the sale or
+                            if it was a strategic move, but regardless, they’re making up for it now.
                             <br/>All Series 4 Apple Watches are currently 50% off at <a href="http://www.jumia.com">Jumia</a>, even the Nike ones. That means you can grab one of the newest Apple Watches for as low as 34,000. The Series 4 display is about
                             30 percent larger than previous models while the case is thinner and smaller, offered in two sizes: 40 millimeter and 44 millimeter. The user interface is optimized for the new screen size, with bigger fonts and icons. Reply
                             to texts, challenge your friends to fitness competitions, or use the walkie talkie feature to talk to <a href="#">other Apple Watch users</a>, even without cellular.
@@ -279,10 +285,10 @@
                             <a href="#">SMARTWATCH,</a>
                             <a href="#">TECH</a>
                         </div>
-                        <div class="mt-5">
+                        <!--<div class="mt-5">
                             <a href="#"><span class="categories">Privacy</span></a>
                             <a href="#"><span class="categories">Privacy</span></a>
-                        </div>
+                        </div>-->
                         <div class="social-media mt-5">
                             <span><i class="fa fa-share-square "style="font-size:24px; margin-left: 10px; color: grey; font-weight: 200; height: 21px; width: 21px; fill: #7d7d7d;"></i>SHARE</span>
                             <a href="#"><img src="/resources/themes/ghost/assets/img/facebookicon.png" alt="tag-label">
@@ -296,22 +302,24 @@
                     <div class="card-post mt-5">
                         <div class="" style="width: 50px; border-top: 5px solid orange;"></div>
                         <h4 class="" style="padding-top: 10px;"><b>RELATED POSTS</b></h4>
-                        <div class="row m-0">
-                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 p-0 mr-4 mt-3" style="background-color: #F9F9F9;">
-                                <img src="/resources/themes/ghost/assets/img/mb-3.png" alt="" class="blog-image w-100" height="25%" width="100%" />
-                                <div>
-                                    <p style="font-size: 12px; color: grey; margin-left: 10px;">TECH</p>
+                        <div class="row ml-0">
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 mt-3">
+                                <img src="/resources/themes/ghost/assets/img/mb-3.png" alt="" class="blog-image w-100" height="30%" />
+                                <div class="" style="background-color: #F9F9F9; margin-top: 0px;">
+                                    <p style="font-size: 12px; color: grey; padding-top: 10px; padding-left: 10px; margin: 0px;">TECH</p>
                                     <a class="related-posts" href="#">
-                                        <h6 style="color: black; margin-left: 10px;">Apple Watch (refurbished) is nearly 50% off at Apapa</h6>
+                                        <h6 style="color: black; padding: 15px;">Apple Watch (refurbished) is nearly 50% off at Apapa</h6>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 p-0 mr-4 mt-3" style="background-color: #F9F9F9;">
-                                <img src="/resources/themes/ghost/assets/img/travis.jpg" alt="" class="blog-image w-100" height="25%" />
-                                <div>
-                                    <p style="font-size: 12px; color: grey; margin-left: 10px;">TECH</p>
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 mt-3 ">
+                                <div class="card-img mx-0">
+                                    <img src="/resources/themes/ghost/assets/img/travis.jpg" alt="" class="blog-image w-100" height="30%" />
+                                </div>
+                                <div class="m-0 p-0" style="background-color: #F9F9F9; margin: 0px;">
+                                    <p style="font-size: 12px; color: grey; padding-top: 10px; padding-left: 10px; margin: 0px;">TECH</p>
                                     <a class=" related-posts" href="#">
-                                        <h6 style="color: black; margin-left: 10px;">This is a test post for related articles</h6>
+                                        <h6 style="color: black; padding: 15px;">This is a test post for related articles</h6>
 
                                     </a>
                                 </div>
