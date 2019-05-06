@@ -484,7 +484,7 @@ class Document
     //end of get a post function
 
     // post
-    public function update($id)
+    public function tagPosts($id)
     {
         $finder = new Finder();
         // find all files in the current directory
