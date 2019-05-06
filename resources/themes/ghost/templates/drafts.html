@@ -217,7 +217,7 @@
             .drafts .dropdown-menu {
                 position: relative;
                 margin-top: 2em;
-                margin-left: -5em;
+                margin-left: -8em;
             }
 
             .drafts .draft-content {
@@ -235,55 +235,45 @@
         <div class="col-12 col-sm-1"></div>
         <div class="col-12 col-sm-11">
             <div class="row">
-                <div class="col-12">
-                    {% for key, draft in drafts %}
-                    <div class="row pt-4 pb-4 draft-bottom  draft-content">
-                        {% if draft.image != "" %}
-                        <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 ">
-                            <img src="{{ draft.image }}" alt="the-image-for-drafts" class="img-fluid draft-img">
-                        </div>
-                        {% endif %}
-                        <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
-                            <div class="second">
-                                <div class="draft-date ">{{ draft.timestamp | raw }}</div>
-                                <h6 class="draft-title">
-                                    <a href=""> {{ draft.title | raw}} </a>
-                                </h6>
-                                <p class="draft-content">
-                                    {{ draft.body | raw }}
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                            <div class="dropdown col-2 mx-auto" style="cursor:pointer">
-                                <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
-                                    aria-expanded="false" data-toggle="dropdown">
-
-                                </span>
-                                <div class="dropdown-menu">
-                                    <button class="dropdown-item"> <a href="/editor/{{ draft.filename | raw }}"
-                                            class="edit-post">Edit
-                                            draft</a></button>
-                                    <button class="dropdown-item" data-toggle="modal" data-target="#cancelModal">Delete
-                                        draft</button>
+                <div class="col-12">   
+                     {% for key, draft in drafts %}
+                        <div class="row pt-4 pb-4  draft-bottom  draft-content">
+                            {% if draft.image != "" %}
+                                <div class="col-lg-3 col-md-5 col-sm-12 col-xs-12 p-0 m-0 ">
+                                    <img src="{{ draft.image }}" alt="the-image-for-drafts"
+                                        class="img-fluid draft-img">
                                 </div>
-                            </div>
+                             {% endif %}
+                                <div class="col-lg-7 col-md-5 col-sm-12 col-xs-12">
+                                    <div class="second">
+                                        <p class="draft-date">{{ draft.created_at | raw }}</p>
+                                        <h6 class="draft-title">
+                                            <a href=""> {{ draft.title | raw}} </a>
+                                        </h6>
+                                        <p class="draft-content">
+                                                {{ draft.body | raw }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                    <div class="dropdown col-2 mx-auto" style="cursor:pointer">
+                                        <span class="dropdown-toggle fa fa-angle-down icon" aria-haspopup="true"
+                                            aria-expanded="false" data-toggle="dropdown">
+        
+                                        </span>
+                                        <div class="dropdown-menu">
+                                            <button class="dropdown-item"> <a href="/editor/{{ draft.slug | raw }}" class="edit-post">Edit
+                                                    post</a></button>
+                                            <button class="dropdown-item" data-toggle="modal" data-target="#cancelModal">Delete
+                                                post</button>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                    </div>
-                    {% endfor %}
-
-
-                    <div class="row">
-                        <div class="no-drafts-alert mx-auto">
-                            <p class="text-grey">
-                                You have no more drafts
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                        {% endfor %}
             </div>
             <!-- modal begins here -->
-            <div id="cancelModal" class="modal fade" role="dialog">
+            <!-- <div id="cancelModal" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content no-border">
                         <div class="modal-header no-border">
@@ -302,7 +292,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- modal ends here -->
         </div>
     </div>
