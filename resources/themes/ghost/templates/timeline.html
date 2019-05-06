@@ -19,30 +19,6 @@
     border-radius: 5px;
   }
 
-
-  /*Tag styles*/
-  .btn-outline-primary:not(:disabled):not(.disabled).active, .btn-outline-primary:not(:disabled):not(.disabled):active, .show>.btn-outline-primary.dropdown-toggle {
-    color: #fff !important;
-    background-color: #280a66 !important;
-    border-color: #280a66 !important;
-  }
-
-  .btn-outline-primary {
-    color: #280a66 !important;
-    border-color: #280a66 !important;
-  }
-
-  .btn-outline-primary:hover {
-    color: #fff !important;
-    background-color: #280a66 !important;
-    border-color: #280a66 !important;
-  }
-
-  /*tag styples end here..*/
-  .editor-btns {
-    background: #280a66;
-    border-radius: 5px;
-  }
   .mb-editor {
     background: #ffffff;
     border-radius: 5px;
@@ -216,45 +192,16 @@
                     <div class="row form-group">
                       <div class="col-12 py-3" id="titleBox">
                         <label for="new-post-title" class="sr-only">Title</label>
-                        <input type="text" name="title" id="new-post-title" class="form-control hide" placeholder="Title" required />
+                        <input type="text" id="new-post-title" class="form-control hide" placeholder="Title"/>
                       </div>
                       <div class="col-12"><div id="editor"></div></div>
                     </div>
                   </div>
                 </div>
-                <div class="row pt-1">
-                  <div class="col-12 col-sm-7">
-                    <div class="my-5 justify-content-space-around">
-                          <div class="btn-group btn-group-toggle post-tags-box" data-toggle="buttons">
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option1" autocomplete="off"> Politics
-                            </label>
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option2" autocomplete="off"> Sports
-                            </label>
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option3" autocomplete="off"> Health
-                            </label>
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option4" autocomplete="off"> Technology
-                            </label>
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option5" autocomplete="off"> News/Lifestyle
-                            </label>
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option6" autocomplete="off"> Movies
-                            </label>
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option7" autocomplete="off"> Music
-                            </label>
-                            <label class="btn btn-sm btn-outline-primary post-tags">
-                              <input type="checkbox" name="options" id="option8" autocomplete="off"> Fitness
-                            </label>
-                          </div>
-                        </div>
-                  </div>
-                  <div class="col-12 col-sm-5">
-                    <div class="row pt-5">
+
+                <div class="row pt-5">
+                  <div class="col-12">
+                    <div class="row pt-3">
                       <div class="col-12 col-sm-12 text-right">
                         <input type="reset" class="btn-sm btn btn-primary canel-post" value="Cancel">
                         <input type="submit" class="btn-sm btn btn-primary publish-post" value="Publish">
