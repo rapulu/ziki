@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:creativeCommons="http://backend.userland.com/creativeCommonsRssModule">
 <channel>
-<title>mercy ikpe</title>
+<title>Elijah Okokon</title>
 <link>http://localhost:8000/</link>
 <description><![CDATA[]]></description>
-<image><title>mercy ikpe</title>
+<image><title>Elijah Okokon</title>
 <link></link>
-<url>https://lh6.googleusercontent.com/--y2uhXxR9Jg/AAAAAAAAAAI/AAAAAAAANz4/Q53nUY5Tap4/photo.jpg</url>
+<url>https://lh4.googleusercontent.com/-Sft-MftI38Q/AAAAAAAAAAI/AAAAAAAADho/4sp40SN0sTc/photo.jpg</url>
 </image>
 <language>en-US</language>
-<lastBuildDate>Mon, 06 May 2019 01:21:37 +0000</lastBuildDate>
+<lastBuildDate>Mon, 06 May 2019 13:00:07 +0000</lastBuildDate>
 <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
 <atom:link href="http://localhost:8000/storage/rss/rss.xml" rel="self" type="application/rss+xml"></atom:link>
 <atom:link href="http://pubsubhubbub.appspot.com" rel="hub"></atom:link>
 <creativeCommons:license>http://www.creativecommons.org/licenses/by/1.0</creativeCommons:license>
 <generator>Ziki</generator>
+<item>
+<title>Lucid an exclusive app</title>
+<link>Lucid-and-exclusive-app-1556982960</link>
+<description><![CDATA[ this is an amazing application for publications]]></description>
+<pubDate>Mon, 06 May 2019 13:00:07 +0000</pubDate>
+<author>okoelijah@gmail.com (Elijah Okokon)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1556982960&quot;&gt;http://localhost:8000//storage/contents/1556982960&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Elijah Okokon's page</source>
+<image>/storage/images/img-p5iep2yk3m.jpeg</image>
+</item>
+<item>
+<title>welcome to ziki</title>
+<link>welcome-to-ziki-1557137959</link>
+<description><![CDATA[this is a test post]]></description>
+<pubDate>Mon, 06 May 2019 13:00:07 +0000</pubDate>
+<author>okoelijah@gmail.com (Elijah Okokon)</author>
+<guid isPermaLink="true">&lt;p&gt;&lt;a href=&quot;http://localhost:8000//storage/contents/1557137959&quot;&gt;http://localhost:8000//storage/contents/1557137959&lt;/a&gt;&lt;/p&gt;</guid>
+<source url="http://localhost:8000/">Elijah Okokon's page</source>
+<image>/storage/images/img-440bn8uxxc.jpeg</image>
+</item>
 </channel>
 </rss>
