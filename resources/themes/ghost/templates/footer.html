@@ -43,6 +43,31 @@
       $('#sidebar-collapse-2').toggleClass('visible fas fa-arrow-circle-right fa-2x');
     });
   });
+
+
+  // Code for editor switching.... 
+  var content_id = 'editor';  
+
+  max = 10;
+
+  //binding keyup/down events on the contenteditable div
+  $('#'+content_id).keyup(function(e){ check_charcount(content_id, max, e); });
+  $('#'+content_id).keydown(function(e){ check_charcount(content_id, max, e); });
+
+  function check_charcount(content_id, max, e)
+  {   
+    if($('#'+content_id).text().length > max)
+    {
+      // e.preventDefault();
+      $('#new-post-title').addClass('form-control show');
+      document.getElementById("num_char").innerHTML = "Full Blog Mode";
+    }else{
+      $('#new-post-title').removeClass('form-control show');
+      document.getElementById("num_char").innerHTML = "Micro-blog Mode";
+    }
+  }
+
+  // code for editormode switching ends here..
 </script>
 
 <!--Email login modal (uncomment this code for modal to work, but then, the side war won't work-->
