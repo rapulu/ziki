@@ -638,13 +638,12 @@ class Document
         header('Location:'.$location);
     }
 
-    public function getRelatedPost()
+    public function getRelatedPost($limit=4,$tags,$skip_post)
     {
-        //$limit=1,$tags,$skip_post
-        $tags = ['#sports','#politics'];
+        
         $finder = new Finder();
         // find post in the current directory
-        $finder->files()->in($this->file)->notName('1557022191'.'.md')->contains($tags);
+        $finder->files()->in($this->file)->notName($skip_post.'.md')->contains($tags);
         $posts=[];
         if ($finder->hasResults()) 
         {
@@ -678,10 +677,9 @@ class Document
                 $time = $parsedown->text($yaml['timestamp']);
                 $url = $parsedown->text($yaml['post_dir']);
                 $content['title'] = $title;
-                $content['body'] = $this->trim_words($bd,200);
                 $content['url'] = $url;
                 $content['timestamp'] = $time;
-                $content['tags'] = $tags;
+                $content['tags'] = str_replace('#','',implode(',',$tags));
                 $content['slug'] = $slug;
                 $content['preview_img'] = $first_img;
                 //content['slug'] = $slug;
@@ -695,7 +693,10 @@ class Document
                 array_push($posts, $content);
             }
             krsort($posts);
-            print_r($posts);
+            $countPosts = count($posts);
+            if($countPosts> $limit)
+                array_shift($posts);
+                return $posts;
         }
         else
         {
