@@ -89,11 +89,15 @@ Router::post('/publish', function ($request) {
     if (!$user->is_logged_in()) {
         return $user->redirect('/');
     }
+    $count = new Ziki\Core\Subscribe();
+    $fcount = $count->fcount();
+    $count = $count->count();
     $directory = "./storage/contents/";
     $data = $request->getBody();
     $title = $data['title'];
     $body = $data['postVal'];
     $tags = $data['tags'];
+    $host = $user->hash($url);
     // filter out non-image data
     $initial_images = array_filter($data, function ($key) {
         return preg_match('/^img-\w*$/', $key);
