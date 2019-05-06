@@ -40,15 +40,15 @@
                         </button>-->
                 </div>
 
-                <form action="" method="get" class="form-inline">
-                        <div class="w-75">
+                <form action="" method="get" class="form-inline w-75">
+                        <div class="w-100">
                             <input class="form-control w-100" type="text" placeholder="Search by website or RSS link">
                         </div>
                 </form>
 
 
                 {% for key, list in sub %}
-                <div class="row justify-content-between my-4 w-75">
+                <div class="row justify-content-between mx-0 my-4 w-75 p-0">
                     <div class="">
                         <img src="{{list.img | raw }}" alt="authors image" class="rss-image">
                         <span class="font-weight-bold">
