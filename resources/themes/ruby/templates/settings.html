@@ -2,28 +2,31 @@
 {% extends 'layout.html' %} {% block page_content%}
 
 <!-- content goes here -->
-
+<style>
+    @import 'resources/themes/ghost/assets/css/settings.css';
+</style>
 <div id="content" class="container">
     <div class="row">
         <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12 mt-3 offset-md-1 offset-lg-1">
 
             {% set navigation = [
-            {'href': 'settings', 'caption': 'Settings'},
-            {'href': 'profile', 'caption': 'Profile'},
-            {'href': 'subscriptions', 'caption': 'Subscriptions'}
+                {'href': 'profile', 'caption': 'Profile'},
+                {'href': 'settings', 'caption': 'Settings'},
+                {'href': 'subscriptions', 'caption': 'Subscriptions', count: 76 },
+                {'href': 'subscriptions', 'caption': 'Subscriptions', count: 52 }
             ]
             %}
 
             {% include "navtabs.html" with {'current_page': 'settings'} %}
 
             <div class="row themes-main py-2">
-                <div class="col themes-content-area pb-5 mt-5 mr-3 px-0">
+                <div class="col-md-12 pb-5 mt-5 mr-3 px-0">
 
                     <div class="row d-flex flex-column px-3 pb-4">
 
                         <div
                             class="col-lg-5 col-md-3 col-sm-12 col-xs-12 order-lg-1 order-md-1 order-sm-1 order-1 pb-3 px-0">
-                            <h6 class="h6 mb-0 font-weight-bold">Comment Plugin</h6>
+                            <h6 class="h6 mb-0 font-weight-bold">Choose comments plugin</h6>
                         </div>
 
                         <div
@@ -62,52 +65,50 @@
 
                         <div
                             class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0 pb-2">
-                            <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Videos Page</h6>
+                            <h6 class="switch-text flex-grow-1 font-weight-normal">Show video page ?</h6>
                             <label class="switch d-flex align-items-center">
                                 <input type="checkbox" class="setting_checkbox" data-action="ENABLE_VIDEOS_PAGE" {% if
                                     appsettings.ENABLE_VIDEOS_PAGE=="true" %} checked {% endif %}
-                                    data-caption="Video page"><span class="slider round"></span>
+                                    data-caption="video"><span class="slider round"></span>
                             </label>
-                        </div>
-
-                        <div
-                            class="col-lg-4 col-md-4 col-sm-12 col-xs-12 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
-                            <h6 class="switch-text flex-grow-1 font-weight-normal">Enable Portfolio Page</h6>
-                            <label class="switch d-flex align-items-center">
-                                <input type="checkbox" class="setting_checkbox" data-action="ENABLE_PORTFOLIO_PAGE" {%
-                                    if appsettings.ENABLE_PORTFOLIO_PAGE=="true" %} checked {% endif %}
-                                    data-caption="Portfolio page"><span class="slider round"></span>
-                            </label>
+                            <span
+                                class="video-response-label ml-2 pb-2">{% if appsettings.ENABLE_VIDEOS_PAGE == "true" %}
+                                Yes {% else %}
+                                No {% endif %}</span>
                         </div>
 
                     </div>
 
                     <div class="row d-flex flex-column px-3 pt-4 pb-4">
-
-                        <div class="col-lg-5 col-md-3 col-sm-6 order-lg-1 order-md-1 order-sm-1 order-1 pb-3 px-0">
-                            <h6 class="h6 mb-0 font-weight-bold">Themes</h6>
-                        </div>
-
-                        <div
-                            class="col-lg-4 col-md-4 col-sm-6 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-0">
-                            <h6 class="switch-text flex-grow-1 font-weight-normal" id="theme-caption">
-                                {% if appsettings.THEME_STATE == "false" %}
-                                Light Mode {% else %} Dark Mode {% endif %}</h6>
-                            <label class="switch d-flex align-items-center">
-                                <input type="checkbox" class="setting_checkbox" data-action="THEME_STATE" {% if
-                                    appsettings.THEME_STATE=="true" %} checked {% endif %} data-caption="theme">
-                                <span class="slider round"></span>
-                            </label>
+                        <!-- theme list: the idea is to load from a theme.json file -->
+                        {% set themeList = [
+                            {'name': 'Ghost', 'alias': 'ghost', 'imagePath': '/resources/themes/ghost/assets/img/theme1.png', color: '#280A66'},
+                            {'name': 'Ruby', 'alias': 'ruby', 'imagePath': '/resources/themes/ghost/assets/img/theme2.png', color: '#C61639'},
+                            ]
+                        %}
+                        <div class="col-lg-12 col-md-12 col-sm-6 order-lg-1 order-md-1 order-sm-1 order-1 pb-3 px-0">
+                            <div class="row d-flex align-items-center">
+                                <h6 class="col-md-4 h6 mb-3 font-weight-bold">
+                                    Themes<span class="badge badge-round ml-4">{{ themeList|length }}</span>
+                                </h6>
+                                <div class="col-md-4 select-option mb-3">
+                                    <form><input class="form-control rounded-0 search-box" type="text"
+                                            placeholder="Search installed themes"></form>
+                                </div>
+                                <div
+                                    class="col-md-4 col-sm-6 switch-toggle order-lg-3 order-md-3 order-sm-1 order-1 d-flex align-items-center px-3">
+                                    <label class="switch d-flex align-items-center">
+                                        <input type="checkbox" class="setting_checkbox" data-action="THEME_STATE" {% if
+                                        appsettings.THEME_STATE=="true" %} checked {% endif %} data-caption="theme">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <h6 class="switch-text flex-grow-1 font-weight-normal ml-3" id="theme-caption">
+                                        {% if appsettings.THEME_STATE == "false" %}
+                                        Light Mode {% else %} Dark Mode {% endif %}</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- theme list: the idea is to load from a theme.json file -->
-                    {% set themeList = [
-                        {'name': 'Ghost', 'alias': 'ghost', 'imagePath': '/resources/themes/ghost/assets/img/theme1.png', color: '#280A66'},
-                        {'name': 'Ruby', 'alias': 'ruby', 'imagePath': '/resources/themes/ghost/assets/img/theme2.png', color: '#C61639'},
-                        ]
-                    %}
-
                     <div class="row themes-main px-0 themes-cont">
                         <!-- just add backend looping code here: use of the div as template for looping -->
                         {% for theme in themeList %}
@@ -115,13 +116,13 @@
                             data-name="{{ theme.name }}" title="Click to set {{ theme.name }} theme">
                             <figure class="px-0 py-0 mb-0" style="position:relative;">
                                 <img src="{{ theme.imagePath }}" alt="" class="img-fluid w-100 rounded-top">
-                                {% if appsettings.THEME == theme.alias %} <p class="font-weight-bold theme-active">
-                                    ACTIVE</p>
-                                {% endif %}
                             </figure>
                             <div class="theme-state d-flex justify-content-start align-items-center px-3 py-2 rounded-bottom"
                                 {% if theme.color %} style="background-color:{{ theme.color }};" {% endif %}>
-                                <p class="text-white my-0 align-self-center">{{ theme.name }}</p>
+                                <p class="text-white my-0 align-self-center">
+                                    {% if appsettings.THEME == theme.alias %}
+                                    <span class="theme-active">ACTIVE:</span>{% endif %}
+                                    {{ theme.name }}</p>
                             </div>
                         </div>
                         {% endfor %}
@@ -135,7 +136,6 @@
 
                                 return {
                                     handleServerRequest: function (action, value, cb) {
-                                        console.log(action);
                                         var url = '/appsetting';
                                         var fd = new FormData();
                                         fd.append('field', action);
@@ -146,8 +146,6 @@
                                         })
                                             .then(response => response.json())
                                             .then((data) => {
-                                                if (data)
-                                                    console.log(data);
                                                 (cb && cb !== undefined && typeof cb == 'function') && cb(data);
                                             });
                                     },
@@ -239,12 +237,16 @@
                                                 var value = this.checked;
                                                 var caption = this.dataset.caption;
                                                 app.handleServerRequest(action, value, function (res) {
-                                                    console.log(res.status, action, value, caption);
                                                     if (res.status == 'success' && !caption.includes('theme')) {
+                                                        if (caption == 'video') {
+                                                            var videoLabel = document.querySelector('.video-response-label');
+                                                            videoLabel.innerText = value ? 'Yes' : 'No';
+                                                        }
                                                         value ? app.showToast(caption + ' enabled', res.status) : app.showToast(caption + ' disabled', res.status);
+
                                                         setTimeout(function () {
                                                             window.location.reload();
-                                                        }, 3000);
+                                                        }, 2000);
                                                     } else if (res.status == 'success' && caption == 'theme') {
                                                         themeCaption.innerHTML = value ? 'Dark Mode' : 'Light Mode';
                                                         value ? app.showToast('Dark mode enabled', res.status) : app.showToast('Light mode enabled', res.status);
@@ -263,13 +265,19 @@
                                         themes.forEach(function (theme) {
                                             theme.addEventListener('click', function () {
                                                 var themeName = this.dataset.name;
+                                                var active = this.querySelector('.theme-active');
                                                 //call server and post theme name
                                                 if (current_theme == themeName) return
+                                                app.showToast('Updating theme, please wait...', 'info');
                                                 app.handleServerRequest('THEME', themeName.toLowerCase(), function (res) {
                                                     app.showToast(res.msg, res.status);
-                                                    setTimeout(function () {
-                                                        window.location.reload();
-                                                    }, 3000);
+                                                    if (res.status == 'error') {
+                                                        return
+                                                    } else {
+                                                        setTimeout(function () {
+                                                            window.location.reload();
+                                                        }, 2000);
+                                                    }
                                                 })
                                             });
                                         });
@@ -301,7 +309,7 @@
                                                 res.status == 'success' ? app.showToast('Discuss enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
                                                 setTimeout(function () {
                                                     window.location.reload();
-                                                }, 3000);
+                                                }, 2000);
                                             }) //for disqus only
 
                                         });
@@ -320,11 +328,41 @@
                                                         res.status == 'success' ? app.showToast('Facebook enabled as a comment plugin', res.status) : app.showToast(res.msg, res.status);
                                                         setTimeout(function () {
                                                             window.location.reload();
-                                                        }, 3000);
+                                                        }, 2000);
                                                     });
                                                 })
                                             })
                                         });
+                                    },
+                                    handleFilter: function () {
+                                        var themeCont = document.querySelector('.themes-main');
+                                        var searchInput = document.querySelector('.search-box');
+
+                                        searchInput.addEventListener('keyup', function () {
+                                            var value = this.value;
+                                            var themes = document.querySelectorAll('.theme-item');
+                                            var found = false;
+
+                                            //notfound element
+                                            var notFound = document.createElement('p');
+                                            notFound.innerText = 'No theme match';
+                                            notFound.className = 'notfound';
+
+                                            // remove if exist
+                                            if (themeCont.querySelector('.notfound')) themeCont.removeChild(document.querySelector('.notfound'));
+
+                                            //check for theme that matched
+                                            themes.forEach(function (theme) {
+                                                var themeName = theme.dataset.name.toLowerCase();
+                                                if (themeName.includes(value)) {
+                                                    found = true;
+                                                    theme.classList.remove('hide');
+                                                } else {
+                                                    theme.classList.add('hide');
+                                                }
+                                            });
+                                            (found) ? null : themeCont.appendChild(notFound);
+                                        }, false)
                                     },
                                     toggleDarkLight: function () {
                                         var body = document.getElementById("body");
@@ -358,6 +396,7 @@
                                         app.handleCheckbox();
                                         app.handleFacebookComment()
                                         app.handleThemeSwitch();
+                                        app.handleFilter();
                                         //read twig data from javascript
                                         var commentPlugin = '{{ appsettings.COMMENT_PLUGIN }}';
                                         //set the select dropdown value 
@@ -383,6 +422,7 @@
         </div>
     </div>
 </div>
+<!-- extra div -->
 </div>
 </div>
 </div>
