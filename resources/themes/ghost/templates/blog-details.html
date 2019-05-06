@@ -169,13 +169,13 @@
             <div class="body-of-blog mt-2">
                 <div class="info-on-author row d-flex justify-content-start text-center">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3">
-                        <img src="/resources/themes/ghost/assets/img/Ellipse (1) 2.png" alt="" class="img-fluid author-img">
+                        <img src="{{settings.image}}" alt="" class="img-fluid author-img">
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3 about-blog-source text-left p-0">
                         <!--<p class="blog-source p-0 m-0">{{result.title | raw}}</p>
                         <p class="blog-date p-0 m-0">{{result.timestamp | raw}}</p>-->
                         <p class="blog-date p-0 m-0">12<sup>th</sup> April 2019</p>
-                        <p class="blog-source p-0 m-0">James Rogger</p>
+                        <p class="blog-source p-0 m-0">{{settings.name}}</p>
                     </div>
 
                     <div class="col-4">
@@ -255,7 +255,7 @@
 
             <ul class="list-unstyled CTAs d-flex justify-content-center">
                 <li>
-                    <a href="#"><button class="btn btn-light">Go back Home</button></a>
+                    <a href="/"><button class="btn btn-light">Go back Home</button></a>
                 </li>
             </ul>
         </div>

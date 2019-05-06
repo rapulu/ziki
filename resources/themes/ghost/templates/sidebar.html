@@ -104,9 +104,9 @@
     padding-bottom: 15px;
   }
 
-  .lucid {
+  /* .lucid {
     color: ;
-  }
+  } */
 
   .btn-light:hover {
     border: 1px solid #fff;
@@ -155,6 +155,27 @@
     text-align: center;
   }
 
+  #sidebar.active .fa-arrow-circle-right {
+    text-align: center;
+  }
+
+  #sidebar .collapse-control {
+    padding: 10px;
+    color: #280A66;
+  }
+
+  .visible {
+    display: block;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .top-toggle {
+    display: none;
+  }
+
   #sidebar.active img.profile-pic {
     border-radius: 50%;
     height: 60px;
@@ -179,9 +200,17 @@
   }
 
   #sidebar.active ul li a {
-    padding: 20px 10px;
+    padding: 10px 5px;
     text-align: center;
     font-size: 0.85em;
+  }
+
+  #sidebar.active ul li a:hover {
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 0.85em;
+    border-radius: 5px;
+    border: 1px solid #280A66;
   }
 
   #sidebar.active ul li a i {
@@ -229,6 +258,13 @@
     background: #280A66;
     padding: 10px 25px;
     border-radius: 10px;
+  }
+
+  #sidebar.active ul li span:hover {
+    color: #280A66;
+    background: transparent;
+    padding: 0px 0px;
+    border-radius: 0px;
   }
 
   #sidebar ul li a i {
@@ -347,9 +383,16 @@
       margin-left: 0;
     }
 
-    #sidebarCollapse span {
-      display: none;
+    #sidebarCollapse,
+    .top-toggle {
+      display: block;
     }
+
+    #sidebar-collapse,
+    #sidebar-collapse-2 {
+      display: none
+    }
+
   }
 
   /*code for side-bar content*/
@@ -639,10 +682,16 @@
 </style>
 
 <div class="container-fluid">
-  <div class="row">
+  <div class="row main">
     <div class="wrapper">
       <!-- side bar here -->
       <div id="sidebar">
+        <div class="text-right collapse-control">
+          <span id="sidebar-Collapse" class="">
+            <i id="sidebar-collapse" class="visible fas fa-arrow-circle-left fa-2x"></i>
+            <i id="sidebar-collapse-2" class=""></i>
+          </span>
+        </div>
         <div class="sidebar-header pt-5">
           <div class="row">
             <div class="col-12 col-sm-8 mx-auto d-block">
@@ -676,8 +725,8 @@
                   <h6 class="text-center"><span><b>TIMELINE</b></span></h6>
                 </a></li>
 
-                <li><a href="/published-posts">
-                  <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+              <li><a href="/published-posts">
+                  <h6 class="text-center"><span><b>POSTS</b></span></h6>
                 </a></li>
 
               {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
@@ -697,7 +746,7 @@
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
                 </a></li>
-	      {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
+              {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
               <li><a href="/videos">
                   <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
                 </a></li>
@@ -710,12 +759,11 @@
               <li><a href="/">
                   <h6 class="text-center"><span><b>HOME</b></span></h6>
                 </a></li>
-                <li><a href="/published-posts">
-                  <h6 class="text-center"><span><b>MY POSTS</b></span></h6>
+              {% if appsettings.ENABLE_VIDEOS_PAGE == 'true' %}
+              <li><a href="/videos">
+                  <h6 class="text-center"><span><b>VIDEOS</b></span></h6>
                 </a></li>
-              <li><a href="/profile">
-                  <h6 class="text-center"><span><b>PROFILE</b></span></h6>
-                </a></li>
+              {% endif %}
               <li><a href="/about">
                   <h6 class="text-center"><span><b>ABOUT</b></span></h6>
                 </a></li>

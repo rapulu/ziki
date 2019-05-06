@@ -120,7 +120,7 @@
                 <div class="row">
                     <div class=" row col-12 col-sm-12 col-xs-12">
                         <div class="col-sm-12 col-xs-6  pb-4 ">
-                          {% if user %}
+                          {% if user.role == 'admin' %}
                           <button type="submit"
                                   class="btn float-md-left profile-submit-btn text-white    "
                                   data-toggle="modal" data-target="#addVideo">

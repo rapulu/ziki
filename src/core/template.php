@@ -42,13 +42,22 @@ class Template
         }
     }
 
+    private static function getUrlSha(){
+        $user = new Auth();
+        $url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+        $host = $user->hash($url);
+        return $host;
+    }
+
     public function render($page, array $parameters = [])
     {
         $settings = self::getSettings();
         $user = self::getLoginUser();
+        $url = self::getUrlSha();
         $appsettings = self::getAppSettings(); //load appsettings
         $this->twig->addGlobal('settings', $settings);
         $this->twig->addGlobal('user', $user);
+        $this->twig->addGlobal('host', $url);
         $this->twig->addGlobal('appsettings', $appsettings);
         return $this->twig->render($page, $parameters);
     }
