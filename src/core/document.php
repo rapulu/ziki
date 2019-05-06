@@ -45,7 +45,9 @@ class Document
         //$doc = FileSystem::write($this->file, $yaml . "\n" . $html);
 
         $yamlfile = new Doc();
+        if($title != ""){
         $yamlfile['title'] = $title;
+        }
         if ($tags != "") {
             $tag = explode(",", $tags);
             $put = [];
