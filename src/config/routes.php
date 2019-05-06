@@ -360,14 +360,19 @@ Router::get('/404', function ($request) {
   $count = $count->count();
     return $this->template->render('404.html', ['count' => $count, 'fcount' => $fcount]);
 });
-Router::get('/blog-details', function ($request) {
+Router::get('/post/{post_id}', function ($request,$post_id) {
 
     $setting = new Ziki\Core\Setting();
     $settings = $setting->getSetting();
     $count = new Ziki\Core\Subscribe();
     $fcount = $count->fcount();
     $count = $count->count();
-    return $this->template->render('blog-details.html',['setting' => $settings, 'count' => $count, 'fcount' => $fcount]);
+    $post_id = explode('-',$post_id);
+    $post = end($post_id);
+    $directory = "./storage/contents/";
+    $ziki = new Ziki\Core\Document($directory);
+    $post_details=$ziki->getPost($post);
+    return $this->template->render('blog-details.html',['setting' => $settings, 'count' => $count, 'fcount' => $fcount,'post'=>$post_details]);
 });
 
 // Start- Portfolio page
