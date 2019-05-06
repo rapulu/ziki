@@ -381,6 +381,13 @@ Router::get('/404', function ($request) {
     return $this->template->render('404.html', ['count' => $count, 'fcount' => $fcount]);
 });
 
+//blog-details
+Router::get('/blog-details', function ($request) {
+    $setting = new Ziki\Core\Setting();
+    $settings = $setting->getSetting();
+    return $this->template->render('blog-details.html', $settings);
+});
+
 // Start- Portfolio page
 
 Router::get('/portfolio', function ($request) {
