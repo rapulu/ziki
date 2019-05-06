@@ -376,7 +376,7 @@ Router::get('/blog-details', function ($request) {
     $count = new Ziki\Core\Subscribe();
     $fcount = $count->fcount();
     $count = $count->count();
-    return $this->template->render('blog-details.html',['setting' => $settings, 'count' => $count, 'fcount' => $fcount]);
+    return $this->template->render('blog-details.html', $settings, ['count' => $count, 'fcount' => $fcount]);
 });
 
 // Start- Portfolio page
