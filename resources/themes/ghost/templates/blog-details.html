@@ -61,6 +61,7 @@
         font-size: 12px;
         font-family: 500;
         text-decoration: none;
+        text-transform: uppercase;
     }
     
     div.post-tags {
@@ -76,7 +77,7 @@
     .blog-source {
         font-size: 12px;
         color: blueviolet;
-        font-weight: 500;
+        font-weight: 700;
     }
     /*  PLACEHOLDER STYLING  */
     
@@ -145,6 +146,11 @@
         margin-right: 10px;
     }
     
+    .blog-posts p {
+        text-decoration: none;
+        text-justify: auto;
+    }
+    
     .blog-posts a {
         text-decoration: none;
         color: #212529;
@@ -205,6 +211,9 @@
             font-size: 28px;
         }
     }
+    p img{
+        width:100%;
+    }
     
     @media (min-width:767px) {
         .about-blog-source {
@@ -233,7 +242,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-3 about-blog-source text-left p-0">
                         <!--<p class="blog-source p-0 m-0">{{result.title | raw}}</p>
                         <p class="blog-date p-0 m-0">{{result.timestamp | raw}}</p>-->
-                        <p class="blog-date p-0 m-0">12<sup>th</sup> April 2019</p>
+                        <p class="blog-date p-0 m-0">{{ post.date }}</p>
                         <p class="blog-source p-0 m-0">{{settings.name}}</p>
                     </div>
 
@@ -242,47 +251,30 @@
                     </div>
                 </div>
                 <div class="blog-post-title mt-4">
-                    <h1>Save 60% on any Apple Watch Series 4 at Jumia Store</h1>
+                    <h1>{{ post.title|striptags }}</h1>
                 </div>
                 <div class="blog-info">
-                    <figure class="blog-image-header">
+                    <!-- <figure class="blog-image-header">
                         <img src="/resources/themes/ghost/assets/img/Rectangle 2.1.png" alt="" class="blog-image w-100" />
-                        <figcaption class="image-caption"> Grab a Series 4 Apple Watch for as low as 4500 naira. at Jumia Store.
+                        <figcaption class="image-caption"><span style="padding-left: 10px">Grab a Series 4 Apple Watch for as low as 4500 naira. at Jumia Store.</span>
                         </figcaption>
-                    </figure>
+                    </figure> -->
 
                     <div class="blog-posts">
                         <!--<p>{{result.body | raw}} </p>-->
-                        <p>
-                            In case you missed it, Best Buy had a huge <a href="#">Apple Sale Event</a> last week. Virtually all Apple products were on sale — except for the Apple Watch Series 4. We’re not sure if they forgot to include it in the sale
-                            or if it was a strategic move, but regardless, they’re making up for it now.
-                            <br/>All Series 4 Apple Watches are currently 50% off at <a href="http://www.jumia.com">Jumia</a>, even the Nike ones. That means you can grab one of the newest Apple Watches for as low as 34,000. The Series 4 display is about
-                            30 percent larger than previous models while the case is thinner and smaller, offered in two sizes: 40 millimeter and 44 millimeter. The user interface is optimized for the new screen size, with bigger fonts and icons. Reply
-                            to texts, challenge your friends to fitness competitions, or use the walkie talkie feature to talk to <a href="#">other Apple Watch users</a>, even without cellular.
-                        </p>
-                        <blockquote cite="http://www.worldwildlife.org/who/index.html">
-                            "For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally."
-                        </blockquote>
-                        <div class="relate-post"><span class="more-post">SEE ALSO:</span><a href=""> 10 of the best smart scales, according to online reviews</a></div>
-                        <p>
-                            In addition to appearance improvements, the Series 4 also has advanced fitness tracking. It automatically tracks workouts, including yoga and hiking. And if you’re a runner, you can enjoy new features like cadence and pace alerts. Plus, with the larger
-                            screen, you can see up to five metrics at a glance while you’re active. At Best Buy you can find the standard model with just GPS, the model with GPS and cellular, and the Nike model, all available in both 40 and 44 millimeters
-                            and an array of colors. <a hre="http://www.jumia.com">Check out the sale and save 50%</a>.
-                        </p>
-
-
+                        {{ post.body|raw }}
+                        {% if post.tags  %}
                         <div class="post-tags">
                             <span>TOPICS: </span>
-                            <a href="#">APPLE,</a>
-                            <a href="#">APPLE WATCH,</a>
-                            <a href="#">FITNESS,</a>
-                            <a href="#">SMARTWATCH,</a>
-                            <a href="#">TECH</a>
+                            {% for tag in post.tags %}
+                            <a href="/tags/{{ tag }}">{{ tag }}  </a>
+                            {% endfor %}
                         </div>
-                        <div class="mt-5">
+                        {% endif %}
+                        <!--<div class="mt-5">
                             <a href="#"><span class="categories">Privacy</span></a>
                             <a href="#"><span class="categories">Privacy</span></a>
-                        </div>
+                        </div>-->
                         <div class="social-media mt-5">
                             <span><i class="fa fa-share-square "style="font-size:24px; margin-left: 10px; color: grey; font-weight: 200; height: 21px; width: 21px; fill: #7d7d7d;"></i>SHARE</span>
                             <a href="#"><img src="/resources/themes/ghost/assets/img/facebookicon.png" alt="tag-label">
@@ -294,30 +286,37 @@
                         </div>
                     </div>
                     <div class="card-post mt-5">
+                        {% if relatedPosts %}
                         <div class="" style="width: 50px; border-top: 5px solid orange;"></div>
                         <h4 class="" style="padding-top: 10px;"><b>RELATED POSTS</b></h4>
-                        <div class="row m-0">
-                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 p-0 mr-4 mt-3" style="background-color: #F9F9F9;">
-                                <img src="/resources/themes/ghost/assets/img/mb-3.png" alt="" class="blog-image w-100" height="25%" width="100%" />
-                                <div>
-                                    <p style="font-size: 12px; color: grey; margin-left: 10px;">TECH</p>
-                                    <a class="related-posts" href="#">
-                                        <h6 style="color: black; margin-left: 10px;">Apple Watch (refurbished) is nearly 50% off at Apapa</h6>
+                        <div class="row ml-0">
+                            {% for relatedPost in relatedPosts %}
+                            {% if relatedPost.preview_img %}
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 mt-3">
+                                <img src="{{ relatedPost.preview_img }}" alt="" class="blog-image w-100" height="30%" />
+                                <div class="" style="background-color: #F9F9F9; margin-top: 0px;">
+                                    <p style="font-size: 12px; color: grey; padding-top: 10px; padding-left: 10px; margin: 0px;">{{ relatedPost.tags }}</p>
+                                    <a class="related-posts" href="/post/{{ relatedPost.slug|lower }}">
+                                        <h6 style="color: black; padding: 15px;">{{ relatedPost.title|striptags }}</h6>
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 p-0 mr-4 mt-3" style="background-color: #F9F9F9;">
-                                <img src="/resources/themes/ghost/assets/img/travis.jpg" alt="" class="blog-image w-100" height="25%" />
-                                <div>
-                                    <p style="font-size: 12px; color: grey; margin-left: 10px;">TECH</p>
-                                    <a class=" related-posts" href="#">
-                                        <h6 style="color: black; margin-left: 10px;">This is a test post for related articles</h6>
-
-                                    </a>
+                            {% else %}
+                            <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12 mt-3">
+                                    <div class="" style="background-color: #F9F9F9; margin-top: 0px;">
+                                        <p style="font-size: 12px; color: grey; padding-top: 10px; padding-left: 10px; margin: 0px;">{{ relatedPost.tags }}</p>
+                                        <a class="related-posts" href="/post/{{ relatedPost.slug|lower }}">
+                                            <h6 style="color: black; padding: 15px;">{{ relatedPost.title|striptags }}</h6>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endif %}
+                            
+                            {% endfor %}
+                            
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
 
@@ -326,7 +325,7 @@
                 <div id="disqus_thread"></div>
 
 
-                {% if COMMENT_PLUGIN == "disqus" %}
+                {% if appsettings.COMMENT_PLUGIN == "disqus" %}
                 <script>
                     //alert("{{COMMENT_PLUGIN}}");
 
@@ -349,7 +348,7 @@
                     })();
                 </script>
                 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> {% else %}
-                <div class="fb-comments" data-href="{{FACEBOOK_DOMAIN_URL}}" data-width="" data-numposts="3"></div>
+                <div class="fb-comments" data-href="{{ appsettings.FACEBOOK_DOMAIN_URL }}" data-width="" data-numposts="3"></div>
                 {% endif %}
             </div>
 
