@@ -379,6 +379,13 @@ Router::get('/postag', function ($request) {
     $ziki->getRelatedPost();
 });
 
+//blog-details
+Router::get('/blog-details', function ($request) {
+    $setting = new Ziki\Core\Setting();
+    $settings = $setting->getSetting();
+    return $this->template->render('blog-details.html', $settings);
+});
+
 // Start- Portfolio page
 
 Router::get('/portfolio', function ($request) {
